@@ -75,7 +75,7 @@ export const OrderBox = styled.div`
   justify-content: space-between;
 `
 
-export const OrderZero = styled.div<{ view: number }>`
+export const OrderZero = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -84,7 +84,7 @@ export const OrderZero = styled.div<{ view: number }>`
   background: ${(props) => (props.view === 0 ? colors.BLACK : colors.WHITE)};
 `
 
-export const OrderOne = styled.div<{ view: number }>`
+export const OrderOne = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -92,7 +92,7 @@ export const OrderOne = styled.div<{ view: number }>`
   border: 1px solid ${colors.GRAY};
   background: ${(props) => (props.view === 1 ? colors.BLACK : colors.WHITE)};
 `
-export const OrderTwo = styled.div<{ view: number }>`
+export const OrderTwo = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -101,7 +101,7 @@ export const OrderTwo = styled.div<{ view: number }>`
   background: ${(props) => (props.view === 2 ? colors.BLACK : colors.WHITE)};
 `
 
-export const OrderThr = styled.div<{ view: number }>`
+export const OrderThr = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;

@@ -6,7 +6,7 @@ import UserInfo from '../../components/UserInfo'
 const Home = () => {
   const [view, setView] = useState(0)
   const [btn, setBtn] = useState('')
-  const viewHadlerBtn = (e: MouseEvent<HTMLButtonElement>) => {
+  const viewHandler = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.id === 'left') {
       setBtn('left')
       setView((prev) => {
@@ -20,11 +20,25 @@ const Home = () => {
       })
     }
   }
+  const directViewHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    if (e.currentTarget.id === '0') {
+      setView(0)
+    }
+    if (e.currentTarget.id === '1') {
+      setView(1)
+    }
+    if (e.currentTarget.id === '2') {
+      setView(2)
+    }
+    if (e.currentTarget.id === '3') {
+      setView(3)
+    }
+  }
 
   return (
     <S.HomeContainer>
       <S.DecContainer>
-        <S.pageBtn type='button' id='left' onClick={viewHadlerBtn}>
+        <S.pageBtn type='button' id='left' onClick={viewHandler}>
           <Arrow className='left' />
         </S.pageBtn>
         {view === 0 && (
@@ -51,15 +65,15 @@ const Home = () => {
             <UserInfo />
           </S.DecBox>
         )}
-        <S.pageBtn type='button' id='right' onClick={viewHadlerBtn}>
+        <S.pageBtn type='button' id='right' onClick={viewHandler}>
           <Arrow className='right' />
         </S.pageBtn>
       </S.DecContainer>
       <S.OrderBox>
-        <S.OrderZero view={view} />
-        <S.OrderOne view={view} />
-        <S.OrderTwo view={view} />
-        <S.OrderThr view={view} />
+        <S.OrderZero id='0' onClick={directViewHandler} view={view} />
+        <S.OrderOne id='1' onClick={directViewHandler} view={view} />
+        <S.OrderTwo id='2' onClick={directViewHandler} view={view} />
+        <S.OrderThr id='3' onClick={directViewHandler} view={view} />
       </S.OrderBox>
     </S.HomeContainer>
   )
