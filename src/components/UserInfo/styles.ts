@@ -43,7 +43,7 @@ export const inputRadio = styled.input`
   }
 `
 export const vaildatorDiv = styled.div<{ vail: boolean }>`
-  font-size: 14px;
+  font-size: 12px;
   color: ${colors.RED};
   width: 100%;
   text-align: left;
@@ -57,5 +57,8 @@ export const submitBtn = styled.button`
   color: ${colors.BLUE};
   :disabled {
     color: ${colors.GRAY};
+  }
+  a {
+    color: ${colors.BLUE};
   }
 `
