@@ -25,7 +25,6 @@ export const radioBox = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  margin-bottom: 40px;
   div {
     margin-right: 25px;
   }
