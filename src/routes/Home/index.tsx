@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react'
+import { useState, MouseEvent } from 'react'
 import * as S from './styles'
 import { ReactComponent as Arrow } from '../../assets/imgs/arrow.svg'
 import UserInfo from '../../components/UserInfo'
@@ -21,61 +21,50 @@ const Home = () => {
     }
   }
   const directViewHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.id === '0') {
-      setView(0)
-    }
-    if (e.currentTarget.id === '1') {
-      setView(1)
-    }
-    if (e.currentTarget.id === '2') {
-      setView(2)
-    }
-    if (e.currentTarget.id === '3') {
-      setView(3)
-    }
+    setView(Number(e.currentTarget.id))
   }
 
   return (
-    <S.HomeContainer>
-      <S.DecContainer>
+    <S.homeContainer>
+      <S.decContainer>
         <S.pageBtn type='button' id='left' onClick={viewHandler}>
           <Arrow className='left' />
         </S.pageBtn>
         {view === 0 && (
-          <S.DecBox view={btn}>
+          <S.decBox view={btn}>
             <span>
               나만의 운동 루틴을 만들어 <br /> 체계적으로 운동하세요!
             </span>
-          </S.DecBox>
+          </S.decBox>
         )}
         {view === 1 && (
-          <S.DecBox view={btn}>
+          <S.decBox view={btn}>
             <span>
               나의 운동 볼륨과 기록들을 <br />볼 수 있습니다.
             </span>
-          </S.DecBox>
+          </S.decBox>
         )}
         {view === 2 && (
-          <S.DecBox view={btn}>
+          <S.decBox view={btn}>
             <span className='start'>이제 저와 함께 운동해 볼까요?</span>
-          </S.DecBox>
+          </S.decBox>
         )}
         {view === 3 && (
-          <S.DecBox view={btn}>
+          <S.decBox view={btn}>
             <UserInfo />
-          </S.DecBox>
+          </S.decBox>
         )}
         <S.pageBtn type='button' id='right' onClick={viewHandler}>
           <Arrow className='right' />
         </S.pageBtn>
-      </S.DecContainer>
-      <S.OrderBox>
-        <S.OrderZero id='0' onClick={directViewHandler} view={view} />
-        <S.OrderOne id='1' onClick={directViewHandler} view={view} />
-        <S.OrderTwo id='2' onClick={directViewHandler} view={view} />
-        <S.OrderThr id='3' onClick={directViewHandler} view={view} />
-      </S.OrderBox>
-    </S.HomeContainer>
+      </S.decContainer>
+      <S.orderBox>
+        <S.orderZero id='0' onClick={directViewHandler} view={view} />
+        <S.orderOne id='1' onClick={directViewHandler} view={view} />
+        <S.orderTwo id='2' onClick={directViewHandler} view={view} />
+        <S.orderThr id='3' onClick={directViewHandler} view={view} />
+      </S.orderBox>
+    </S.homeContainer>
   )
 }
 

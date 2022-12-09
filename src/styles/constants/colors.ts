@@ -4,6 +4,7 @@ const colors = {
   BLACK: '#000',
   BORDER: '#ddd',
   GRAY: '#b7bab6',
+  RED: '#ea0000',
 }
 
 export default colors

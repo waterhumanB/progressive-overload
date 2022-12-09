@@ -20,7 +20,7 @@ to {
 }
 `
 
-export const HomeContainer = styled.section`
+export const homeContainer = styled.section`
   width: 100%;
   height: 100%;
   margin: auto;
@@ -40,7 +40,7 @@ export const pageBtn = styled.button`
   }
 `
 
-export const DecContainer = styled.div`
+export const decContainer = styled.div`
   height: 100%;
   display: flex;
   a {
@@ -50,7 +50,7 @@ export const DecContainer = styled.div`
   }
 `
 
-export const DecBox = styled.div<{ view: string }>`
+export const decBox = styled.div<{ view: string }>`
   text-align: center;
   margin: 20px;
   margin: auto;
@@ -65,7 +65,7 @@ export const DecBox = styled.div<{ view: string }>`
   }
 `
 
-export const OrderBox = styled.div`
+export const orderBox = styled.div`
   width: 100px;
   top: 90%;
   left: 50%;
@@ -75,7 +75,7 @@ export const OrderBox = styled.div`
   justify-content: space-between;
 `
 
-export const OrderZero = styled.button<{ view: number }>`
+export const orderZero = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -84,7 +84,7 @@ export const OrderZero = styled.button<{ view: number }>`
   background: ${(props) => (props.view === 0 ? colors.BLACK : colors.WHITE)};
 `
 
-export const OrderOne = styled.button<{ view: number }>`
+export const orderOne = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -92,7 +92,7 @@ export const OrderOne = styled.button<{ view: number }>`
   border: 1px solid ${colors.GRAY};
   background: ${(props) => (props.view === 1 ? colors.BLACK : colors.WHITE)};
 `
-export const OrderTwo = styled.button<{ view: number }>`
+export const orderTwo = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -101,7 +101,7 @@ export const OrderTwo = styled.button<{ view: number }>`
   background: ${(props) => (props.view === 2 ? colors.BLACK : colors.WHITE)};
 `
 
-export const OrderThr = styled.button<{ view: number }>`
+export const orderThr = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
