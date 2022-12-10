@@ -5,8 +5,8 @@ export const routineContainer = styled.section`
   width: 100%;
 `
 export const userBox = styled.div`
-  justify-content: center;
-  width: 300px;
+  justify-content: left;
+  width: 80%;
   margin: 30px auto;
   display: flex;
   span {
@@ -35,7 +35,7 @@ export const youtubeBox = styled.button`
   height: 80px;
   background: ${colors.WHITE};
   border: 2px solid ${colors.SKY};
-  border-radius: 20px;
+  border-radius: 15px;
   :hover {
     color: ${colors.BLUE};
     border: 2px solid ${colors.BLUE};
