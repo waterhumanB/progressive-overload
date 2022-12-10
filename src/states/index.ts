@@ -1,11 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 import user from './user'
 
+const persistConfig = {
+  key: 'root', // localStorage key
+  storage, // localStorage
+  whitelist: ['user'], // target (reducer name)
+}
+const rootReducer = combineReducers({
+  user,
+})
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 export const store = configureStore({
-  reducer: {
-    user,
-  },
+  reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 })
@@ -13,4 +23,4 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
-export default store
+export const persistor = persistStore(store)

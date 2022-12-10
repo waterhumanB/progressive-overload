@@ -50,7 +50,6 @@ const UserInfo = () => {
       tall: tallValue,
       weight: weightValue,
     }
-    localStorage.setItem('user', JSON.stringify(user))
     dispatch(setUser(user))
     navgate('/routine')
   }

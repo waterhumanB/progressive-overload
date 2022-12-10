@@ -37,4 +37,4 @@ export default systemSlice.reducer
 
 // Selector =====================
 
-export const getTodoList = (state: RootState): UserState => state.user
+export const getUserInfo = (state: RootState): UserState => state.user
