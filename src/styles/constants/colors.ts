@@ -5,6 +5,7 @@ const colors = {
   BORDER: '#ddd',
   GRAY: '#b7bab6',
   RED: '#ea0000',
+  SKY: '#80B5FF',
 }
 
 export default colors
