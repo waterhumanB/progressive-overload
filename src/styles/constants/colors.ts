@@ -6,6 +6,7 @@ const colors = {
   GRAY: '#b7bab6',
   RED: '#ea0000',
   SKY: '#80B5FF',
+  FONT: '#aaa',
 }
 
 export default colors

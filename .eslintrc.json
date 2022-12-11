@@ -26,6 +26,7 @@
       "error",
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
+    "react-hooks/exhaustive-deps": "off",
     "react/jsx-indent": "warn",
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "warn",

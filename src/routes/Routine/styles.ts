@@ -4,40 +4,53 @@ import colors from '../../styles/constants/colors'
 export const routineContainer = styled.section`
   width: 100%;
 `
-export const userBox = styled.div`
-  justify-content: left;
-  width: 80%;
-  margin: 30px auto;
+export const userContainer = styled.div`
   display: flex;
-  span {
+  justify-content: space-around;
+  .nickName {
     font-weight: bold;
     font-size: 30px;
-    margin-right: 10px;
+  }
+  .info {
+    color: ${colors.FONT};
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
   }
 `
 
-export const youtubeContainer = styled.div`
-  margin: auto;
+export const userBox = styled.div`
+  justify-content: left;
+  text-align: center;
+  align-items: center;
+  margin: 20px 0 25px 0;
+  display: flex;
+`
+export const subMenuContainer = styled.div`
+  font-size: 18px;
+  font-weight: bold;
   display: flex;
   justify-content: space-around;
-`
-
-export const youtubeBox = styled.button`
-  color: ${colors.SKY};
-  font-size: 17px;
-  line-height: 30px;
-  font-weight: 800;
   text-align: center;
-  justify-content: center;
-  display: flex;
   align-items: center;
-  width: 140px;
-  height: 80px;
-  background: ${colors.WHITE};
-  border: 2px solid ${colors.SKY};
-  border-radius: 15px;
-  :hover {
-    color: ${colors.BLUE};
-    border: 2px solid ${colors.BLUE};
+
+  .youtube {
+    color: ${colors.BLACK};
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: 5px 7px;
+    border: 1px solid ${colors.BLACK};
+    border-radius: 12px;
+    :hover {
+      color: ${colors.BLUE};
+      border: 1px solid ${colors.BLUE};
+    }
+  }
+
+  .logo {
+    margin-right: 10px;
   }
 `
