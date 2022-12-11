@@ -14,10 +14,21 @@ export const navFooter = styled.footer`
   justify-content: space-around;
   a {
     margin: 5px auto;
-    color: ${colors.FONT};
+    color: ${colors.BACK};
   }
 
   .active {
     color: ${colors.FOCUS};
+    svg {
+      fill: ${colors.FOCUS};
+    }
+  }
+  svg {
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    height: 28px;
+    margin: auto;
+    fill: ${colors.BACK};
   }
 `

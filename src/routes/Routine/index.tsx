@@ -6,10 +6,16 @@ import { ReactComponent as Youtube } from '../../assets/imgs/youtube.svg'
 import * as S from './styles'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
+import AddRoutine from '../../components/AddRoutine'
+import { useState } from 'react'
+import DropDown from '../../components/DropDown'
 
 const Routine = () => {
   const userInfo = useAppSelector(getUserInfo)
-
+  const [dropDown, setDropDown] = useState(false)
+  const toggleDropDown = () => {
+    setDropDown(!dropDown)
+  }
   return (
     <S.routineContainer>
       <S.userContainer>
@@ -30,6 +36,8 @@ const Routine = () => {
           Youtube 추천 운동 루틴
         </Link>
       </S.subMenuContainer>
+      <AddRoutine toggleDropDown={toggleDropDown} />
+      <DropDown dropDown={dropDown} toggleDropDown={toggleDropDown} />
       <Footer />
     </S.routineContainer>
   )
