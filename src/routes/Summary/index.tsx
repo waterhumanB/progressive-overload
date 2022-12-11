@@ -1,7 +1,13 @@
 import React from 'react'
+import Footer from '../../components/Footer'
 
 const Summary = () => {
-  return <div>요약 페이지</div>
+  return (
+    <section>
+      <div>요약페이지</div>
+      <Footer />
+    </section>
+  )
 }
 
 export default Summary

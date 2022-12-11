@@ -10,6 +10,7 @@ export const titleBox = styled.div`
   .title {
     margin: 10px auto 20px auto;
     font-size: 32px;
+    color: ${colors.FOCUS};
   }
 
   button {
@@ -18,9 +19,13 @@ export const titleBox = styled.div`
     margin: 0;
   }
   svg {
+    fill: ${colors.FONT};
     width: 50px;
     height: 50px;
     transform: scaleX(-1);
+    :hover {
+      fill: ${colors.FOCUS};
+    }
   }
 `
 
@@ -47,30 +52,32 @@ export const cardTranslate = styled.div<{ position: number }>`
 
 export const pageLeftBtn = styled.button<{ position: number }>`
   transform: scaleX(-1);
-  fill: ${(props) => (props.position < 50 ? colors.WHITE : colors.BLACK)};
+  fill: ${(props) => (props.position < 50 ? colors.WHITE : colors.FOCUS)};
   cursor: ${(props) => (props.position < 50 ? 'default' : 'pointer')};
 `
 
 export const pageRightBtn = styled.button<{ position: number }>`
-  fill: ${(props) => (props.position > 450 ? colors.WHITE : colors.BLACK)};
-  cursor: ${(props) => (props.position > 450 ? 'default' : 'pointer')};
+  fill: ${(props) => (props.position > 560 ? colors.WHITE : colors.FOCUS)};
+  cursor: ${(props) => (props.position > 560 ? 'default' : 'pointer')};
 `
 
 export const categoryBox = styled.button`
-  color: ${colors.BLACK};
-  margin: auto 4.75px;
+  color: ${colors.FONT};
+  margin: auto 3.5px;
   min-width: 80px;
   padding: 7px 3px;
-  border: 1px solid ${colors.BLACK};
+  border: 2px solid ${colors.BACK};
   border-radius: 10px;
   box-sizing: border-box;
   font-size: 16px;
   :hover {
-    color: ${colors.BLUE};
-    border: 1px solid ${colors.BLUE};
+    color: ${colors.WHITE};
+    background: ${colors.FONT};
+    border: 0;
   }
   :focus {
-    color: ${colors.BLUE};
-    border: 1px solid ${colors.BLUE};
+    color: ${colors.WHITE};
+    background: ${colors.FONT};
+    border: 0;
   }
 `

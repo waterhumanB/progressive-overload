@@ -5,7 +5,7 @@ import { ReactComponent as Arrow } from '../../assets/imgs/arrow.svg'
 import { SEARCH_DATA } from '../../data/searchData'
 import { getYoutubeSearchApi } from '../../service/youtube'
 import * as S from './styles'
-import YoutubeCard from '../../components/UserInfo/YoutubeCard'
+import YoutubeCard from '../../components/YoutubeCard'
 
 const Youtube = () => {
   // const widthRef = useRef<HTMLDivElement>(null)
@@ -17,10 +17,10 @@ const Youtube = () => {
   const categoryOrderHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.currentTarget
     if (name === 'Left' && translate >= 50) {
-      setTranslate((prev) => prev - 89.2)
+      setTranslate((prev) => prev - 87)
     }
-    if (name === 'Right' && translate < 450) {
-      setTranslate((prev) => prev + 89.2)
+    if (name === 'Right' && translate < 560) {
+      setTranslate((prev) => prev + 87)
     }
   }
   const categoryHandlerBtn = async (index: number) => {
@@ -33,7 +33,7 @@ const Youtube = () => {
       })
   }
   return (
-    <section>
+    <main>
       <S.titleBox>
         <button type='button' onClick={returnPageBtn}>
           <Arrow />
@@ -47,9 +47,7 @@ const Youtube = () => {
         <div className='cardBox'>
           <S.cardTranslate position={translate}>
             {SEARCH_DATA.map((data, index) => (
-              <S.categoryBox onClick={() => categoryHandlerBtn(index)} key={data}>
-                {data}
-              </S.categoryBox>
+              <S.categoryBox key={data}>{data}</S.categoryBox>
             ))}
           </S.cardTranslate>
         </div>
@@ -58,7 +56,7 @@ const Youtube = () => {
         </S.pageRightBtn>
       </S.caegoryCotainer>
       <YoutubeCard />
-    </section>
+    </main>
   )
 }
 

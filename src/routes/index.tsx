@@ -8,6 +8,7 @@ import Calendar from './Calendar'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { getUserInfo } from '../states/user'
 import Youtube from './Youtube'
+import Footer from '../components/Footer'
 
 const App = () => {
   const userInfo = useAppSelector(getUserInfo)

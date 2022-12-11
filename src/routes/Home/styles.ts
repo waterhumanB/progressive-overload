@@ -20,7 +20,7 @@ to {
 }
 `
 
-export const homeContainer = styled.section`
+export const homeContainer = styled.main`
   width: 100%;
   height: 100%;
   margin: auto;
@@ -28,6 +28,7 @@ export const homeContainer = styled.section`
 `
 
 export const pageBtn = styled.button`
+  fill: ${colors.FOCUS};
   .right {
     width: 35px;
     height: 35px;
@@ -59,6 +60,7 @@ export const decBox = styled.div<{ view: string }>`
   animation-duration: 1s;
 
   span {
+    color: ${colors.FOCUS};
     line-height: 50px;
     font-size: 28px;
     font-weight: 500;
@@ -80,8 +82,8 @@ export const orderZero = styled.button<{ view: number }>`
   height: 15px;
   border-radius: 100%;
   box-sizing: border-box;
-  border: 1px solid ${colors.GRAY};
-  background: ${(props) => (props.view === 0 ? colors.BLACK : colors.WHITE)};
+  border: 1px solid ${colors.FONT};
+  background: ${(props) => (props.view === 0 ? colors.FOCUS : colors.WHITE)};
 `
 
 export const orderOne = styled.button<{ view: number }>`
@@ -89,16 +91,16 @@ export const orderOne = styled.button<{ view: number }>`
   height: 15px;
   border-radius: 100%;
   box-sizing: border-box;
-  border: 1px solid ${colors.GRAY};
-  background: ${(props) => (props.view === 1 ? colors.BLACK : colors.WHITE)};
+  border: 1px solid ${colors.FONT};
+  background: ${(props) => (props.view === 1 ? colors.FOCUS : colors.WHITE)};
 `
 export const orderTwo = styled.button<{ view: number }>`
   width: 15px;
   height: 15px;
   border-radius: 100%;
   box-sizing: border-box;
-  border: 1px solid ${colors.GRAY};
-  background: ${(props) => (props.view === 2 ? colors.BLACK : colors.WHITE)};
+  border: 1px solid ${colors.FONT};
+  background: ${(props) => (props.view === 2 ? colors.FOCUS : colors.WHITE)};
 `
 
 export const orderThr = styled.button<{ view: number }>`
@@ -106,6 +108,6 @@ export const orderThr = styled.button<{ view: number }>`
   height: 15px;
   border-radius: 100%;
   box-sizing: border-box;
-  border: 1px solid ${colors.GRAY};
-  background: ${(props) => (props.view === 3 ? colors.BLACK : colors.WHITE)};
+  border: 1px solid ${colors.FONT};
+  background: ${(props) => (props.view === 3 ? colors.FOCUS : colors.WHITE)};
 `

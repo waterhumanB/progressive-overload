@@ -6,9 +6,9 @@ export const formContainer = styled.div`
     display: flex;
     flex-direction: column;
     label {
-      height: 15px;
-      color: ${colors.BLUE};
-      font-size: 13px;
+      height: 17px;
+      color: ${colors.FOCUS};
+      font-size: 14px;
       text-align: left;
       font-weight: bold;
     }
@@ -18,11 +18,11 @@ export const formContainer = styled.div`
 export const submitBtn = styled.button`
   font-weight: bold;
   font-size: 20px;
-  color: ${colors.BLUE};
+  color: ${colors.FOCUS};
   :disabled {
-    color: ${colors.GRAY};
+    color: ${colors.FONT};
   }
   a {
-    color: ${colors.BLUE};
+    color: ${colors.FOCUS};
   }
 `

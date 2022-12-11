@@ -21,7 +21,7 @@ const UserInfo = () => {
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNameValue(e.target.value)
-    e.target.value.length > 10 || e.target.value.length === 0 ? setNickNameValidator(true) : setNickNameValidator(false)
+    e.target.value.length > 11 || e.target.value.length === 0 ? setNickNameValidator(true) : setNickNameValidator(false)
   }
   const handleAgeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAgeValue(Number(e.target.value))
@@ -61,10 +61,10 @@ const UserInfo = () => {
           label='닉네임'
           name='nickName'
           type='text'
-          placeholder='최대 10글자 입니다.'
+          placeholder='최대 11글자 입니다.'
           onChange={handleNameChange}
           vail={nickNameValidator}
-          warning='1글자 이상 10글자 이하로 입력해주세요'
+          warning='1글자 이상 11글자 이하로 입력해주세요'
         />
         <UserInput
           label='나이'

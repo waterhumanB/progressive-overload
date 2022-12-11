@@ -5,6 +5,7 @@ import { ReactComponent as Male } from '../../assets/imgs/male.svg'
 import { ReactComponent as Youtube } from '../../assets/imgs/youtube.svg'
 import * as S from './styles'
 import { Link } from 'react-router-dom'
+import Footer from '../../components/Footer'
 
 const Routine = () => {
   const userInfo = useAppSelector(getUserInfo)
@@ -29,6 +30,7 @@ const Routine = () => {
           Youtube 추천 운동 루틴
         </Link>
       </S.subMenuContainer>
+      <Footer />
     </S.routineContainer>
   )
 }
