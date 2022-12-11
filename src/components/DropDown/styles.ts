@@ -14,11 +14,11 @@ export const DropBoxContainer = styled.div<{ dropdown: boolean }>`
 
 export const DropBoxItem = styled.button<{ dropdown: boolean }>`
   width: 100%;
-  height: ${(props) => (props.dropdown === true ? '50px' : 0)};
+  height: ${(props) => (props.dropdown === true ? '65px' : 0)};
   overflow: hidden;
   color: ${colors.FONT};
   border-top: 1px solid ${colors.BACK};
-  font-size: 20px;
+  font-size: 22px;
   transition: 0.7s;
   :hover {
     font-weight: bold;

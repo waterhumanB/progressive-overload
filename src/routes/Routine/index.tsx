@@ -6,7 +6,7 @@ import { ReactComponent as Youtube } from '../../assets/imgs/youtube.svg'
 import * as S from './styles'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
-import AddRoutine from '../../components/AddRoutine'
+import AddRoutine from '../../components/AddRoutineBtn'
 import { useState } from 'react'
 import DropDown from '../../components/DropDown'
 

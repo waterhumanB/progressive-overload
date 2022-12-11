@@ -1,11 +1,11 @@
 import { MouseEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ReactComponent as ArrowBtn } from '../../assets/imgs/arrow_btn.svg'
-import { ReactComponent as Arrow } from '../../assets/imgs/arrow.svg'
-import { SEARCH_DATA } from '../../data/searchData'
-import { getYoutubeSearchApi } from '../../service/youtube'
+import { ReactComponent as ArrowBtn } from '../../../assets/imgs/arrow_btn.svg'
+import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
+import { SEARCH_DATA } from '../../../data/searchData'
+import { getYoutubeSearchApi } from '../../../service/youtube'
 import * as S from './styles'
-import YoutubeCard from '../../components/YoutubeCard'
+import YoutubeCard from '../../../components/YoutubeCard'
 
 const Youtube = () => {
   // const widthRef = useRef<HTMLDivElement>(null)

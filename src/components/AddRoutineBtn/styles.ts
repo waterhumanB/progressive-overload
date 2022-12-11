@@ -10,7 +10,7 @@ export const addBtn = styled.button`
   font-size: 50px;
   background: ${colors.FONT};
   position: absolute;
-  bottom: 80px;
+  bottom: 70px;
   right: 25px;
   border: 1px solid ${colors.FONT};
 `
