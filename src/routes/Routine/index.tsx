@@ -18,8 +18,8 @@ const Routine = () => {
         </S.userBox>
         <S.userBox className='info'>
           <div>나이 : {userInfo.user.age}</div>
-          <div>키 : {userInfo.user.tall}</div>
-          <div>몸무게 : {userInfo.user.weight}</div>
+          <div>키 : {userInfo.user.tall}cm</div>
+          <div>몸무게 : {userInfo.user.weight}kg</div>
         </S.userBox>
       </S.userContainer>
       <S.subMenuContainer>

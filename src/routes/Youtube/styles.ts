@@ -33,11 +33,21 @@ export const pageRightBtn = styled.button<{ position: number }>`
   cursor: ${(props) => (props.position > 450 ? 'default' : 'pointer')};
 `
 
-export const categoryBox = styled.div`
+export const categoryBox = styled.button`
+  color: ${colors.BLACK};
   margin-right: 9.3px;
   min-width: 80px;
   padding: 7px 3px;
   border: 1px solid ${colors.BLACK};
   border-radius: 10px;
   box-sizing: border-box;
+  font-size: 16px;
+  :hover {
+    color: ${colors.BLUE};
+    border: 1px solid ${colors.BLUE};
+  }
+  :focus {
+    color: ${colors.BLUE};
+    border: 1px solid ${colors.BLUE};
+  }
 `
