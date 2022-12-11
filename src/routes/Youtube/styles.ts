@@ -1,6 +1,29 @@
 import styled from 'styled-components'
 import colors from '../../styles/constants/colors'
 
+export const titleBox = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    margin: 10px auto 20px auto;
+    font-size: 32px;
+  }
+
+  button {
+    left: 0;
+    position: absolute;
+    margin: 0;
+  }
+  svg {
+    width: 50px;
+    height: 50px;
+    transform: scaleX(-1);
+  }
+`
+
 export const caegoryCotainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -35,7 +58,7 @@ export const pageRightBtn = styled.button<{ position: number }>`
 
 export const categoryBox = styled.button`
   color: ${colors.BLACK};
-  margin-right: 9.3px;
+  margin: auto 4.75px;
   min-width: 80px;
   padding: 7px 3px;
   border: 1px solid ${colors.BLACK};
