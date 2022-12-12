@@ -52,6 +52,7 @@ export const subMenuContainer = styled.div`
       color: ${colors.WHITE};
       border: 1px solid ${colors.FOCUS};
       background: ${colors.FOCUS};
+      transition: 0.4s;
     }
   }
 

@@ -40,7 +40,7 @@ const Youtube = () => {
   }
 
   return (
-    <main>
+    <section>
       <S.titleBox>
         <button type='button' onClick={returnPageBtn}>
           <Arrow />
@@ -70,7 +70,7 @@ const Youtube = () => {
         </S.pageRightBtn>
       </S.caegoryCotainer>
       <YoutubeCard categoryIndex={categoryIndex} />
-    </main>
+    </section>
   )
 }
 

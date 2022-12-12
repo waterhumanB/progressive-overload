@@ -10,6 +10,7 @@ const colors = {
   FOCUS: '#25396f',
   FONT: '#7c8db5',
   BACK: '#e5eaf6',
+  GREEN: '#9dd84b',
 }
 
 export default colors
