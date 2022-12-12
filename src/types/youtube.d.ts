@@ -1,49 +1,38 @@
 export interface ISearchYoutube {
   staus: string
-  data: {
-    etag: string
-    item: IItems[]
-    kind: string
-    nextPageToken: string
-    pageInfo: object
-    regionCod: string
-  }
-  headrs: any
-  request: any
-  status: number
-  statusText: string
+  data: IDatas
+}
+
+interface IDatas {
+  etag: string
+  kind: string
+  nextPageToken: string
+  pageInfo: object
+  regionCod: string
+  items: IItems[]
 }
 
 interface IItems {
   etag: string
-  id: object
+  id: {
+    kind: string
+    videoId: string
+  }
   kind: string
-  snippet: ISinppet[]
+  snippet: ISinppet
 }
 
 interface ISinppet {
   channelId: string
   channelTitle: string
   description: string
-  thumnails: ITumnails
+  thumbnails: ITumnails
 }
 
 interface ITumnails {
-  default: {
+  medium: {
     height: number
     url: string
     width: number
   }
-}
-
-export type PromiseSettledResult<T> = PromiseFulfilledResult<T> | PromiseRejectedResult
-
-interface PromiseFulfilledResult<T> {
-  status: 'fulfilled'
-  value: T
-}
-
-interface PromiseRejectedResult {
-  status: 'rejected'
-  reason: any
 }

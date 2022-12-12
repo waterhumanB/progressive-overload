@@ -61,21 +61,17 @@ export const pageRightBtn = styled.button<{ position: number }>`
   cursor: ${(props) => (props.position > 560 ? 'default' : 'pointer')};
 `
 
-export const categoryBox = styled.button`
-  color: ${colors.FONT};
+export const categoryBox = styled.button<{ focus: boolean }>`
+  color: ${(props) => (props.focus ? colors.WHITE : colors.FONT)};
   margin: auto 3.5px;
   min-width: 80px;
   padding: 7px 3px;
-  border: 2px solid ${colors.BACK};
+  border: ${(props) => (props.focus ? 0 : `2px solid${colors.BACK}`)};
   border-radius: 10px;
   box-sizing: border-box;
   font-size: 16px;
+  background: ${(props) => (props.focus ? colors.FONT : colors.WHITE)};
   :hover {
-    color: ${colors.WHITE};
-    background: ${colors.FONT};
-    border: 0;
-  }
-  :focus {
     color: ${colors.WHITE};
     background: ${colors.FONT};
     border: 0;

@@ -8,11 +8,11 @@ interface Params {
 const URL = `https://www.googleapis.com/youtube/v3/search?`
 
 export const getYoutubeSearchApi = (params: Params) =>
-  axios.get<ISearchYoutube>(URL, {
+  axios.get<ISearchYoutube[]>(URL, {
     params: {
       ...params,
       part: 'snippet',
-      maxResults: 10,
+      maxResults: 6,
       key: process.env.REACT_APP_YOUTUBE_API_KEY,
     },
   })

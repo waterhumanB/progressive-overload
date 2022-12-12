@@ -3,14 +3,16 @@ import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import user from './user'
+import youtube from './youtube'
 
 const persistConfig = {
   key: 'root', // localStorage key
   storage, // localStorage
-  whitelist: ['user'], // target (reducer name)
+  whitelist: ['user', 'youtube'], // target (reducer name)
 }
 const rootReducer = combineReducers({
   user,
+  youtube,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

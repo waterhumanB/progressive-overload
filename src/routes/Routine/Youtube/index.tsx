@@ -1,16 +1,22 @@
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as ArrowBtn } from '../../../assets/imgs/arrow_btn.svg'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import { SEARCH_DATA } from '../../../data/searchData'
-import { getYoutubeSearchApi } from '../../../service/youtube'
 import * as S from './styles'
 import YoutubeCard from '../../../components/YoutubeCard'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppSelector } from '../../../hooks/useAppSelector'
+import { getYoubuteData, getYoutubeDataList } from '../../../states/youtube'
 
 const Youtube = () => {
-  // const widthRef = useRef<HTMLDivElement>(null)
   const [translate, setTranslate] = useState(0)
+  const [categoryIndex, setCategoryIndex] = useState(0)
+
+  const dispatch = useAppDispatch()
+  const selector = useAppSelector(getYoutubeDataList)
   const Navigate = useNavigate()
+  const youtubeState = selector.youtube.youtubeData
   const returnPageBtn = () => {
     Navigate(-1)
   }
@@ -23,15 +29,16 @@ const Youtube = () => {
       setTranslate((prev) => prev + 87)
     }
   }
-  const categoryHandlerBtn = async (index: number) => {
-    getYoutubeSearchApi({ q: SEARCH_DATA[index] })
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+  useEffect(() => {
+    if (youtubeState.length === 0) {
+      dispatch(getYoubuteData())
+    }
+  })
+
+  const categoryIndexhandler = (e: MouseEvent<HTMLButtonElement>) => {
+    setCategoryIndex(Number(e.currentTarget.name))
   }
+
   return (
     <main>
       <S.titleBox>
@@ -47,7 +54,14 @@ const Youtube = () => {
         <div className='cardBox'>
           <S.cardTranslate position={translate}>
             {SEARCH_DATA.map((data, index) => (
-              <S.categoryBox key={data}>{data}</S.categoryBox>
+              <S.categoryBox
+                focus={categoryIndex === index}
+                onClick={categoryIndexhandler}
+                name={String(index)}
+                key={data}
+              >
+                {data}
+              </S.categoryBox>
             ))}
           </S.cardTranslate>
         </div>
@@ -55,7 +69,7 @@ const Youtube = () => {
           <ArrowBtn />
         </S.pageRightBtn>
       </S.caegoryCotainer>
-      <YoutubeCard />
+      <YoutubeCard categoryIndex={categoryIndex} />
     </main>
   )
 }
