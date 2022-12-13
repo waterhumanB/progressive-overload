@@ -187,10 +187,10 @@ export const initialData = {
         name: '어깨',
       },
       target6: {
-        name: '대퇴사두',
+        name: '대퇴 사두',
       },
       target7: {
-        name: '대퇴이두',
+        name: '대퇴 이두',
       },
       target8: {
         name: '복근',
@@ -209,7 +209,7 @@ export const initialData = {
         typeId: 'type1',
         categoryId: 'category2',
         costom: false,
-        favortite: false,
+        favortite: true,
         mainTarget: 'target1',
         secondaryTarget: 'target4',
         record: [],
@@ -405,7 +405,7 @@ export const initialData = {
         record: [],
       },
       exercise21: {
-        id: 'exercise18',
+        id: 'exercise21',
         typeId: 'type8',
         categoryId: 'category5',
         costom: false,
@@ -645,7 +645,7 @@ export const initialData = {
         record: [],
       },
       exercise45: {
-        id: 'exercise4',
+        id: 'exercise45',
         typeId: 'type17',
         categoryId: 'category5',
         costom: false,

@@ -17,6 +17,8 @@ const MakeRoutine = () => {
       <ExerciseMenu />
       <div>커스텀 운동 추가</div>
       <ExerciseCard />
+      <div>위로 올라가기</div>
+      <div> + 3 운동 추가하기</div>
     </S.makeRountineContainer>
   )
 }
