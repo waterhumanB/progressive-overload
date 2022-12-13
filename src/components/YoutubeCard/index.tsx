@@ -10,7 +10,7 @@ interface Props {
 const YoutubeCard = ({ categoryIndex }: Props) => {
   const index = categoryIndex
   const selctor = useAppSelector(getYoutubeDataList)
-  const youtubeState = selctor.youtube.youtubeData[index].data.items
+  const youtubeState = selctor.youtubeData[index].data.items
   return (
     <S.cardContainer>
       {youtubeState.map((data) => (

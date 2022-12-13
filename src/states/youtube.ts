@@ -28,17 +28,17 @@ const getYoutubeSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getYoubuteData.pending, (state) => {
+    builder.addCase(getYoubuteData.pending, (state: YoutubeState) => {
       state.error = null
       state.loading = true
     })
-    builder.addCase(getYoubuteData.fulfilled, (state, action) => {
+    builder.addCase(getYoubuteData.fulfilled, (state: YoutubeState, action) => {
       ;(state.youtubeData as any) = action.payload
       state.loading = false
       state.error = null
     })
 
-    builder.addCase(getYoubuteData.rejected, (state, action) => {
+    builder.addCase(getYoubuteData.rejected, (state: YoutubeState, action) => {
       state.error = action.payload
       state.loading = false
     })
@@ -47,4 +47,4 @@ const getYoutubeSlice = createSlice({
 
 export default getYoutubeSlice.reducer
 
-export const getYoutubeDataList = (state: RootState) => state
+export const getYoutubeDataList = (state: RootState) => state.youtube

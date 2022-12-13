@@ -2,10 +2,13 @@ import { initialData } from '../../data/initialData'
 import * as S from './styles'
 import { ReactComponent as Arm } from '../../assets/imgs/arm.svg'
 import { ReactComponent as ArmHeart } from '../../assets/imgs/arm_heart.svg'
-
-const exercise = Object.values(initialData.exercise.byId)
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
+import { getExerciseData } from '../../states/exercise'
 
 const ExerciseCard = () => {
+  const selector = useSelector(getExerciseData)
+  const [checkedExercise, setCheckedExercise] = useState(false)
   const findCategory = (value: string) => {
     const result = Object.entries(initialData.category.byId).filter((data) => data[0] === value)[0][1].name
     return result
@@ -23,7 +26,7 @@ const ExerciseCard = () => {
 
   return (
     <S.exerciseContainer>
-      {exercise.map((data) => (
+      {selector.exercise.map((data) => (
         <S.exerciseBox key={data.id}>
           <S.mainTaget>{findTarget(data.mainTarget)}</S.mainTaget>
           <S.exerciseInfo type='button'>

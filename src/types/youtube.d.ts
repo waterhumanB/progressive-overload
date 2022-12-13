@@ -12,7 +12,7 @@ interface IDatas {
   items: IItems[]
 }
 
-interface IItems {
+export interface IItems {
   etag: string
   id: {
     kind: string

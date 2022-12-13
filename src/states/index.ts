@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 
 import user from './user'
 import youtube from './youtube'
+import exercise from './exercise'
 
 const persistConfig = {
   key: 'root', // localStorage key
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user,
   youtube,
+  exercise,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

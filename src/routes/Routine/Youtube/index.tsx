@@ -16,7 +16,7 @@ const Youtube = () => {
   const dispatch = useAppDispatch()
   const selector = useAppSelector(getYoutubeDataList)
   const Navigate = useNavigate()
-  const youtubeState = selector.youtube.youtubeData
+  const youtubeState = selector.youtubeData
   const returnPageBtn = () => {
     Navigate(-1)
   }
