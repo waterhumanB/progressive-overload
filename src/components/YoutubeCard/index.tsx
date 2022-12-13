@@ -10,10 +10,11 @@ interface Props {
 const YoutubeCard = ({ categoryIndex }: Props) => {
   const index = categoryIndex
   const selctor = useAppSelector(getYoutubeDataList)
-  const youtubeState = selctor.youtubeData[index].data.items
+  const youtubeState = selctor
+  console.log(youtubeState)
   return (
     <S.cardContainer>
-      {youtubeState.map((data) => (
+      {/* {youtubeState.map((data) => (
         <S.cardBox key={data.etag}>
           <S.videoView>
             <img src={data.snippet.thumbnails?.medium.url} alt={data.snippet.channelTitle} />
@@ -24,7 +25,7 @@ const YoutubeCard = ({ categoryIndex }: Props) => {
             <Arrrow />
           </S.vidoeLink>
         </S.cardBox>
-      ))}
+      ))} */}
     </S.cardContainer>
   )
 }

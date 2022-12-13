@@ -30,9 +30,9 @@ const Youtube = () => {
     }
   }
   useEffect(() => {
-    if (youtubeState.length === 0) {
-      dispatch(getYoubuteData())
-    }
+    // if (youtubeState.length === 0) {
+    //   dispatch(getYoubuteData())
+    // }
   })
 
   const categoryIndexhandler = (e: MouseEvent<HTMLButtonElement>) => {

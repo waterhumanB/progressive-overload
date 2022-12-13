@@ -7,8 +7,8 @@ interface Params {
 
 const URL = `https://www.googleapis.com/youtube/v3/search?`
 
-export const getYoutubeSearchApi = (params: Params) =>
-  axios.get<ISearchYoutube[]>(URL, {
+export const getYoutubeSearchApi = async (params: Params) => {
+  const { data } = await axios.get<ISearchYoutube[]>(URL, {
     params: {
       ...params,
       part: 'snippet',
@@ -16,3 +16,5 @@ export const getYoutubeSearchApi = (params: Params) =>
       key: process.env.REACT_APP_YOUTUBE_API_KEY,
     },
   })
+  return data
+}

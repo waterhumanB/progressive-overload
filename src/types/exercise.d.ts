@@ -8,3 +8,8 @@ export interface IExercise {
   secondaryTarget: string
   record: Array
 }
+
+export interface IFavorite {
+  id: string
+  favorite: boolean
+}

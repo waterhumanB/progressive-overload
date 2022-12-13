@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import { initialData } from '../data/initialData'
 
-import { IExercise } from '../types/exercise.d'
+import { IExercise, IFavorite } from '../types/exercise.d'
 
 const INIT_EXERCISE = Object.values(initialData.exercise.byId)
 
@@ -19,14 +19,21 @@ const systemSlice = createSlice({
   name: 'exercise',
   initialState: INITIAL_STATE,
   reducers: {
-    setUser: (state: ExerciseState, action: PayloadAction<IExercise[]>) => {
+    setExercise: (state: ExerciseState, action: PayloadAction<IExercise[]>) => {
       state.exercise = action.payload
     },
-    resetUser: () => INITIAL_STATE,
+    resetExercise: () => INITIAL_STATE,
+    setFavoriteExercise: (state: ExerciseState, action: PayloadAction<IFavorite>) => {
+      const exerciseIndex = current(state.exercise)
+        .filter((data) => data.id === action.payload.id)[0]
+        .id.split('exercise')[1]
+
+      state.exercise[Number(exerciseIndex) - 1].favortite = action.payload.favorite
+    },
   },
 })
 
-export const { setUser, resetUser } = systemSlice.actions
+export const { setExercise, resetExercise, setFavoriteExercise } = systemSlice.actions
 
 export default systemSlice.reducer
 

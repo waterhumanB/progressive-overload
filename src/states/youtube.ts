@@ -12,7 +12,7 @@ export const getYoubuteData = createAsyncThunk('youtube', async () => {
 const INIT_YOUTUBE: ISearchYoutube[] = []
 
 export interface YoutubeState {
-  youtubeData: ISearchYoutube[]
+  youtubeData: ISearchYoutube[] | ISearchYoutube[][]
   error: null | undefined | string | unknown
   loading: boolean
 }
@@ -33,7 +33,7 @@ const getYoutubeSlice = createSlice({
       state.loading = true
     })
     builder.addCase(getYoubuteData.fulfilled, (state: YoutubeState, action) => {
-      ;(state.youtubeData as any) = action.payload
+      state.youtubeData = action.payload
       state.loading = false
       state.error = null
     })

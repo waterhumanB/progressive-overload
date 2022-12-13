@@ -9,7 +9,7 @@ import exercise from './exercise'
 const persistConfig = {
   key: 'root', // localStorage key
   storage, // localStorage
-  whitelist: ['user', 'youtube'], // target (reducer name)
+  whitelist: ['user', 'youtube', 'exercise'], // target (reducer name)
 }
 const rootReducer = combineReducers({
   user,
