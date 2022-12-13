@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../styles/constants/colors'
 
-export const workoutMenuBox = styled.div`
+export const exerciseMenuBox = styled.div`
   width: 100%;
   .more {
     margin-right: 13px;

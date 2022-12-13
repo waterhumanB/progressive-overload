@@ -51,4 +51,7 @@ export const vidoeLink = styled.a`
   :hover {
     color: ${colors.FOCUS};
   }
+  svg {
+    margin-left: 5px;
+  }
 `

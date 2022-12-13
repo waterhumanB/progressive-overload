@@ -1,10 +1,11 @@
 import React from 'react'
+
 import { makeRoutineData } from '../../data/makeRoutineData'
 import * as S from './styles'
 
-const WorkoutMenu = () => {
+const ExerciseMenu = () => {
   return (
-    <S.workoutMenuBox>
+    <S.exerciseMenuBox>
       <div>
         {makeRoutineData.more.map((data) => (
           <S.filterBtn className={data === '전체' ? 'more' : ''} key={data}>
@@ -26,8 +27,8 @@ const WorkoutMenu = () => {
           </S.filterBtn>
         ))}
       </div>
-    </S.workoutMenuBox>
+    </S.exerciseMenuBox>
   )
 }
 
-export default WorkoutMenu
+export default ExerciseMenu

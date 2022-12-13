@@ -202,10 +202,10 @@ export const initialData = {
     byId: {},
     allIds: [],
   },
-  workout: {
+  exercise: {
     byId: {
-      workout1: {
-        id: 'workout1',
+      exercise1: {
+        id: 'exercise1',
         typeId: 'type1',
         categoryId: 'category2',
         costom: false,
@@ -214,8 +214,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout2: {
-        id: 'workout2',
+      exercise2: {
+        id: 'exercise2',
         typeId: 'type1',
         categoryId: 'category3',
         costom: false,
@@ -224,8 +224,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout3: {
-        id: 'workout3',
+      exercise3: {
+        id: 'exercise3',
         typeId: 'type1',
         categoryId: 'category4',
         costom: false,
@@ -234,8 +234,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout4: {
-        id: 'workout4',
+      exercise4: {
+        id: 'exercise4',
         typeId: 'type2',
         categoryId: 'category2',
         costom: false,
@@ -244,8 +244,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout5: {
-        id: 'workout5',
+      exercise5: {
+        id: 'exercise5',
         typeId: 'type2',
         categoryId: 'category3',
         costom: false,
@@ -254,8 +254,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout6: {
-        id: 'workout6',
+      exercise6: {
+        id: 'exercise6',
         typeId: 'type2',
         categoryId: 'category4',
         costom: false,
@@ -264,8 +264,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout7: {
-        id: 'workout7',
+      exercise7: {
+        id: 'exercise7',
         typeId: 'type3',
         categoryId: 'category2',
         costom: false,
@@ -274,8 +274,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout8: {
-        id: 'workout8',
+      exercise8: {
+        id: 'exercise8',
         typeId: 'type3',
         categoryId: 'category3',
         costom: false,
@@ -284,8 +284,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout9: {
-        id: 'workout9',
+      exercise9: {
+        id: 'exercise9',
         typeId: 'type3',
         categoryId: 'category4',
         costom: false,
@@ -294,8 +294,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout10: {
-        id: 'workout10',
+      exercise10: {
+        id: 'exercise10',
         typeId: 'type4',
         categoryId: 'category1',
         costom: false,
@@ -304,8 +304,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout11: {
-        id: 'workout11',
+      exercise11: {
+        id: 'exercise11',
         typeId: 'type5',
         categoryId: 'category1',
         costom: false,
@@ -314,8 +314,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout12: {
-        id: 'workout12',
+      exercise12: {
+        id: 'exercise12',
         typeId: 'type5',
         categoryId: 'category4',
         costom: false,
@@ -324,8 +324,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout13: {
-        id: 'workout13',
+      exercise13: {
+        id: 'exercise13',
         typeId: 'type6',
         categoryId: 'category3',
         costom: false,
@@ -334,8 +334,8 @@ export const initialData = {
         secondaryTarget: 'target5',
         record: [],
       },
-      workout14: {
-        id: 'workout14',
+      exercise14: {
+        id: 'exercise14',
         typeId: 'type6',
         categoryId: 'category4',
         costom: false,
@@ -344,8 +344,8 @@ export const initialData = {
         secondaryTarget: 'target5',
         record: [],
       },
-      workout15: {
-        id: 'workout15',
+      exercise15: {
+        id: 'exercise15',
         typeId: 'type6',
         categoryId: 'category5',
         costom: false,
@@ -354,8 +354,8 @@ export const initialData = {
         secondaryTarget: 'target5',
         record: [],
       },
-      workout16: {
-        id: 'workout16',
+      exercise16: {
+        id: 'exercise16',
         typeId: 'type7',
         categoryId: 'category4',
         costom: false,
@@ -364,8 +364,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout17: {
-        id: 'workout17',
+      exercise17: {
+        id: 'exercise17',
         typeId: 'type7',
         categoryId: 'category5',
         costom: false,
@@ -374,8 +374,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout18: {
-        id: 'workout18',
+      exercise18: {
+        id: 'exercise18',
         typeId: 'type8',
         categoryId: 'category2',
         costom: false,
@@ -384,8 +384,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout19: {
-        id: 'workout19',
+      exercise19: {
+        id: 'exercise19',
         typeId: 'type8',
         categoryId: 'category3',
         costom: false,
@@ -394,8 +394,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout20: {
-        id: 'workout20',
+      exercise20: {
+        id: 'exercise20',
         typeId: 'type8',
         categoryId: 'category4',
         costom: false,
@@ -404,8 +404,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout21: {
-        id: 'workout18',
+      exercise21: {
+        id: 'exercise18',
         typeId: 'type8',
         categoryId: 'category5',
         costom: false,
@@ -414,8 +414,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout22: {
-        id: 'workout22',
+      exercise22: {
+        id: 'exercise22',
         typeId: 'type9',
         categoryId: 'category4',
         costom: false,
@@ -424,8 +424,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout23: {
-        id: 'workout23',
+      exercise23: {
+        id: 'exercise23',
         typeId: 'type9',
         categoryId: 'category5',
         costom: false,
@@ -434,8 +434,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout24: {
-        id: 'workout24',
+      exercise24: {
+        id: 'exercise24',
         typeId: 'type10',
         categoryId: 'category1',
         costom: false,
@@ -444,8 +444,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout25: {
-        id: 'workout25',
+      exercise25: {
+        id: 'exercise25',
         typeId: 'type10',
         categoryId: 'category4',
         costom: false,
@@ -454,8 +454,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout26: {
-        id: 'workout26',
+      exercise26: {
+        id: 'exercise26',
         typeId: 'type11',
         categoryId: 'category1',
         costom: false,
@@ -464,8 +464,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout27: {
-        id: 'workout27',
+      exercise27: {
+        id: 'exercise27',
         typeId: 'type11',
         categoryId: 'category4',
         costom: false,
@@ -474,8 +474,8 @@ export const initialData = {
         secondaryTarget: 'target3',
         record: [],
       },
-      workout28: {
-        id: 'workout28',
+      exercise28: {
+        id: 'exercise28',
         typeId: 'type12',
         categoryId: 'category3',
         costom: false,
@@ -484,8 +484,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout29: {
-        id: 'workout29',
+      exercise29: {
+        id: 'exercise29',
         typeId: 'type12',
         categoryId: 'category4',
         costom: false,
@@ -494,8 +494,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout30: {
-        id: 'workout30',
+      exercise30: {
+        id: 'exercise30',
         typeId: 'type12',
         categoryId: 'category5',
         costom: false,
@@ -504,8 +504,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout31: {
-        id: 'workout31',
+      exercise31: {
+        id: 'exercise31',
         typeId: 'type13',
         categoryId: 'category3',
         costom: false,
@@ -514,8 +514,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout32: {
-        id: 'workout32',
+      exercise32: {
+        id: 'exercise32',
         typeId: 'type13',
         categoryId: 'category4',
         costom: false,
@@ -524,8 +524,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout33: {
-        id: 'workout33',
+      exercise33: {
+        id: 'exercise33',
         typeId: 'type13',
         categoryId: 'category5',
         costom: false,
@@ -534,8 +534,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout34: {
-        id: 'workout34',
+      exercise34: {
+        id: 'exercise34',
         typeId: 'type14',
         categoryId: 'category3',
         costom: false,
@@ -544,8 +544,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout35: {
-        id: 'workout35',
+      exercise35: {
+        id: 'exercise35',
         typeId: 'type14',
         categoryId: 'category4',
         costom: false,
@@ -554,8 +554,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout36: {
-        id: 'workout36',
+      exercise36: {
+        id: 'exercise36',
         typeId: 'type14',
         categoryId: 'category5',
         costom: false,
@@ -564,8 +564,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout37: {
-        id: 'workout37',
+      exercise37: {
+        id: 'exercise37',
         typeId: 'type15',
         categoryId: 'category3',
         costom: false,
@@ -574,8 +574,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout38: {
-        id: 'workout38',
+      exercise38: {
+        id: 'exercise38',
         typeId: 'type15',
         categoryId: 'category4',
         costom: false,
@@ -584,8 +584,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout39: {
-        id: 'workout39',
+      exercise39: {
+        id: 'exercise39',
         typeId: 'type15',
         categoryId: 'category5',
         costom: false,
@@ -594,8 +594,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout40: {
-        id: 'workout40',
+      exercise40: {
+        id: 'exercise40',
         typeId: 'type16',
         categoryId: 'category3',
         costom: false,
@@ -604,8 +604,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout41: {
-        id: 'workout41',
+      exercise41: {
+        id: 'exercise41',
         typeId: 'type16',
         categoryId: 'category4',
         costom: false,
@@ -614,8 +614,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout42: {
-        id: 'workout42',
+      exercise42: {
+        id: 'exercise42',
         typeId: 'type16',
         categoryId: 'category5',
         costom: false,
@@ -624,8 +624,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout43: {
-        id: 'workout43',
+      exercise43: {
+        id: 'exercise43',
         typeId: 'type17',
         categoryId: 'category3',
         costom: false,
@@ -634,8 +634,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout44: {
-        id: 'workout44',
+      exercise44: {
+        id: 'exercise44',
         typeId: 'type17',
         categoryId: 'category4',
         costom: false,
@@ -644,8 +644,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout45: {
-        id: 'workout4',
+      exercise45: {
+        id: 'exercise4',
         typeId: 'type17',
         categoryId: 'category5',
         costom: false,
@@ -654,8 +654,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout46: {
-        id: 'workout46',
+      exercise46: {
+        id: 'exercise46',
         typeId: 'type18',
         categoryId: 'category5',
         costom: false,
@@ -664,8 +664,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout47: {
-        id: 'workout47',
+      exercise47: {
+        id: 'exercise47',
         typeId: 'type19',
         categoryId: 'category2',
         costom: false,
@@ -674,8 +674,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout48: {
-        id: 'workout48',
+      exercise48: {
+        id: 'exercise48',
         typeId: 'type19',
         categoryId: 'category3',
         costom: false,
@@ -684,8 +684,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout49: {
-        id: 'workout49',
+      exercise49: {
+        id: 'exercise49',
         typeId: 'type19',
         categoryId: 'category5',
         costom: false,
@@ -694,8 +694,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout50: {
-        id: 'workout50',
+      exercise50: {
+        id: 'exercise50',
         typeId: 'type20',
         categoryId: 'category3',
         costom: false,
@@ -704,8 +704,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout51: {
-        id: 'workout51',
+      exercise51: {
+        id: 'exercise51',
         typeId: 'type20',
         categoryId: 'category4',
         costom: false,
@@ -714,8 +714,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout52: {
-        id: 'workout52',
+      exercise52: {
+        id: 'exercise52',
         typeId: 'type20',
         categoryId: 'category5',
         costom: false,
@@ -724,8 +724,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout53: {
-        id: 'workout53',
+      exercise53: {
+        id: 'exercise53',
         typeId: 'type21',
         categoryId: 'category3',
         costom: false,
@@ -734,8 +734,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout54: {
-        id: 'workout54',
+      exercise54: {
+        id: 'exercise54',
         typeId: 'type21',
         categoryId: 'category5',
         costom: false,
@@ -744,8 +744,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout55: {
-        id: 'workout55',
+      exercise55: {
+        id: 'exercise55',
         typeId: 'type22',
         categoryId: 'category4',
         costom: false,
@@ -754,8 +754,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout56: {
-        id: 'workout56',
+      exercise56: {
+        id: 'exercise56',
         typeId: 'type22',
         categoryId: 'category5',
         costom: false,
@@ -764,8 +764,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout57: {
-        id: 'workout57',
+      exercise57: {
+        id: 'exercise57',
         typeId: 'type23',
         categoryId: 'category2',
         costom: false,
@@ -774,8 +774,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout58: {
-        id: 'workout58',
+      exercise58: {
+        id: 'exercise58',
         typeId: 'type23',
         categoryId: 'category3',
         costom: false,
@@ -784,8 +784,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout59: {
-        id: 'workout59',
+      exercise59: {
+        id: 'exercise59',
         typeId: 'type23',
         categoryId: 'category4',
         costom: false,
@@ -794,8 +794,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout60: {
-        id: 'workout60',
+      exercise60: {
+        id: 'exercise60',
         typeId: 'type23',
         categoryId: 'category5',
         costom: false,
@@ -804,8 +804,8 @@ export const initialData = {
         secondaryTarget: 'target4',
         record: [],
       },
-      workout61: {
-        id: 'workout61',
+      exercise61: {
+        id: 'exercise61',
         typeId: 'type24',
         categoryId: 'category1',
         costom: false,
@@ -814,8 +814,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout62: {
-        id: 'workout62',
+      exercise62: {
+        id: 'exercise62',
         typeId: 'type24',
         categoryId: 'category2',
         costom: false,
@@ -824,8 +824,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout63: {
-        id: 'workout63',
+      exercise63: {
+        id: 'exercise63',
         typeId: 'type24',
         categoryId: 'category3',
         costom: false,
@@ -834,8 +834,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout64: {
-        id: 'workout64',
+      exercise64: {
+        id: 'exercise64',
         typeId: 'type24',
         categoryId: 'category4',
         costom: false,
@@ -844,8 +844,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout65: {
-        id: 'workout65',
+      exercise65: {
+        id: 'exercise65',
         typeId: 'type25',
         categoryId: 'category2',
         costom: false,
@@ -854,8 +854,8 @@ export const initialData = {
         secondaryTarget: 'target6',
         record: [],
       },
-      workout66: {
-        id: 'workout66',
+      exercise66: {
+        id: 'exercise66',
         typeId: 'type25',
         categoryId: 'category3',
         costom: false,
@@ -864,8 +864,8 @@ export const initialData = {
         secondaryTarget: 'target6',
         record: [],
       },
-      workout67: {
-        id: 'workout67',
+      exercise67: {
+        id: 'exercise67',
         typeId: 'type26',
         categoryId: 'category1',
         costom: false,
@@ -874,8 +874,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout68: {
-        id: 'workout68',
+      exercise68: {
+        id: 'exercise68',
         typeId: 'type26',
         categoryId: 'category2',
         costom: false,
@@ -884,8 +884,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout69: {
-        id: 'workout69',
+      exercise69: {
+        id: 'exercise69',
         typeId: 'type26',
         categoryId: 'category3',
         costom: false,
@@ -894,8 +894,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout70: {
-        id: 'workout70',
+      exercise70: {
+        id: 'exercise70',
         typeId: 'type27',
         categoryId: 'category4',
         costom: false,
@@ -904,8 +904,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout71: {
-        id: 'workout71',
+      exercise71: {
+        id: 'exercise71',
         typeId: 'type28',
         categoryId: 'category4',
         costom: false,
@@ -914,8 +914,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout72: {
-        id: 'workout72',
+      exercise72: {
+        id: 'exercise72',
         typeId: 'type29',
         categoryId: 'category4',
         costom: false,
@@ -924,8 +924,8 @@ export const initialData = {
         secondaryTarget: 'target7',
         record: [],
       },
-      workout73: {
-        id: 'workout73',
+      exercise73: {
+        id: 'exercise73',
         typeId: 'type30',
         categoryId: 'category1',
         costom: false,
@@ -934,8 +934,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout74: {
-        id: 'workout74',
+      exercise74: {
+        id: 'exercise74',
         typeId: 'type31',
         categoryId: 'category1',
         costom: false,
@@ -944,8 +944,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout75: {
-        id: 'workout75',
+      exercise75: {
+        id: 'exercise75',
         typeId: 'type32',
         categoryId: 'category1',
         costom: false,
@@ -954,8 +954,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout76: {
-        id: 'workout76',
+      exercise76: {
+        id: 'exercise76',
         typeId: 'type33',
         categoryId: 'category1',
         costom: false,
@@ -964,8 +964,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout77: {
-        id: 'workout77',
+      exercise77: {
+        id: 'exercise77',
         typeId: 'type34',
         categoryId: 'category1',
         costom: false,
@@ -974,8 +974,8 @@ export const initialData = {
         secondaryTarget: 'target5',
         record: [],
       },
-      workout78: {
-        id: 'workout78',
+      exercise78: {
+        id: 'exercise78',
         typeId: 'type35',
         categoryId: 'category1',
         costom: false,
@@ -984,8 +984,8 @@ export const initialData = {
         secondaryTarget: '',
         record: [],
       },
-      workout79: {
-        id: 'workout79',
+      exercise79: {
+        id: 'exercise79',
         typeId: 'type36',
         categoryId: 'category1',
         costom: false,
@@ -996,85 +996,85 @@ export const initialData = {
       },
     },
     allIds: [
-      'workout1',
-      'workout2',
-      'workout3',
-      'workout4',
-      'workout5',
-      'workout6',
-      'workout7',
-      'workout8',
-      'workout9',
-      'workout10',
-      'workout11',
-      'workout12',
-      'workout13',
-      'workout14',
-      'workout15',
-      'workout16',
-      'workout17',
-      'workout18',
-      'workout19',
-      'workout20',
-      'workout21',
-      'workout22',
-      'workout23',
-      'workout24',
-      'workout25',
-      'workout26',
-      'workout27',
-      'workout28',
-      'workout29',
-      'workout30',
-      'workout31',
-      'workout32',
-      'workout33',
-      'workout34',
-      'workout35',
-      'workout36',
-      'workout37',
-      'workout38',
-      'workout39',
-      'workout40',
-      'workout41',
-      'workout42',
-      'workout43',
-      'workout44',
-      'workout45',
-      'workout46',
-      'workout47',
-      'workout48',
-      'workout49',
-      'workout50',
-      'workout51',
-      'workout52',
-      'workout53',
-      'workout54',
-      'workout55',
-      'workout56',
-      'workout57',
-      'workout58',
-      'workout59',
-      'workout60',
-      'workout61',
-      'workout62',
-      'workout63',
-      'workout64',
-      'workout65',
-      'workout66',
-      'workout67',
-      'workout68',
-      'workout69',
-      'workout70',
-      'workout71',
-      'workout72',
-      'workout73',
-      'workout74',
-      'workout75',
-      'workout76',
-      'workout77',
-      'workout78',
-      'workout79',
+      'exercise1',
+      'exercise2',
+      'exercise3',
+      'exercise4',
+      'exercise5',
+      'exercise6',
+      'exercise7',
+      'exercise8',
+      'exercise9',
+      'exercise10',
+      'exercise11',
+      'exercise12',
+      'exercise13',
+      'exercise14',
+      'exercise15',
+      'exercise16',
+      'exercise17',
+      'exercise18',
+      'exercise19',
+      'exercise20',
+      'exercise21',
+      'exercise22',
+      'exercise23',
+      'exercise24',
+      'exercise25',
+      'exercise26',
+      'exercise27',
+      'exercise28',
+      'exercise29',
+      'exercise30',
+      'exercise31',
+      'exercise32',
+      'exercise33',
+      'exercise34',
+      'exercise35',
+      'exercise36',
+      'exercise37',
+      'exercise38',
+      'exercise39',
+      'exercise40',
+      'exercise41',
+      'exercise42',
+      'exercise43',
+      'exercise44',
+      'exercise45',
+      'exercise46',
+      'exercise47',
+      'exercise48',
+      'exercise49',
+      'exercise50',
+      'exercise51',
+      'exercise52',
+      'exercise53',
+      'exercise54',
+      'exercise55',
+      'exercise56',
+      'exercise57',
+      'exercise58',
+      'exercise59',
+      'exercise60',
+      'exercise61',
+      'exercise62',
+      'exercise63',
+      'exercise64',
+      'exercise65',
+      'exercise66',
+      'exercise67',
+      'exercise68',
+      'exercise69',
+      'exercise70',
+      'exercise71',
+      'exercise72',
+      'exercise73',
+      'exercise74',
+      'exercise75',
+      'exercise76',
+      'exercise77',
+      'exercise78',
+      'exercise79',
     ],
   },
   record: {
