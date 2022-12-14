@@ -1,4 +1,4 @@
-import { IUserInputProps } from '../../../types/userInput.d'
+import { IUserInputProps } from '../../../types/allProps.d'
 import * as S from './styles'
 
 const UserInput = ({ label, name, type, placeholder, onChange, vail, warning, desc1, desc2 }: IUserInputProps) => {

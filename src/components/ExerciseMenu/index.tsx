@@ -1,12 +1,16 @@
 import { Dispatch, SetStateAction, MouseEvent } from 'react'
-
-import { makeRoutineData } from '../../data/makeRoutineData'
+import { initialData } from '../../data/initialData'
+import { findCategory, findTarget } from '../../utils/findmenu'
+import FilterButton from './FilterButton'
 import * as S from './styles'
 
 interface Props {
   setFilterExercise: Dispatch<SetStateAction<object>>
   filterExercise: object
 }
+
+const targetData = Object.entries(initialData.targets.byId).map((data) => data[0])
+const categoryData = Object.entries(initialData.category.byId).map((data) => data[0])
 
 const ExerciseMenu = ({ setFilterExercise, filterExercise }: Props) => {
   const filterHandler = (e: MouseEvent<HTMLButtonElement>) => {
@@ -18,42 +22,21 @@ const ExerciseMenu = ({ setFilterExercise, filterExercise }: Props) => {
   return (
     <S.exerciseMenuBox>
       <div>
-        {makeRoutineData.more.map((data) => (
-          <S.filterBtn
-            id='more'
-            name={data}
-            onClick={filterHandler}
-            className={data === '전체' ? 'more' : ''}
-            key={data}
-          >
-            {data}
-          </S.filterBtn>
+        <FilterButton id='more' value='전체' onClick={filterHandler} className='more' />
+        <FilterButton id='more' value='즐겨찾기' onClick={filterHandler} data='favorite' />
+        <FilterButton id='more' value='최근운동' onClick={filterHandler} data='recent' />
+        <FilterButton id='more' value='커스텀' onClick={filterHandler} data='custom' />
+      </div>
+      <div>
+        <FilterButton value='전체' id='target' onClick={filterHandler} className='target' />
+        {targetData.map((data) => (
+          <FilterButton onClick={filterHandler} id='target' key={data} data={data} value={findTarget(data)} />
         ))}
       </div>
       <div>
-        {makeRoutineData.target.map((data) => (
-          <S.filterBtn
-            id='target'
-            name={data}
-            onClick={filterHandler}
-            className={data === '전체' ? 'target' : ''}
-            key={data}
-          >
-            {data}
-          </S.filterBtn>
-        ))}
-      </div>
-      <div>
-        {makeRoutineData.category.map((data) => (
-          <S.filterBtn
-            id='category'
-            name={data}
-            onClick={filterHandler}
-            className={data === '전체' ? 'category' : ''}
-            key={data}
-          >
-            {data}
-          </S.filterBtn>
+        <FilterButton value='전체' id='category' onClick={filterHandler} className='category' />
+        {categoryData.map((data) => (
+          <FilterButton onClick={filterHandler} id='category' key={data} data={data} value={findCategory(data)} />
         ))}
       </div>
     </S.exerciseMenuBox>

@@ -1,4 +1,4 @@
-export const SEARCH_DATA = [
+export const YOUTUBE_SEARCH_DATA = [
   '무분할',
   '2분할',
   '3분할',

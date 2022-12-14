@@ -28,7 +28,7 @@ const systemSlice = createSlice({
         .filter((data) => data.id === action.payload.id)[0]
         .id.split('exercise')[1]
 
-      state.exercise[Number(exerciseIndex) - 1].favortite = action.payload.favorite
+      state.exercise[Number(exerciseIndex) - 1].favorite = action.payload.favorite
     },
   },
 })

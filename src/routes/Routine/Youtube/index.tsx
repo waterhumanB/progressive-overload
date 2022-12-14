@@ -2,7 +2,7 @@ import { MouseEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as ArrowBtn } from '../../../assets/imgs/arrow_btn.svg'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
-import { SEARCH_DATA } from '../../../data/searchData'
+import { YOUTUBE_SEARCH_DATA } from '../../../data/searchData'
 import * as S from './styles'
 import YoutubeCard from '../../../components/YoutubeCard'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
@@ -52,7 +52,7 @@ const Youtube = () => {
         </S.pageLeftBtn>
         <div className='cardBox'>
           <S.cardTranslate position={translate}>
-            {SEARCH_DATA.map((data, index) => (
+            {YOUTUBE_SEARCH_DATA.map((data, index) => (
               <S.categoryBox
                 focus={categoryIndex === index}
                 onClick={categoryIndexhandler}

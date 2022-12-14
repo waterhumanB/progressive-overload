@@ -3,7 +3,7 @@ export interface IExercise {
   typeId: string
   categoryId: string
   costom: boolean
-  favortite: boolean
+  favorite: boolean
   mainTarget: string
   secondaryTarget: string
   record: Array

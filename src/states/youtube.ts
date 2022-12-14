@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '.'
-import { SEARCH_DATA } from '../data/searchData'
+import { YOUTUBE_SEARCH_DATA } from '../data/searchData'
 import { getYoutubeSearchApi } from '../service/youtube'
 import { ISearchYoutube } from '../types/youtube.d'
 
 export const getYoubuteData = createAsyncThunk('youtube', async () => {
-  const result = await Promise.all(SEARCH_DATA.map((search) => getYoutubeSearchApi({ q: search }))).then((res) => res)
+  const result = await Promise.all(YOUTUBE_SEARCH_DATA.map((search) => getYoutubeSearchApi({ q: search }))).then(
+    (res) => res
+  )
   return result as unknown as ISearchYoutube[]
 })
 

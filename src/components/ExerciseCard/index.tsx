@@ -1,4 +1,3 @@
-import { initialData } from '../../data/initialData'
 import * as S from './styles'
 import { ReactComponent as Arm } from '../../assets/imgs/arm.svg'
 import { ReactComponent as ArmHeart } from '../../assets/imgs/arm_heart.svg'
@@ -6,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { MouseEvent, useState } from 'react'
 import { getExerciseData, setFavoriteExercise } from '../../states/exercise'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { findCategory, findTarget, findType } from '../../utils/findmenu'
 
 interface Props {
   searchExercise: string
@@ -17,24 +17,10 @@ const ExerciseCard = ({ searchExercise, filterExercise }: Props) => {
   const dispatch = useAppDispatch()
   const [addExercise, setAddExercise] = useState<string[]>([])
 
-  const filterExerciseHandler = () => {
-    const favorite = selector.exercise.filter((data) => data.favortite === true)
-    const recent = selector.exercise.filter((data) => data.record.length !== 0)
-    const custom = selector.exercise.filter((data) => data.costom === true)
-  }
-
-  const findCategory = (value: string) => {
-    const result = Object.entries(initialData.category.byId).filter((data) => data[0] === value)[0][1].name
-    return result
-  }
-  const findTarget = (value: string) => {
-    const result = Object.entries(initialData.targets.byId).filter((data) => data[0] === value)[0][1].name
-    return result
-  }
-  const findType = (type: string) => {
-    const result = Object.entries(initialData.types.byId).filter((data) => data[0] === type)[0][1].name
-    return result
-  }
+  console.log(filterExercise)
+  const favorite = selector.exercise.filter((data) => data.favorite === true && data.mainTarget === 'target1')
+  const recent = selector.exercise.filter((data) => data.record.length !== 0)
+  const custom = selector.exercise.filter((data) => data.costom === true)
   const favoriteHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const boolean = e.currentTarget.value === 'true'
     const favoriteData = {
@@ -46,7 +32,11 @@ const ExerciseCard = ({ searchExercise, filterExercise }: Props) => {
 
   const addExerciseHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.currentTarget
-    setAddExercise([...addExercise, name])
+    setAddExercise(
+      [...addExercise, name].filter((ele, i) => {
+        return [...addExercise, name].indexOf(ele) === i
+      })
+    )
     console.log(addExercise)
   }
 
@@ -65,8 +55,8 @@ const ExerciseCard = ({ searchExercise, filterExercise }: Props) => {
               <div>{data.secondaryTarget !== '' && findTarget(data.secondaryTarget)}</div>
             </S.exerciseTarget>
           </S.exerciseInfo>
-          <button name={data.id} value={String(data.favortite)} onClick={favoriteHandler} type='button'>
-            {data.favortite === true ? <ArmHeart /> : <Arm />}
+          <button name={data.id} value={String(data.favorite)} onClick={favoriteHandler} type='button'>
+            {data.favorite === true ? <ArmHeart /> : <Arm />}
           </button>
         </S.exerciseBox>
       ))}
