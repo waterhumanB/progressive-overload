@@ -55,3 +55,29 @@ export const vidoeLink = styled.a`
     margin-left: 5px;
   }
 `
+export const errorBox = styled.div`
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  color: ${colors.FOCUS};
+  font-weight: 600;
+  font-size: 20px;
+`
+export const Spinner = styled.div`
+  width: 175px;
+  height: 175px;
+  border: 6px solid ${colors.FOCUS};
+  border-top: 6px solid ${colors.BACK};
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+  margin: auto;
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(359deg);
+    }
+  }
+`

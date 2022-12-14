@@ -12,7 +12,7 @@ export const getYoutubeSearchApi = async (params: Params) => {
     params: {
       ...params,
       part: 'snippet',
-      maxResults: 6,
+      maxResults: 8,
       key: process.env.REACT_APP_YOUTUBE_API_KEY,
     },
   })

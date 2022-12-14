@@ -6,13 +6,13 @@ import { ISearchYoutube } from '../types/youtube.d'
 
 export const getYoubuteData = createAsyncThunk('youtube', async () => {
   const result = await Promise.all(SEARCH_DATA.map((search) => getYoutubeSearchApi({ q: search }))).then((res) => res)
-  return result
+  return result as unknown as ISearchYoutube[]
 })
 
 const INIT_YOUTUBE: ISearchYoutube[] = []
 
 export interface YoutubeState {
-  youtubeData: ISearchYoutube[] | ISearchYoutube[][]
+  youtubeData: ISearchYoutube[]
   error: null | undefined | string | unknown
   loading: boolean
 }
@@ -29,17 +29,17 @@ const getYoutubeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getYoubuteData.pending, (state: YoutubeState) => {
-      state.error = null
+      state.error = 'peding'
       state.loading = true
     })
     builder.addCase(getYoubuteData.fulfilled, (state: YoutubeState, action) => {
       state.youtubeData = action.payload
       state.loading = false
-      state.error = null
+      state.error = 'fuilfilled'
     })
 
-    builder.addCase(getYoubuteData.rejected, (state: YoutubeState, action) => {
-      state.error = action.payload
+    builder.addCase(getYoubuteData.rejected, (state: YoutubeState) => {
+      state.error = 'rejdected'
       state.loading = false
     })
   },

@@ -16,7 +16,6 @@ const Youtube = () => {
   const dispatch = useAppDispatch()
   const selector = useAppSelector(getYoutubeDataList)
   const Navigate = useNavigate()
-  const youtubeState = selector.youtubeData
   const returnPageBtn = () => {
     Navigate(-1)
   }
@@ -30,10 +29,10 @@ const Youtube = () => {
     }
   }
   useEffect(() => {
-    // if (youtubeState.length === 0) {
-    //   dispatch(getYoubuteData())
-    // }
-  })
+    if (selector.youtubeData.length === 0) {
+      dispatch(getYoubuteData())
+    }
+  }, [])
 
   const categoryIndexhandler = (e: MouseEvent<HTMLButtonElement>) => {
     setCategoryIndex(Number(e.currentTarget.name))

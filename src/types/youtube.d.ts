@@ -1,9 +1,4 @@
 export interface ISearchYoutube {
-  staus: string
-  data: IDatas
-}
-
-interface IDatas {
   etag: string
   kind: string
   nextPageToken: string
