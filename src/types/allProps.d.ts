@@ -14,6 +14,7 @@ export interface IFilterBtnProps {
   value: string
   data?: string
   id?: string
+  name?: string
   className?: string
   onClick: (e: MouseEvent<HTMLButtonElement>) => void
 }

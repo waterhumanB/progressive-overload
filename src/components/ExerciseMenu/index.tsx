@@ -9,6 +9,10 @@ const targetData = Object.entries(initialData.targets.byId).map((data) => data[0
 const categoryData = Object.entries(initialData.category.byId).map((data) => data[0])
 
 const ExerciseMenu = ({ setFilterExercise, filterExercise }: ExerciseMeunProps) => {
+  const more = Object.values(filterExercise)[0]
+  const target = Object.values(filterExercise)[1]
+  const category = Object.values(filterExercise)[2]
+
   const filterHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const data = {
       [e.currentTarget.id]: e.currentTarget.name,
@@ -18,21 +22,71 @@ const ExerciseMenu = ({ setFilterExercise, filterExercise }: ExerciseMeunProps) 
   return (
     <S.exerciseMenuBox>
       <div>
-        <FilterButton id='more' value='전체' onClick={filterHandler} data='전체' className='more' />
-        <FilterButton id='more' value='즐겨찾기' onClick={filterHandler} data='favorite' />
-        <FilterButton id='more' value='최근운동' onClick={filterHandler} data='recent' />
-        <FilterButton id='more' value='커스텀' onClick={filterHandler} data='custom' />
+        <FilterButton
+          className={more === '전체' ? 'margin more' : 'margin'}
+          id='more'
+          value='전체'
+          onClick={filterHandler}
+          data='전체'
+        />
+        <FilterButton
+          className={more === 'favorite' ? ' more' : ''}
+          id='more'
+          value='즐겨찾기'
+          onClick={filterHandler}
+          data='favorite'
+        />
+        <FilterButton
+          className={more === 'recent' ? ' more' : ''}
+          id='more'
+          value='최근운동'
+          onClick={filterHandler}
+          data='recent'
+        />
+        <FilterButton
+          className={more === 'custom' ? ' more' : ''}
+          id='more'
+          value='커스텀'
+          onClick={filterHandler}
+          data='custom'
+        />
       </div>
       <div>
-        <FilterButton value='전체' id='target' onClick={filterHandler} className='target' data='전체' />
+        <FilterButton
+          className={target === '전체' ? 'margin target' : 'margin'}
+          value='전체'
+          id='target'
+          onClick={filterHandler}
+          data='전체'
+        />
         {targetData.map((data) => (
-          <FilterButton onClick={filterHandler} id='target' key={data} data={data} value={findTarget(data)} />
+          <FilterButton
+            className={data === target ? 'target' : ''}
+            onClick={filterHandler}
+            id='target'
+            key={data}
+            data={data}
+            value={findTarget(data)}
+          />
         ))}
       </div>
       <div>
-        <FilterButton value='전체' id='category' onClick={filterHandler} className='category' data='전체' />
+        <FilterButton
+          className={category === '전체' ? 'margin category' : 'margin'}
+          value='전체'
+          id='category'
+          onClick={filterHandler}
+          data='전체'
+        />
         {categoryData.map((data) => (
-          <FilterButton onClick={filterHandler} id='category' key={data} data={data} value={findCategory(data)} />
+          <FilterButton
+            className={data === category ? 'category' : ''}
+            onClick={filterHandler}
+            id='category'
+            key={data}
+            data={data}
+            value={findCategory(data)}
+          />
         ))}
       </div>
     </S.exerciseMenuBox>
