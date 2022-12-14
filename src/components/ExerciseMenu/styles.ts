@@ -4,21 +4,15 @@ import colors from '../../styles/constants/colors'
 export const exerciseMenuBox = styled.div`
   width: 100%;
   .more {
-    margin-right: 13px;
+    margin-right: 11px;
     color: ${colors.RED};
   }
   .target {
-    margin-right: 13px;
+    margin-right: 11px;
     color: ${colors.BLUE};
   }
   .category {
-    margin-right: 13px;
+    margin-right: 11px;
     color: ${colors.GREEN};
   }
-`
-
-export const filterBtn = styled.button`
-  margin: auto 9px 12px auto;
-  font-size: 14px;
-  font-weight: 600;
 `

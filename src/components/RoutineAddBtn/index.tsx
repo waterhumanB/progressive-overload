@@ -1,10 +1,7 @@
+import { IDropDownToggleProps } from '../../types/allProps.d'
 import * as S from './styles'
 
-interface Props {
-  toggleDropDown: () => void
-}
-
-const RoutineAddBtn = ({ toggleDropDown }: Props) => {
+const RoutineAddBtn = ({ toggleDropDown }: IDropDownToggleProps) => {
   const dropDownHandler = () => {
     toggleDropDown()
   }

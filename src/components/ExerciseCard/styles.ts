@@ -61,3 +61,14 @@ export const exerciseTarget = styled.div`
     margin-left: 5px;
   }
 `
+export const errorFetchedData = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  color: ${colors.FOCUS};
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`

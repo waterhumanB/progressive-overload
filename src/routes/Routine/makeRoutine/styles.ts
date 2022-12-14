@@ -16,4 +16,7 @@ export const filterBox = styled.div`
     width: 24px;
     height: 35px;
   }
+  input {
+    width: 90%;
+  }
 `

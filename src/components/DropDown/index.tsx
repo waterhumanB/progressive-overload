@@ -1,11 +1,8 @@
 import { useNavigate } from 'react-router-dom'
+import { IDropDownPropsProps } from '../../types/allProps.d'
 import * as S from './styles'
 
-interface Props {
-  toggleDropDown: () => void
-  dropDown: boolean
-}
-const DropDown = ({ toggleDropDown, dropDown }: Props) => {
+const DropDown = ({ toggleDropDown, dropDown }: IDropDownPropsProps) => {
   const dropDownHandler = () => {
     toggleDropDown()
   }

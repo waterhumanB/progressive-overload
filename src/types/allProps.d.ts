@@ -17,3 +17,26 @@ export interface IFilterBtnProps {
   className?: string
   onClick: (e: MouseEvent<HTMLButtonElement>) => void
 }
+
+export interface IDropDownToggleProps {
+  toggleDropDown: () => void
+}
+
+export interface IFiterDataProps {
+  searchExercise: string
+  filterExercise: object
+}
+
+export interface IYoutubeIndexProps {
+  categoryIndex: number
+}
+
+export interface ExerciseMeunProps {
+  setFilterExercise: Dispatch<SetStateAction<object>>
+  filterExercise: object
+}
+
+export interface IDropDownPropsProps {
+  toggleDropDown: () => void
+  dropDown: boolean
+}

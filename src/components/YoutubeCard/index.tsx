@@ -3,12 +3,9 @@ import * as S from './styles'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getYoutubeDataList } from '../../states/youtube'
 import { ReactComponent as Arrrow } from '../../assets/imgs/arrow_click.svg'
+import { IYoutubeIndexProps } from '../../types/allProps.d'
 
-interface Props {
-  categoryIndex: number
-}
-
-const YoutubeCard = ({ categoryIndex }: Props) => {
+const YoutubeCard = ({ categoryIndex }: IYoutubeIndexProps) => {
   const index = categoryIndex
   const selctor = useAppSelector(getYoutubeDataList)
   const youtubeState = selctor && selctor.youtubeData[index]?.items
