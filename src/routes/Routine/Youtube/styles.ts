@@ -2,22 +2,20 @@ import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
 export const titleBox = styled.div`
-  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 
   .title {
-    margin: 10px auto 20px auto;
+    width: 100%;
+    height: 100%;
     font-size: 32px;
     color: ${colors.FOCUS};
   }
 
-  button {
-    left: 0;
-    position: absolute;
-    margin: 0;
-  }
   svg {
     fill: ${colors.FONT};
     width: 50px;
@@ -52,13 +50,19 @@ export const cardTranslate = styled.div<{ position: number }>`
 
 export const pageLeftBtn = styled.button<{ position: number }>`
   transform: scaleX(-1);
-  fill: ${(props) => (props.position < 50 ? colors.WHITE : colors.FOCUS)};
+  fill: ${(props) => (props.position < 50 ? colors.WHITE : colors.FONT)};
   cursor: ${(props) => (props.position < 50 ? 'default' : 'pointer')};
+  :focus {
+    fill: ${(props) => (props.position < 50 ? colors.WHITE : colors.FOCUS)};
+  }
 `
 
 export const pageRightBtn = styled.button<{ position: number }>`
-  fill: ${(props) => (props.position > 560 ? colors.WHITE : colors.FOCUS)};
+  fill: ${(props) => (props.position > 560 ? colors.WHITE : colors.FONT)};
   cursor: ${(props) => (props.position > 560 ? 'default' : 'pointer')};
+  :focus {
+    fill: ${(props) => (props.position > 560 ? colors.WHITE : colors.FOCUS)};
+  }
 `
 
 export const categoryBox = styled.button<{ focus: boolean }>`

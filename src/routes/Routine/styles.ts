@@ -5,6 +5,7 @@ export const routineContainer = styled.section`
   width: 100%;
   height: 100%;
   position: relative;
+  background: ${colors.WHITE};
 `
 export const userContainer = styled.div`
   display: flex;

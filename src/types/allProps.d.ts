@@ -41,3 +41,18 @@ export interface IDropDownPropsProps {
   toggleDropDown: () => void
   dropDown: boolean
 }
+
+export interface IModalProps {
+  toggleModalHandler: () => void
+  modalName: string
+}
+
+export interface ICustomSelectorModalProps {
+  toggleModalHandler: () => void
+}
+
+export interface ICustomSelectorBtnProps {
+  value: string
+  name: string
+  toggleModalHandler: () => void
+}

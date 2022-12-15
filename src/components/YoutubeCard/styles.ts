@@ -3,7 +3,7 @@ import colors from '../../styles/constants/colors'
 
 export const cardContainer = styled.div`
   width: 100%;
-  height: 670px;
+  height: 85vh;
   margin: auto;
   display: flex;
   flex-wrap: wrap;

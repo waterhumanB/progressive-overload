@@ -3,7 +3,7 @@ import colors from '../../styles/constants/colors'
 
 export const exerciseContainer = styled.div`
   width: 100%;
-  height: 530px;
+  height: 70vh;
   overflow: scroll;
 `
 
