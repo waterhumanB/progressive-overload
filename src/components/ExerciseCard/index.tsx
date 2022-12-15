@@ -27,6 +27,10 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
     )
     .filter((data) => (target === '전체' ? data : data.mainTarget === target))
     .filter((data) => (category === '전체' ? data : data.categoryId === category))
+    .filter((data) => {
+      const title = findCategory(data.categoryId) + findType(data.typeId)
+      return title.includes(searchExercise)
+    })
 
   const favoriteHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const boolean = e.currentTarget.value === 'true'
