@@ -8,7 +8,8 @@ import Calendar from './Calendar'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { getUserInfo } from '../states/user'
 import Youtube from './Routine/Youtube'
-import MakeRoutine from './Routine/makeRoutine'
+import MakeRoutine from './Routine/RoutineMake'
+import CustomExercise from './Routine/CustomExercise'
 
 const App = () => {
   const userInfo = useAppSelector(getUserInfo)
@@ -25,7 +26,8 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/routine' element={<Routine />} />
         <Route path='/routine/youtube' element={<Youtube />} />
-        <Route path='/routine/make-routine' element={<MakeRoutine />} />
+        <Route path='/routine/routine-make' element={<MakeRoutine />} />
+        <Route path='/routine/routine-make/custom-exercise' element={<CustomExercise />} />
         <Route path='/summary' element={<Summary />} />
         <Route path='/calender' element={<Calendar />} />
       </Routes>

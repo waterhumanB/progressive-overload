@@ -7,12 +7,12 @@ const DropDown = ({ toggleDropDown, dropDown }: IDropDownPropsProps) => {
     toggleDropDown()
   }
   const navgate = useNavigate()
-  const addRoutineRouter = () => {
-    navgate('/routine/make-routine')
+  const routineMakeRouter = () => {
+    navgate('/routine/routine-make')
   }
   return (
     <S.DropBoxContainer dropdown={dropDown}>
-      <S.DropBoxItem dropdown={dropDown} onClick={addRoutineRouter}>
+      <S.DropBoxItem dropdown={dropDown} onClick={routineMakeRouter}>
         루틴 만들기
       </S.DropBoxItem>
       <S.DropBoxItem dropdown={dropDown} onClick={dropDownHandler}>
