@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import * as S from './styles'
 import Home from './Home'
@@ -15,7 +15,7 @@ const App = () => {
   const userInfo = useAppSelector(getUserInfo)
   const navigate = useNavigate()
   const location = useLocation()
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (location.pathname === '/') {
       userInfo.user.nickName.length > 1 && navigate('/routine')
     }

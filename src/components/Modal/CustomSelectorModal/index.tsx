@@ -46,6 +46,11 @@ const CustomSelectorModal = ({
               </button>
             </div>
           )))}
+      {nameFitler === 'secondTarget' && (
+        <button name='secondTarget' value='없음' type='button' onClick={selectorData}>
+          없음
+        </button>
+      )}
     </S.customSelectorModalContainer>
   )
 }

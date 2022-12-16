@@ -38,40 +38,44 @@ export const cutomDataBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  .focus {
+    background: ${colors.BACK};
+    input {
+      color: ${colors.FOCUS};
+    }
+  }
 `
 
-export const customInput = styled.div`
+export const customInput = styled.div<{ inputValue: boolean }>`
   width: 100%;
   height: 40px;
-  background: ${colors.WHITE};
+  background: ${(props) => (props.inputValue ? colors.WHITE : colors.BACK)};
   margin-bottom: 80px;
   border: 2px solid ${colors.BACK};
   input {
+    color: ${colors.FOCUS};
     font-weight: 600;
     width: 100%;
     height: 100%;
     text-align: center;
     ::placeholder {
-      color: ${colors.FOCUS};
+      color: ${colors.FONT};
     }
   }
 `
-export const customSelector = styled.button`
+
+export const customExerciseAddBtn = styled.button`
   width: 100%;
   height: 40px;
-  background: ${colors.WHITE};
+  background: ${colors.FOCUS};
   border: 2px solid ${colors.BACK};
-  color: ${colors.FOCUS};
+  color: ${colors.WHITE};
+  font-weight: 600;
   font-size: 16px;
-  margin-bottom: 80px;
-  align-items: center;
-  display: flex;
-  div {
-    font-weight: 600;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+  :disabled {
+    border: 2px solid ${colors.BACK};
+    color: ${colors.FONT};
+    background: ${colors.WHITE};
   }
 `
