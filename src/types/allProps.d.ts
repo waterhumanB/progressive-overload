@@ -45,14 +45,21 @@ export interface IDropDownPropsProps {
 export interface IModalProps {
   toggleModalHandler: () => void
   modalName: string
+  nameFitler: string
+  customExerciseData: object
+  setCustomExerciseData: Dispatch<SetStateAction<object>>
 }
 
 export interface ICustomSelectorModalProps {
+  nameFitler: string
   toggleModalHandler: () => void
+  customExerciseData: object
+  setCustomExerciseData: Dispatch<SetStateAction<object>>
 }
 
 export interface ICustomSelectorBtnProps {
   value: string
   name: string
   toggleModalHandler: () => void
+  setNameFilter: Dispatch<SetStateAction<string>>
 }

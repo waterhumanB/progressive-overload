@@ -3,11 +3,22 @@ import { IModalProps } from '../../types/allProps.d'
 import CustomSelectorModal from './CustomSelectorModal'
 import * as S from './styles'
 
-const Modal = ({ toggleModalHandler, modalName }: IModalProps) => {
+const Modal = ({
+  toggleModalHandler,
+  customExerciseData,
+  modalName,
+  nameFitler,
+  setCustomExerciseData,
+}: IModalProps) => {
   return (
     <S.modalCotainer>
       {modalName === 'customExercise' ? (
-        <CustomSelectorModal toggleModalHandler={toggleModalHandler} />
+        <CustomSelectorModal
+          customExerciseData={customExerciseData}
+          setCustomExerciseData={setCustomExerciseData}
+          nameFitler={nameFitler}
+          toggleModalHandler={toggleModalHandler}
+        />
       ) : (
         <div>모달창</div>
       )}
