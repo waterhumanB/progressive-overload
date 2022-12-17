@@ -25,7 +25,11 @@ export interface IDropDownToggleProps {
 
 export interface IFiterDataProps {
   searchExercise: string
-  filterExercise: object
+  filterExercise: {
+    more: string
+    target: string
+    category: string
+  }
 }
 
 export interface IYoutubeIndexProps {
@@ -34,7 +38,11 @@ export interface IYoutubeIndexProps {
 
 export interface ExerciseMeunProps {
   setFilterExercise: Dispatch<SetStateAction<object>>
-  filterExercise: object
+  filterExercise: {
+    more: string
+    target: string
+    category: string
+  }
 }
 
 export interface IDropDownPropsProps {

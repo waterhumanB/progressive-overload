@@ -5,10 +5,16 @@ import ExerciseMenu from '../../../components/ExerciseMenu'
 import ExerciseCard from '../../../components/ExerciseCard'
 import { useNavigate } from 'react-router-dom'
 
-const INIT_DATA = { more: '전체', target: '전체', category: '전체' }
+interface InitData {
+  more: string
+  target: string
+  category: string
+}
+
+const INIT_DATA: InitData = { more: '전체', target: '전체', category: '전체' }
 
 const RoutineMake = () => {
-  const [filterExercise, setFilterExercise] = useState<object>(INIT_DATA)
+  const [filterExercise, setFilterExercise] = useState<InitData>(INIT_DATA)
   const [searchExercise, setSearchExercise] = useState<string>('')
 
   const navigate = useNavigate()

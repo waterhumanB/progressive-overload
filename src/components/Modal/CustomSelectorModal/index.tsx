@@ -5,7 +5,7 @@ import * as S from './styles'
 
 const category = Object.values(initialData.category.byId)
 const mainTarget = Object.values(initialData.targets.byId)
-const secondTarget = Object.values(initialData.targets.byId)
+const secondaryTarget = Object.values(initialData.targets.byId)
 
 const CustomSelectorModal = ({
   toggleModalHandler,
@@ -22,10 +22,10 @@ const CustomSelectorModal = ({
   }
   return (
     <S.customSelectorModalContainer>
-      {(nameFitler === 'category' &&
+      {(nameFitler === 'categoryId' &&
         category.map((data) => (
           <div key={data.name}>
-            <button name='category' value={data.name} onClick={selectorData} type='button'>
+            <button name='categoryId' value={data.name} onClick={selectorData} type='button'>
               {data.name}
             </button>
           </div>
@@ -38,16 +38,16 @@ const CustomSelectorModal = ({
               </button>
             </div>
           ))) ||
-        (nameFitler === 'secondTarget' &&
-          secondTarget.map((data) => (
+        (nameFitler === 'secondaryTarget' &&
+          secondaryTarget.map((data) => (
             <div key={data.name}>
-              <button name='secondTarget' value={data.name} onClick={selectorData} type='button'>
+              <button name='secondaryTarget' value={data.name} onClick={selectorData} type='button'>
                 {data.name}
               </button>
             </div>
           )))}
-      {nameFitler === 'secondTarget' && (
-        <button name='secondTarget' value='없음' type='button' onClick={selectorData}>
+      {nameFitler === 'secondaryTarget' && (
+        <button name='secondaryTarget' value='없음' type='button' onClick={selectorData}>
           없음
         </button>
       )}

@@ -9,7 +9,8 @@ const targetData = Object.entries(initialData.targets.byId).map((data) => data[0
 const categoryData = Object.entries(initialData.category.byId).map((data) => data[0])
 
 const ExerciseMenu = ({ setFilterExercise, filterExercise }: ExerciseMeunProps) => {
-  const more = Object.values(filterExercise)[0]
+  const { more } = filterExercise
+  // const more = Object.values(filterExercise)[0]
   const target = Object.values(filterExercise)[1]
   const category = Object.values(filterExercise)[2]
 
