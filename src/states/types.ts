@@ -19,7 +19,8 @@ const systemSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     setTypes: (state: TyesState, action: PayloadAction<ITypesItem>) => {
-      console.log(action.payload)
+      state.types.byId = Object.assign(state.types.byId, action.payload)
+      state.types.allIds.push(Object.keys(action.payload)[0])
     },
   },
 })

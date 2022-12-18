@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import CustomSelectorBtn from '../../../components/CustomSelectorBtn'
 import Modal from '../../../components/Modal'
+import { initialData } from '../../../data/initialData'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData, setCustomExercise } from '../../../states/exercise'
@@ -50,11 +51,20 @@ const CustomExercise = () => {
     setCustomExerciseData({ ...customExerciseData, ...customData })
   }
 
-  console.log(customExerciseData.typeId)
   console.log(typesSelector)
+  console.log(exercisesSelector)
   const customExerciseDispatch = () => {
-    // dispatch(setTypes({typcustomExerciseData.typeId}))
-    dispatch(setCustomExercise(customExerciseData))
+    const newTypeData = {
+      [`type${typesSelector.types.allIds.length + 1}`]: {
+        name: customExerciseData.typeId,
+      },
+    }
+    dispatch(setTypes(newTypeData))
+    const newCustomExeciseData = {
+      ...customExerciseData,
+      typeId: `type${typesSelector.types.allIds.length + 1}`,
+    }
+    dispatch(setCustomExercise(newCustomExeciseData))
   }
 
   return (

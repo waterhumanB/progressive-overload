@@ -10,7 +10,7 @@ const CustomSelectorBtn = ({ value, name, setNameFilter, toggleModalHandler }: I
 
   return (
     <S.customSelector selectorName={value} onClick={nameFilterHandler}>
-      <div>{value}</div>
+      {value === '' ? <div>없음</div> : <div>{value}</div>}
     </S.customSelector>
   )
 }

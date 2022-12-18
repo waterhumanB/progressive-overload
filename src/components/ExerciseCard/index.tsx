@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { findCategory, findTarget, findType } from '../../utils/findmenu'
 import { IFiterDataProps } from '../../types/allProps.d'
 import { useAppSelector } from '../../hooks/useAppSelector'
+import { getTypesData } from '../../states/types'
 
 interface IExecise {
   id: string
@@ -20,11 +21,11 @@ interface IExecise {
 }
 
 const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
-  const selector = useAppSelector(getExerciseData)
+  const exerciseSelector = useAppSelector(getExerciseData)
+  const typesSelector = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
   const [addExercise, setAddExercise] = useState<string[]>([])
-
-  const stateArray: IExecise[] = Object.values(selector.exercises.byId)
+  const stateArray: IExecise[] = Object.values(exerciseSelector.exercises.byId)
   const { more, target, category } = filterExercise
 
   const fetechedData = stateArray
@@ -38,7 +39,7 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
     .filter((data) => (target === '전체' ? data : data.mainTarget === target))
     .filter((data) => (category === '전체' ? data : data.categoryId === category))
     .filter((data) => {
-      const title = findCategory(data.categoryId) + findType(data.typeId)
+      const title = findCategory(data.categoryId) + findType(typesSelector.types.byId, data.typeId)
       return title.includes(searchExercise)
     })
 
@@ -64,26 +65,24 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
   return (
     <S.exerciseContainer>
       {fetechedData.length !== 0 ? (
-        fetechedData
-          .filter((data) => data.custom === false)
-          .map((data) => (
-            <S.exerciseBox key={data.id}>
-              <S.mainTaget>{findTarget(data.mainTarget)}</S.mainTaget>
-              <S.exerciseInfo type='button' name={data.id} onClick={addExerciseHandler}>
-                <S.exerciseTitle>
-                  <div>{findCategory(data.categoryId)}</div>
-                  <div>{findType(data.typeId)}</div>
-                </S.exerciseTitle>
-                <S.exerciseTarget>
-                  <div>{findTarget(data.mainTarget)}</div>
-                  <div>{data.secondaryTarget !== '' && findTarget(data.secondaryTarget)}</div>
-                </S.exerciseTarget>
-              </S.exerciseInfo>
-              <button name={data.id} value={String(data.favorite)} onClick={favoriteHandler} type='button'>
-                {data.favorite === true ? <ArmHeart /> : <Arm />}
-              </button>
-            </S.exerciseBox>
-          ))
+        fetechedData.map((data) => (
+          <S.exerciseBox key={data.id}>
+            <S.mainTaget>{findTarget(data.mainTarget)}</S.mainTaget>
+            <S.exerciseInfo type='button' name={data.id} onClick={addExerciseHandler}>
+              <S.exerciseTitle>
+                <div>{findCategory(data.categoryId)}</div>
+                <div>{findType(typesSelector.types.byId, data.typeId)}</div>
+              </S.exerciseTitle>
+              <S.exerciseTarget>
+                <div>{findTarget(data.mainTarget)}</div>
+                <div>{data.secondaryTarget !== '' && findTarget(data.secondaryTarget)}</div>
+              </S.exerciseTarget>
+            </S.exerciseInfo>
+            <button name={data.id} value={String(data.favorite)} onClick={favoriteHandler} type='button'>
+              {data.favorite === true ? <ArmHeart /> : <Arm />}
+            </button>
+          </S.exerciseBox>
+        ))
       ) : (
         <S.errorFetchedData>해당 운동은 없습니다.</S.errorFetchedData>
       )}
