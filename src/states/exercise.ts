@@ -3,16 +3,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '.'
 import { initialData } from '../data/initialData'
 
-import { ICustomExecise, IExercise, IFavorite } from '../types/exercise.d'
+import { IExerciseItem, IExercises, IFavorite } from '../types/exercises.d'
 
-const INIT_EXERCISE = initialData.exercise
+const INIT_EXERCISE = initialData.exercises
 
 export interface ExerciseState {
-  exercise: IExercise
+  exercises: IExercises
 }
 
 const INITIAL_STATE: ExerciseState = {
-  exercise: INIT_EXERCISE,
+  exercises: INIT_EXERCISE,
 }
 
 const systemSlice = createSlice({
@@ -20,9 +20,12 @@ const systemSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     setFavoriteExercise: (state: ExerciseState, action: PayloadAction<IFavorite>) => {
-      state.exercise.byId[action.payload.id].favorite = action.payload.favorite
+      state.exercises.byId[action.payload.id].favorite = action.payload.favorite
     },
-    setCustomExercise: (state: ExerciseState, action: PayloadAction<ICustomExecise>) => {},
+    setCustomExercise: (state: ExerciseState, action: PayloadAction<IExerciseItem>) => {
+      state.exercises.byId[action.payload.id] = action.payload
+      state.exercises.allIds.push(action.payload.id)
+    },
   },
 })
 
@@ -32,4 +35,4 @@ export default systemSlice.reducer
 
 // Selector =====================
 
-export const getExerciseData = (state: RootState): ExerciseState => state.exercise
+export const getExerciseData = (state: RootState): ExerciseState => state.exercises

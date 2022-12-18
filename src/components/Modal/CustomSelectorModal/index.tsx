@@ -1,11 +1,12 @@
-import React, { MouseEvent } from 'react'
+import { MouseEvent } from 'react'
 import { initialData } from '../../../data/initialData'
 import { ICustomSelectorModalProps } from '../../../types/allProps.d'
+import { findCategory, findTarget } from '../../../utils/findmenu'
 import * as S from './styles'
 
-const category = Object.values(initialData.category.byId)
-const mainTarget = Object.values(initialData.targets.byId)
-const secondaryTarget = Object.values(initialData.targets.byId)
+const category = Object.keys(initialData.categories.byId)
+const mainTarget = Object.keys(initialData.targets.byId)
+const secondaryTarget = Object.keys(initialData.targets.byId)
 
 const CustomSelectorModal = ({
   toggleModalHandler,
@@ -24,30 +25,30 @@ const CustomSelectorModal = ({
     <S.customSelectorModalContainer>
       {(nameFitler === 'categoryId' &&
         category.map((data) => (
-          <div key={data.name}>
-            <button name='categoryId' value={data.name} onClick={selectorData} type='button'>
-              {data.name}
+          <div key={data}>
+            <button name='categoryId' value={data} onClick={selectorData} type='button'>
+              {findCategory(data)}
             </button>
           </div>
         ))) ||
         (nameFitler === 'mainTarget' &&
           mainTarget.map((data) => (
-            <div key={data.name}>
-              <button name='mainTarget' value={data.name} onClick={selectorData} type='button'>
-                {data.name}
+            <div key={data}>
+              <button name='mainTarget' value={data} onClick={selectorData} type='button'>
+                {findTarget(data)}
               </button>
             </div>
           ))) ||
         (nameFitler === 'secondaryTarget' &&
           secondaryTarget.map((data) => (
-            <div key={data.name}>
-              <button name='secondaryTarget' value={data.name} onClick={selectorData} type='button'>
-                {data.name}
+            <div key={data}>
+              <button name='secondaryTarget' value={data} onClick={selectorData} type='button'>
+                {findTarget(data)}
               </button>
             </div>
           )))}
       {nameFitler === 'secondaryTarget' && (
-        <button name='secondaryTarget' value='없음' type='button' onClick={selectorData}>
+        <button name='secondaryTarget' value='' type='button' onClick={selectorData}>
           없음
         </button>
       )}

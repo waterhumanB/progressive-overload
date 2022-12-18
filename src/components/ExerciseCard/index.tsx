@@ -24,11 +24,8 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
   const dispatch = useAppDispatch()
   const [addExercise, setAddExercise] = useState<string[]>([])
 
-  const stateArray: IExecise[] = Object.values(selector.exercise.byId)
-
-  const more = Object.values(filterExercise)[0]
-  const target = Object.values(filterExercise)[1]
-  const category = Object.values(filterExercise)[2]
+  const stateArray: IExecise[] = Object.values(selector.exercises.byId)
+  const { more, target, category } = filterExercise
 
   const fetechedData = stateArray
     .filter(

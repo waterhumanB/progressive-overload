@@ -6,13 +6,10 @@ import FilterButton from './FilterButton'
 import * as S from './styles'
 
 const targetData = Object.entries(initialData.targets.byId).map((data) => data[0])
-const categoryData = Object.entries(initialData.category.byId).map((data) => data[0])
+const categoryData = Object.entries(initialData.categories.byId).map((data) => data[0])
 
 const ExerciseMenu = ({ setFilterExercise, filterExercise }: ExerciseMeunProps) => {
-  const { more } = filterExercise
-  // const more = Object.values(filterExercise)[0]
-  const target = Object.values(filterExercise)[1]
-  const category = Object.values(filterExercise)[2]
+  const { more, target, category } = filterExercise
 
   const filterHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const data = {

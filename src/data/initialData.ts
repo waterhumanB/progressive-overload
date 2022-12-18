@@ -1,5 +1,5 @@
 export const initialData = {
-  category: {
+  categories: {
     byId: {
       category1: {
         name: '맨몸운동',
@@ -202,7 +202,7 @@ export const initialData = {
     byId: {},
     allIds: [],
   },
-  exercise: {
+  exercises: {
     byId: {
       exercise1: {
         id: 'exercise1',
@@ -1077,7 +1077,7 @@ export const initialData = {
       'exercise79',
     ],
   },
-  record: {
+  records: {
     byId: {},
     allIds: [],
   },

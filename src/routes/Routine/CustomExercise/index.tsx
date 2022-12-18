@@ -6,29 +6,34 @@ import Modal from '../../../components/Modal'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData, setCustomExercise } from '../../../states/exercise'
-import { ICustomExecise } from '../../../types/exercise.d'
+import { getTypesData, setTypes } from '../../../states/types'
+import { IExerciseItem } from '../../../types/exercises.d'
+import { findCategory, findTarget } from '../../../utils/findmenu'
 import * as S from './styles'
 
 const CustomExercise = () => {
-  const selector = useAppSelector(getExerciseData)
+  const exercisesSelector = useAppSelector(getExerciseData)
+  const typesSelector = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [toggleModal, setToggleModal] = useState(false)
   const [nameFilter, setNameFilter] = useState('')
 
   const INIT_CUSTOMDATA = {
+    id: `exercise${exercisesSelector.exercises.allIds.length + 1}`,
     typeId: '',
-    id: `execise${selector.exercise.allIds.length + 1}`,
+    categoryId: '카테고리',
     custom: true,
     favorite: false,
-    categoryId: '카테고리',
     mainTarget: '주요 타겟',
     secondaryTarget: '보조 타겟',
     record: [],
   }
 
-  const [customExerciseData, setCustomExerciseData] = useState<ICustomExecise>(INIT_CUSTOMDATA)
-  const customExerciseDataValues = Object.values(customExerciseData)
+  const [customExerciseData, setCustomExerciseData] = useState<IExerciseItem>(INIT_CUSTOMDATA)
+  const { categoryId, mainTarget, secondaryTarget, typeId } = customExerciseData
+  const compareCustomData =
+    typeId === '' || categoryId === '카테고리' || mainTarget === '주요 타겟' || secondaryTarget === '보조 타겟'
 
   const backPageRouter = () => {
     navigate(-1)
@@ -45,16 +50,13 @@ const CustomExercise = () => {
     setCustomExerciseData({ ...customExerciseData, ...customData })
   }
 
-  const compareCustomData =
-    customExerciseDataValues[0] === '' ||
-    customExerciseDataValues[4] === '카테고리' ||
-    customExerciseDataValues[5] === '주요 타겟' ||
-    customExerciseDataValues[6] === '보조 타겟'
-
-  console.log(customExerciseData)
+  console.log(customExerciseData.typeId)
+  console.log(typesSelector)
   const customExerciseDispatch = () => {
+    // dispatch(setTypes({typcustomExerciseData.typeId}))
     dispatch(setCustomExercise(customExerciseData))
   }
+
   return (
     <S.customPageConatiner>
       <S.customTitleBox>
@@ -64,25 +66,25 @@ const CustomExercise = () => {
         <div>커스텀 운동 추가 하기</div>
       </S.customTitleBox>
       <S.cutomDataBox>
-        <S.customInput inputValue={customExerciseDataValues[0] === ''}>
+        <S.customInput inputValue={typeId === ''}>
           <input onChange={customInputChange} name='typeId' placeholder='운동 이름을 입력해주세요!' />
         </S.customInput>
         <CustomSelectorBtn
           setNameFilter={setNameFilter}
           name='categoryId'
-          value={customExerciseDataValues[4] === '카테고리' ? '카테고리' : customExerciseDataValues[4]}
+          value={categoryId === '카테고리' ? '카테고리' : findCategory(categoryId)}
           toggleModalHandler={toggleModalHandler}
         />
         <CustomSelectorBtn
           setNameFilter={setNameFilter}
           name='mainTarget'
-          value={customExerciseDataValues[5] === '주요 타겟' ? '주요 타겟' : customExerciseDataValues[5]}
+          value={mainTarget === '주요 타겟' ? '주요 타겟' : findTarget(mainTarget)}
           toggleModalHandler={toggleModalHandler}
         />
         <CustomSelectorBtn
           setNameFilter={setNameFilter}
           name='secondaryTarget'
-          value={customExerciseDataValues[6] === '보조 타겟' ? '보조 타겟' : customExerciseDataValues[6]}
+          value={secondaryTarget === '보조 타겟' ? '보조 타겟' : findTarget(secondaryTarget)}
           toggleModalHandler={toggleModalHandler}
         />
       </S.cutomDataBox>
