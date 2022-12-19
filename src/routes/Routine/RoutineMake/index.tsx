@@ -1,5 +1,6 @@
 import * as S from './styles'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
+import { ReactComponent as UpArrow } from '../../../assets/imgs/up_arrow.svg'
 import { ChangeEvent, useState } from 'react'
 import ExerciseMenu from '../../../components/ExerciseMenu'
 import ExerciseCard from '../../../components/ExerciseCard'
@@ -74,8 +75,14 @@ const RoutineMake = () => {
         filterExercise={filterExercise}
         searchExercise={searchExercise}
       />
-      <div>위로 올라가기</div>
-      <div> + {addExercise.length === 12 ? 'MAX' : addExercise.length} 운동 추가하기</div>
+      <S.upAndRoutineAddBtnBox>
+        <S.upExerciseListBtn type='button'>
+          <UpArrow />
+        </S.upExerciseListBtn>
+        <S.routineAddBtn disabled={!addExercise.length} type='button'>
+          + {addExercise.length === 12 ? 'MAX' : addExercise.length} 운동 추가하기
+        </S.routineAddBtn>
+      </S.upAndRoutineAddBtnBox>
       <DropDown
         threeMenu
         threeMenuValue1='커스텀 변경하기'

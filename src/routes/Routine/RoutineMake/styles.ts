@@ -58,3 +58,38 @@ export const addBtn = styled.div`
   align-items: center;
   text-align: center;
 `
+
+export const upAndRoutineAddBtnBox = styled.div`
+  width: 100%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+`
+export const upExerciseListBtn = styled.button`
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  margin-left: 10px;
+  background: ${colors.FONT};
+  svg {
+    width: 25px;
+    height: 25px;
+    path {
+      fill: ${colors.WHITE};
+    }
+  }
+`
+export const routineAddBtn = styled.button`
+  font-size: 16px;
+  font-weight: 600;
+  width: 180px;
+  border-radius: 15px;
+  background: ${colors.FOCUS};
+  color: ${colors.BACK};
+  :disabled {
+    font-weight: 400;
+    border: 2px solid ${colors.BACK};
+    color: ${colors.FONT};
+    background: ${colors.WHITE};
+  }
+`
