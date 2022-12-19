@@ -19,6 +19,7 @@ interface InitData {
 const INIT_DATA: InitData = { more: '전체', target: '전체', category: '전체' }
 
 const RoutineMake = () => {
+  const [addExercise, setAddExercise] = useState<string[]>([])
   const [customExerciseEditId, setCustomExerciseEditId] = useState<string>('')
   const [filterExercise, setFilterExercise] = useState<InitData>(INIT_DATA)
   const [searchExercise, setSearchExercise] = useState<string>('')
@@ -66,13 +67,15 @@ const RoutineMake = () => {
         <span>커스텀 운동 추가</span>
       </S.addBtnBox>
       <ExerciseCard
+        addExercise={addExercise}
+        setAddExercise={setAddExercise}
         setCustomExerciseEditId={setCustomExerciseEditId}
         toggleDropDown={toggleDropDown}
         filterExercise={filterExercise}
         searchExercise={searchExercise}
       />
       <div>위로 올라가기</div>
-      <div> + 3 운동 추가하기</div>
+      <div> + {addExercise.length === 12 ? 'MAX' : addExercise.length} 운동 추가하기</div>
       <DropDown
         threeMenu
         threeMenuValue1='커스텀 변경하기'

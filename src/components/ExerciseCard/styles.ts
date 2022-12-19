@@ -7,19 +7,23 @@ export const exerciseContainer = styled.div`
   overflow: scroll;
 `
 
-export const exerciseBox = styled.div`
+export const exerciseBox = styled.div<{ border: boolean }>`
   border: 1px solid ${colors.BACK};
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 7px;
   background: ${colors.BACK};
-  svg {
-    width: 40px;
-    height: 40px;
-    transform: scaleX(-1);
-    path {
-      fill: ${colors.FOCUS};
+  border: ${(props) => (props.border ? `1px solid ${colors.FOCUS}` : '')};
+  .favorite {
+    svg {
+      margin-right: 3px;
+      width: 40px;
+      height: 40px;
+      transform: scaleX(-1);
+      path {
+        fill: ${colors.FOCUS};
+      }
     }
   }
 `
@@ -36,6 +40,13 @@ export const mainTaget = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  svg {
+    width: 30px;
+    height: 30px;
+    path {
+      fill: ${colors.FOCUS};
+    }
+  }
 `
 
 export const exerciseInfo = styled.button`

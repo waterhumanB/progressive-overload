@@ -2,7 +2,8 @@ import * as S from './styles'
 import { ReactComponent as Arm } from '../../assets/imgs/arm.svg'
 import { ReactComponent as ArmHeart } from '../../assets/imgs/arm_heart.svg'
 import { ReactComponent as DotMenu } from '../../assets/imgs/dot_menu.svg'
-import { MouseEvent, useState } from 'react'
+import { ReactComponent as Check } from '../../assets/imgs/check.svg'
+import { MouseEvent } from 'react'
 import { getExerciseData, setFavoriteExercise } from '../../states/exercise'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { findCategory, findTarget, findType } from '../../utils/findmenu'
@@ -16,11 +17,12 @@ const ExerciseCard = ({
   filterExercise,
   toggleDropDown,
   setCustomExerciseEditId,
+  setAddExercise,
+  addExercise,
 }: IExerciseCardProps) => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typesSelector = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
-  const [addExercise, setAddExercise] = useState<string[]>([])
   const stateArray: IExerciseItem[] = Object.values(exerciseSelector.exercises.byId)
   const { more, target, category } = filterExercise
 
@@ -50,11 +52,16 @@ const ExerciseCard = ({
 
   const addExerciseHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.currentTarget
-    setAddExercise(
-      [...addExercise, name].filter((ele, i) => {
-        return [...addExercise, name].indexOf(ele) === i
-      })
-    )
+    if (addExercise.length < 12) {
+      setAddExercise([...addExercise, name])
+    }
+    if (addExercise.includes(name)) {
+      setAddExercise(
+        addExercise.filter((ele) => {
+          return ele !== name
+        })
+      )
+    }
   }
   const dropDonwAndEditIdHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const editId = e.currentTarget.name
@@ -66,8 +73,8 @@ const ExerciseCard = ({
     <S.exerciseContainer>
       {fetechedData.length !== 0 ? (
         fetechedData.map((data) => (
-          <S.exerciseBox key={data.id}>
-            <S.mainTaget>{findTarget(data.mainTarget)}</S.mainTaget>
+          <S.exerciseBox border={addExercise.includes(data.id)} key={data.id}>
+            <S.mainTaget>{addExercise.includes(data.id) ? <Check /> : findTarget(data.mainTarget)}</S.mainTaget>
             <S.exerciseInfo type='button' name={data.id} onClick={addExerciseHandler}>
               <S.exerciseTitle>
                 <div>{findCategory(data.categoryId)}</div>
@@ -83,7 +90,13 @@ const ExerciseCard = ({
                 <DotMenu />
               </button>
             ) : (
-              <button name={data.id} value={String(data.favorite)} onClick={favoriteHandler} type='button'>
+              <button
+                className='favorite'
+                name={data.id}
+                value={String(data.favorite)}
+                onClick={favoriteHandler}
+                type='button'
+              >
                 {data.favorite === true ? <ArmHeart /> : <Arm />}
               </button>
             )}

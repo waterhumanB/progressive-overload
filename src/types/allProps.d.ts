@@ -31,6 +31,8 @@ export interface IExerciseCardProps {
     target: string
     category: string
   }
+  addExercise: string[]
+  setAddExercise: Dispatch<SetStateAction<string[]>>
   setCustomExerciseEditId?: Dispatch<SetStateAction<string>>
 }
 
