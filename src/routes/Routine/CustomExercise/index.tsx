@@ -85,7 +85,7 @@ const CustomExercise = () => {
     }
   }
 
-  if (exercisesSelector.exercises.byId[state].typeId === typeId) {
+  if (state && exercisesSelector.exercises.byId[state].typeId === typeId) {
     const editSetData = {
       ...exercisesSelector.exercises.byId[state],
       typeId: findType(typesSelector.types.byId, typeId),

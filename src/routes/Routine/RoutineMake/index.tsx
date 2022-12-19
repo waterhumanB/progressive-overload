@@ -5,6 +5,10 @@ import ExerciseMenu from '../../../components/ExerciseMenu'
 import ExerciseCard from '../../../components/ExerciseCard'
 import { useNavigate } from 'react-router-dom'
 import DropDown from '../../../components/DropDown'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppSelector } from '../../../hooks/useAppSelector'
+import { deleteCustomExercise, getExerciseData } from '../../../states/exercise'
+import { deleteType, getTypesData } from '../../../states/types'
 
 interface InitData {
   more: string
@@ -19,6 +23,9 @@ const RoutineMake = () => {
   const [filterExercise, setFilterExercise] = useState<InitData>(INIT_DATA)
   const [searchExercise, setSearchExercise] = useState<string>('')
   const [dropDown, setDropDown] = useState(false)
+  const exerciseSeleter = useAppSelector(getExerciseData)
+  const typeSeleter = useAppSelector(getTypesData)
+  const dispatch = useAppDispatch()
   const toggleDropDown = () => {
     setDropDown(!dropDown)
   }
@@ -36,6 +43,15 @@ const RoutineMake = () => {
     state: {
       state: customExerciseEditId,
     },
+  }
+
+  const deleteCustomExerciseHandler = () => {
+    const deleteTypeData = {
+      typeId: exerciseSeleter.exercises.byId[customExerciseEditId].typeId,
+      name: typeSeleter.types.byId[exerciseSeleter.exercises.byId[customExerciseEditId].typeId].name,
+    }
+    dispatch(deleteCustomExercise(exerciseSeleter.exercises.byId[customExerciseEditId]))
+    dispatch(deleteType(deleteTypeData))
   }
 
   return (
@@ -62,6 +78,7 @@ const RoutineMake = () => {
         threeMenuValue1='커스텀 변경하기'
         threeMenuValue2='커스텀 삭제하기'
         threeMenuValue3='취소'
+        deleteFuction={deleteCustomExerciseHandler}
         toggleDropDown={toggleDropDown}
         dropDown={dropDown}
         naviRoute={naviRouteState}
