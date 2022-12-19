@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import CustomSelectorBtn from '../../../components/CustomSelectorBtn'
 import Modal from '../../../components/Modal'
-import { initialData } from '../../../data/initialData'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData, setCustomExercise } from '../../../states/exercise'
@@ -51,8 +50,6 @@ const CustomExercise = () => {
     setCustomExerciseData({ ...customExerciseData, ...customData })
   }
 
-  console.log(typesSelector)
-  console.log(exercisesSelector)
   const customExerciseDispatch = () => {
     const newTypeData = {
       [`type${typesSelector.types.allIds.length + 1}`]: {
@@ -65,6 +62,7 @@ const CustomExercise = () => {
       typeId: `type${typesSelector.types.allIds.length + 1}`,
     }
     dispatch(setCustomExercise(newCustomExeciseData))
+    navigate(-1)
   }
 
   return (

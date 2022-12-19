@@ -59,9 +59,8 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
         return [...addExercise, name].indexOf(ele) === i
       })
     )
-    console.log(addExercise)
   }
-
+  console.log(addExercise)
   return (
     <S.exerciseContainer>
       {fetechedData.length !== 0 ? (
