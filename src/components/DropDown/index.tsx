@@ -10,41 +10,41 @@ const DropDown = ({
   threeMenuValue1,
   threeMenuValue2,
   threeMenuValue3,
-  towMenuValue1,
-  towMenuValue2,
+  twoMenuValue1,
+  twoMenuValue2,
   twoMenu,
   deleteFuction,
 }: IDropDownPropsProps) => {
   const navigate = useNavigate()
   const pageRouter = () => {
-    navigate(naviRoute)
+    navigate(naviRoute.to, naviRoute.state)
   }
   return (
-    <div>
+    <S.DropDownCotainer dropdown={dropDown} onClick={toggleDropDown}>
       {twoMenu && (
-        <S.DropBoxContainer dropdown={dropDown}>
-          <S.DropBoxItem dropdown={dropDown} onClick={pageRouter}>
-            {towMenuValue1}
-          </S.DropBoxItem>
-          <S.DropBoxItem dropdown={dropDown} onClick={toggleDropDown}>
-            {towMenuValue2}
-          </S.DropBoxItem>
-        </S.DropBoxContainer>
+        <S.DropDownBox dropdown={dropDown}>
+          <S.DropDownItem dropdown={dropDown} onClick={pageRouter}>
+            {twoMenuValue1}
+          </S.DropDownItem>
+          <S.DropDownItem dropdown={dropDown} onClick={toggleDropDown}>
+            {twoMenuValue2}
+          </S.DropDownItem>
+        </S.DropDownBox>
       )}
       {threeMenu && (
-        <S.DropBoxContainer dropdown={dropDown}>
-          <S.DropBoxItem dropdown={dropDown} onClick={pageRouter}>
+        <S.DropDownBox dropdown={dropDown}>
+          <S.DropDownItem dropdown={dropDown} onClick={pageRouter}>
             {threeMenuValue1}
-          </S.DropBoxItem>
-          <S.DropBoxItem dropdown={dropDown} onClick={deleteFuction}>
+          </S.DropDownItem>
+          <S.DropDownItem dropdown={dropDown} onClick={deleteFuction}>
             {threeMenuValue2}
-          </S.DropBoxItem>
-          <S.DropBoxItem dropdown={dropDown} onClick={toggleDropDown}>
+          </S.DropDownItem>
+          <S.DropDownItem dropdown={dropDown} onClick={toggleDropDown}>
             {threeMenuValue3}
-          </S.DropBoxItem>
-        </S.DropBoxContainer>
+          </S.DropDownItem>
+        </S.DropDownBox>
       )}
-    </div>
+    </S.DropDownCotainer>
   )
 }
 

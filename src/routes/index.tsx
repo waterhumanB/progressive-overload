@@ -28,6 +28,7 @@ const App = () => {
         <Route path='/routine/youtube' element={<Youtube />} />
         <Route path='/routine/routine-make' element={<MakeRoutine />} />
         <Route path='/routine/routine-make/custom-exercise' element={<CustomExercise />} />
+        <Route path='/routine/routine-make/custom-exercise/edit' element={<CustomExercise />} />
         <Route path='/summary' element={<Summary />} />
         <Route path='/calender' element={<Calendar />} />
       </Routes>

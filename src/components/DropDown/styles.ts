@@ -1,8 +1,27 @@
 import styled from 'styled-components'
 import colors from '../../styles/constants/colors'
 
-export const DropBoxContainer = styled.div<{ dropdown: boolean }>`
+export const DropDownCotainer = styled.div<{ dropdown: boolean }>`
   width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: ${colors.GRAY};
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: 0.4s;
+  cursor: default;
+  opacity: ${(props) => (props.dropdown === true ? 1 : 0)};
+  z-index: ${(props) => (props.dropdown === true ? 2 : -1)};
+`
+
+export const DropDownBox = styled.div<{ dropdown: boolean }>`
+  width: 400px;
   text-align: center;
   position: absolute;
   bottom: 0;
@@ -12,7 +31,7 @@ export const DropBoxContainer = styled.div<{ dropdown: boolean }>`
   z-index: ${(props) => (props.dropdown === true ? 2 : -1)};
 `
 
-export const DropBoxItem = styled.button<{ dropdown: boolean }>`
+export const DropDownItem = styled.button<{ dropdown: boolean }>`
   width: 100%;
   height: ${(props) => (props.dropdown === true ? '65px' : 0)};
   overflow: hidden;
@@ -24,5 +43,6 @@ export const DropBoxItem = styled.button<{ dropdown: boolean }>`
     font-weight: bold;
     background: ${colors.FONT};
     color: ${colors.FOCUS};
+    border-top: 1px solid ${colors.FONT};
   }
 `

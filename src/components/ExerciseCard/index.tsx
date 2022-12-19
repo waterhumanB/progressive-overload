@@ -6,12 +6,17 @@ import { MouseEvent, useState } from 'react'
 import { getExerciseData, setFavoriteExercise } from '../../states/exercise'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { findCategory, findTarget, findType } from '../../utils/findmenu'
-import { IFiterDataProps } from '../../types/allProps.d'
+import { IExerciseCardProps } from '../../types/allProps.d'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getTypesData } from '../../states/types'
 import { IExerciseItem } from '../../types/exercises.d'
 
-const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
+const ExerciseCard = ({
+  searchExercise,
+  filterExercise,
+  toggleDropDown,
+  setCustomExerciseEditId,
+}: IExerciseCardProps) => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typesSelector = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
@@ -51,7 +56,12 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
       })
     )
   }
-  console.log(addExercise)
+  const dropDonwAndEditIdHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    const editId = e.currentTarget.name
+    toggleDropDown()
+    setCustomExerciseEditId(editId)
+  }
+
   return (
     <S.exerciseContainer>
       {fetechedData.length !== 0 ? (
@@ -69,7 +79,7 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
               </S.exerciseTarget>
             </S.exerciseInfo>
             {data.custom ? (
-              <button name={data.id} type='button'>
+              <button onClick={dropDonwAndEditIdHandler} name={data.id} type='button'>
                 <DotMenu />
               </button>
             ) : (

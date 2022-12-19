@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import { initialData } from '../data/initialData'
-import { ITypes, ITypesItem } from '../types/type.d'
+import { IEditTypeItem, ITypes, ITypesItem } from '../types/type.d'
 
 const INIT_EXERCISE = initialData.types
 
@@ -18,14 +18,21 @@ const systemSlice = createSlice({
   name: 'types',
   initialState: INITIAL_STATE,
   reducers: {
-    setTypes: (state: TyesState, action: PayloadAction<ITypesItem>) => {
+    setType: (state: TyesState, action: PayloadAction<ITypesItem>) => {
       state.types.byId = Object.assign(state.types.byId, action.payload)
       state.types.allIds.push(Object.keys(action.payload)[0])
+    },
+    editType: (state: TyesState, action: PayloadAction<IEditTypeItem>) => {
+      state.types.byId[action.payload.typeId].name = action.payload.name
+    },
+    deleteType: (state: TyesState, action: PayloadAction<IEditTypeItem>) => {
+      delete state.types.byId[action.payload.typeId]
+      state.types.allIds = state.types.allIds.filter((data) => data !== action.payload.typeId)
     },
   },
 })
 
-export const { setTypes } = systemSlice.actions
+export const { setType, editType, deleteType } = systemSlice.actions
 
 export default systemSlice.reducer
 

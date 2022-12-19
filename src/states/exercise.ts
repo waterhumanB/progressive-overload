@@ -26,10 +26,17 @@ const systemSlice = createSlice({
       state.exercises.byId[action.payload.id] = action.payload
       state.exercises.allIds.push(action.payload.id)
     },
+    editCustomExercise: (state: ExerciseState, action: PayloadAction<IExerciseItem>) => {
+      state.exercises.byId[action.payload.id] = action.payload
+    },
+    deleteCustomExercise: (state: ExerciseState, action: PayloadAction<IExerciseItem>) => {
+      delete state.exercises.byId[action.payload.id]
+      state.exercises.allIds = state.exercises.allIds.filter((data) => data !== action.payload.id)
+    },
   },
 })
 
-export const { setFavoriteExercise, setCustomExercise } = systemSlice.actions
+export const { setFavoriteExercise, setCustomExercise, editCustomExercise, deleteCustomExercise } = systemSlice.actions
 
 export default systemSlice.reducer
 

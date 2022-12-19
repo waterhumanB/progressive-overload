@@ -4,6 +4,7 @@ import colors from '../../../styles/constants/colors'
 export const makeRountineContainer = styled.section`
   width: 100%;
   padding: 10px 15px;
+  position: relative;
 `
 export const filterBox = styled.div`
   width: 100%;

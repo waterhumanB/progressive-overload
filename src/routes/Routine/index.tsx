@@ -10,12 +10,17 @@ import RoutineAddBtn from '../../components/RoutineAddBtn'
 import { useState } from 'react'
 import DropDown from '../../components/DropDown'
 
+const naviRouteState = {
+  to: '/routine/routine-make',
+}
+
 const Routine = () => {
   const userInfo = useAppSelector(getUserInfo)
   const [dropDown, setDropDown] = useState(false)
   const toggleDropDown = () => {
     setDropDown(!dropDown)
   }
+
   return (
     <S.routineContainer>
       <S.userContainer>
@@ -39,11 +44,11 @@ const Routine = () => {
       <RoutineAddBtn toggleDropDown={toggleDropDown} />
       <DropDown
         twoMenu
-        towMenuValue1='루틴 추가하기'
-        towMenuValue2='취소'
+        twoMenuValue1='루틴 추가하기'
+        twoMenuValue2='취소'
         dropDown={dropDown}
         toggleDropDown={toggleDropDown}
-        naviRoute='/routine/routine-make'
+        naviRoute={naviRouteState}
       />
       <Footer />
     </S.routineContainer>

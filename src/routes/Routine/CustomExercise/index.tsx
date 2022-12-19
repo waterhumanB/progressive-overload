@@ -1,17 +1,20 @@
-import { ChangeEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { ChangeEvent, useEffect, useState, MouseEvent } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import CustomSelectorBtn from '../../../components/CustomSelectorBtn'
 import Modal from '../../../components/Modal'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { getExerciseData, setCustomExercise } from '../../../states/exercise'
-import { getTypesData, setTypes } from '../../../states/types'
+import { editCustomExercise, getExerciseData, setCustomExercise } from '../../../states/exercise'
+import { editType, getTypesData, setType } from '../../../states/types'
 import { IExerciseItem } from '../../../types/exercises.d'
-import { findCategory, findTarget } from '../../../utils/findmenu'
+import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import * as S from './styles'
 
+const EDIT_URL = '/routine/routine-make/custom-exercise/edit'
+
 const CustomExercise = () => {
+  const { pathname, state } = useLocation() as { pathname: string; state: string }
   const exercisesSelector = useAppSelector(getExerciseData)
   const typesSelector = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
@@ -30,7 +33,9 @@ const CustomExercise = () => {
     record: [],
   }
 
-  const [customExerciseData, setCustomExerciseData] = useState<IExerciseItem>(INIT_CUSTOMDATA)
+  const [customExerciseData, setCustomExerciseData] = useState<IExerciseItem>(
+    pathname === EDIT_URL ? exercisesSelector.exercises.byId[state] : INIT_CUSTOMDATA
+  )
   const { categoryId, mainTarget, secondaryTarget, typeId } = customExerciseData
   const compareCustomData =
     typeId === '' || categoryId === '카테고리' || mainTarget === '주요 타겟' || secondaryTarget === '보조 타겟'
@@ -50,19 +55,42 @@ const CustomExercise = () => {
     setCustomExerciseData({ ...customExerciseData, ...customData })
   }
 
-  const customExerciseDispatch = () => {
+  const customExerciseDispatch = (e: MouseEvent<HTMLButtonElement>) => {
     const newTypeData = {
       [`type${typesSelector.types.allIds.length + 1}`]: {
         name: customExerciseData.typeId,
       },
     }
-    dispatch(setTypes(newTypeData))
-    const newCustomExeciseData = {
-      ...customExerciseData,
-      typeId: `type${typesSelector.types.allIds.length + 1}`,
+    if (e.currentTarget.name === 'add') {
+      dispatch(setType(newTypeData))
+      const newCustomExeciseData = {
+        ...customExerciseData,
+        typeId: `type${typesSelector.types.allIds.length + 1}`,
+      }
+      dispatch(setCustomExercise(newCustomExeciseData))
+      navigate(-1)
     }
-    dispatch(setCustomExercise(newCustomExeciseData))
-    navigate(-1)
+    const editTypedata = {
+      name: customExerciseData.typeId,
+      typeId: exercisesSelector.exercises.byId[state].typeId,
+    }
+    const editCustomData = {
+      ...customExerciseData,
+      typeId: exercisesSelector.exercises.byId[state].typeId,
+    }
+    if (e.currentTarget.name === 'edit') {
+      dispatch(editType(editTypedata))
+      dispatch(editCustomExercise(editCustomData))
+      navigate(-1)
+    }
+  }
+
+  if (exercisesSelector.exercises.byId[state].typeId === typeId) {
+    const editSetData = {
+      ...exercisesSelector.exercises.byId[state],
+      typeId: findType(typesSelector.types.byId, typeId),
+    }
+    setCustomExerciseData(editSetData)
   }
 
   return (
@@ -71,11 +99,16 @@ const CustomExercise = () => {
         <button onClick={backPageRouter} type='button'>
           <Arrow />
         </button>
-        <div>커스텀 운동 추가 하기</div>
+        {state ? <div>커스텀 운동 변경 하기</div> : <div>커스텀 운동 추가 하기</div>}
       </S.customTitleBox>
       <S.cutomDataBox>
         <S.customInput inputValue={typeId === ''}>
-          <input onChange={customInputChange} name='typeId' placeholder='운동 이름을 입력해주세요!' />
+          <input
+            defaultValue={customExerciseData.typeId}
+            onChange={customInputChange}
+            name='typeId'
+            placeholder='운동 이름을 입력해주세요!'
+          />
         </S.customInput>
         <CustomSelectorBtn
           setNameFilter={setNameFilter}
@@ -97,9 +130,25 @@ const CustomExercise = () => {
         />
       </S.cutomDataBox>
       <div>
-        <S.customExerciseAddBtn disabled={compareCustomData} onClick={customExerciseDispatch} type='button'>
-          운동 추가
-        </S.customExerciseAddBtn>
+        {state ? (
+          <S.customExerciseAddBtn
+            name='edit'
+            disabled={compareCustomData}
+            onClick={customExerciseDispatch}
+            type='button'
+          >
+            운동 변경
+          </S.customExerciseAddBtn>
+        ) : (
+          <S.customExerciseAddBtn
+            name='add'
+            disabled={compareCustomData}
+            onClick={customExerciseDispatch}
+            type='button'
+          >
+            운동 추가
+          </S.customExerciseAddBtn>
+        )}
       </div>
       {toggleModal && (
         <Modal

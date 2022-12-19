@@ -23,13 +23,15 @@ export interface IDropDownToggleProps {
   toggleDropDown: () => void
 }
 
-export interface IFiterDataProps {
+export interface IExerciseCardProps {
+  toggleDropDown: () => void
   searchExercise: string
   filterExercise: {
     more: string
     target: string
     category: string
   }
+  setCustomExerciseEditId?: Dispatch<SetStateAction<string>>
 }
 
 export interface IYoutubeIndexProps {
@@ -49,10 +51,13 @@ export interface IDropDownPropsProps {
   toggleDropDown: () => void
   deleteFuction?: () => void
   dropDown: boolean
-  naviRoute: string
+  naviRoute: {
+    to: string
+    state?: object
+  }
   twoMenu?: boolean
-  towMenuValue1?: string
-  towMenuValue2?: string
+  twoMenuValue1?: string
+  twoMenuValue2?: string
   threeMenu?: boolean
   threeMenuValue1?: string
   threeMenuValue2?: string
