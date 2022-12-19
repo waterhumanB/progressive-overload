@@ -1,6 +1,7 @@
 import * as S from './styles'
 import { ReactComponent as Arm } from '../../assets/imgs/arm.svg'
 import { ReactComponent as ArmHeart } from '../../assets/imgs/arm_heart.svg'
+import { ReactComponent as DotMenu } from '../../assets/imgs/dot_menu.svg'
 import { MouseEvent, useState } from 'react'
 import { getExerciseData, setFavoriteExercise } from '../../states/exercise'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
@@ -8,24 +9,14 @@ import { findCategory, findTarget, findType } from '../../utils/findmenu'
 import { IFiterDataProps } from '../../types/allProps.d'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getTypesData } from '../../states/types'
-
-interface IExecise {
-  id: string
-  typeId: string
-  categoryId: string
-  custom: boolean
-  favorite: boolean
-  mainTarget: string
-  secondaryTarget: string
-  record: string[]
-}
+import { IExerciseItem } from '../../types/exercises.d'
 
 const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typesSelector = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
   const [addExercise, setAddExercise] = useState<string[]>([])
-  const stateArray: IExecise[] = Object.values(exerciseSelector.exercises.byId)
+  const stateArray: IExerciseItem[] = Object.values(exerciseSelector.exercises.byId)
   const { more, target, category } = filterExercise
 
   const fetechedData = stateArray
@@ -77,9 +68,15 @@ const ExerciseCard = ({ searchExercise, filterExercise }: IFiterDataProps) => {
                 <div>{data.secondaryTarget !== '' && findTarget(data.secondaryTarget)}</div>
               </S.exerciseTarget>
             </S.exerciseInfo>
-            <button name={data.id} value={String(data.favorite)} onClick={favoriteHandler} type='button'>
-              {data.favorite === true ? <ArmHeart /> : <Arm />}
-            </button>
+            {data.custom ? (
+              <button name={data.id} type='button'>
+                <DotMenu />
+              </button>
+            ) : (
+              <button name={data.id} value={String(data.favorite)} onClick={favoriteHandler} type='button'>
+                {data.favorite === true ? <ArmHeart /> : <Arm />}
+              </button>
+            )}
           </S.exerciseBox>
         ))
       ) : (

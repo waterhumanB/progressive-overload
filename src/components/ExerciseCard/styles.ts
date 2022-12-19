@@ -18,6 +18,9 @@ export const exerciseBox = styled.div`
     width: 40px;
     height: 40px;
     transform: scaleX(-1);
+    path {
+      fill: ${colors.FOCUS};
+    }
   }
 `
 

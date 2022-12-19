@@ -2,23 +2,49 @@ import { useNavigate } from 'react-router-dom'
 import { IDropDownPropsProps } from '../../types/allProps.d'
 import * as S from './styles'
 
-const DropDown = ({ toggleDropDown, dropDown }: IDropDownPropsProps) => {
-  const dropDownHandler = () => {
-    toggleDropDown()
-  }
-  const navgate = useNavigate()
-  const routineMakeRouter = () => {
-    navgate('/routine/routine-make')
+const DropDown = ({
+  toggleDropDown,
+  dropDown,
+  naviRoute,
+  threeMenu,
+  threeMenuValue1,
+  threeMenuValue2,
+  threeMenuValue3,
+  towMenuValue1,
+  towMenuValue2,
+  twoMenu,
+  deleteFuction,
+}: IDropDownPropsProps) => {
+  const navigate = useNavigate()
+  const pageRouter = () => {
+    navigate(naviRoute)
   }
   return (
-    <S.DropBoxContainer dropdown={dropDown}>
-      <S.DropBoxItem dropdown={dropDown} onClick={routineMakeRouter}>
-        루틴 만들기
-      </S.DropBoxItem>
-      <S.DropBoxItem dropdown={dropDown} onClick={dropDownHandler}>
-        취소
-      </S.DropBoxItem>
-    </S.DropBoxContainer>
+    <div>
+      {twoMenu && (
+        <S.DropBoxContainer dropdown={dropDown}>
+          <S.DropBoxItem dropdown={dropDown} onClick={pageRouter}>
+            {towMenuValue1}
+          </S.DropBoxItem>
+          <S.DropBoxItem dropdown={dropDown} onClick={toggleDropDown}>
+            {towMenuValue2}
+          </S.DropBoxItem>
+        </S.DropBoxContainer>
+      )}
+      {threeMenu && (
+        <S.DropBoxContainer dropdown={dropDown}>
+          <S.DropBoxItem dropdown={dropDown} onClick={pageRouter}>
+            {threeMenuValue1}
+          </S.DropBoxItem>
+          <S.DropBoxItem dropdown={dropDown} onClick={deleteFuction}>
+            {threeMenuValue2}
+          </S.DropBoxItem>
+          <S.DropBoxItem dropdown={dropDown} onClick={toggleDropDown}>
+            {threeMenuValue3}
+          </S.DropBoxItem>
+        </S.DropBoxContainer>
+      )}
+    </div>
   )
 }
 

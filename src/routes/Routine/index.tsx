@@ -37,7 +37,14 @@ const Routine = () => {
         </Link>
       </S.subMenuContainer>
       <RoutineAddBtn toggleDropDown={toggleDropDown} />
-      <DropDown dropDown={dropDown} toggleDropDown={toggleDropDown} />
+      <DropDown
+        twoMenu
+        towMenuValue1='루틴 추가하기'
+        towMenuValue2='취소'
+        dropDown={dropDown}
+        toggleDropDown={toggleDropDown}
+        naviRoute='/routine/routine-make'
+      />
       <Footer />
     </S.routineContainer>
   )

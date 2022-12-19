@@ -47,7 +47,16 @@ export interface ExerciseMeunProps {
 
 export interface IDropDownPropsProps {
   toggleDropDown: () => void
+  deleteFuction?: () => void
   dropDown: boolean
+  naviRoute: string
+  twoMenu?: boolean
+  towMenuValue1?: string
+  towMenuValue2?: string
+  threeMenu?: boolean
+  threeMenuValue1?: string
+  threeMenuValue2?: string
+  threeMenuValue3?: string
 }
 
 export interface IModalProps {
