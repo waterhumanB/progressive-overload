@@ -87,7 +87,7 @@ const ExerciseCard = ({
               </S.exerciseTarget>
             </S.exerciseInfo>
             {data.custom ? (
-              <button onClick={dropDonwAndEditIdHandler} name={data.id} type='button'>
+              <button className='edit' onClick={dropDonwAndEditIdHandler} name={data.id} type='button'>
                 <DotMenu />
               </button>
             ) : (

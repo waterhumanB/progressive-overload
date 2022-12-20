@@ -1,26 +1,17 @@
-import React from 'react'
 import { IModalProps } from '../../types/allProps.d'
 import CustomSelectorModal from './CustomSelectorModal'
 import * as S from './styles'
 
-const Modal = ({
-  toggleModalHandler,
-  customExerciseData,
-  modalName,
-  nameFitler,
-  setCustomExerciseData,
-}: IModalProps) => {
+const Modal = ({ toggleModalHandler, stateData, modalName, stateTypeName, setStateData }: IModalProps) => {
   return (
     <S.modalCotainer>
-      {modalName === 'customExercise' ? (
+      {modalName === 'customExercise' && (
         <CustomSelectorModal
-          customExerciseData={customExerciseData}
-          setCustomExerciseData={setCustomExerciseData}
-          nameFitler={nameFitler}
+          customExerciseData={stateData}
+          setCustomExerciseData={setStateData}
+          nameFitler={stateTypeName}
           toggleModalHandler={toggleModalHandler}
         />
-      ) : (
-        <div>모달창</div>
       )}
     </S.modalCotainer>
   )

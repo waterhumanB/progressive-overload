@@ -1,13 +1,12 @@
 import styled from 'styled-components'
-import colors from '../../../styles/constants/colors'
+import colors from '../../../../styles/constants/colors'
 
-export const customPageConatiner = styled.section`
+export const routineEditPageConatiner = styled.section`
   width: 100%;
   height: 100%;
   padding: 20px;
 `
-
-export const customTitleBox = styled.div`
+export const routineEditTitleBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -30,8 +29,7 @@ export const customTitleBox = styled.div`
     text-align: left;
   }
 `
-
-export const cutomDataBox = styled.div`
+export const routineEdtDataBox = styled.div`
   width: 100%;
   height: 85%;
   margin: auto;
@@ -47,7 +45,7 @@ export const cutomDataBox = styled.div`
   }
 `
 
-export const customInput = styled.div<{ inputValue: boolean }>`
+export const routineEdtInput = styled.div<{ inputValue: boolean }>`
   width: 100%;
   height: 40px;
   background: ${(props) => (props.inputValue ? colors.WHITE : colors.BACK)};
@@ -65,7 +63,7 @@ export const customInput = styled.div<{ inputValue: boolean }>`
   }
 `
 
-export const customExerciseAddBtn = styled.button`
+export const routineAddBtn = styled.button`
   width: 100%;
   height: 40px;
   background: ${colors.FOCUS};

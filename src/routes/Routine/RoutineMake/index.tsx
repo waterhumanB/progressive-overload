@@ -25,6 +25,7 @@ const RoutineMake = () => {
   const [filterExercise, setFilterExercise] = useState<InitData>(INIT_DATA)
   const [searchExercise, setSearchExercise] = useState<string>('')
   const [dropDown, setDropDown] = useState(false)
+
   const exerciseSeleter = useAppSelector(getExerciseData)
   const typeSeleter = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
@@ -39,9 +40,9 @@ const RoutineMake = () => {
   }
 
   const customExerciseRouter = () => {
-    navigate('./custom-exercise')
+    navigate('./custom-exercise/add')
   }
-  const naviRouteState = {
+  const customEditRouteState = {
     to: './custom-exercise/edit',
     state: {
       state: customExerciseEditId,
@@ -59,6 +60,10 @@ const RoutineMake = () => {
 
   const upExerciseCardListHandler = () => {
     cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const exerciseLiskStateAndRouter = () => {
+    navigate('./add', { state: { addExercise } })
   }
 
   return (
@@ -85,7 +90,7 @@ const RoutineMake = () => {
         <S.upExerciseListBtn onClick={upExerciseCardListHandler} type='button'>
           <UpArrow />
         </S.upExerciseListBtn>
-        <S.routineAddBtn disabled={!addExercise.length} type='button'>
+        <S.routineAddBtn onClick={exerciseLiskStateAndRouter} disabled={!addExercise.length} type='button'>
           + {addExercise.length === 12 ? 'MAX' : addExercise.length} 운동 추가하기
         </S.routineAddBtn>
       </S.upAndRoutineAddBtnBox>
@@ -97,7 +102,7 @@ const RoutineMake = () => {
         deleteFuction={deleteCustomExerciseHandler}
         toggleDropDown={toggleDropDown}
         dropDown={dropDown}
-        naviRoute={naviRouteState}
+        naviRoute={customEditRouteState}
       />
     </S.makeRountineContainer>
   )

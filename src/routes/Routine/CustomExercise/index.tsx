@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState, MouseEvent } from 'react'
+import { ChangeEvent, useState, MouseEvent } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import CustomSelectorBtn from '../../../components/CustomSelectorBtn'
@@ -32,7 +32,6 @@ const CustomExercise = () => {
     secondaryTarget: '보조 타겟',
     record: [],
   }
-
   const [customExerciseData, setCustomExerciseData] = useState<IExerciseItem>(
     pathname === EDIT_URL ? exercisesSelector.exercises.byId[state] : INIT_CUSTOMDATA
   )
@@ -70,15 +69,15 @@ const CustomExercise = () => {
       dispatch(setCustomExercise(newCustomExeciseData))
       navigate(-1)
     }
-    const editTypedata = {
-      name: customExerciseData.typeId,
-      typeId: exercisesSelector.exercises.byId[state].typeId,
-    }
-    const editCustomData = {
-      ...customExerciseData,
-      typeId: exercisesSelector.exercises.byId[state].typeId,
-    }
     if (e.currentTarget.name === 'edit') {
+      const editTypedata = {
+        name: customExerciseData.typeId,
+        typeId: exercisesSelector.exercises.byId[state].typeId,
+      }
+      const editCustomData = {
+        ...customExerciseData,
+        typeId: exercisesSelector.exercises.byId[state].typeId,
+      }
       dispatch(editType(editTypedata))
       dispatch(editCustomExercise(editCustomData))
       navigate(-1)
@@ -152,9 +151,9 @@ const CustomExercise = () => {
       </div>
       {toggleModal && (
         <Modal
-          customExerciseData={customExerciseData}
-          setCustomExerciseData={setCustomExerciseData}
-          nameFitler={nameFilter}
+          stateData={customExerciseData}
+          setStateData={setCustomExerciseData}
+          stateTypeName={nameFilter}
           modalName='customExercise'
           toggleModalHandler={toggleModalHandler}
         />
