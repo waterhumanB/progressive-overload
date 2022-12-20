@@ -49,8 +49,8 @@ export const routineEdtInput = styled.div<{ inputValue: boolean }>`
   width: 100%;
   height: 40px;
   background: ${(props) => (props.inputValue ? colors.WHITE : colors.BACK)};
-  margin-bottom: 80px;
-  border: 2px solid ${colors.BACK};
+  margin-bottom: 10px;
+  border: ${(props) => (props.inputValue ? `2px solid ${colors.BACK}` : `1px solid ${colors.FOCUS}`)};
   input {
     color: ${colors.FOCUS};
     font-weight: 600;
@@ -60,6 +60,60 @@ export const routineEdtInput = styled.div<{ inputValue: boolean }>`
     ::placeholder {
       color: ${colors.FONT};
     }
+  }
+`
+
+export const exerciseBox = styled.div`
+  width: 100%;
+  max-height: 70vh;
+  overflow: scroll;
+`
+
+export const exerciseCard = styled.div`
+  border: 1px solid ${colors.BACK};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+  background: ${colors.BACK};
+  border: 1px solid ${colors.FOCUS};
+`
+
+export const mainTaget = styled.div`
+  color: ${colors.FOCUS};
+  font-weight: 600;
+  font-size: 13px;
+  width: 35px;
+  height: 35px;
+  border-radius: 30px;
+  background: ${colors.WHITE};
+  margin-left: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  svg {
+    width: 30px;
+    height: 30px;
+    path {
+      fill: ${colors.FOCUS};
+    }
+  }
+`
+
+export const exerciseInfo = styled.div`
+  width: 70%;
+  margin: auto;
+  text-align: center;
+`
+export const exerciseTitle = styled.div`
+  color: ${colors.FOCUS};
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  div:nth-child(1) {
+    margin-right: 5px;
   }
 `
 

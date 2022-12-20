@@ -1,4 +1,3 @@
-import React from 'react'
 import { ICustomSelectorBtnProps } from '../../types/allProps.d'
 import * as S from './styles'
 

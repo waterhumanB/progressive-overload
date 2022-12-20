@@ -6,17 +6,19 @@ import user from './user'
 import youtube from './youtube'
 import exercises from './exercise'
 import types from './types'
+import routines from './routines'
 
 const persistConfig = {
   key: 'root', // localStorage key
   storage, // localStorage
-  whitelist: ['user', 'youtube', 'exercises', 'types'], // target (reducer name)
+  whitelist: ['user', 'youtube', 'exercises', 'types', 'routines'], // target (reducer name)
 }
 const rootReducer = combineReducers({
   user,
   youtube,
   exercises,
   types,
+  routines,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

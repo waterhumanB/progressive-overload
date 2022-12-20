@@ -25,6 +25,7 @@ export const exerciseBox = styled.div<{ border: boolean }>`
       fill: ${colors.FOCUS};
     }
   }
+
   .favorite {
     svg {
       margin-right: 3px;
