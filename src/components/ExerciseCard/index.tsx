@@ -19,6 +19,7 @@ const ExerciseCard = ({
   setCustomExerciseEditId,
   setAddExercise,
   addExercise,
+  cardRef,
 }: IExerciseCardProps) => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typesSelector = useAppSelector(getTypesData)
@@ -68,12 +69,12 @@ const ExerciseCard = ({
     toggleDropDown()
     setCustomExerciseEditId(editId)
   }
-
   return (
     <S.exerciseContainer>
       {fetechedData.length !== 0 ? (
         fetechedData.map((data) => (
-          <S.exerciseBox border={addExercise.includes(data.id)} key={data.id}>
+          <S.exerciseBox id={data.id} border={addExercise.includes(data.id)} key={data.id}>
+            {fetechedData[0].id === data.id && <S.refDiv ref={cardRef} id={data.id} />}
             <S.mainTaget>{addExercise.includes(data.id) ? <Check /> : findTarget(data.mainTarget)}</S.mainTaget>
             <S.exerciseInfo type='button' name={data.id} onClick={addExerciseHandler}>
               <S.exerciseTitle>

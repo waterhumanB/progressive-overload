@@ -86,3 +86,8 @@ export const errorFetchedData = styled.div`
   justify-content: center;
   align-items: center;
 `
+export const refDiv = styled.div`
+  width: 1px;
+  height: 1px;
+  margin-bottom: 50px;
+`

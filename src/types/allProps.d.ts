@@ -1,3 +1,5 @@
+import { ForwardedRef } from 'react'
+
 export interface IUserInputProps {
   label: string
   name: string
@@ -25,6 +27,7 @@ export interface IDropDownToggleProps {
 
 export interface IExerciseCardProps {
   toggleDropDown: () => void
+  cardRef: ForwardedRef<HTMLDivElement>
   searchExercise: string
   filterExercise: {
     more: string

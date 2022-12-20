@@ -1,7 +1,7 @@
 import * as S from './styles'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import { ReactComponent as UpArrow } from '../../../assets/imgs/up_arrow.svg'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import ExerciseMenu from '../../../components/ExerciseMenu'
 import ExerciseCard from '../../../components/ExerciseCard'
 import { useNavigate } from 'react-router-dom'
@@ -28,6 +28,7 @@ const RoutineMake = () => {
   const exerciseSeleter = useAppSelector(getExerciseData)
   const typeSeleter = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
+  const cardRef = useRef<HTMLDivElement>(null)
   const toggleDropDown = () => {
     setDropDown(!dropDown)
   }
@@ -56,6 +57,10 @@ const RoutineMake = () => {
     dispatch(deleteType(deleteTypeData))
   }
 
+  const upExerciseCardListHandler = () => {
+    cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <S.makeRountineContainer>
       <S.filterBox>
@@ -68,6 +73,7 @@ const RoutineMake = () => {
         <span>커스텀 운동 추가</span>
       </S.addBtnBox>
       <ExerciseCard
+        cardRef={cardRef}
         addExercise={addExercise}
         setAddExercise={setAddExercise}
         setCustomExerciseEditId={setCustomExerciseEditId}
@@ -76,7 +82,7 @@ const RoutineMake = () => {
         searchExercise={searchExercise}
       />
       <S.upAndRoutineAddBtnBox>
-        <S.upExerciseListBtn type='button'>
+        <S.upExerciseListBtn onClick={upExerciseCardListHandler} type='button'>
           <UpArrow />
         </S.upExerciseListBtn>
         <S.routineAddBtn disabled={!addExercise.length} type='button'>
