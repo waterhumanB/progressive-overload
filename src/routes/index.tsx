@@ -6,19 +6,19 @@ import Routine from './Routine'
 import Summary from './Summary'
 import Calendar from './Calendar'
 import { useAppSelector } from '../hooks/useAppSelector'
-import { getUserInfo } from '../states/user'
+import { getUserInfoData } from '../states/user'
 import Youtube from './Routine/Youtube'
 import RoutineMake from './Routine/RoutineMake'
 import CustomExercise from './Routine/CustomExercise'
 import RoutineEdit from './Routine/RoutineMake/RoutineEdit/indext'
 
 const App = () => {
-  const userInfo = useAppSelector(getUserInfo)
+  const userInfoSeletor = useAppSelector(getUserInfoData)
   const navigate = useNavigate()
   const location = useLocation()
   useLayoutEffect(() => {
     if (location.pathname === '/') {
-      userInfo.user.nickName.length > 1 && navigate('/routine')
+      userInfoSeletor.user.nickName.length > 1 && navigate('/routine')
     }
   }, [])
   return (

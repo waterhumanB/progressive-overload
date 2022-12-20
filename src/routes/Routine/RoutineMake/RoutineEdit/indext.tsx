@@ -18,21 +18,19 @@ const RoutineEdit = () => {
   const routineSelector = useAppSelector(getRoutineData)
   const navigate = useNavigate()
 
-  const routineLength = routineSelector.routines.allIds.length
-
   const naviRouterAndRoutineDataHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    const routineData = {
-      [`routine${routineLength + 1}`]: {
-        id: `routine${routineLength + 1}`,
-        title: routineName,
-        workout: location.state.addExercise,
-        recent: [],
-      },
-    }
     if (e.currentTarget.name === 'back') {
       navigate(-1)
     }
     if (e.currentTarget.name === 'add') {
+      const routineData = {
+        [`routine${routineSelector.routines.allIds.length + 1}`]: {
+          id: `routine${routineSelector.routines.allIds.length + 1}`,
+          title: routineName,
+          workout: location.state.addExercise,
+          recent: [],
+        },
+      }
       dispatch(setRoutine(routineData))
       navigate('/routine')
     }

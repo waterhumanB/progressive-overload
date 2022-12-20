@@ -21,10 +21,6 @@ export interface IFilterBtnProps {
   onClick: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
-export interface IDropDownToggleProps {
-  toggleDropDown: () => void
-}
-
 export interface IExerciseCardProps {
   toggleDropDown: () => void
   cardRef: ForwardedRef<HTMLDivElement>
@@ -50,6 +46,10 @@ export interface ExerciseMeunProps {
     target: string
     category: string
   }
+}
+
+export interface IDropDownToggleProps {
+  toggleDropDown: () => void
 }
 
 export interface IDropDownPropsProps {

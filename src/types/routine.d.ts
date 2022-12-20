@@ -6,3 +6,8 @@ export interface IRoutines {
 export interface IRoutineItem {
   [routine: string]: { id: string; title: sting; workout: string[]; recent: string[] }
 }
+
+export interface IDeleteRoutine {
+  id: string
+  title: title
+}

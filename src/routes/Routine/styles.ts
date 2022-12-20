@@ -61,3 +61,74 @@ export const subMenuContainer = styled.div`
     margin-right: 10px;
   }
 `
+
+export const routineBox = styled.div`
+  padding: 15px;
+  width: 100%;
+  max-height: 70vh;
+  overflow: scroll;
+`
+
+export const routineCard = styled.div`
+  width: 100%;
+  height: 45px;
+  border: 1px solid ${colors.BACK};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+  background: ${colors.BACK};
+`
+
+export const routineWorkoutCount = styled.div`
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  background: ${colors.WHITE};
+  color: ${colors.FOCUS};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-left: 5px;
+`
+
+export const routineInfoBtn = styled.button`
+  width: 70%;
+  margin: auto;
+  text-align: center;
+`
+export const routineTitle = styled.div`
+  color: ${colors.FOCUS};
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  div:nth-child(1) {
+    margin-right: 5px;
+  }
+`
+
+export const routineRecent = styled.div`
+  margin-top: 2px;
+  color: ${colors.FONT};
+  font-weight: 600;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+
+  div:nth-child(2) {
+    margin-left: 5px;
+  }
+`
+export const routineMenuBtn = styled.button`
+  margin-right: 3px;
+  svg {
+    width: 40px;
+    height: 40px;
+    path {
+      fill: ${colors.FOCUS};
+    }
+  }
+`
