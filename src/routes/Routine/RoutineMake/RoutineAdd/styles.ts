@@ -116,28 +116,8 @@ export const exerciseTitle = styled.div`
   }
 `
 
-export const editBtnBox = styled.div`
+export const routineAddBtn = styled.button`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-`
-
-export const routineEditBtn = styled.button`
-  width: 150px;
-  height: 40px;
-  background: ${colors.FOCUS};
-  border: 2px solid ${colors.BACK};
-  color: ${colors.WHITE};
-  font-weight: 600;
-  font-size: 16px;
-  :disabled {
-    border: 2px solid ${colors.BACK};
-    color: ${colors.FONT};
-    background: ${colors.WHITE};
-  }
-`
-export const exerciseEditBtn = styled.button`
-  width: 150px;
   height: 40px;
   background: ${colors.FOCUS};
   border: 2px solid ${colors.BACK};

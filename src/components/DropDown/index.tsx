@@ -13,7 +13,7 @@ const DropDown = ({
   twoMenuValue1,
   twoMenuValue2,
   twoMenu,
-  deleteFuction,
+  deleteFunction,
 }: IDropDownPropsProps) => {
   const navigate = useNavigate()
   const pageRouter = () => {
@@ -36,7 +36,7 @@ const DropDown = ({
           <S.DropDownItem dropdown={dropDown} onClick={pageRouter}>
             {threeMenuValue1}
           </S.DropDownItem>
-          <S.DropDownItem dropdown={dropDown} onClick={deleteFuction}>
+          <S.DropDownItem dropdown={dropDown} onClick={deleteFunction}>
             {threeMenuValue2}
           </S.DropDownItem>
           <S.DropDownItem dropdown={dropDown} onClick={toggleDropDown}>

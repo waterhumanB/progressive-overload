@@ -1,10 +1,10 @@
 import * as S from './styles'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import { ReactComponent as UpArrow } from '../../../assets/imgs/up_arrow.svg'
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import ExerciseMenu from '../../../components/ExerciseMenu'
 import ExerciseCard from '../../../components/ExerciseCard'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import DropDown from '../../../components/DropDown'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
@@ -17,6 +17,13 @@ interface InitData {
   category: string
 }
 
+interface RoutineLocationState {
+  id: string
+  title: string
+  workout: string[]
+  recent: string[]
+}
+
 const INIT_DATA: InitData = { more: '전체', target: '전체', category: '전체' }
 
 const RoutineMake = () => {
@@ -26,6 +33,7 @@ const RoutineMake = () => {
   const [searchExercise, setSearchExercise] = useState<string>('')
   const [dropDown, setDropDown] = useState(false)
 
+  const location = useLocation() as { state: RoutineLocationState }
   const exerciseSeleter = useAppSelector(getExerciseData)
   const typeSeleter = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
@@ -63,9 +71,22 @@ const RoutineMake = () => {
   }
 
   const exerciseLiskStateAndRouter = () => {
+    if (location.state && location.state.workout.length !== 0) {
+      navigate('./edit', {
+        state: {
+          ...location.state,
+          workout: addExercise,
+        },
+      })
+      return
+    }
     navigate('./add', { state: { addExercise } })
   }
-
+  useEffect(() => {
+    if (location.state && location.state.workout.length !== 0) {
+      setAddExercise(location.state.workout)
+    }
+  }, [])
   return (
     <S.makeRountineContainer>
       <S.filterBox>
@@ -91,7 +112,8 @@ const RoutineMake = () => {
           <UpArrow />
         </S.upExerciseListBtn>
         <S.routineAddBtn onClick={exerciseLiskStateAndRouter} disabled={!addExercise.length} type='button'>
-          + {addExercise.length === 12 ? 'MAX' : addExercise.length} 운동 추가하기
+          + {addExercise.length === 12 ? 'MAX' : addExercise.length}{' '}
+          {location.state && location.state.workout.length === 0 ? '운동 추가하기' : '운동 변경하기'}
         </S.routineAddBtn>
       </S.upAndRoutineAddBtnBox>
       <DropDown
@@ -99,7 +121,7 @@ const RoutineMake = () => {
         threeMenuValue1='커스텀 변경하기'
         threeMenuValue2='커스텀 삭제하기'
         threeMenuValue3='취소'
-        deleteFuction={deleteCustomExerciseHandler}
+        deleteFunction={deleteCustomExerciseHandler}
         toggleDropDown={toggleDropDown}
         dropDown={dropDown}
         naviRoute={customEditRouteState}

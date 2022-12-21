@@ -10,7 +10,8 @@ import { getUserInfoData } from '../states/user'
 import Youtube from './Routine/Youtube'
 import RoutineMake from './Routine/RoutineMake'
 import CustomExercise from './Routine/CustomExercise'
-import RoutineEdit from './Routine/RoutineMake/RoutineEdit/indext'
+import RoutineAdd from './Routine/RoutineMake/RoutineAdd'
+import RoutineEdit from './Routine/RoutineMake/RoutineEdit'
 
 const App = () => {
   const userInfoSeletor = useAppSelector(getUserInfoData)
@@ -28,7 +29,8 @@ const App = () => {
         <Route path='/routine' element={<Routine />} />
         <Route path='/routine/youtube' element={<Youtube />} />
         <Route path='/routine/routine-make' element={<RoutineMake />} />
-        <Route path='/routine/routine-make/add' element={<RoutineEdit />} />
+        <Route path='/routine/routine-make/add' element={<RoutineAdd />} />
+        <Route path='/routine/routine-make/edit' element={<RoutineEdit />} />
         <Route path='/routine/routine-make/custom-exercise/add' element={<CustomExercise />} />
         <Route path='/routine/routine-make/custom-exercise/edit' element={<CustomExercise />} />
         <Route path='/summary' element={<Summary />} />

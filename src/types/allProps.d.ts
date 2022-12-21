@@ -54,7 +54,7 @@ export interface IDropDownToggleProps {
 
 export interface IDropDownPropsProps {
   toggleDropDown: () => void
-  deleteFuction?: () => void
+  deleteFunction?: () => void
   dropDown: boolean
   naviRoute: {
     to: string

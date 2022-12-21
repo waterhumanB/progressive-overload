@@ -16,18 +16,21 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 const naviRoutineMakeRouter = {
   to: '/routine/routine-make',
 }
-const naviRoutineEditRouter = {
-  to: '/routine/routine-make/edit',
-}
 
 const Routine = () => {
+  const dispatch = useAppDispatch()
   const userInfoSeletor = useAppSelector(getUserInfoData)
   const routineSeletor = useAppSelector(getRoutineData)
-  const dispatch = useAppDispatch()
   const routineByIdList = Object.values(routineSeletor.routines.byId)
   const [nowRoutineId, setNowRoutineId] = useState<string>('')
   const [exerciseAddDropDown, setExerciseAddDropDown] = useState(false)
   const [routineAddDropDown, setRoutineAddDropDown] = useState(false)
+
+  const naviRoutineEditRouter = {
+    to: '/routine/routine-make/edit',
+    state: { state: routineSeletor.routines.byId[nowRoutineId] },
+  }
+
   const ExerciseAddtoggleDropDown = () => {
     setExerciseAddDropDown(!exerciseAddDropDown)
   }
@@ -100,7 +103,7 @@ const Routine = () => {
         threeMenuValue1='루틴 수정 하기'
         threeMenuValue2='루틴 삭제 하기'
         threeMenuValue3='취소'
-        deleteFuction={routineDeleteDispathHandler}
+        deleteFunction={routineDeleteDispathHandler}
         dropDown={routineAddDropDown}
         toggleDropDown={RoutineAddtoggleDropDown}
         naviRoute={naviRoutineEditRouter}

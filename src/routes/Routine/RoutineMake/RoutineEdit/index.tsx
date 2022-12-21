@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useState } from 'react'
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 import * as S from './styles'
 import { ReactComponent as Arrow } from '../../../../assets/imgs/arrow.svg'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -7,11 +7,18 @@ import { getExerciseData } from '../../../../states/exercise'
 import { getTypesData } from '../../../../states/types'
 import { findCategory, findTarget, findType } from '../../../../utils/findmenu'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
-import { getRoutineData, setRoutine } from '../../../../states/routines'
+import { editRoutine, getRoutineData, setRoutine } from '../../../../states/routines'
+
+interface RoutineLocationState {
+  id: string
+  title: string
+  workout: string[]
+  recent: string[]
+}
 
 const RoutineEdit = () => {
   const [routineName, setRoutineName] = useState('')
-  const location = useLocation() as { state: { addExercise: string[] } }
+  const location = useLocation() as { state: RoutineLocationState }
   const dispatch = useAppDispatch()
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
@@ -19,43 +26,62 @@ const RoutineEdit = () => {
   const navigate = useNavigate()
 
   const naviRouterAndRoutineDataHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.name === 'back') {
+    const { name } = e.currentTarget
+    if (name === 'back') {
       navigate(-1)
     }
-    if (e.currentTarget.name === 'add') {
+    if (name === 'add') {
       const routineData = {
         [`routine${routineSelector.routines.allIds.length + 1}`]: {
           id: `routine${routineSelector.routines.allIds.length + 1}`,
           title: routineName,
-          workout: location.state.addExercise,
+          workout: location.state.workout,
           recent: [],
         },
       }
       dispatch(setRoutine(routineData))
       navigate('/routine')
     }
-    if (e.currentTarget.name === 'eidt') {
-      console.log('edit')
+    if (name === 'edit') {
+      dispatch(
+        editRoutine({
+          ...location.state,
+          title: routineName,
+        })
+      )
+      navigate('/routine')
+    }
+    if (name === 'exerciseEdit') {
+      navigate('/routine/routine-make', {
+        state: {
+          ...location.state,
+          title: routineName,
+        },
+      })
     }
   }
 
   const routineNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setRoutineName(e.currentTarget.value)
   }
+
+  useEffect(() => {
+    setRoutineName(location.state.title)
+  }, [])
   return (
     <S.routineEditPageConatiner>
       <S.routineEditTitleBox>
         <button onClick={naviRouterAndRoutineDataHandler} name='back' type='button'>
           <Arrow />
         </button>
-        <div>나만의 루틴 만들기</div>
+        <div>나의 루틴 수정하기</div>
       </S.routineEditTitleBox>
       <S.routineEdtDataBox>
         <S.routineEdtInput inputValue={!routineName}>
-          <input onChange={routineNameHandler} placeholder='루틴 이름을 입력해주세요!' />
+          <input value={routineName} onChange={routineNameHandler} placeholder='루틴 이름 수정하기!' />
         </S.routineEdtInput>
         <S.exerciseBox>
-          {location.state.addExercise.map((data) => (
+          {location.state.workout.map((data) => (
             <S.exerciseCard key={data}>
               <S.mainTaget>{findTarget(exerciseSelector.exercises.byId[data].mainTarget)}</S.mainTaget>
               <S.exerciseInfo>
@@ -68,9 +94,14 @@ const RoutineEdit = () => {
           ))}
         </S.exerciseBox>
       </S.routineEdtDataBox>
-      <S.routineAddBtn disabled={!routineName} onClick={naviRouterAndRoutineDataHandler} name='add'>
-        루틴 생성
-      </S.routineAddBtn>
+      <S.editBtnBox>
+        <S.exerciseEditBtn onClick={naviRouterAndRoutineDataHandler} name='exerciseEdit'>
+          운동 변경하기
+        </S.exerciseEditBtn>
+        <S.routineEditBtn disabled={!routineName} onClick={naviRouterAndRoutineDataHandler} name='edit'>
+          루틴 수정완료
+        </S.routineEditBtn>
+      </S.editBtnBox>
     </S.routineEditPageConatiner>
   )
 }

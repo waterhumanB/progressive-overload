@@ -23,11 +23,10 @@ export const customTitleBox = styled.div`
   }
 
   div {
-    width: 100%;
+    margin: auto;
     font-size: 30px;
     color: ${colors.FONT};
     font-weight: 600;
-    text-align: left;
   }
 `
 
