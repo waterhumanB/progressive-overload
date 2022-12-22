@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react'
+import { useState, useCallback } from 'react'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getUserInfoData } from '../../states/user'
 import { ReactComponent as Female } from '../../assets/imgs/female.svg'
@@ -37,10 +37,10 @@ const Routine = () => {
   const RoutineAddtoggleDropDown = () => {
     setRoutineAddDropDown(!routineAddDropDown)
   }
-  const routineIdHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    setNowRoutineId(e.currentTarget.name)
+  const routineIdHandler = useCallback((id: string) => {
+    setNowRoutineId(id)
     setRoutineAddDropDown(!routineAddDropDown)
-  }
+  }, [])
   const routineDeleteDispathHandler = () => {
     const routineData = {
       id: routineSeletor.routines.byId[nowRoutineId].id,
@@ -83,7 +83,7 @@ const Routine = () => {
                 <S.routineRecent>최근 수행한 날짜가 없습니다.</S.routineRecent>
               )}
             </S.routineInfoBtn>
-            <S.routineMenuBtn name={data.id} onClick={routineIdHandler}>
+            <S.routineMenuBtn onClick={() => routineIdHandler(data.id)}>
               <DotMenu />
             </S.routineMenuBtn>
           </S.routineCard>

@@ -3,7 +3,7 @@ import { ReactComponent as Arm } from '../../assets/imgs/arm.svg'
 import { ReactComponent as ArmHeart } from '../../assets/imgs/arm_heart.svg'
 import { ReactComponent as DotMenu } from '../../assets/imgs/dot_menu.svg'
 import { ReactComponent as Check } from '../../assets/imgs/check.svg'
-import { MouseEvent } from 'react'
+import { useCallback } from 'react'
 import { getExerciseData, setFavoriteExercise } from '../../states/exercise'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { findCategory, findTarget, findType } from '../../utils/findmenu'
@@ -42,41 +42,38 @@ const ExerciseCard = ({
       return title.includes(searchExercise)
     })
 
-  const favoriteHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    const boolean = e.currentTarget.value === 'true'
+  const favoriteHandler = useCallback((id: string, favorite: boolean) => {
     const favoriteData = {
-      id: e.currentTarget.name,
-      favorite: !boolean,
+      id,
+      favorite: !favorite,
     }
     dispatch(setFavoriteExercise(favoriteData))
-  }
+  }, [])
 
-  const addExerciseHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    const { name } = e.currentTarget
+  const addExerciseHandler = useCallback((id: string) => {
     if (addExercise.length < 12) {
-      setAddExercise([...addExercise, name])
+      setAddExercise([...addExercise, id])
     }
-    if (addExercise.includes(name)) {
+    if (addExercise.includes(id)) {
       setAddExercise(
         addExercise.filter((ele) => {
-          return ele !== name
+          return ele !== id
         })
       )
     }
-  }
-  const dropDonwAndEditIdHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    const editId = e.currentTarget.name
+  }, [])
+  const dropDonwAndEditIdHandler = useCallback((id: string) => {
     toggleDropDown()
-    setCustomExerciseEditId(editId)
-  }
+    setCustomExerciseEditId(id)
+  }, [])
   return (
     <S.exerciseContainer>
       {fetechedData.length !== 0 ? (
         fetechedData.map((data) => (
-          <S.exerciseBox id={data.id} border={addExercise.includes(data.id)} key={data.id}>
-            {fetechedData[0].id === data.id && <S.refDiv ref={cardRef} id={data.id} />}
+          <S.exerciseBox border={addExercise.includes(data.id)} key={data.id}>
+            {fetechedData[0].id === data.id && <S.refDiv ref={cardRef} />}
             <S.mainTaget>{addExercise.includes(data.id) ? <Check /> : findTarget(data.mainTarget)}</S.mainTaget>
-            <S.exerciseInfo type='button' name={data.id} onClick={addExerciseHandler}>
+            <S.exerciseInfo type='button' onClick={() => addExerciseHandler(data.id)}>
               <S.exerciseTitle>
                 <div>{findCategory(data.categoryId)}</div>
                 <div>{findType(typesSelector.types.byId, data.typeId)}</div>
@@ -87,17 +84,11 @@ const ExerciseCard = ({
               </S.exerciseTarget>
             </S.exerciseInfo>
             {data.custom ? (
-              <button className='edit' onClick={dropDonwAndEditIdHandler} name={data.id} type='button'>
+              <button className='edit' onClick={() => dropDonwAndEditIdHandler(data.id)} type='button'>
                 <DotMenu />
               </button>
             ) : (
-              <button
-                className='favorite'
-                name={data.id}
-                value={String(data.favorite)}
-                onClick={favoriteHandler}
-                type='button'
-              >
+              <button className='favorite' onClick={() => favoriteHandler(data.id, data.favorite)} type='button'>
                 {data.favorite === true ? <ArmHeart /> : <Arm />}
               </button>
             )}

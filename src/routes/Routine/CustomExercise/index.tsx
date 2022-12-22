@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, MouseEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import CustomSelectorBtn from '../../../components/CustomSelectorBtn'
@@ -54,34 +54,33 @@ const CustomExercise = () => {
     setCustomExerciseData({ ...customExerciseData, ...customData })
   }
 
-  const customExerciseDispatch = (e: MouseEvent<HTMLButtonElement>) => {
+  const addCustomExerciseDispatchHandler = () => {
     const newTypeData = {
       [`type${typesSelector.types.allIds.length + 1}`]: {
         name: customExerciseData.typeId,
       },
     }
-    if (e.currentTarget.name === 'add') {
-      dispatch(setType(newTypeData))
-      const newCustomExeciseData = {
-        ...customExerciseData,
-        typeId: `type${typesSelector.types.allIds.length + 1}`,
-      }
-      dispatch(setCustomExercise(newCustomExeciseData))
-      navigate(-1)
+    dispatch(setType(newTypeData))
+    const newCustomExeciseData = {
+      ...customExerciseData,
+      typeId: `type${typesSelector.types.allIds.length + 1}`,
     }
-    if (e.currentTarget.name === 'edit') {
-      const editTypedata = {
-        name: customExerciseData.typeId,
-        typeId: exercisesSelector.exercises.byId[state].typeId,
-      }
-      const editCustomData = {
-        ...customExerciseData,
-        typeId: exercisesSelector.exercises.byId[state].typeId,
-      }
-      dispatch(editType(editTypedata))
-      dispatch(editCustomExercise(editCustomData))
-      navigate(-1)
+    dispatch(setCustomExercise(newCustomExeciseData))
+    navigate(-1)
+  }
+
+  const editCustomExerciseDispatchHandler = () => {
+    const editTypedata = {
+      name: customExerciseData.typeId,
+      typeId: exercisesSelector.exercises.byId[state].typeId,
     }
+    const editCustomData = {
+      ...customExerciseData,
+      typeId: exercisesSelector.exercises.byId[state].typeId,
+    }
+    dispatch(editType(editTypedata))
+    dispatch(editCustomExercise(editCustomData))
+    navigate(-1)
   }
 
   if (state && exercisesSelector.exercises.byId[state].typeId === typeId) {
@@ -131,20 +130,14 @@ const CustomExercise = () => {
       <div>
         {state ? (
           <S.customExerciseAddBtn
-            name='edit'
             disabled={compareCustomData}
-            onClick={customExerciseDispatch}
+            onClick={editCustomExerciseDispatchHandler}
             type='button'
           >
             운동 변경
           </S.customExerciseAddBtn>
         ) : (
-          <S.customExerciseAddBtn
-            name='add'
-            disabled={compareCustomData}
-            onClick={customExerciseDispatch}
-            type='button'
-          >
+          <S.customExerciseAddBtn disabled={compareCustomData} onClick={addCustomExerciseDispatchHandler} type='button'>
             운동 추가
           </S.customExerciseAddBtn>
         )}
