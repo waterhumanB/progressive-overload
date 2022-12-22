@@ -70,25 +70,25 @@ const CustomExercise = () => {
   }
 
   const editCustomExerciseDispatchHandler = () => {
-    const editTypedata = {
+    const typeDataToEdit = {
       name: customExerciseData.typeId,
       typeId: exercisesSelector.exercises.byId[state].typeId,
     }
-    const editCustomData = {
+    const customDataToEdit = {
       ...customExerciseData,
       typeId: exercisesSelector.exercises.byId[state].typeId,
     }
-    dispatch(editType(editTypedata))
-    dispatch(editCustomExercise(editCustomData))
+    dispatch(editType(typeDataToEdit))
+    dispatch(editCustomExercise(customDataToEdit))
     navigate(-1)
   }
 
   if (state && exercisesSelector.exercises.byId[state].typeId === typeId) {
-    const editSetData = {
+    const setDataToEdit = {
       ...exercisesSelector.exercises.byId[state],
       typeId: findType(typesSelector.types.byId, typeId),
     }
-    setCustomExerciseData(editSetData)
+    setCustomExerciseData(setDataToEdit)
   }
 
   return (

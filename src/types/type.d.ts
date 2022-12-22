@@ -7,7 +7,11 @@ export interface ITypesItem {
   [type: string]: { name: string }
 }
 
-export interface IEditDeleteTypeItem {
+export interface IEditTypeItem {
   name: string
+  typeId: string
+}
+
+export interface IDeleteTypeId {
   typeId: string
 }

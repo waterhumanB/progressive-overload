@@ -20,3 +20,7 @@ export interface IExerciseItem {
   secondaryTarget: string
   record: string[]
 }
+
+export interface IExerciseId {
+  id: string
+}

@@ -7,9 +7,8 @@ import ExerciseCard from '../../../components/ExerciseCard'
 import { useLocation, useNavigate } from 'react-router-dom'
 import DropDown from '../../../components/DropDown'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../hooks/useAppSelector'
-import { deleteCustomExercise, getExerciseData } from '../../../states/exercise'
-import { deleteType, getTypesData } from '../../../states/types'
+import { deleteCustomExercise } from '../../../states/exercise'
+import { deleteType } from '../../../states/types'
 
 interface InitData {
   more: string
@@ -24,18 +23,26 @@ interface RoutineLocationState {
   recent: string[]
 }
 
+interface CustomExerciseEditIds {
+  id: string
+  typeId: string
+}
+
+const INIT_EDITIDS = {
+  id: '',
+  typeId: '',
+}
+
 const INIT_DATA: InitData = { more: '전체', target: '전체', category: '전체' }
 
 const RoutineMake = () => {
   const [addExercise, setAddExercise] = useState<string[]>([])
-  const [customExerciseEditId, setCustomExerciseEditId] = useState<string>('')
+  const [customExerciseEditId, setCustomExerciseEditId] = useState<CustomExerciseEditIds>(INIT_EDITIDS)
   const [filterExercise, setFilterExercise] = useState<InitData>(INIT_DATA)
   const [searchExercise, setSearchExercise] = useState<string>('')
   const [dropDown, setDropDown] = useState(false)
 
   const location = useLocation() as { state: RoutineLocationState }
-  const exerciseSeleter = useAppSelector(getExerciseData)
-  const typeSeleter = useAppSelector(getTypesData)
   const dispatch = useAppDispatch()
   const cardRef = useRef<HTMLDivElement>(null)
   const toggleDropDown = () => {
@@ -53,17 +60,12 @@ const RoutineMake = () => {
   const customEditRouteState = {
     to: './custom-exercise/edit',
     state: {
-      state: customExerciseEditId,
+      state: customExerciseEditId.id,
     },
   }
-
   const deleteCustomExerciseHandler = () => {
-    const deleteTypeData = {
-      typeId: exerciseSeleter.exercises.byId[customExerciseEditId].typeId,
-      name: typeSeleter.types.byId[exerciseSeleter.exercises.byId[customExerciseEditId].typeId].name,
-    }
-    dispatch(deleteCustomExercise(exerciseSeleter.exercises.byId[customExerciseEditId]))
-    dispatch(deleteType(deleteTypeData))
+    dispatch(deleteCustomExercise({ id: customExerciseEditId.id }))
+    dispatch(deleteType({ typeId: customExerciseEditId.typeId }))
   }
 
   const upExerciseCardListHandler = () => {

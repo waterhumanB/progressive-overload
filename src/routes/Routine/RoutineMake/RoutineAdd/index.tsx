@@ -25,7 +25,7 @@ const RoutineEdit = () => {
   }
 
   const dispatchAndLocationStateHandler = () => {
-    const routineData = {
+    const routineDataToDispatch = {
       [`routine${routineSelector.routines.allIds.length + 1}`]: {
         id: `routine${routineSelector.routines.allIds.length + 1}`,
         title: routineName,
@@ -33,7 +33,7 @@ const RoutineEdit = () => {
         recent: [],
       },
     }
-    dispatch(setRoutine(routineData))
+    dispatch(setRoutine(routineDataToDispatch))
     navigate('/routine')
   }
 

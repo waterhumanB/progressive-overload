@@ -30,41 +30,48 @@ const ExerciseCard = ({
   const fetechedData = stateArray
     .filter(
       (data) =>
-        (more === '전체' && data) ||
-        (more === 'favorite' && data.favorite) ||
-        (more === 'recent' && !data.record) ||
-        (more === 'custom' && data.custom)
+        ((more === '전체' && data) ||
+          (more === 'favorite' && data.favorite) ||
+          (more === 'recent' && !data.record) ||
+          (more === 'custom' && data.custom)) &&
+        (target === '전체' ? data : data.mainTarget === target) &&
+        (category === '전체' ? data : data.categoryId === category)
     )
-    .filter((data) => (target === '전체' ? data : data.mainTarget === target))
-    .filter((data) => (category === '전체' ? data : data.categoryId === category))
     .filter((data) => {
       const title = findCategory(data.categoryId) + findType(typesSelector.types.byId, data.typeId)
       return title.includes(searchExercise)
     })
 
   const favoriteHandler = useCallback((id: string, favorite: boolean) => {
-    const favoriteData = {
+    const favoriteDataToDispatch = {
       id,
       favorite: !favorite,
     }
-    dispatch(setFavoriteExercise(favoriteData))
+    dispatch(setFavoriteExercise(favoriteDataToDispatch))
   }, [])
 
-  const addExerciseHandler = useCallback((id: string) => {
-    if (addExercise.length < 12) {
-      setAddExercise([...addExercise, id])
+  const addExerciseHandler = useCallback(
+    (id: string) => {
+      if (addExercise.length < 12) {
+        setAddExercise([...addExercise, id])
+      }
+      if (addExercise.includes(id)) {
+        setAddExercise(
+          addExercise.filter((ele) => {
+            return ele !== id
+          })
+        )
+      }
+    },
+    [addExercise]
+  )
+  const dropDonwAndEditIdHandler = useCallback((exId: string, typeId: string) => {
+    const exerciseIdAndTypeId = {
+      id: exId,
+      typeId,
     }
-    if (addExercise.includes(id)) {
-      setAddExercise(
-        addExercise.filter((ele) => {
-          return ele !== id
-        })
-      )
-    }
-  }, [])
-  const dropDonwAndEditIdHandler = useCallback((id: string) => {
     toggleDropDown()
-    setCustomExerciseEditId(id)
+    setCustomExerciseEditId(exerciseIdAndTypeId)
   }, [])
   return (
     <S.exerciseContainer>
@@ -84,7 +91,7 @@ const ExerciseCard = ({
               </S.exerciseTarget>
             </S.exerciseInfo>
             {data.custom ? (
-              <button className='edit' onClick={() => dropDonwAndEditIdHandler(data.id)} type='button'>
+              <button className='edit' onClick={() => dropDonwAndEditIdHandler(data.id, data.typeId)} type='button'>
                 <DotMenu />
               </button>
             ) : (
