@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-import colors from '../../../../styles/constants/colors'
+import colors from '../../styles/constants/colors'
 
-export const routineAddPageConatiner = styled.section`
+export const routinePageConatiner = styled.section`
   width: 100%;
   height: 100%;
-  padding: 20px;
 `
-export const routineEditTitleBox = styled.div`
+export const routineTitleBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -28,7 +27,7 @@ export const routineEditTitleBox = styled.div`
     font-weight: 600;
   }
 `
-export const routineEdtDataBox = styled.div`
+export const routineDataBox = styled.div`
   width: 100%;
   height: 85%;
   margin: auto;
@@ -44,7 +43,7 @@ export const routineEdtDataBox = styled.div`
   }
 `
 
-export const routineEdtInput = styled.div<{ inputValue: boolean }>`
+export const routineInput = styled.div<{ inputValue: boolean }>`
   width: 100%;
   height: 40px;
   background: ${(props) => (props.inputValue ? colors.WHITE : colors.BACK)};
@@ -116,6 +115,40 @@ export const exerciseTitle = styled.div`
   }
 `
 
+export const editBtnBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+export const routineEditBtn = styled.button`
+  width: 150px;
+  height: 40px;
+  background: ${colors.FOCUS};
+  border: 2px solid ${colors.BACK};
+  color: ${colors.WHITE};
+  font-weight: 600;
+  font-size: 16px;
+  :disabled {
+    border: 2px solid ${colors.BACK};
+    color: ${colors.FONT};
+    background: ${colors.WHITE};
+  }
+`
+export const exerciseEditBtn = styled.button`
+  width: 150px;
+  height: 40px;
+  background: ${colors.FOCUS};
+  border: 2px solid ${colors.BACK};
+  color: ${colors.WHITE};
+  font-weight: 600;
+  font-size: 16px;
+  :disabled {
+    border: 2px solid ${colors.BACK};
+    color: ${colors.FONT};
+    background: ${colors.WHITE};
+  }
+`
 export const routineAddBtn = styled.button`
   width: 100%;
   height: 40px;

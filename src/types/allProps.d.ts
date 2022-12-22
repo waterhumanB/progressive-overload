@@ -90,3 +90,20 @@ export interface ICustomSelectorBtnProps {
   toggleModalHandler: () => void
   setNameFilter: Dispatch<SetStateAction<string>>
 }
+
+export interface IRoutinePageProps {
+  backPageHandler: () => void
+  title: string
+  routineName: string
+  routineNameHandler: (e: ChangeEvent<HTMLInputElement>) => void
+  placeholder: string
+  locationState: { id: string; title: string; workout: string[]; recent: string[] }
+  bottomTwoBtn: boolean
+  editExerciseHanlder?: () => void
+  editRoutineHandler?: () => void
+  addRoutineHandler?: () => void
+  disabled?: string
+  btnValue?: string
+  twoBtnValue1?: string
+  twoBtnValue2?: string
+}

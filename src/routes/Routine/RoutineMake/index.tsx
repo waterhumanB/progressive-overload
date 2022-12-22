@@ -80,7 +80,7 @@ const RoutineMake = () => {
       })
       return
     }
-    navigate('./add', { state: { addExercise } })
+    navigate('./add', { state: { ...location.state, workout: addExercise } })
   }
   useEffect(() => {
     if (location.state && location.state.workout.length !== 0) {
