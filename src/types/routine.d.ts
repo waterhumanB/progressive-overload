@@ -9,7 +9,6 @@ export interface IRoutineItem {
 
 export interface IDeleteRoutine {
   id: string
-  title: title
 }
 export interface IEditRoutine {
   id: string

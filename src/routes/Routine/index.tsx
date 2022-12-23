@@ -6,7 +6,7 @@ import { ReactComponent as Male } from '../../assets/imgs/male.svg'
 import { ReactComponent as Youtube } from '../../assets/imgs/youtube.svg'
 import { ReactComponent as DotMenu } from '../../assets/imgs/dot_menu.svg'
 import * as S from './styles'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import RoutineAddBtn from '../../components/RoutineAddBtn'
 import DropDown from '../../components/DropDown'
@@ -19,6 +19,7 @@ const naviRoutineMakeRouter = {
 
 const Routine = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const userInfoSeletor = useAppSelector(getUserInfoData)
   const routineSeletor = useAppSelector(getRoutineData)
   const routineByIdList = Object.values(routineSeletor.routines.byId)
@@ -42,12 +43,12 @@ const Routine = () => {
     setRoutineAddDropDown(!routineAddDropDown)
   }, [])
   const routineDeleteDispathHandler = () => {
-    const routineData = {
-      id: routineSeletor.routines.byId[nowRoutineId].id,
-      title: routineSeletor.routines.byId[nowRoutineId].title,
-    }
-    dispatch(deleteRoutine(routineData))
+    dispatch(deleteRoutine({ id: nowRoutineId }))
   }
+
+  const routineReadyPageRouter = useCallback((id: string) => {
+    navigate('/routine/routine-ready', { state: { ...routineSeletor.routines.byId[id] } })
+  }, [])
   return (
     <S.routineContainer>
       <S.userContainer>
@@ -72,7 +73,7 @@ const Routine = () => {
         {routineByIdList.map((data) => (
           <S.routineCard key={data.id}>
             <S.routineWorkoutCount>{data.workout.length}</S.routineWorkoutCount>
-            <S.routineInfoBtn>
+            <S.routineInfoBtn onClick={() => routineReadyPageRouter(data.id)}>
               <S.routineTitle>{data.title}</S.routineTitle>
               {!data.recent ? (
                 <S.routineRecent>
