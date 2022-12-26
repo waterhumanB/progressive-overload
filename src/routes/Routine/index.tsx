@@ -20,16 +20,16 @@ const naviRoutineMakeRouter = {
 const Routine = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const userInfoSeletor = useAppSelector(getUserInfoData)
-  const routineSeletor = useAppSelector(getRoutineData)
-  const routineByIdList = Object.values(routineSeletor.routines.byId)
+  const userInfoSelector = useAppSelector(getUserInfoData)
+  const routineSelector = useAppSelector(getRoutineData)
+  const routineByIdList = Object.values(routineSelector.routines.byId)
   const [nowRoutineId, setNowRoutineId] = useState<string>('')
   const [exerciseAddDropDown, setExerciseAddDropDown] = useState(false)
   const [routineAddDropDown, setRoutineAddDropDown] = useState(false)
 
   const naviRoutineEditRouter = {
     to: '/routine/routine-make/edit',
-    state: { state: routineSeletor.routines.byId[nowRoutineId] },
+    state: { state: routineSelector.routines.byId[nowRoutineId] },
   }
 
   const ExerciseAddtoggleDropDown = () => {
@@ -47,19 +47,19 @@ const Routine = () => {
   }
 
   const routineReadyPageRouter = useCallback((id: string) => {
-    navigate('/routine/routine-ready', { state: { ...routineSeletor.routines.byId[id] } })
+    navigate('/routine/routine-ready', { state: { ...routineSelector.routines.byId[id] } })
   }, [])
   return (
     <S.routineContainer>
       <S.userContainer>
         <S.userBox className='nickName'>
-          <span>{userInfoSeletor.user.nickName}</span>
-          {userInfoSeletor.user.gender === '남자' ? <Male /> : <Female />}
+          <span>{userInfoSelector.user.nickName}</span>
+          {userInfoSelector.user.gender === '남자' ? <Male /> : <Female />}
         </S.userBox>
         <S.userBox className='info'>
-          <div>나이 : {userInfoSeletor.user.age}</div>
-          <div>키 : {userInfoSeletor.user.tall}cm</div>
-          <div>몸무게 : {userInfoSeletor.user.weight}kg</div>
+          <div>나이 : {userInfoSelector.user.age}</div>
+          <div>키 : {userInfoSelector.user.tall}cm</div>
+          <div>몸무게 : {userInfoSelector.user.weight}kg</div>
         </S.userBox>
       </S.userContainer>
       <S.subMenuContainer>

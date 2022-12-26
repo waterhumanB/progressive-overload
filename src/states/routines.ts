@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
-import { IRoutines, IRoutineItem, IDeleteRoutine, IEditRoutine } from '../types/routine.d'
+import { IRoutines, IRoutineItem, IDeleteRoutine, IEditRoutine, IDeleteExerciseInRoutine } from '../types/routine.d'
 
 const INIT_EXERCISE = {
   byId: {},
@@ -31,10 +31,16 @@ const systemSlice = createSlice({
       delete state.routines.byId[action.payload.id]
       state.routines.allIds = state.routines.allIds.filter((data) => data !== action.payload.id)
     },
+    deleteExerciseInRoutine: (state: RoutinesState, action: PayloadAction<IDeleteExerciseInRoutine>) => {
+      const newRoutine = state.routines.byId[action.payload.id].workout.filter(
+        (data) => data !== action.payload.workoutId
+      )
+      state.routines.byId[action.payload.id].workout = newRoutine
+    },
   },
 })
 
-export const { setRoutine, editRoutine, deleteRoutine } = systemSlice.actions
+export const { setRoutine, editRoutine, deleteRoutine, deleteExerciseInRoutine } = systemSlice.actions
 
 export default systemSlice.reducer
 

@@ -1,9 +1,11 @@
-import React, { DragEvent, useState } from 'react'
+import React, { DragEvent, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import { ReactComponent as DotMenu } from '../../../assets/imgs/dot_menu.svg'
+import Modal from '../../../components/Modal'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData } from '../../../states/exercise'
+import { getRoutineData } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import * as S from './styles'
@@ -20,15 +22,23 @@ const RoutineReady = () => {
   const navigate = useNavigate()
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
+  const routineSelector = useAppSelector(getRoutineData)
   const [grab, setGrab] = useState<HTMLElement>()
   const [routineList, setRoutineList] = useState<string[]>(location.state.workout)
   const [dragOver, setDragOver] = useState<number>()
   const [dropPostion, setDropPostion] = useState<number>()
+  const [toggleModal, setToggleModal] = useState(false)
+  const [routineIdAndExerciseId, setRoutineIdAndExerciseId] = useState<string[]>([])
+
   const backPageRouter = () => {
     navigate(-1)
   }
-  const moreMenuBtnHandler = () => {
-    console.log('MENU')
+  const toggleModalHandler = () => {
+    setToggleModal(!toggleModal)
+  }
+  const routineIdAndExerciseIdHanlder = (exerciseId: string) => {
+    setRoutineIdAndExerciseId([location.state.id, exerciseId])
+    setToggleModal(!toggleModal)
   }
   const dragStartHandler = (e: DragEvent<HTMLElement>) => {
     // 사용자가 객체를 드래그할때 발생하는 이벤트
@@ -40,18 +50,18 @@ const RoutineReady = () => {
     // 드래그하면서 마우스가 대상 객체의 위에 자리 잡고 있을 때 발생함
     e.preventDefault()
     setDragOver(Number(e.currentTarget.dataset.position))
-    setDropPostion(15)
+    setDropPostion(999)
   }
 
   const dragEndHandler = (e: DragEvent<HTMLElement>) => {
     // 대상 객체를 드래그하다가 마우스 버튼을 놓는 순간 발생함
     e.dataTransfer.dropEffect = 'move'
     setGrab(undefined)
-    setDragOver(15)
+    setDragOver(999)
   }
 
   const dropHandler = (e: DragEvent<HTMLElement>) => {
-    // 요소나 텍스트 블록을 적합한 드롭 대상에 드롭했을 때 발생한다.
+    // 요소나 텍스트 블록을 적합한 드롭 대상에 드롭했을 때 발생함
     const grabPosition = Number(grab?.dataset.position)
     const targetPosition = Number(e.currentTarget.dataset.position)
 
@@ -60,6 +70,10 @@ const RoutineReady = () => {
     setRoutineList(newList)
     setDropPostion(targetPosition)
   }
+
+  useEffect(() => {
+    setRoutineList(routineSelector.routines.byId[location.state.id].workout)
+  }, [routineSelector])
   return (
     <S.routinePageConatiner>
       <S.routineTitleBox>
@@ -96,7 +110,7 @@ const RoutineReady = () => {
                   </div>
                 </S.exerciseTarget>
               </S.exerciseInfo>
-              <S.routineMenuBtn onClick={moreMenuBtnHandler}>
+              <S.routineMenuBtn onClick={() => routineIdAndExerciseIdHanlder(data)}>
                 <DotMenu />
               </S.routineMenuBtn>
             </S.exerciseCard>
@@ -104,6 +118,15 @@ const RoutineReady = () => {
         </S.exerciseBox>
       </S.routineDataBox>
       <S.routineStartBtn>루틴 시작하기</S.routineStartBtn>
+      {toggleModal && (
+        <Modal
+          toggleModalHandler={toggleModalHandler}
+          modalName='exerciseEditDelete'
+          stateTypeName=''
+          stateData={routineIdAndExerciseId}
+          setStateData={setRoutineIdAndExerciseId}
+        />
+      )}
     </S.routinePageConatiner>
   )
 }

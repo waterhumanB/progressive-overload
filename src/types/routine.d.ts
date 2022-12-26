@@ -16,3 +16,8 @@ export interface IEditRoutine {
   workout: string[]
   recent: string[]
 }
+
+export interface IDeleteExerciseInRoutine {
+  workoutId: string
+  id: string
+}

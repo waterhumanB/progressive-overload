@@ -107,3 +107,9 @@ export interface IRoutinePageProps {
   twoBtnValue1?: string
   twoBtnValue2?: string
 }
+
+export interface IExerciseEditDeleteModalProps {
+  toggleModalHandler: () => void
+  nowExerciseIdData: string
+  setnowExerciseIdData: Dispatch<SetStateAction<string>>
+}

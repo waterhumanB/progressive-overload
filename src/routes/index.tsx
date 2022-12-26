@@ -15,12 +15,12 @@ import RoutineEdit from './Routine/RoutineMake/RoutineEdit'
 import RoutineReady from './Routine/RoutineReady'
 
 const App = () => {
-  const userInfoSeletor = useAppSelector(getUserInfoData)
+  const userInfoSelector = useAppSelector(getUserInfoData)
   const navigate = useNavigate()
   const location = useLocation()
   useLayoutEffect(() => {
     if (location.pathname === '/') {
-      userInfoSeletor.user.nickName.length > 1 && navigate('/routine')
+      userInfoSelector.user.nickName.length > 1 && navigate('/routine')
     }
   }, [])
   return (
