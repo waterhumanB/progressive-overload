@@ -3,9 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import { ReactComponent as DotMenu } from '../../../assets/imgs/dot_menu.svg'
 import Modal from '../../../components/Modal'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData } from '../../../states/exercise'
-import { getRoutineData } from '../../../states/routines'
+import { changeExerciseInRoutine, getRoutineData } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import * as S from './styles'
@@ -20,6 +21,7 @@ interface ILocationState {
 const RoutineReady = () => {
   const location = useLocation() as { state: ILocationState }
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
   const routineSelector = useAppSelector(getRoutineData)
@@ -69,6 +71,7 @@ const RoutineReady = () => {
     newList[grabPosition] = newList.splice(targetPosition, 1, newList[grabPosition])[0]
     setRoutineList(newList)
     setDropPostion(targetPosition)
+    dispatch(changeExerciseInRoutine({ id: location.state.id, workout: newList }))
   }
 
   useEffect(() => {

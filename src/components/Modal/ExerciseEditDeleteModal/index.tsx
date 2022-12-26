@@ -17,7 +17,7 @@ const ExerciseEditDeleteModal = ({
   const [changeExercise, setChangeExercise] = useState(false)
   // console.log(exerciseSelector.exercises.byId[nowExerciseIdData[1]])
   // console.log(routineSelector.routines.byId)
-  console.log('arr', nowExerciseIdData)
+
   const changeExerciseHanlder = () => {
     setChangeExercise(true)
   }
