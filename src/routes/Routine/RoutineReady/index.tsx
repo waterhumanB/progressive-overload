@@ -6,7 +6,7 @@ import Modal from '../../../components/Modal'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData } from '../../../states/exercise'
-import { changeExerciseInRoutine, getRoutineData } from '../../../states/routines'
+import { changeWorkoutInRoutine, getRoutineData } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import * as S from './styles'
@@ -71,7 +71,7 @@ const RoutineReady = () => {
     newList[grabPosition] = newList.splice(targetPosition, 1, newList[grabPosition])[0]
     setRoutineList(newList)
     setDropPostion(targetPosition)
-    dispatch(changeExerciseInRoutine({ id: location.state.id, workout: newList }))
+    dispatch(changeWorkoutInRoutine({ id: location.state.id, workout: newList }))
   }
 
   useEffect(() => {

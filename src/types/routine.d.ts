@@ -18,11 +18,17 @@ export interface IEditRoutine {
 }
 
 export interface IDeleteExerciseInRoutine {
-  workoutId: string
+  exerciseId: string
   id: string
+}
+
+export interface IChangeWorkoutInRoutine {
+  id: string
+  workout: string[]
 }
 
 export interface IChangeExerciseInRoutine {
   id: string
-  workout: string[]
+  exerciseIdToChange: string
+  exerciseIdSelected: string
 }

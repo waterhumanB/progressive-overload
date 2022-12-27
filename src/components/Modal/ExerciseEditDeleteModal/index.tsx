@@ -1,8 +1,8 @@
-import { useState, MouseEvent } from 'react'
+import { useState } from 'react'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData } from '../../../states/exercise'
-import { deleteExerciseInRoutine, getRoutineData } from '../../../states/routines'
+import { changeExerciseInRoutine, deleteExerciseInRoutine, getRoutineData } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
 import { IExerciseEditDeleteModalProps } from '../../../types/allProps.d'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
@@ -21,17 +21,19 @@ const ExerciseEditDeleteModal = ({
   const [changeExercise, setChangeExercise] = useState(false)
   const [recommendExerciseOrder, setRecommendExerciseOrder] = useState(0)
   const recommendExerciseList = Object.values(exerciseSelector.exercises.byId).filter(
-    (data) => data.mainTarget === exerciseSelector.exercises.byId[nowExerciseIdData[1]].mainTarget
+    (data) =>
+      data.mainTarget === exerciseSelector.exercises.byId[nowExerciseIdData[1]].mainTarget &&
+      !routineSelector.routines.byId[nowExerciseIdData[0]].workout.includes(data.id)
   )
 
-  const changeExerciseHanlder = () => {
+  const changeExerciseHandler = () => {
     setChangeExercise(true)
   }
-  const deleteExerciseHanlder = () => {
+  const deleteExerciseHandler = () => {
     dispatch(
       deleteExerciseInRoutine({
         id: nowExerciseIdData[0],
-        workoutId: nowExerciseIdData[1],
+        exerciseId: nowExerciseIdData[1],
       })
     )
     toggleModalHandler()
@@ -48,52 +50,74 @@ const ExerciseEditDeleteModal = ({
       setRecommendExerciseOrder(recommendExerciseOrder + 1)
     }
   }
-  console.log(recommendExerciseOrder, recommendExerciseList.length)
+  const selectExerciseHandler = () => {
+    const { id } = recommendExerciseList.slice(recommendExerciseOrder, recommendExerciseOrder + 1)[0]
+    const exerciseDataToChange = {
+      id: nowExerciseIdData[0],
+      exerciseIdToChange: nowExerciseIdData[1],
+      exerciseIdSelected: id,
+    }
+    dispatch(changeExerciseInRoutine(exerciseDataToChange))
+    toggleModalHandler()
+  }
   return (
     <S.exerciseEditDeleteModalContainer>
       {!changeExercise ? (
         <S.exerciseEditDeleteTitle>운동을 루틴에서 삭제할까요?</S.exerciseEditDeleteTitle>
       ) : (
         <S.selectExerciseBox>
-          <button
-            type='button'
-            className={recommendExerciseOrder === 0 ? 'left hidden' : 'left'}
-            onClick={recommendExerciseOrderLeftHandler}
-          >
-            <Arrow />
-          </button>
-          {recommendExerciseList.slice(recommendExerciseOrder, recommendExerciseOrder + 1).map((data) => (
-            <S.selectExercise key={data.id}>
-              <div className='title'>
-                <div>{`${findCategory(data.categoryId)} ${findType(typeSelector.types.byId, data.typeId)}`}</div>
-              </div>
-              <div className='target'>
-                <div>{`${findTarget(data.mainTarget)} ${findTarget(data.secondaryTarget)}`}</div>
-              </div>
-            </S.selectExercise>
-          ))}
-
-          <button
-            type='button'
-            className={recommendExerciseOrder === recommendExerciseList.length - 1 ? ' hidden' : ''}
-            onClick={recommendExerciseOrderRightHandler}
-          >
-            <Arrow />
-          </button>
+          {recommendExerciseList.length ? (
+            <div>
+              <button
+                type='button'
+                className={recommendExerciseOrder === 0 ? 'left hidden' : 'left'}
+                onClick={recommendExerciseOrderLeftHandler}
+              >
+                <Arrow />
+              </button>
+              {recommendExerciseList.slice(recommendExerciseOrder, recommendExerciseOrder + 1).map((data) => (
+                <S.selectExercise key={data.id}>
+                  <div className='title'>
+                    <div>{`${findCategory(data.categoryId)} ${findType(typeSelector.types.byId, data.typeId)}`}</div>
+                  </div>
+                  <div className='target'>
+                    <div>{`${findTarget(data.mainTarget)} ${findTarget(data.secondaryTarget)}`}</div>
+                  </div>
+                </S.selectExercise>
+              ))}
+              <button
+                type='button'
+                className={recommendExerciseOrder === recommendExerciseList.length - 1 ? ' hidden' : ''}
+                onClick={recommendExerciseOrderRightHandler}
+              >
+                <Arrow />
+              </button>
+            </div>
+          ) : (
+            <div className='noExercise'>대체할 운동이 없습니다.</div>
+          )}
         </S.selectExerciseBox>
       )}
       {!changeExercise ? (
         <S.exerciseEditDeleteBtnBox>
-          <button type='button' onClick={changeExerciseHanlder}>
+          <button type='button' onClick={changeExerciseHandler}>
             다른 운동 대체
           </button>
-          <button type='button' onClick={deleteExerciseHanlder}>
+          <button type='button' onClick={deleteExerciseHandler}>
             운동 삭제하기
           </button>
         </S.exerciseEditDeleteBtnBox>
       ) : (
         <S.exerciseEditDeleteBtnBox>
-          <button type='button'>운동 대체 하기</button>
+          {recommendExerciseList.length ? (
+            <button type='button' onClick={selectExerciseHandler}>
+              운동 대체 하기
+            </button>
+          ) : (
+            <button type='button' onClick={toggleModalHandler}>
+              닫기
+            </button>
+          )}
         </S.exerciseEditDeleteBtnBox>
       )}
     </S.exerciseEditDeleteModalContainer>

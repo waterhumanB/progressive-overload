@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import {
@@ -7,6 +7,7 @@ import {
   IDeleteRoutine,
   IEditRoutine,
   IDeleteExerciseInRoutine,
+  IChangeWorkoutInRoutine,
   IChangeExerciseInRoutine,
 } from '../types/routine.d'
 
@@ -40,18 +41,32 @@ const systemSlice = createSlice({
     },
     deleteExerciseInRoutine: (state: RoutinesState, action: PayloadAction<IDeleteExerciseInRoutine>) => {
       const newRoutine = state.routines.byId[action.payload.id].workout.filter(
-        (data) => data !== action.payload.workoutId
+        (data) => data !== action.payload.exerciseId
       )
       state.routines.byId[action.payload.id].workout = newRoutine
     },
-    changeExerciseInRoutine: (state: RoutinesState, action: PayloadAction<IChangeExerciseInRoutine>) => {
+    changeWorkoutInRoutine: (state: RoutinesState, action: PayloadAction<IChangeWorkoutInRoutine>) => {
       state.routines.byId[action.payload.id].workout = action.payload.workout
+    },
+    changeExerciseInRoutine: (state: RoutinesState, action: PayloadAction<IChangeExerciseInRoutine>) => {
+      const workoutArr = state.routines.byId[action.payload.id].workout
+      const changeWorkout = workoutArr.splice(
+        workoutArr.indexOf(action.payload.exerciseIdToChange),
+        1,
+        action.payload.exerciseIdSelected
+      )
     },
   },
 })
 
-export const { setRoutine, editRoutine, deleteRoutine, deleteExerciseInRoutine, changeExerciseInRoutine } =
-  systemSlice.actions
+export const {
+  setRoutine,
+  editRoutine,
+  deleteRoutine,
+  deleteExerciseInRoutine,
+  changeWorkoutInRoutine,
+  changeExerciseInRoutine,
+} = systemSlice.actions
 
 export default systemSlice.reducer
 

@@ -67,10 +67,17 @@ export const selectExerciseBox = styled.div`
     opacity: 0;
     cursor: default;
   }
+
+  .noExercise {
+    padding: 20px;
+    margin: auto;
+    font-size: 20px;
+    color: ${colors.FOCUS};
+  }
 `
 const animation = keyframes`
-0% { transform: scaleY(0.1)}
-100% { transform: scaleY(1)}
+
+to { transform: scale(1.05)}
 `
 
 export const selectExercise = styled.div`
@@ -78,7 +85,7 @@ export const selectExercise = styled.div`
   padding: 15px 0;
   margin: auto;
   animation-name: ${animation};
-  animation-duration: 0.5;
+  animation-duration: 0.3s;
 
   div {
     display: flex;
