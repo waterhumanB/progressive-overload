@@ -14,8 +14,9 @@ export const exerciseEditDeleteTitle = styled.div`
   font-size: 20px;
   padding: 20px;
   color: ${colors.FOCUS};
-  border: 1px solid ${colors.FONT};
+  border: 1px solid ${colors.FOCUS};
   border-bottom: 0;
+  font-weight: 600;
 `
 
 export const exerciseEditDeleteBtnBox = styled.div`
@@ -40,7 +41,7 @@ export const exerciseEditDeleteBtnBox = styled.div`
     }
   }
 `
-export const selectExerciseBox = styled.div`
+export const selectExerciseContainer = styled.div`
   width: 100%;
   display: flex;
   margin: auto;
@@ -75,12 +76,17 @@ export const selectExerciseBox = styled.div`
     color: ${colors.FOCUS};
   }
 `
-const animation = keyframes`
 
+export const selectExerciseBox = styled.div`
+  width: 100%;
+  display: flex;
+  margin: auto;
+`
+const animation = keyframes`
 to { transform: scale(1.05)}
 `
 
-export const selectExercise = styled.div`
+export const selectExerciseItem = styled.div`
   width: 100%;
   padding: 15px 0;
   margin: auto;

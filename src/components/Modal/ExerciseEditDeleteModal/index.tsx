@@ -9,11 +9,7 @@ import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import * as S from './styles'
 
-const ExerciseEditDeleteModal = ({
-  toggleModalHandler,
-  nowExerciseIdData,
-  setnowExerciseIdData,
-}: IExerciseEditDeleteModalProps) => {
+const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExerciseEditDeleteModalProps) => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const routineSelector = useAppSelector(getRoutineData)
   const typeSelector = useAppSelector(getTypesData)
@@ -65,9 +61,9 @@ const ExerciseEditDeleteModal = ({
       {!changeExercise ? (
         <S.exerciseEditDeleteTitle>운동을 루틴에서 삭제할까요?</S.exerciseEditDeleteTitle>
       ) : (
-        <S.selectExerciseBox>
+        <S.selectExerciseContainer>
           {recommendExerciseList.length ? (
-            <div>
+            <S.selectExerciseBox>
               <button
                 type='button'
                 className={recommendExerciseOrder === 0 ? 'left hidden' : 'left'}
@@ -76,14 +72,14 @@ const ExerciseEditDeleteModal = ({
                 <Arrow />
               </button>
               {recommendExerciseList.slice(recommendExerciseOrder, recommendExerciseOrder + 1).map((data) => (
-                <S.selectExercise key={data.id}>
+                <S.selectExerciseItem key={data.id}>
                   <div className='title'>
                     <div>{`${findCategory(data.categoryId)} ${findType(typeSelector.types.byId, data.typeId)}`}</div>
                   </div>
                   <div className='target'>
                     <div>{`${findTarget(data.mainTarget)} ${findTarget(data.secondaryTarget)}`}</div>
                   </div>
-                </S.selectExercise>
+                </S.selectExerciseItem>
               ))}
               <button
                 type='button'
@@ -92,11 +88,11 @@ const ExerciseEditDeleteModal = ({
               >
                 <Arrow />
               </button>
-            </div>
+            </S.selectExerciseBox>
           ) : (
             <div className='noExercise'>대체할 운동이 없습니다.</div>
           )}
-        </S.selectExerciseBox>
+        </S.selectExerciseContainer>
       )}
       {!changeExercise ? (
         <S.exerciseEditDeleteBtnBox>

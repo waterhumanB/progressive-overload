@@ -49,9 +49,8 @@ const systemSlice = createSlice({
       state.routines.byId[action.payload.id].workout = action.payload.workout
     },
     changeExerciseInRoutine: (state: RoutinesState, action: PayloadAction<IChangeExerciseInRoutine>) => {
-      const workoutArr = state.routines.byId[action.payload.id].workout
-      const changeWorkout = workoutArr.splice(
-        workoutArr.indexOf(action.payload.exerciseIdToChange),
+      state.routines.byId[action.payload.id].workout.splice(
+        state.routines.byId[action.payload.id].workout.indexOf(action.payload.exerciseIdToChange),
         1,
         action.payload.exerciseIdSelected
       )
