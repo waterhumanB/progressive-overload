@@ -77,6 +77,10 @@ const RoutineReady = () => {
   useEffect(() => {
     setRoutineList(routineSelector.routines.byId[location.state.id].workout)
   }, [routineSelector])
+
+  const routineRunPageHandler = () => {
+    navigate('routine-run', { state: location.state.id })
+  }
   return (
     <S.routinePageConatiner>
       <S.routineTitleBox>
@@ -120,7 +124,7 @@ const RoutineReady = () => {
           ))}
         </S.exerciseBox>
       </S.routineDataBox>
-      <S.routineStartBtn>루틴 시작하기</S.routineStartBtn>
+      <S.routineStartBtn onClick={routineRunPageHandler}>루틴 시작하기</S.routineStartBtn>
       {toggleModal && (
         <Modal
           toggleModalHandler={toggleModalHandler}

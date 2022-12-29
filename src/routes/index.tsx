@@ -13,6 +13,7 @@ import CustomExercise from './Routine/CustomExercise'
 import RoutineAdd from './Routine/RoutineMake/RoutineAdd'
 import RoutineEdit from './Routine/RoutineMake/RoutineEdit'
 import RoutineReady from './Routine/RoutineReady'
+import RoutineRun from './Routine/RoutineRun'
 
 const App = () => {
   const userInfoSelector = useAppSelector(getUserInfoData)
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/routine' element={<Routine />} />
         <Route path='/routine/youtube' element={<Youtube />} />
         <Route path='/routine/routine-ready' element={<RoutineReady />} />
+        <Route path='/routine/routine-ready/routine-run' element={<RoutineRun />} />
         <Route path='/routine/routine-make' element={<RoutineMake />} />
         <Route path='/routine/routine-make/add' element={<RoutineAdd />} />
         <Route path='/routine/routine-make/edit' element={<RoutineEdit />} />
