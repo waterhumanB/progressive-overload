@@ -11,6 +11,7 @@ const colors = {
   FONT: '#7c8db5',
   BACK: '#e5eaf6',
   GREEN: '#9dd84b',
+  BRIGHT_GREEN: '#4de500',
 }
 
 export default colors

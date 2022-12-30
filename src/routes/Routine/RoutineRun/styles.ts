@@ -48,3 +48,49 @@ export const routineRunRecord = styled.div`
     text-align: center;
   }
 `
+
+export const routineRunRecordBtnBox = styled.div`
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  button {
+    width: 130px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+
+    span {
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+    }
+  }
+
+  .setMinus {
+    color: ${colors.GRAY};
+    fill: ${colors.GRAY};
+  }
+
+  .setPlus {
+    color: ${colors.BLUE};
+    fill: ${colors.BLUE};
+  }
+
+  .doubeCheck {
+    color: ${colors.BRIGHT_GREEN};
+    path {
+      fill: ${colors.BRIGHT_GREEN};
+    }
+  }
+
+  .nextSet {
+    color: ${colors.RED};
+    fill: ${colors.RED};
+  }
+`

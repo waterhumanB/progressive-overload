@@ -113,3 +113,15 @@ export interface IExerciseEditDeleteModalProps {
   nowExerciseIdData: string
   setnowExerciseIdData: Dispatch<SetStateAction<string>>
 }
+
+export interface IRoutineSetData {
+  order: number
+  kg: number
+  rab: number
+  finish: boolean
+}
+
+export interface IRoutineRecardSetProps {
+  setRecordSet: Dispatch<SetStateAction<IRoutineSetData[]>>
+  recordSet: IRoutineSetData[]
+}

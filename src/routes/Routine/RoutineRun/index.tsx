@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as S from './styles'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../../../hooks/useAppSelector'
@@ -7,19 +7,33 @@ import { getExerciseData } from '../../../states/exercise'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import { getTypesData } from '../../../states/types'
 import RoutineRecordSet from '../../../components/RoutineRecordSet'
+import { IRoutineSetData } from '../../../types/allProps.d'
+
+import { ReactComponent as Minus } from '../../../assets/imgs/minus.svg'
+import { ReactComponent as Plus } from '../../../assets/imgs/plus.svg'
+import { ReactComponent as DoubleCheck } from '../../../assets/imgs/double-check.svg'
+import { ReactComponent as ArrowRight } from '../../../assets/imgs/arrow-right.svg'
+
+const INIT_DATA = [
+  {
+    order: 1,
+    kg: 0,
+    rab: 0,
+    finish: false,
+  },
+]
 
 const RoutineRun = () => {
   const [runExerciseOrder, setRunExerciseOrder] = useState(0)
-
+  const [recordSet, setRecordSet] = useState<IRoutineSetData[]>(INIT_DATA)
   const location = useLocation()
   const routineSelector = useAppSelector(getRoutineData)
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
-  const nowExercise = routineSelector.routines.byId[location.state].workout
 
+  const nowExercise = routineSelector.routines.byId[location.state].workout
   const runExerciseData = exerciseSelector.exercises.byId[nowExercise[runExerciseOrder]]
-  console.log(nowExercise)
-  console.log(runExerciseData)
+
   return (
     <S.routineRunContainer>
       <S.routineRunTitleBox>
@@ -42,15 +56,23 @@ const RoutineRun = () => {
           <div>랩</div>
           <div>완료</div>
         </S.routineRunRecord>
-        <RoutineRecordSet />
-        <div>
-          <button type='button'>- 세트 삭제</button>
-          <button type='button'>+ 세트 추가</button>
-        </div>
-        <div>
-          <button type='button'>모든 세트 완료</button>
-          <button type='button'>다음 운동 시작</button>
-        </div>
+        <RoutineRecordSet recordSet={recordSet} setRecordSet={setRecordSet} />
+        <S.routineRunRecordBtnBox>
+          <button className='setMinus' type='button'>
+            <Minus /> <span>세트 삭제</span>
+          </button>
+          <button className='setPlus' type='button'>
+            <Plus /> <span>세트 추가</span>
+          </button>
+        </S.routineRunRecordBtnBox>
+        <S.routineRunRecordBtnBox>
+          <button className='doubeCheck' type='button'>
+            <DoubleCheck /> <span>모든 세트 완료</span>
+          </button>
+          <button className='nextSet' type='button'>
+            <ArrowRight /> <span>다음 운동 시작</span>
+          </button>
+        </S.routineRunRecordBtnBox>
       </div>
     </S.routineRunContainer>
   )
