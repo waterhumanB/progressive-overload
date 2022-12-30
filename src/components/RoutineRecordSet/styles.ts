@@ -3,6 +3,7 @@ import colors from '../../styles/constants/colors'
 
 export const routineRecordSetContainer = styled.div`
   width: 100%;
+  height: 380px;
 `
 
 export const routineRecordSetBox = styled.div`

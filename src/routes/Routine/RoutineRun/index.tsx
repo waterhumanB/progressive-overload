@@ -34,6 +34,29 @@ const RoutineRun = () => {
   const nowExercise = routineSelector.routines.byId[location.state].workout
   const runExerciseData = exerciseSelector.exercises.byId[nowExercise[runExerciseOrder]]
 
+  const setPlusHandler = () => {
+    const newSet = {
+      order: recordSet.length + 1,
+      kg: 0,
+      rab: 0,
+      finish: false,
+    }
+    if (recordSet.length < 10) {
+      setRecordSet([...recordSet, newSet])
+    }
+  }
+
+  const setMiusHandler = () => {
+    if (recordSet.length > 1) {
+      setRecordSet(recordSet.slice(0, recordSet.length - 1))
+    }
+  }
+
+  const allCheckHandler = () => {
+    const allChecked = recordSet.map((data) => (!data.finish ? { ...data, finish: true } : data))
+    setRecordSet(allChecked)
+  }
+
   return (
     <S.routineRunContainer>
       <S.routineRunTitleBox>
@@ -58,15 +81,15 @@ const RoutineRun = () => {
         </S.routineRunRecord>
         <RoutineRecordSet recordSet={recordSet} setRecordSet={setRecordSet} />
         <S.routineRunRecordBtnBox>
-          <button className='setMinus' type='button'>
+          <button onClick={setMiusHandler} className='setMinus' type='button'>
             <Minus /> <span>세트 삭제</span>
           </button>
-          <button className='setPlus' type='button'>
+          <button onClick={setPlusHandler} className='setPlus' type='button'>
             <Plus /> <span>세트 추가</span>
           </button>
         </S.routineRunRecordBtnBox>
         <S.routineRunRecordBtnBox>
-          <button className='doubeCheck' type='button'>
+          <button onClick={allCheckHandler} className='doubeCheck' type='button'>
             <DoubleCheck /> <span>모든 세트 완료</span>
           </button>
           <button className='nextSet' type='button'>
