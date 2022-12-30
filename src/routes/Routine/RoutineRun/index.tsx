@@ -6,9 +6,11 @@ import { getRoutineData } from '../../../states/routines'
 import { getExerciseData } from '../../../states/exercise'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import { getTypesData } from '../../../states/types'
+import RoutineRecordSet from '../../../components/RoutineRecordSet'
 
 const RoutineRun = () => {
   const [runExerciseOrder, setRunExerciseOrder] = useState(0)
+
   const location = useLocation()
   const routineSelector = useAppSelector(getRoutineData)
   const exerciseSelector = useAppSelector(getExerciseData)
@@ -40,12 +42,7 @@ const RoutineRun = () => {
           <div>랩</div>
           <div>완료</div>
         </S.routineRunRecord>
-        <div>
-          <div>1</div>
-          <div>100</div>
-          <div>12</div>
-          <div>체크</div>
-        </div>
+        <RoutineRecordSet />
         <div>
           <button type='button'>- 세트 삭제</button>
           <button type='button'>+ 세트 추가</button>

@@ -41,6 +41,10 @@ export const routineRunRecord = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
+  div {
+    width: 50px;
+    text-align: center;
+  }
 `
