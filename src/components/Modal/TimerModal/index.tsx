@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ITimerModalProps } from '../../../types/allProps.d'
+import mpThree from '../../../audios/boxingRingSound.mp3'
 import * as S from './style'
 
-const TimerModal = ({ toggleModalHandler, secondsData }: ITimerModalProps) => {
-  const [count, setCount] = useState(secondsData)
+const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
+  const [secondsCount, setSecondsCount] = useState(seconds)
+  const aduio = new Audio(mpThree)
 
   useEffect(() => {
     const counter = setInterval(() => {
-      if (count !== 0) {
-        setCount(count - 1)
+      if (secondsCount !== 0) {
+        setSecondsCount(secondsCount - 1)
       }
-      if (count === 0) {
-        toggleModalHandler()
+      if (secondsCount === 0) {
+        aduio.volume = 0.05
+        aduio.play()
       }
     }, 1000)
     return () => clearInterval(counter)
-  }, [count])
+  }, [secondsCount])
 
   const timerSkipHandler = () => {
     toggleModalHandler()
@@ -23,28 +26,26 @@ const TimerModal = ({ toggleModalHandler, secondsData }: ITimerModalProps) => {
 
   return (
     <S.timerModalCounter>
-      <div>휴식시간</div>
+      <S.timerTitle>휴식시간</S.timerTitle>
       <S.Chart>
-        <S.AniSvg viewBox='0 0 200 200'>
-          <circle cx='100' cy='100' r='90' fill='none' stroke='#ebebeb' strokeWidth='20' />
-          <S.AnimatedCircle
+        <S.aniSvg viewBox='0 0 200 200'>
+          <S.backCircle cx='100' cy='100' r='90' />
+          <S.animatedCircle
             cx='100'
             cy='100'
             r='90'
-            fill='none'
-            strokeWidth='20'
-            strokeDasharray={`${2 * Math.PI * 90 * (1 - count / secondsData)} ${
-              2 * Math.PI * 90 * (count / secondsData)
+            strokeDasharray={`${2 * Math.PI * 90 * (1 - secondsCount / seconds)} ${
+              2 * Math.PI * 90 * (secondsCount / seconds)
             }`}
             strokeDashoffset={2 * Math.PI * 90 * 0.25}
           />
-        </S.AniSvg>
-        <S.Percent>{count}</S.Percent>
+        </S.aniSvg>
+        <S.timerCount>{secondsCount}</S.timerCount>
       </S.Chart>
 
-      <button onClick={timerSkipHandler} type='button'>
-        SKIP
-      </button>
+      <S.skipBtn onClick={timerSkipHandler} type='button'>
+        {secondsCount === 0 ? '다음 운동 하기' : 'SKIP'}
+      </S.skipBtn>
     </S.timerModalCounter>
   )
 }

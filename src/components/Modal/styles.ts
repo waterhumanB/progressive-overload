@@ -14,4 +14,5 @@ export const modalCotainer = styled.div`
   left: 0;
   background-color: ${colors.GRAY};
   background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
 `

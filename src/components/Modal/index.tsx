@@ -23,7 +23,7 @@ const Modal = ({ toggleModalHandler, stateData, setStateData, modalName, stateTy
         />
       )}
       {modalName === 'timer' && (
-        <TimerModal toggleModalHandler={toggleModalHandler} secondsData={stateData} setSecondsData={setStateData} />
+        <TimerModal toggleModalHandler={toggleModalHandler} seconds={stateData} setSeconds={setStateData} />
       )}
     </S.modalCotainer>
   )

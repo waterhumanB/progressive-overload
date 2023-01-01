@@ -134,6 +134,6 @@ export interface IRoutineSecondsProps {
 
 export interface ITimerModalProps {
   toggleModalHandler: () => void
-  secondsData: number
-  setSecondsData: Dispatch<SetStateAction<number>>
+  seconds: number
+  setSeconds: Dispatch<SetStateAction<number>>
 }

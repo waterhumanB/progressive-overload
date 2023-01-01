@@ -3,8 +3,18 @@ import colors from '../../../styles/constants/colors'
 
 export const timerModalCounter = styled.div`
   width: 300px;
-  height: 300px;
+  height: 350px;
+  padding: 15px;
   background: ${colors.BACK};
+`
+
+export const timerTitle = styled.div`
+  width: 100%;
+  margin: 5px auto;
+  font-size: 24px;
+  color: ${colors.FOCUS};
+  font-weight: 600;
+  text-align: center;
 `
 
 export const Chart = styled.div`
@@ -15,16 +25,25 @@ export const Chart = styled.div`
   padding: 10px;
 `
 
-export const AniSvg = styled.svg`
+export const aniSvg = styled.svg`
   position: relative;
+
+  circle {
+    fill: none;
+    stroke-width: 20;
+  }
 `
 
-export const AnimatedCircle = styled.circle`
+export const backCircle = styled.circle`
+  stroke: ${colors.WHITE};
+`
+
+export const animatedCircle = styled.circle`
   transition: 1.1s linear;
   stroke: ${colors.BLUE};
 `
 
-export const Percent = styled.span`
+export const timerCount = styled.span`
   position: absolute;
   top: 30%;
   left: 50%;
@@ -32,4 +51,18 @@ export const Percent = styled.span`
   font-size: 80px;
   color: ${colors.BLUE};
   font-weight: 600;
+`
+
+export const skipBtn = styled.button`
+  width: auto;
+  color: ${colors.FONT};
+  margin: 10px auto auto auto;
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  transition: 0.2s;
+
+  :hover {
+    color: ${colors.FOCUS};
+  }
 `
