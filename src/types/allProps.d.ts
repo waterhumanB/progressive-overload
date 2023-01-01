@@ -122,6 +122,18 @@ export interface IRoutineSetData {
 }
 
 export interface IRoutineRecardSetProps {
+  toggleModalHandler: () => void
   setRecordSet: Dispatch<SetStateAction<IRoutineSetData[]>>
   recordSet: IRoutineSetData[]
+}
+
+export interface IRoutineSecondsProps {
+  setSeconds: Dispatch<SetStateAction<number>>
+  seconds: number
+}
+
+export interface ITimerModalProps {
+  toggleModalHandler: () => void
+  secondsData: number
+  setSecondsData: Dispatch<SetStateAction<number>>
 }

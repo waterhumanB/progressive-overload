@@ -15,6 +15,7 @@ import { ReactComponent as DoubleCheck } from '../../../assets/imgs/double-check
 import { ReactComponent as ArrowRight } from '../../../assets/imgs/arrow-right.svg'
 import { ReactComponent as Flag } from '../../../assets/imgs/flag.svg'
 import RoutineTimer from '../../../components/RoutineTimer'
+import Modal from '../../../components/Modal'
 
 const INIT_DATA = [
   {
@@ -27,6 +28,8 @@ const INIT_DATA = [
 
 const RoutineRun = () => {
   const [runExerciseOrder, setRunExerciseOrder] = useState(0)
+  const [seconds, setSeconds] = useState(0)
+  const [toggleModal, setToggleModal] = useState(false)
   const [recordSet, setRecordSet] = useState<IRoutineSetData[]>(INIT_DATA)
   const location = useLocation()
   const routineSelector = useAppSelector(getRoutineData)
@@ -69,6 +72,10 @@ const RoutineRun = () => {
     }
   }
 
+  const toggleModalHandler = () => {
+    setToggleModal(!toggleModal)
+  }
+
   return (
     <S.routineRunContainer>
       <S.routineRunBox>
@@ -91,7 +98,7 @@ const RoutineRun = () => {
           <div>랩</div>
           <div>완료</div>
         </S.routineRunRecord>
-        <RoutineRecordSet recordSet={recordSet} setRecordSet={setRecordSet} />
+        <RoutineRecordSet toggleModalHandler={toggleModalHandler} recordSet={recordSet} setRecordSet={setRecordSet} />
         <S.routineRunRecordBtnBox>
           <button onClick={setMiusHandler} className='setMinus' type='button'>
             <Minus /> <span>세트 삭제</span>
@@ -125,7 +132,16 @@ const RoutineRun = () => {
           )}
         </S.routineRunRecordBtnBox>
       </S.routineRunBox>
-      <RoutineTimer />
+      <RoutineTimer seconds={seconds} setSeconds={setSeconds} />
+      {toggleModal && (
+        <Modal
+          toggleModalHandler={toggleModalHandler}
+          modalName='timer'
+          stateTypeName=''
+          stateData={seconds}
+          setStateData={setSeconds}
+        />
+      )}
     </S.routineRunContainer>
   )
 }

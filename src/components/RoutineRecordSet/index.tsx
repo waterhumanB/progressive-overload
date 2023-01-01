@@ -3,7 +3,7 @@ import { ReactComponent as Check } from '../../assets/imgs/check.svg'
 import { IRoutineRecardSetProps } from '../../types/allProps.d'
 import * as S from './styles'
 
-const RoutineRecordSet = ({ recordSet, setRecordSet }: IRoutineRecardSetProps) => {
+const RoutineRecordSet = ({ recordSet, setRecordSet, toggleModalHandler }: IRoutineRecardSetProps) => {
   const recordKgHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.currentTarget
     if (Number(value) >= 0 && Number(value) <= 300) {
@@ -20,6 +20,9 @@ const RoutineRecordSet = ({ recordSet, setRecordSet }: IRoutineRecardSetProps) =
   const recondFinishHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = e.currentTarget
     setRecordSet(recordSet.map((data) => (data.order === Number(id) ? { ...data, finish: checked } : data)))
+    if (checked) {
+      toggleModalHandler()
+    }
   }
 
   return (

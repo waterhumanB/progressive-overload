@@ -4,7 +4,7 @@ import ExerciseEditDeleteModal from './ExerciseEditDeleteModal'
 import * as S from './styles'
 import TimerModal from './TimerModal'
 
-const Modal = ({ toggleModalHandler, stateData, modalName, stateTypeName, setStateData }: IModalProps) => {
+const Modal = ({ toggleModalHandler, stateData, setStateData, modalName, stateTypeName }: IModalProps) => {
   return (
     <S.modalCotainer>
       {modalName === 'customExercise' && (
@@ -22,7 +22,9 @@ const Modal = ({ toggleModalHandler, stateData, modalName, stateTypeName, setSta
           setnowExerciseIdData={setStateData}
         />
       )}
-      {modalName === 'timer' && <TimerModal />}
+      {modalName === 'timer' && (
+        <TimerModal toggleModalHandler={toggleModalHandler} secondsData={stateData} setSecondsData={setStateData} />
+      )}
     </S.modalCotainer>
   )
 }

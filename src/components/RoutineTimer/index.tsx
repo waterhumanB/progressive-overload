@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import { IRoutineSecondsProps } from '../../types/allProps.d'
 import * as S from './styles'
 
-const RoutineTimer = () => {
-  const [seconds, setSeconds] = useState(0)
-
+const RoutineTimer = ({ seconds, setSeconds }: IRoutineSecondsProps) => {
   const secondsMiusHanlder = () => {
     if (seconds >= 10) {
       setSeconds(seconds - 10)
@@ -11,7 +9,7 @@ const RoutineTimer = () => {
   }
 
   const secondsPlusHandler = () => {
-    if (seconds < 590) {
+    if (seconds < 600) {
       setSeconds(seconds + 10)
     }
   }
