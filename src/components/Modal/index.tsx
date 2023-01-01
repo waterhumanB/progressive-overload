@@ -2,6 +2,7 @@ import { IModalProps } from '../../types/allProps.d'
 import CustomSelectorModal from './CustomSelectorModal'
 import ExerciseEditDeleteModal from './ExerciseEditDeleteModal'
 import * as S from './styles'
+import TimerModal from './TimerModal'
 
 const Modal = ({ toggleModalHandler, stateData, modalName, stateTypeName, setStateData }: IModalProps) => {
   return (
@@ -21,6 +22,7 @@ const Modal = ({ toggleModalHandler, stateData, modalName, stateTypeName, setSta
           setnowExerciseIdData={setStateData}
         />
       )}
+      {modalName === 'timer' && <TimerModal />}
     </S.modalCotainer>
   )
 }

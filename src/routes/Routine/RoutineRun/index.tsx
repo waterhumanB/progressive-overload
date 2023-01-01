@@ -13,6 +13,8 @@ import { ReactComponent as Minus } from '../../../assets/imgs/minus.svg'
 import { ReactComponent as Plus } from '../../../assets/imgs/plus.svg'
 import { ReactComponent as DoubleCheck } from '../../../assets/imgs/double-check.svg'
 import { ReactComponent as ArrowRight } from '../../../assets/imgs/arrow-right.svg'
+import { ReactComponent as Flag } from '../../../assets/imgs/flag.svg'
+import RoutineTimer from '../../../components/RoutineTimer'
 
 const INIT_DATA = [
   {
@@ -33,6 +35,9 @@ const RoutineRun = () => {
 
   const nowExercise = routineSelector.routines.byId[location.state].workout
   const runExerciseData = exerciseSelector.exercises.byId[nowExercise[runExerciseOrder]]
+  const allChecked = recordSet.filter((data) => data.finish === false)
+
+  const exerciseremainder = nowExercise.length - runExerciseOrder - 1
 
   const setPlusHandler = () => {
     const newSet = {
@@ -52,26 +57,33 @@ const RoutineRun = () => {
     }
   }
 
-  const allCheckHandler = () => {
-    const allChecked = recordSet.map((data) => (!data.finish ? { ...data, finish: true } : data))
-    setRecordSet(allChecked)
+  const setAllCheckHandler = () => {
+    const allCheck = recordSet.map((data) => (!data.finish ? { ...data, finish: true } : data))
+    setRecordSet(allCheck)
+  }
+
+  const nextExerciseStartHanlder = () => {
+    if (nowExercise.length > runExerciseOrder + 1) {
+      setRunExerciseOrder(runExerciseOrder + 1)
+      setRecordSet(INIT_DATA)
+    }
   }
 
   return (
     <S.routineRunContainer>
-      <S.routineRunTitleBox>
-        <div className='category'>{`${findCategory(runExerciseData.categoryId)} ${findType(
-          typeSelector.types.byId,
-          runExerciseData.typeId
-        )}`}</div>
-        <div className='target'>{`${findTarget(runExerciseData.mainTarget)} ${findTarget(
-          runExerciseData.secondaryTarget
-        )}`}</div>
-      </S.routineRunTitleBox>
-      <div>
+      <S.routineRunBox>
+        <S.routineRunTitleBox>
+          <div className='category'>{`${findCategory(runExerciseData.categoryId)} ${findType(
+            typeSelector.types.byId,
+            runExerciseData.typeId
+          )}`}</div>
+          <div className='target'>{`${findTarget(runExerciseData.mainTarget)} ${findTarget(
+            runExerciseData.secondaryTarget
+          )}`}</div>
+        </S.routineRunTitleBox>
         <S.routineRunWorkout>
           <div>기록</div>
-          <div>남은 운동 : {nowExercise.length - runExerciseOrder - 1}</div>
+          <div>남은 운동 : {exerciseremainder}</div>
         </S.routineRunWorkout>
         <S.routineRunRecord>
           <div>세트</div>
@@ -89,14 +101,31 @@ const RoutineRun = () => {
           </button>
         </S.routineRunRecordBtnBox>
         <S.routineRunRecordBtnBox>
-          <button onClick={allCheckHandler} className='doubeCheck' type='button'>
+          <button onClick={setAllCheckHandler} className='doubeCheck' type='button'>
             <DoubleCheck /> <span>모든 세트 완료</span>
           </button>
-          <button className='nextSet' type='button'>
-            <ArrowRight /> <span>다음 운동 시작</span>
-          </button>
+          {exerciseremainder === 0 ? (
+            <button
+              onClick={nextExerciseStartHanlder}
+              className='nextSet'
+              disabled={allChecked.length > 0}
+              type='button'
+            >
+              <Flag /> <span>운동 완료 하기</span>
+            </button>
+          ) : (
+            <button
+              onClick={nextExerciseStartHanlder}
+              className='nextSet'
+              disabled={allChecked.length > 0}
+              type='button'
+            >
+              <ArrowRight /> <span>다음 운동 시작</span>
+            </button>
+          )}
         </S.routineRunRecordBtnBox>
-      </div>
+      </S.routineRunBox>
+      <RoutineTimer />
     </S.routineRunContainer>
   )
 }

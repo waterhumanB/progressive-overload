@@ -3,6 +3,11 @@ import colors from '../../../styles/constants/colors'
 
 export const routineRunContainer = styled.section`
   width: 100%;
+  height: 100%;
+  position: relative;
+`
+export const routineRunBox = styled.div`
+  width: 100%;
   padding: 20px;
 `
 
@@ -64,6 +69,13 @@ export const routineRunRecordBtnBox = styled.div`
     text-align: center;
     align-items: center;
     display: flex;
+    transition: 0.2s;
+
+    :disabled {
+      color: ${colors.FONT};
+      fill: ${colors.FONT};
+      transition: 0.2s;
+    }
 
     span {
       font-size: 16px;
