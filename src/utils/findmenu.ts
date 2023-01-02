@@ -1,5 +1,5 @@
 import { initialData } from '../data/initialData'
-import { ITypesItem } from '../types/type.d'
+import { ITypesItem } from '../types/types.d'
 
 export const findCategory = (value: string) => {
   const result = Object.entries(initialData.categories.byId).filter((data) => data[0] === value)[0][1].name

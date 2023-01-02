@@ -5,17 +5,11 @@ import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { getRoutineData, setRoutine } from '../../../../states/routines'
 import { RoutinePage } from '../../../../components/Routine'
-
-interface RoutineLocationState {
-  id: string
-  title: string
-  workout: string[]
-  recent: string[]
-}
+import { IRoutineItem } from '../../../../types/routines.d'
 
 const RoutineEdit = () => {
   const [routineName, setRoutineName] = useState('')
-  const location = useLocation() as { state: RoutineLocationState }
+  const location = useLocation() as { state: IRoutineItem }
   const dispatch = useAppDispatch()
   const routineSelector = useAppSelector(getRoutineData)
   const navigate = useNavigate()

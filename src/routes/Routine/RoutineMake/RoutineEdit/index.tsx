@@ -4,17 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { editRoutine } from '../../../../states/routines'
 import { RoutinePage } from '../../../../components/Routine'
-
-interface RoutineLocationState {
-  id: string
-  title: string
-  workout: string[]
-  recent: string[]
-}
+import { IRoutineItem } from '../../../../types/routines.d'
 
 const RoutineEdit = () => {
   const [routineName, setRoutineName] = useState('')
-  const location = useLocation() as { state: RoutineLocationState }
+  const location = useLocation() as { state: IRoutineItem }
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -48,7 +42,6 @@ const RoutineEdit = () => {
   useEffect(() => {
     setRoutineName(location.state.title)
   }, [])
-
   return (
     <S.routineEditPageConatiner>
       <RoutinePage

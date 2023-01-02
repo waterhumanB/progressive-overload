@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import { initialData } from '../data/initialData'
-import { IDeleteTypeId, IEditTypeItem, ITypes, ITypesItem } from '../types/type.d'
+import { IDeleteTypeId, IEditTypeItem, ITypes, ITypesItem } from '../types/types.d'
 
 const INIT_TYPES = initialData.types
 

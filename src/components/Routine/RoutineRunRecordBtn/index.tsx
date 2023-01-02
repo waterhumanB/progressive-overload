@@ -6,6 +6,9 @@ import { ReactComponent as Plus } from '../../../assets/imgs/plus.svg'
 import { ReactComponent as DoubleCheck } from '../../../assets/imgs/double-check.svg'
 import { ReactComponent as ArrowRight } from '../../../assets/imgs/arrow-right.svg'
 import { ReactComponent as Flag } from '../../../assets/imgs/flag.svg'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppSelector } from '../../../hooks/useAppSelector'
+import { useEffect, useState } from 'react'
 
 const INIT_DATA = [
   {
@@ -28,6 +31,11 @@ const INIT_DATA = [
   },
 ]
 
+const INIT_TIME = {
+  startAt: new Date(),
+  endAt: new Date(),
+}
+
 const RoutineRunRecordBtn = ({
   recordSet,
   setRecordSet,
@@ -35,7 +43,11 @@ const RoutineRunRecordBtn = ({
   runExerciseOrder,
   setRunExerciseOrder,
   exerciseremainder,
+  currentExerciseData,
+  currentRoutine,
 }: IRoutineRunRecordBtnProps) => {
+  const [currentTime, setCurrentTime] = useState(INIT_TIME)
+  const dispatch = useAppDispatch()
   const allChecked = recordSet.filter((data) => data.finish === false)
   const setPlusHandler = () => {
     const newSet = {
@@ -61,12 +73,26 @@ const RoutineRunRecordBtn = ({
   }
 
   const nextExerciseStartHanlder = () => {
+    const recordData = {
+      id: 'record',
+      exerciseId: currentExerciseData.id,
+      startAt: '',
+      endAt: '',
+      set: recordSet,
+    }
     if (nowExercise.length > runExerciseOrder + 1) {
       setRunExerciseOrder(runExerciseOrder + 1)
       setRecordSet(INIT_DATA)
     }
   }
-
+  useEffect(() => {
+    setCurrentTime({ ...currentTime, startAt: new Date() })
+    console.log('첫', currentTime)
+  }, [runExerciseOrder])
+  const timeHandler = () => {
+    setCurrentTime({ ...currentTime, endAt: new Date() })
+    console.log('후', currentTime)
+  }
   return (
     <div>
       <S.routineRunRecordBtnBox>
@@ -91,6 +117,9 @@ const RoutineRunRecordBtn = ({
           </button>
         )}
       </S.routineRunRecordBtnBox>
+      <button onClick={timeHandler} type='button'>
+        시간!
+      </button>
     </div>
   )
 }

@@ -8,18 +8,12 @@ import DropDown from '../../../components/DropDown'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { deleteCustomExercise } from '../../../states/exercises'
 import { deleteType } from '../../../states/types'
+import { IRoutineItem } from '../../../types/routines.d'
 
 interface InitData {
   more: string
   target: string
   category: string
-}
-
-interface RoutineLocationState {
-  id: string
-  title: string
-  workout: string[]
-  recent: string[]
 }
 
 interface CustomExerciseEditIds {
@@ -41,7 +35,7 @@ const RoutineMake = () => {
   const [searchExercise, setSearchExercise] = useState<string>('')
   const [dropDown, setDropDown] = useState(false)
 
-  const location = useLocation() as { state: RoutineLocationState }
+  const location = useLocation() as { state: IRoutineItem }
   const dispatch = useAppDispatch()
   const cardRef = useRef<HTMLDivElement>(null)
   const toggleDropDown = () => {

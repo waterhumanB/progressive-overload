@@ -1,15 +1,23 @@
 export interface IRoutines {
-  byId: IRoutineItem
+  byId: IRoutineData
   allIds: string[]
 }
 
+export interface IRoutineData {
+  [routine: string]: IRoutineItem
+}
+
 export interface IRoutineItem {
-  [routine: string]: {
-    id: string
-    title: sting
-    workout: string[]
-    recent: string[]
-  }
+  id: string
+  title: sting
+  workout: string[]
+  recent: IRecentItem[]
+}
+
+export interface IRecentItem {
+  startAt: string
+  endAt: string
+  records: string[]
 }
 
 export interface IDeleteRoutine {
@@ -19,7 +27,7 @@ export interface IEditRoutine {
   id: string
   title: sting
   workout: string[]
-  recent: string[]
+  recent: IRecentItem[]
 }
 
 export interface IDeleteExerciseInRoutine {
@@ -36,4 +44,15 @@ export interface IChangeExerciseInRoutine {
   id: string
   exerciseIdToChange: string
   exerciseIdSelected: string
+}
+
+export interface ISetStartAtTimeInRoutine {
+  id: string
+  startAt: string
+}
+
+export interface ISetEndAtTimeAndRecordsInRoutine {
+  id: string
+  endAt: string
+  records: string[]
 }

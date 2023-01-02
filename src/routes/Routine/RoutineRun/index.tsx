@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as S from './styles'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { getRoutineData } from '../../../states/routines'
+import { getRoutineData, setStartAtTimeInRoutine } from '../../../states/routines'
 import { getExerciseData } from '../../../states/exercises'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import { getTypesData } from '../../../states/types'
@@ -10,6 +10,7 @@ import { RoutineTimer, RoutineRecordSet, RoutineRunRecordBtn } from '../../../co
 import { IRoutineSetData } from '../../../types/allProps.d'
 
 import Modal from '../../../components/Modal'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
 
 const INIT_DATA = [
   {
@@ -37,13 +38,14 @@ const RoutineRun = () => {
   const [seconds, setSeconds] = useState(30)
   const [toggleModal, setToggleModal] = useState(false)
   const [recordSet, setRecordSet] = useState<IRoutineSetData[]>(INIT_DATA)
+  const dispatch = useAppDispatch()
   const location = useLocation()
   const routineSelector = useAppSelector(getRoutineData)
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
 
   const nowExercise = routineSelector.routines.byId[location.state].workout
-  const runExerciseData = exerciseSelector.exercises.byId[nowExercise[runExerciseOrder]]
+  const currentExerciseData = exerciseSelector.exercises.byId[nowExercise[runExerciseOrder]]
 
   const exerciseremainder = nowExercise.length - runExerciseOrder - 1
 
@@ -51,16 +53,23 @@ const RoutineRun = () => {
     setToggleModal(!toggleModal)
   }
 
+  // useEffect(() => {
+  //   const routineStartData = {
+  //     id: location.state,
+  //     startAt: new Date().toString().split(' G')[0],
+  //   }
+  //   dispatch(setStartAtTimeInRoutine(routineStartData))
+  // }, [])
   return (
     <S.routineRunContainer>
       <S.routineRunBox>
         <S.routineRunTitleBox>
-          <div className='category'>{`${findCategory(runExerciseData.categoryId)} ${findType(
+          <div className='category'>{`${findCategory(currentExerciseData.categoryId)} ${findType(
             typeSelector.types.byId,
-            runExerciseData.typeId
+            currentExerciseData.typeId
           )}`}</div>
-          <div className='target'>{`${findTarget(runExerciseData.mainTarget)} ${findTarget(
-            runExerciseData.secondaryTarget
+          <div className='target'>{`${findTarget(currentExerciseData.mainTarget)} ${findTarget(
+            currentExerciseData.secondaryTarget
           )}`}</div>
         </S.routineRunTitleBox>
         <S.routineRunWorkout>
@@ -80,6 +89,8 @@ const RoutineRun = () => {
           setRecordSet={setRecordSet}
         />
         <RoutineRunRecordBtn
+          currentRoutine={location.state}
+          currentExerciseData={currentExerciseData}
           recordSet={recordSet}
           setRecordSet={setRecordSet}
           nowExercise={nowExercise}
@@ -87,23 +98,23 @@ const RoutineRun = () => {
           setRunExerciseOrder={setRunExerciseOrder}
           exerciseremainder={exerciseremainder}
         />
+        <div>
+          <div>이전 기록</div>
+          <div>이전 기록들</div>
+        </div>
+        <div>
+          <div>유튜브 자세 영상</div>
+          <div>유튜브 영상</div>
+          <div>유튜브 자세 영상</div>
+          <div>유튜브 영상</div>
+          <div>유튜브 자세 영상</div>
+          <div>유튜브 영상</div>
+          <div>유튜브 자세 영상</div>
+          <div>유튜브 영상</div>
+          <div>유튜브 자세 영상</div>
+          <div>유튜브 영상</div>
+        </div>
       </S.routineRunBox>
-      <div>
-        <div>이전 기록</div>
-        <div>이전 기록들</div>
-      </div>
-      <div>
-        <div>유튜브 자세 영상</div>
-        <div>유튜브 영상</div>
-        <div>유튜브 자세 영상</div>
-        <div>유튜브 영상</div>
-        <div>유튜브 자세 영상</div>
-        <div>유튜브 영상</div>
-        <div>유튜브 자세 영상</div>
-        <div>유튜브 영상</div>
-        <div>유튜브 자세 영상</div>
-        <div>유튜브 영상</div>
-      </div>
       <RoutineTimer seconds={seconds} setSeconds={setSeconds} />
       {toggleModal && (
         <Modal

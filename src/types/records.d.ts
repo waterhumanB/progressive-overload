@@ -1,16 +1,18 @@
 export interface IRecords {
-  byId: IRecordItem
+  byId: IRecordData
   allIds: string[]
 }
 
+export interface IRecordData {
+  [records: string]: IRecordItem
+}
+
 export interface IRecordItem {
-  [records: string]: {
-    id: string
-    exerciseId: sting
-    startAt: string
-    endAt: string
-    set: IRecordSet[]
-  }
+  id: string
+  exerciseId: sting
+  startAt: string
+  endAt: string
+  set: IRecordSet[]
 }
 
 export interface IRecordSet {

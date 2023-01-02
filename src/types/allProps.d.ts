@@ -1,4 +1,5 @@
 import { ForwardedRef } from 'react'
+import { IRoutineItem } from './routines.d'
 
 export interface IUserInputProps {
   label: string
@@ -97,7 +98,7 @@ export interface IRoutinePageProps {
   routineName: string
   routineNameHandler: (e: ChangeEvent<HTMLInputElement>) => void
   placeholder: string
-  locationState: { id: string; title: string; workout: string[]; recent: string[] }
+  locationState: IRoutineItem
   bottomTwoBtn: boolean
   editExerciseHanlder?: () => void
   editRoutineHandler?: () => void
@@ -146,4 +147,8 @@ export interface IRoutineRunRecordBtnProps {
   runExerciseOrder: number
   setRunExerciseOrder: Dispatch<React.SetStateAction<number>>
   exerciseremainder: number
+  currentExerciseData: {
+    id: string
+  }
+  currentRoutine: string
 }

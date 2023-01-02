@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
-import { IRecordItem, IRecords } from '../types/record.d'
+import { IRecordItem, IRecords } from '../types/records.d'
 
 const INIT_RECORDS = {
   byId: {},
@@ -16,7 +16,7 @@ const INITIAL_STATE: RecordsState = {
 }
 
 const systemSlice = createSlice({
-  name: 'types',
+  name: 'records',
   initialState: INITIAL_STATE,
   reducers: {
     setRecord: (state: RecordsState, action: PayloadAction<IRecordItem>) => {

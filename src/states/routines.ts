@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import {
@@ -9,7 +9,10 @@ import {
   IDeleteExerciseInRoutine,
   IChangeWorkoutInRoutine,
   IChangeExerciseInRoutine,
-} from '../types/routine.d'
+  ISetStartAtTimeInRoutine,
+  ISetEndAtTimeAndRecordsInRoutine,
+  IRoutineData,
+} from '../types/routines.d'
 
 const INIT_ROUTINES = {
   byId: {},
@@ -28,7 +31,7 @@ const systemSlice = createSlice({
   name: 'routines',
   initialState: INITIAL_STATE,
   reducers: {
-    setRoutine: (state: RoutinesState, action: PayloadAction<IRoutineItem>) => {
+    setRoutine: (state: RoutinesState, action: PayloadAction<IRoutineData>) => {
       state.routines.byId = Object.assign(state.routines.byId, action.payload)
       state.routines.allIds.push(Object.keys(action.payload)[0])
     },
@@ -55,6 +58,20 @@ const systemSlice = createSlice({
         action.payload.exerciseIdSelected
       )
     },
+    setStartAtTimeInRoutine: (state: RoutinesState, action: PayloadAction<ISetStartAtTimeInRoutine>) => {
+      // const recent = {
+      //   startAt: action.payload.startAt,
+      //   endtAt: '',
+      //   recordIds: [],
+      // }
+      // state.routines.byId[action.payload.id].recent.push(recent)
+    },
+    setEndAtTimeAndRecordsInRoutine: (
+      state: RoutinesState,
+      action: PayloadAction<ISetEndAtTimeAndRecordsInRoutine>
+    ) => {
+      console.log(action)
+    },
   },
 })
 
@@ -65,6 +82,8 @@ export const {
   deleteExerciseInRoutine,
   changeWorkoutInRoutine,
   changeExerciseInRoutine,
+  setStartAtTimeInRoutine,
+  setEndAtTimeAndRecordsInRoutine,
 } = systemSlice.actions
 
 export default systemSlice.reducer

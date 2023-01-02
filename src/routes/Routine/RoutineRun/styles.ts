@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
 export const routineRunContainer = styled.section`
@@ -6,6 +6,7 @@ export const routineRunContainer = styled.section`
   height: 100%;
   padding-bottom: 60px;
   overflow: scroll;
+  background: ${colors.WHITE};
 `
 export const routineRunBox = styled.div`
   width: 100%;
