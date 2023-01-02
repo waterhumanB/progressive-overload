@@ -20,7 +20,15 @@ const systemSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     setRecord: (state: RecordsState, action: PayloadAction<IRecordItem>) => {
-      console.log(action)
+      const recordId = `record${state.records.allIds.length + 1}`
+      const recordData = {
+        [recordId]: {
+          ...action.payload,
+          id: recordId,
+        },
+      }
+      state.records.byId = Object.assign(state.records.byId, recordData)
+      state.records.allIds.push(recordId)
     },
   },
 })

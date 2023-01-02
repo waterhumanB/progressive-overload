@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import * as S from './styles'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { getRoutineData, setStartAtTimeInRoutine } from '../../../states/routines'
+import { getRoutineData } from '../../../states/routines'
 import { getExerciseData } from '../../../states/exercises'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import { getTypesData } from '../../../states/types'
@@ -10,7 +10,6 @@ import { RoutineTimer, RoutineRecordSet, RoutineRunRecordBtn } from '../../../co
 import { IRoutineSetData } from '../../../types/allProps.d'
 
 import Modal from '../../../components/Modal'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
 
 const INIT_DATA = [
   {
@@ -38,7 +37,6 @@ const RoutineRun = () => {
   const [seconds, setSeconds] = useState(30)
   const [toggleModal, setToggleModal] = useState(false)
   const [recordSet, setRecordSet] = useState<IRoutineSetData[]>(INIT_DATA)
-  const dispatch = useAppDispatch()
   const location = useLocation()
   const routineSelector = useAppSelector(getRoutineData)
   const exerciseSelector = useAppSelector(getExerciseData)
@@ -53,13 +51,6 @@ const RoutineRun = () => {
     setToggleModal(!toggleModal)
   }
 
-  // useEffect(() => {
-  //   const routineStartData = {
-  //     id: location.state,
-  //     startAt: new Date().toString().split(' G')[0],
-  //   }
-  //   dispatch(setStartAtTimeInRoutine(routineStartData))
-  // }, [])
   return (
     <S.routineRunContainer>
       <S.routineRunBox>

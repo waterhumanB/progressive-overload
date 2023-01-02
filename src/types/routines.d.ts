@@ -17,7 +17,7 @@ export interface IRoutineItem {
 export interface IRecentItem {
   startAt: string
   endAt: string
-  records: string[]
+  recordIds: string[]
 }
 
 export interface IDeleteRoutine {

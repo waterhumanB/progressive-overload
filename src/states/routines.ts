@@ -3,7 +3,6 @@ import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '.'
 import {
   IRoutines,
-  IRoutineItem,
   IDeleteRoutine,
   IEditRoutine,
   IDeleteExerciseInRoutine,
@@ -12,6 +11,7 @@ import {
   ISetStartAtTimeInRoutine,
   ISetEndAtTimeAndRecordsInRoutine,
   IRoutineData,
+  IRecentItem,
 } from '../types/routines.d'
 
 const INIT_ROUTINES = {
@@ -59,12 +59,12 @@ const systemSlice = createSlice({
       )
     },
     setStartAtTimeInRoutine: (state: RoutinesState, action: PayloadAction<ISetStartAtTimeInRoutine>) => {
-      // const recent = {
-      //   startAt: action.payload.startAt,
-      //   endtAt: '',
-      //   recordIds: [],
-      // }
-      // state.routines.byId[action.payload.id].recent.push(recent)
+      const recent: IRecentItem = {
+        startAt: action.payload.startAt,
+        endAt: '',
+        recordIds: [],
+      }
+      state.routines.byId[action.payload.id].recent.push(recent)
     },
     setEndAtTimeAndRecordsInRoutine: (
       state: RoutinesState,

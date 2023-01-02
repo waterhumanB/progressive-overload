@@ -7,8 +7,8 @@ import { ReactComponent as DoubleCheck } from '../../../assets/imgs/double-check
 import { ReactComponent as ArrowRight } from '../../../assets/imgs/arrow-right.svg'
 import { ReactComponent as Flag } from '../../../assets/imgs/flag.svg'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../hooks/useAppSelector'
 import { useEffect, useState } from 'react'
+import { setRecord } from '../../../states/records'
 
 const INIT_DATA = [
   {
@@ -30,12 +30,7 @@ const INIT_DATA = [
     finish: false,
   },
 ]
-
-const INIT_TIME = {
-  startAt: new Date(),
-  endAt: new Date(),
-}
-
+const startAt = new Date().toString().split(' G')[0]
 const RoutineRunRecordBtn = ({
   recordSet,
   setRecordSet,
@@ -46,9 +41,10 @@ const RoutineRunRecordBtn = ({
   currentExerciseData,
   currentRoutine,
 }: IRoutineRunRecordBtnProps) => {
-  const [currentTime, setCurrentTime] = useState(INIT_TIME)
-  const dispatch = useAppDispatch()
+  const [currentTime, setCurrentTime] = useState(startAt)
   const allChecked = recordSet.filter((data) => data.finish === false)
+  const dispatch = useAppDispatch()
+
   const setPlusHandler = () => {
     const newSet = {
       order: recordSet.length + 1,
@@ -76,23 +72,20 @@ const RoutineRunRecordBtn = ({
     const recordData = {
       id: 'record',
       exerciseId: currentExerciseData.id,
-      startAt: '',
-      endAt: '',
+      startAt: currentTime,
+      endAt: new Date().toString().split(' G')[0],
       set: recordSet,
     }
     if (nowExercise.length > runExerciseOrder + 1) {
       setRunExerciseOrder(runExerciseOrder + 1)
       setRecordSet(INIT_DATA)
     }
+    dispatch(setRecord(recordData))
   }
   useEffect(() => {
-    setCurrentTime({ ...currentTime, startAt: new Date() })
-    console.log('첫', currentTime)
+    setCurrentTime(new Date().toString().split(' G')[0])
   }, [runExerciseOrder])
-  const timeHandler = () => {
-    setCurrentTime({ ...currentTime, endAt: new Date() })
-    console.log('후', currentTime)
-  }
+
   return (
     <div>
       <S.routineRunRecordBtnBox>
@@ -117,9 +110,6 @@ const RoutineRunRecordBtn = ({
           </button>
         )}
       </S.routineRunRecordBtnBox>
-      <button onClick={timeHandler} type='button'>
-        시간!
-      </button>
     </div>
   )
 }

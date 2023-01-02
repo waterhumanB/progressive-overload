@@ -6,7 +6,7 @@ import Modal from '../../../components/Modal'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData } from '../../../states/exercises'
-import { changeWorkoutInRoutine, getRoutineData } from '../../../states/routines'
+import { changeWorkoutInRoutine, getRoutineData, setStartAtTimeInRoutine } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import * as S from './styles'
@@ -80,6 +80,11 @@ const RoutineReady = () => {
 
   const routineRunPageHandler = () => {
     navigate('routine-run', { state: location.state.id })
+    const routineStartData = {
+      id: location.state.id,
+      startAt: new Date().toString().split(' G')[0],
+    }
+    dispatch(setStartAtTimeInRoutine(routineStartData))
   }
   return (
     <S.routinePageConatiner>
