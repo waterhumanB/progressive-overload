@@ -28,7 +28,7 @@ const INIT_DATA = [
 
 const RoutineRun = () => {
   const [runExerciseOrder, setRunExerciseOrder] = useState(0)
-  const [seconds, setSeconds] = useState(0)
+  const [seconds, setSeconds] = useState(30)
   const [toggleModal, setToggleModal] = useState(false)
   const [recordSet, setRecordSet] = useState<IRoutineSetData[]>(INIT_DATA)
   const location = useLocation()
@@ -98,7 +98,12 @@ const RoutineRun = () => {
           <div>랩</div>
           <div>완료</div>
         </S.routineRunRecord>
-        <RoutineRecordSet toggleModalHandler={toggleModalHandler} recordSet={recordSet} setRecordSet={setRecordSet} />
+        <RoutineRecordSet
+          seconds={seconds}
+          toggleModalHandler={toggleModalHandler}
+          recordSet={recordSet}
+          setRecordSet={setRecordSet}
+        />
         <S.routineRunRecordBtnBox>
           <button onClick={setMiusHandler} className='setMinus' type='button'>
             <Minus /> <span>세트 삭제</span>
@@ -132,6 +137,22 @@ const RoutineRun = () => {
           )}
         </S.routineRunRecordBtnBox>
       </S.routineRunBox>
+      <div>
+        <div>이전 기록</div>
+        <div>이전 기록들</div>
+      </div>
+      <div>
+        <div>유튜브 자세 영상</div>
+        <div>유튜브 영상</div>
+        <div>유튜브 자세 영상</div>
+        <div>유튜브 영상</div>
+        <div>유튜브 자세 영상</div>
+        <div>유튜브 영상</div>
+        <div>유튜브 자세 영상</div>
+        <div>유튜브 영상</div>
+        <div>유튜브 자세 영상</div>
+        <div>유튜브 영상</div>
+      </div>
       <RoutineTimer seconds={seconds} setSeconds={setSeconds} />
       {toggleModal && (
         <Modal

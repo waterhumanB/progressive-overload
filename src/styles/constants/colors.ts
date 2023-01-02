@@ -12,6 +12,7 @@ const colors = {
   BACK: '#e5eaf6',
   GREEN: '#9dd84b',
   BRIGHT_GREEN: '#4de500',
+  DEEP_BLUE: '#5080bf',
 }
 
 export default colors

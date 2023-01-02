@@ -42,9 +42,8 @@ const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
         </S.aniSvg>
         <S.timerCount>{secondsCount}</S.timerCount>
       </S.Chart>
-
       <S.skipBtn onClick={timerSkipHandler} type='button'>
-        {secondsCount === 0 ? '다음 운동 하기' : 'SKIP'}
+        {secondsCount === 0 ? '다음 세트 시작' : 'SKIP'}
       </S.skipBtn>
     </S.timerModalCounter>
   )
