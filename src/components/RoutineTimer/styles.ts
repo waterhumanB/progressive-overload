@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../styles/constants/colors'
 
-export const routineTimerContainer = styled.div`
+export const routineTimerContainer = styled.footer`
   width: 400px;
   height: 55px;
   padding-top: 10px;
@@ -11,6 +11,7 @@ export const routineTimerContainer = styled.div`
   justify-content: space-around;
   bottom: 0;
   font-weight: 600;
+  background: ${colors.WHITE};
 
   button {
     font-size: 16px;

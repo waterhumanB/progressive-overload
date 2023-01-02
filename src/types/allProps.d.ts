@@ -125,6 +125,7 @@ export interface IRoutineRecardSetProps {
   toggleModalHandler: () => void
   setRecordSet: Dispatch<SetStateAction<IRoutineSetData[]>>
   recordSet: IRoutineSetData[]
+  seconds: number
 }
 
 export interface IRoutineSecondsProps {
