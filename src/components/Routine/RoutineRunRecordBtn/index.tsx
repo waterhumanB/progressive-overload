@@ -8,7 +8,9 @@ import { ReactComponent as ArrowRight } from '../../../assets/imgs/arrow-right.s
 import { ReactComponent as Flag } from '../../../assets/imgs/flag.svg'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useEffect, useState } from 'react'
-import { setRecord } from '../../../states/records'
+import { getRecordsData, setRecord } from '../../../states/records'
+import { useAppSelector } from '../../../hooks/useAppSelector'
+import { getExerciseData, setRecordInExercise } from '../../../states/exercises'
 
 const INIT_DATA = [
   {
@@ -42,6 +44,8 @@ const RoutineRunRecordBtn = ({
   currentRoutine,
 }: IRoutineRunRecordBtnProps) => {
   const [currentTime, setCurrentTime] = useState(startAt)
+  const exerciseSelector = useAppSelector(getExerciseData)
+  const recordSelector = useAppSelector(getRecordsData)
   const allChecked = recordSet.filter((data) => data.finish === false)
   const dispatch = useAppDispatch()
 
@@ -70,17 +74,22 @@ const RoutineRunRecordBtn = ({
 
   const nextExerciseStartHanlder = () => {
     const recordData = {
-      id: 'record',
+      id: `record${recordSelector.records.allIds.length + 1}`,
       exerciseId: currentExerciseData.id,
       startAt: currentTime,
       endAt: new Date().toString().split(' G')[0],
       set: recordSet,
     }
+    const setRecordInExerciseData = {
+      id: currentExerciseData.id,
+      recordId: `record${recordSelector.records.allIds.length + 1}`,
+    }
+    dispatch(setRecord(recordData))
+    dispatch(setRecordInExercise(setRecordInExerciseData))
     if (nowExercise.length > runExerciseOrder + 1) {
       setRunExerciseOrder(runExerciseOrder + 1)
       setRecordSet(INIT_DATA)
     }
-    dispatch(setRecord(recordData))
   }
   useEffect(() => {
     setCurrentTime(new Date().toString().split(' G')[0])

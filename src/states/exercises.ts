@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '.'
 import { initialData } from '../data/initialData'
 
-import { IExerciseId, IExerciseItem, IExercises, IFavorite } from '../types/exercises.d'
+import { IExerciseId, IExerciseIdAndRecordId, IExerciseItem, IExercises, IFavorite } from '../types/exercises.d'
 
 const INIT_EXERCISE = initialData.exercises
 
@@ -33,10 +33,14 @@ const systemSlice = createSlice({
       delete state.exercises.byId[action.payload.id]
       state.exercises.allIds = state.exercises.allIds.filter((data) => data !== action.payload.id)
     },
+    setRecordInExercise: (state: ExerciseState, action: PayloadAction<IExerciseIdAndRecordId>) => {
+      state.exercises.byId[action.payload.id].record.push(action.payload.recordId)
+    },
   },
 })
 
-export const { setFavoriteExercise, setCustomExercise, editCustomExercise, deleteCustomExercise } = systemSlice.actions
+export const { setFavoriteExercise, setCustomExercise, editCustomExercise, deleteCustomExercise, setRecordInExercise } =
+  systemSlice.actions
 
 export default systemSlice.reducer
 

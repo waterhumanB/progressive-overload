@@ -24,3 +24,8 @@ export interface IExerciseItem {
 export interface IExerciseId {
   id: string
 }
+
+export interface IExerciseIdAndRecordId {
+  id: string
+  recordId: string
+}
