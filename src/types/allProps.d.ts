@@ -138,3 +138,12 @@ export interface ITimerModalProps {
   seconds: number
   setSeconds: Dispatch<SetStateAction<number>>
 }
+
+export interface IRoutineRunRecordBtnProps {
+  recordSet: IRoutineSetData[]
+  setRecordSet: Dispatch<SetStateAction<IRoutineSetData[]>>
+  nowExercise: string[]
+  runExerciseOrder: number
+  setRunExerciseOrder: Dispatch<React.SetStateAction<number>>
+  exerciseremainder: number
+}
