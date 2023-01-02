@@ -1,9 +1,9 @@
-import { ReactComponent as Arrow } from '../../assets/imgs/arrow.svg'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { getExerciseData } from '../../states/exercise'
-import { getTypesData } from '../../states/types'
-import { IRoutinePageProps } from '../../types/allProps.d'
-import { findCategory, findTarget, findType } from '../../utils/findmenu'
+import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
+import { useAppSelector } from '../../../hooks/useAppSelector'
+import { getExerciseData } from '../../../states/exercises'
+import { getTypesData } from '../../../states/types'
+import { IRoutinePageProps } from '../../../types/allProps.d'
+import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import * as S from './styles'
 
 const RoutinePage = ({

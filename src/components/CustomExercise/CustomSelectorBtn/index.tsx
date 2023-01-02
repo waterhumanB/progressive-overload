@@ -1,4 +1,4 @@
-import { ICustomSelectorBtnProps } from '../../types/allProps.d'
+import { ICustomSelectorBtnProps } from '../../../types/allProps.d'
 import * as S from './styles'
 
 const CustomSelectorBtn = ({ value, name, setNameFilter, toggleModalHandler }: ICustomSelectorBtnProps) => {

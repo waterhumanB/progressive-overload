@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
-import { initialData } from '../../data/initialData'
-import { ExerciseMeunProps } from '../../types/allProps.d'
-import { findCategory, findTarget } from '../../utils/findmenu'
+import { initialData } from '../../../data/initialData'
+import { ExerciseMeunProps } from '../../../types/allProps.d'
+import { findCategory, findTarget } from '../../../utils/findmenu'
 import FilterButton from './FilterButton'
 import * as S from './styles'
 

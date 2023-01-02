@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import {
@@ -11,7 +11,7 @@ import {
   IChangeExerciseInRoutine,
 } from '../types/routine.d'
 
-const INIT_EXERCISE = {
+const INIT_ROUTINES = {
   byId: {},
   allIds: [],
 }
@@ -21,7 +21,7 @@ export interface RoutinesState {
 }
 
 const INITIAL_STATE: RoutinesState = {
-  routines: INIT_EXERCISE,
+  routines: INIT_ROUTINES,
 }
 
 const systemSlice = createSlice({

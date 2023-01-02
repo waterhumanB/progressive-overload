@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
-import { ReactComponent as Check } from '../../assets/imgs/check.svg'
-import { IRoutineRecardSetProps } from '../../types/allProps.d'
+import { ReactComponent as Check } from '../../../assets/imgs/check.svg'
+import { IRoutineRecardSetProps } from '../../../types/allProps.d'
 import * as S from './styles'
 
 const RoutineRecordSet = ({ recordSet, setRecordSet, toggleModalHandler, seconds }: IRoutineRecardSetProps) => {

@@ -1,4 +1,4 @@
-import { IDropDownToggleProps } from '../../types/allProps.d'
+import { IDropDownToggleProps } from '../../../types/allProps.d'
 import * as S from './styles'
 
 const RoutineAddBtn = ({ toggleDropDown }: IDropDownToggleProps) => {

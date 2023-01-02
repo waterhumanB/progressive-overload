@@ -4,14 +4,15 @@ import storage from 'redux-persist/lib/storage'
 
 import user from './user'
 import youtube from './youtube'
-import exercises from './exercise'
+import exercises from './exercises'
 import types from './types'
 import routines from './routines'
+import records from './records'
 
 const persistConfig = {
   key: 'root', // localStorage key
   storage, // localStorage
-  whitelist: ['user', 'youtube', 'exercises', 'types', 'routines'], // target (reducer name)
+  whitelist: ['user', 'youtube', 'exercises', 'types', 'routines', 'records'], // target (reducer name)
 }
 const rootReducer = combineReducers({
   user,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   exercises,
   types,
   routines,
+  records,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

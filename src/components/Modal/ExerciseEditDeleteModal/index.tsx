@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { getExerciseData } from '../../../states/exercise'
+import { getExerciseData } from '../../../states/exercises'
 import { changeExerciseInRoutine, deleteExerciseInRoutine, getRoutineData } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
 import { IExerciseEditDeleteModalProps } from '../../../types/allProps.d'

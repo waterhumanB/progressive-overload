@@ -4,7 +4,12 @@ export interface IRoutines {
 }
 
 export interface IRoutineItem {
-  [routine: string]: { id: string; title: sting; workout: string[]; recent: string[] }
+  [routine: string]: {
+    id: string
+    title: sting
+    workout: string[]
+    recent: string[]
+  }
 }
 
 export interface IDeleteRoutine {

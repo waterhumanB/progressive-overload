@@ -4,28 +4,28 @@ import type { RootState } from '.'
 import { initialData } from '../data/initialData'
 import { IDeleteTypeId, IEditTypeItem, ITypes, ITypesItem } from '../types/type.d'
 
-const INIT_EXERCISE = initialData.types
+const INIT_TYPES = initialData.types
 
-export interface TyesState {
+export interface TypesState {
   types: ITypes
 }
 
-const INITIAL_STATE: TyesState = {
-  types: INIT_EXERCISE,
+const INITIAL_STATE: TypesState = {
+  types: INIT_TYPES,
 }
 
 const systemSlice = createSlice({
   name: 'types',
   initialState: INITIAL_STATE,
   reducers: {
-    setType: (state: TyesState, action: PayloadAction<ITypesItem>) => {
+    setType: (state: TypesState, action: PayloadAction<ITypesItem>) => {
       state.types.byId = Object.assign(state.types.byId, action.payload)
       state.types.allIds.push(Object.keys(action.payload)[0])
     },
-    editType: (state: TyesState, action: PayloadAction<IEditTypeItem>) => {
+    editType: (state: TypesState, action: PayloadAction<IEditTypeItem>) => {
       state.types.byId[action.payload.typeId].name = action.payload.name
     },
-    deleteType: (state: TyesState, action: PayloadAction<IDeleteTypeId>) => {
+    deleteType: (state: TypesState, action: PayloadAction<IDeleteTypeId>) => {
       delete state.types.byId[action.payload.typeId]
       state.types.allIds = state.types.allIds.filter((data) => data !== action.payload.typeId)
     },
@@ -38,4 +38,4 @@ export default systemSlice.reducer
 
 // Selector =====================
 
-export const getTypesData = (state: RootState): TyesState => state.types
+export const getTypesData = (state: RootState): TypesState => state.types

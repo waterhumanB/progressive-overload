@@ -1,4 +1,4 @@
-import { IFilterBtnProps } from '../../../types/allProps.d'
+import { IFilterBtnProps } from '../../../../types/allProps.d'
 import * as S from './styles'
 
 const FilterButton = ({ value, data, onClick, className, id }: IFilterBtnProps) => {

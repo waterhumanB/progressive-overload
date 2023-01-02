@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { getRoutineData, setRoutine } from '../../../../states/routines'
-import RoutinePage from '../../../../components/RoutinePage'
+import { RoutinePage } from '../../../../components/Routine'
 
 interface RoutineLocationState {
   id: string

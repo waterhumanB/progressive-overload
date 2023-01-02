@@ -3,10 +3,10 @@ import * as S from './styles'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRoutineData } from '../../../states/routines'
-import { getExerciseData } from '../../../states/exercise'
+import { getExerciseData } from '../../../states/exercises'
 import { findCategory, findTarget, findType } from '../../../utils/findmenu'
 import { getTypesData } from '../../../states/types'
-import RoutineRecordSet from '../../../components/RoutineRecordSet'
+import { RoutineTimer, RoutineRecordSet } from '../../../components/Routine'
 import { IRoutineSetData } from '../../../types/allProps.d'
 
 import { ReactComponent as Minus } from '../../../assets/imgs/minus.svg'
@@ -14,12 +14,24 @@ import { ReactComponent as Plus } from '../../../assets/imgs/plus.svg'
 import { ReactComponent as DoubleCheck } from '../../../assets/imgs/double-check.svg'
 import { ReactComponent as ArrowRight } from '../../../assets/imgs/arrow-right.svg'
 import { ReactComponent as Flag } from '../../../assets/imgs/flag.svg'
-import RoutineTimer from '../../../components/RoutineTimer'
+
 import Modal from '../../../components/Modal'
 
 const INIT_DATA = [
   {
     order: 1,
+    kg: 0,
+    rab: 0,
+    finish: false,
+  },
+  {
+    order: 2,
+    kg: 0,
+    rab: 0,
+    finish: false,
+  },
+  {
+    order: 3,
     kg: 0,
     rab: 0,
     finish: false,

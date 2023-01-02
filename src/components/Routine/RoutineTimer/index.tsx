@@ -1,4 +1,4 @@
-import { IRoutineSecondsProps } from '../../types/allProps.d'
+import { IRoutineSecondsProps } from '../../../types/allProps.d'
 import * as S from './styles'
 
 const RoutineTimer = ({ seconds, setSeconds }: IRoutineSecondsProps) => {

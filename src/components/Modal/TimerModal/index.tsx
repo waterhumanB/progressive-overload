@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { ITimerModalProps } from '../../../types/allProps.d'
-import mpThree from '../../../audios/boxingRingSound.mp3'
+import mpThree from '../../../assets/audios/boxingRingSound.mp3'
 import * as S from './style'
 
 const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
   const [secondsCount, setSecondsCount] = useState(seconds)
-  const aduio = new Audio(mpThree)
+  const audio = new Audio(mpThree)
 
   useEffect(() => {
     const counter = setInterval(() => {
@@ -13,8 +13,8 @@ const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
         setSecondsCount(secondsCount - 1)
       }
       if (secondsCount === 0) {
-        aduio.volume = 0.05
-        aduio.play()
+        audio.volume = 0.1
+        audio.play()
       }
     }, 1000)
     return () => clearInterval(counter)
@@ -22,6 +22,7 @@ const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
 
   const timerSkipHandler = () => {
     toggleModalHandler()
+    audio.pause()
   }
 
   return (

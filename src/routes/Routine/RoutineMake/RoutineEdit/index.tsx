@@ -3,7 +3,7 @@ import * as S from './styles'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
 import { editRoutine } from '../../../../states/routines'
-import RoutinePage from '../../../../components/RoutinePage'
+import { RoutinePage } from '../../../../components/Routine'
 
 interface RoutineLocationState {
   id: string

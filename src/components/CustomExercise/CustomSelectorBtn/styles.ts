@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import colors from '../../styles/constants/colors'
+import colors from '../../../styles/constants/colors'
 
 export const customSelector = styled.button<{ selectorName: string }>`
   width: 100%;
