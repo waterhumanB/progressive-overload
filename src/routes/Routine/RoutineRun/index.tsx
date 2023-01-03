@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as S from './styles'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../../../hooks/useAppSelector'
@@ -10,6 +10,7 @@ import { RoutineTimer, RoutineRecordSet, RoutineRunRecordBtn } from '../../../co
 import { IRoutineSetData } from '../../../types/allProps.d'
 
 import Modal from '../../../components/Modal'
+import CurrentExerciseRecordCard from '../../../components/Routine/CurrentExerciseRecordCard'
 
 const INIT_DATA = [
   {
@@ -50,7 +51,6 @@ const RoutineRun = () => {
   const toggleModalHandler = () => {
     setToggleModal(!toggleModal)
   }
-
   return (
     <S.routineRunContainer>
       <S.routineRunBox>
@@ -89,10 +89,7 @@ const RoutineRun = () => {
           setRunExerciseOrder={setRunExerciseOrder}
           exerciseremainder={exerciseremainder}
         />
-        <div>
-          <div>이전 기록</div>
-          <div>이전 기록들</div>
-        </div>
+        <CurrentExerciseRecordCard currentExerciseData={currentExerciseData} />
         <div>
           <div>유튜브 자세 영상</div>
           <div>유튜브 영상</div>
