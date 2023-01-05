@@ -1,5 +1,5 @@
 import * as S from './styles'
-import { MouseEvent, useRef, useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import { IExerciseItem } from '../../../types/exercises.d'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRecordsData } from '../../../states/records'
@@ -14,7 +14,6 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
   const [startPageX, setStartPageX] = useState(0)
   const [translateX, setTranslateX] = useState(0)
   const [isMouseEvent, setIsMoseEvent] = useState(false)
-  const mouseRef = useRef<HTMLDivElement>(null)
   const recordSelector = useAppSelector(getRecordsData)
   const currentExerciseRecords = Object.values(recordSelector.records.byId).filter((data) =>
     currentExerciseData.record.includes(data.id)
@@ -31,13 +30,17 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
     setIsMoseEvent(true)
     setStartPageX(e.pageX - translateX)
   }
+
   const mouseMoveHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     const deltaX = e.pageX - startPageX
     if (isMouseEvent) {
       setTranslateX(deltaX)
     }
-    if (-e.currentTarget.offsetWidth * 1.3 >= translateX || e.currentTarget.offsetWidth / 2 <= translateX) {
+    if (
+      -e.currentTarget.children[0].clientWidth * (e.currentTarget.children.length - 1) >= translateX ||
+      e.currentTarget.children[0].clientWidth / 2 <= translateX
+    ) {
       setIsMoseEvent(false)
       setTranslateX(0)
     }
@@ -50,9 +53,8 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
     e.preventDefault()
     setIsMoseEvent(false)
   }
-  console.log('transX', translateX)
   return (
-    <S.recordCardContainer ref={mouseRef}>
+    <S.recordCardContainer>
       <div className='title'>이전 기록</div>
       <S.recordCardbox
         onMouseDown={mouseDownHandler}
@@ -60,25 +62,29 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
         onMouseUp={mouseUpHandler}
         onMouseLeave={mouseLeaveHandler}
       >
-        {currentExerciseRecords.map((data) => (
-          <S.cardItem translateX={translateX} key={data.startAt}>
-            <S.cardDate>{fetchedDate(data.startAt)}</S.cardDate>
-            {data.set.map((item) => (
-              <S.setItem key={item.order}>
-                <div className='order'>
-                  {item.order}
-                  <span className='dash'> -</span>
-                </div>
-                <div>
-                  {item.kg}
-                  <span className='kgAndRab'>KG</span>
-                  {item.rab}
-                  <span className='kgAndRab'>회</span>
-                </div>
-              </S.setItem>
-            ))}
-          </S.cardItem>
-        ))}
+        {currentExerciseRecords.length !== 0 ? (
+          currentExerciseRecords.map((data) => (
+            <S.cardItem translateX={translateX} key={data.startAt}>
+              <S.cardDate>{fetchedDate(data.startAt)}</S.cardDate>
+              {data.set.map((item) => (
+                <S.setItem key={item.order}>
+                  <div className='orderBox'>
+                    <div className='order'>{item.order}</div>
+                    <div className='dash'>-</div>
+                  </div>
+                  <div className='record'>
+                    <div className='item'>{item.kg}</div>
+                    <div className='kgAndRab'>KG</div>
+                    <div className='item'>{item.rab}</div>
+                    <div className='kgAndRab'>회</div>
+                  </div>
+                </S.setItem>
+              ))}
+            </S.cardItem>
+          ))
+        ) : (
+          <S.noRecord>현재 기록이 없습니다</S.noRecord>
+        )}
       </S.recordCardbox>
     </S.recordCardContainer>
   )

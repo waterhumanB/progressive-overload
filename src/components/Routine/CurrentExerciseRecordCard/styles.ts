@@ -30,7 +30,9 @@ export const cardDate = styled.div`
 export const cardItem = styled.div<{ translateX: number }>`
   width: 100%;
   text-align: center;
+  margin-right: 10px;
   transform: ${(props) => `translateX(${props.translateX}px)`};
+  transition: ${(props) => `${props.translateX ? 0 : 300}ms ease-in-out 0s`};
 `
 
 export const setItem = styled.div`
@@ -40,17 +42,38 @@ export const setItem = styled.div`
   font-weight: 600;
   font-size: 18px;
 
-  .order {
+  .orderBox {
+    width: 30px;
     margin-right: 5px;
+    display: flex;
+    justify-content: center;
 
+    .order {
+      width: 20px;
+    }
     .dash {
       color: ${colors.RED};
+      margin-left: 3px;
     }
   }
-
+  .record {
+    display: flex;
+  }
+  .item {
+    width: 30px;
+    text-align: right;
+  }
   .kgAndRab {
-    margin: auto 3px;
+    width: 20px;
+    margin: auto 2px;
     font-size: 15px;
     color: ${colors.FONT};
   }
+`
+export const noRecord = styled.div`
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  color: ${colors.FONT};
+  font-weight: 600;
 `
