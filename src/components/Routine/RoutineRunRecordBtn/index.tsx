@@ -100,7 +100,7 @@ const RoutineRunRecordBtn = ({
     setCurrentRoutineRecordIds((prev) => [...prev, recordData.id])
     dispatch(setRecord(recordData))
     dispatch(setRecordInExercise(setRecordInExerciseData))
-    navigate('routine-finish', { state: { currentRoutine } })
+    navigate('routine-finish', { state: currentRoutine })
 
     const routineEndData = {
       id: currentRoutine,

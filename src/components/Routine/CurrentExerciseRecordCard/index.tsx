@@ -3,12 +3,11 @@ import { MouseEvent, useState } from 'react'
 import { IExerciseItem } from '../../../types/exercises.d'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRecordsData } from '../../../states/records'
+import { fetchedDate } from '../../../utils/fetchedDate'
 
 interface ICurrentExerciseDataProp {
   currentExerciseData: IExerciseItem
 }
-
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseDataProp) => {
   const [startPageX, setStartPageX] = useState(0)
@@ -18,13 +17,6 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
   const currentExerciseRecords = Object.values(recordSelector.records.byId)
     .filter((data) => currentExerciseData.record.includes(data.id))
     .reverse()
-  const fetchedDate = (date: string) => {
-    const year = date.split(' ')[3]
-    const month = months.indexOf(date.split(' ')[1]) + 1
-    const day = date.split(' ')[2]
-    const fetchedMonth = month < 10 ? `0${month}` : month
-    return `${year}.${fetchedMonth}.${day}`
-  }
   const mouseDownHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsMoseEvent(true)
