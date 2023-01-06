@@ -54,5 +54,5 @@ export interface ISetStartAtTimeInRoutine {
 export interface ISetEndAtTimeAndRecordsInRoutine {
   id: string
   endAt: string
-  records: string[]
+  recordIds: string[]
 }

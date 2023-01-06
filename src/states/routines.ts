@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import {
@@ -70,7 +70,8 @@ const systemSlice = createSlice({
       state: RoutinesState,
       action: PayloadAction<ISetEndAtTimeAndRecordsInRoutine>
     ) => {
-      console.log(action)
+      state.routines.byId[action.payload.id].recent[0].endAt = action.payload.endAt
+      state.routines.byId[action.payload.id].recent[0].recordIds = action.payload.recordIds
     },
   },
 })

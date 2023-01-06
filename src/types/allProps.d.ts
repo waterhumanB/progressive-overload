@@ -148,7 +148,7 @@ export interface IRoutineRunRecordBtnProps {
   nowExercise: string[]
   runExerciseOrder: number
   setRunExerciseOrder: Dispatch<React.SetStateAction<number>>
-  exerciseremainder: number
+  exerciseRemainder: number
   currentExerciseData: {
     id: string
   }

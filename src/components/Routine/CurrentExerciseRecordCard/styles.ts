@@ -14,7 +14,7 @@ export const recordCardContainer = styled.div`
 
 export const recordCardbox = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 80px;
   overflow: auto;
   white-space: nowrap;
   display: flex;

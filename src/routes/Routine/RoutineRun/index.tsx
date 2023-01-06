@@ -14,6 +14,7 @@ import CurrentExerciseRecordCard from '../../../components/Routine/CurrentExerci
 import YoutubeCard from '../../../components/YoutubeCard'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { getYoutubeExerciseData, getYoutubeExerciseDataList } from '../../../states/youtubeExercise'
+import { getRecordsData } from '../../../states/records'
 
 const INIT_DATA = [
   {
@@ -48,11 +49,12 @@ const RoutineRun = () => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
   const youtubeSelector = useAppSelector(getYoutubeExerciseDataList)
+  const recordSelector = useAppSelector(getRecordsData)
 
   const nowExercise = routineSelector.routines.byId[location.state].workout
   const currentExerciseData = exerciseSelector.exercises.byId[nowExercise[runExerciseOrder]]
 
-  const exerciseremainder = nowExercise.length - runExerciseOrder - 1
+  const exerciseRemainder = nowExercise.length - runExerciseOrder - 1
 
   const exerciseListData = Object.values(exerciseSelector.exercises.byId).filter((data) =>
     nowExercise.includes(data.id)
@@ -70,6 +72,17 @@ const RoutineRun = () => {
     if (youtubeSelector.youtubeData.length !== youtubeSerachExerciseListData.length)
       dispatch(getYoutubeExerciseData(youtubeSerachExerciseListData))
   }, [])
+
+  useEffect(() => {
+    if (currentExerciseData.record.length > 0) {
+      const currentExerciseRecords = Object.values(recordSelector.records.byId)
+        .filter((data) => currentExerciseData.record.includes(data.id))
+        .reverse()[0]
+        ?.set.map((item) => ({ ...item, finish: false }))
+      setRecordSet(currentExerciseRecords)
+    }
+  }, [runExerciseOrder])
+
   return (
     <S.routineRunContainer>
       <S.routineRunBox>
@@ -84,7 +97,7 @@ const RoutineRun = () => {
         </S.routineRunTitleBox>
         <S.routineRunWorkout>
           <div>기록</div>
-          <div>남은 운동 : {exerciseremainder}</div>
+          <div>남은 운동 : {exerciseRemainder}</div>
         </S.routineRunWorkout>
         <S.routineRunRecord>
           <div>세트</div>
@@ -106,7 +119,7 @@ const RoutineRun = () => {
           nowExercise={nowExercise}
           runExerciseOrder={runExerciseOrder}
           setRunExerciseOrder={setRunExerciseOrder}
-          exerciseremainder={exerciseremainder}
+          exerciseRemainder={exerciseRemainder}
         />
         <CurrentExerciseRecordCard currentExerciseData={currentExerciseData} />
         <S.youtubeBox>

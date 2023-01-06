@@ -10,7 +10,9 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useEffect, useState } from 'react'
 import { getRecordsData, setRecord } from '../../../states/records'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { getExerciseData, setRecordInExercise } from '../../../states/exercises'
+import { setRecordInExercise } from '../../../states/exercises'
+import { setEndAtTimeAndRecordsInRoutine } from '../../../states/routines'
+import { useNavigate } from 'react-router-dom'
 
 const INIT_DATA = [
   {
@@ -39,15 +41,28 @@ const RoutineRunRecordBtn = ({
   nowExercise,
   runExerciseOrder,
   setRunExerciseOrder,
-  exerciseremainder,
+  exerciseRemainder,
   currentExerciseData,
   currentRoutine,
 }: IRoutineRunRecordBtnProps) => {
   const [currentTime, setCurrentTime] = useState(startAt)
-  const exerciseSelector = useAppSelector(getExerciseData)
+  const [currentRoutineRecordIds, setCurrentRoutineRecordIds] = useState<string[]>([])
   const recordSelector = useAppSelector(getRecordsData)
-  const allChecked = recordSet.filter((data) => data.finish === false)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const allChecked = recordSet.filter((data) => data.finish === false)
+
+  const recordData = {
+    id: `record${recordSelector.records.allIds.length + 1}`,
+    exerciseId: currentExerciseData.id,
+    startAt: currentTime,
+    endAt: new Date().toString().split(' G')[0],
+    set: recordSet,
+  }
+  const setRecordInExerciseData = {
+    id: currentExerciseData.id,
+    recordId: `record${recordSelector.records.allIds.length + 1}`,
+  }
 
   const setPlusHandler = () => {
     const newSet = {
@@ -72,25 +87,30 @@ const RoutineRunRecordBtn = ({
     setRecordSet(allCheck)
   }
 
-  const nextExerciseStartHanlder = () => {
-    const recordData = {
-      id: `record${recordSelector.records.allIds.length + 1}`,
-      exerciseId: currentExerciseData.id,
-      startAt: currentTime,
-      endAt: new Date().toString().split(' G')[0],
-      set: recordSet,
-    }
-    const setRecordInExerciseData = {
-      id: currentExerciseData.id,
-      recordId: `record${recordSelector.records.allIds.length + 1}`,
-    }
+  const nextExerciseStartHandler = () => {
     dispatch(setRecord(recordData))
     dispatch(setRecordInExercise(setRecordInExerciseData))
     if (nowExercise.length > runExerciseOrder + 1) {
       setRunExerciseOrder(runExerciseOrder + 1)
       setRecordSet(INIT_DATA)
     }
+    setCurrentRoutineRecordIds((prev) => [...prev, recordData.id])
   }
+  const routineFinishHandler = () => {
+    setCurrentRoutineRecordIds((prev) => [...prev, recordData.id])
+    dispatch(setRecord(recordData))
+    dispatch(setRecordInExercise(setRecordInExerciseData))
+    navigate('routine-finish', { state: { currentRoutine } })
+
+    const routineEndData = {
+      id: currentRoutine,
+      endAt: new Date().toString().split(' G')[0],
+      recordIds: [...currentRoutineRecordIds, recordData.id],
+    }
+
+    dispatch(setEndAtTimeAndRecordsInRoutine(routineEndData))
+  }
+
   useEffect(() => {
     setCurrentTime(new Date().toString().split(' G')[0])
   }, [runExerciseOrder])
@@ -109,12 +129,12 @@ const RoutineRunRecordBtn = ({
         <button onClick={setAllCheckHandler} className='doubeCheck' type='button'>
           <DoubleCheck /> <span>모든 세트 완료</span>
         </button>
-        {exerciseremainder === 0 ? (
-          <button onClick={nextExerciseStartHanlder} className='nextSet' disabled={allChecked.length > 0} type='button'>
+        {exerciseRemainder === 0 ? (
+          <button onClick={routineFinishHandler} className='nextSet' disabled={allChecked.length > 0} type='button'>
             <Flag /> <span>운동 완료 하기</span>
           </button>
         ) : (
-          <button onClick={nextExerciseStartHanlder} className='nextSet' disabled={allChecked.length > 0} type='button'>
+          <button onClick={nextExerciseStartHandler} className='nextSet' disabled={allChecked.length > 0} type='button'>
             <ArrowRight /> <span>다음 운동 시작</span>
           </button>
         )}

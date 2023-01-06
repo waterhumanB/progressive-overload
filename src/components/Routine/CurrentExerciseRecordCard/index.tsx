@@ -15,9 +15,9 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
   const [translateX, setTranslateX] = useState(0)
   const [isMouseEvent, setIsMoseEvent] = useState(false)
   const recordSelector = useAppSelector(getRecordsData)
-  const currentExerciseRecords = Object.values(recordSelector.records.byId).filter((data) =>
-    currentExerciseData.record.includes(data.id)
-  )
+  const currentExerciseRecords = Object.values(recordSelector.records.byId)
+    .filter((data) => currentExerciseData.record.includes(data.id))
+    .reverse()
   const fetchedDate = (date: string) => {
     const year = date.split(' ')[3]
     const month = months.indexOf(date.split(' ')[1]) + 1
