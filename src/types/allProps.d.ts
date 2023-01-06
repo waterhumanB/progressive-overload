@@ -1,4 +1,5 @@
 import { ForwardedRef } from 'react'
+import { YoutubeState } from '../states/youtubeRecommend'
 import { IRoutineItem } from './routines.d'
 
 export interface IUserInputProps {
@@ -36,8 +37,9 @@ export interface IExerciseCardProps {
   setCustomExerciseEditId?: Dispatch<SetStateAction<string>>
 }
 
-export interface IYoutubeIndexProps {
+export interface IYoutubeProps {
   categoryIndex: number
+  youtubeData: YoutubeState
 }
 
 export interface ExerciseMeunProps {

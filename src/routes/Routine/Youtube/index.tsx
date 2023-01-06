@@ -7,15 +7,16 @@ import * as S from './styles'
 import YoutubeCard from '../../../components/YoutubeCard'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { getYoubuteData, getYoutubeDataList } from '../../../states/youtube'
+import { getYoutubeRecommendData, getYoutubeRecommendDataList } from '../../../states/youtubeRecommend'
 
 const Youtube = () => {
   const [translate, setTranslate] = useState(0)
   const [categoryIndex, setCategoryIndex] = useState(0)
 
   const dispatch = useAppDispatch()
-  const selector = useAppSelector(getYoutubeDataList)
+  const youtubeSelector = useAppSelector(getYoutubeRecommendDataList)
   const Navigate = useNavigate()
+
   const returnPageBtn = () => {
     Navigate(-1)
   }
@@ -29,8 +30,8 @@ const Youtube = () => {
     }
   }
   useEffect(() => {
-    if (selector.youtubeData.length === 0) {
-      dispatch(getYoubuteData())
+    if (youtubeSelector.youtubeData.length !== 11) {
+      dispatch(getYoutubeRecommendData(YOUTUBE_SEARCH_DATA))
     }
   }, [])
 
@@ -68,7 +69,7 @@ const Youtube = () => {
           <ArrowBtn />
         </S.pageRightBtn>
       </S.caegoryCotainer>
-      <YoutubeCard categoryIndex={categoryIndex} />
+      <YoutubeCard youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
     </section>
   )
 }

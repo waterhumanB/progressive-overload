@@ -50,6 +50,7 @@ export const vidoeLink = styled.a`
   justify-content: center;
   :hover {
     color: ${colors.FOCUS};
+    font-weight: 600;
   }
   svg {
     margin-left: 5px;

@@ -1,18 +1,15 @@
 /* eslint-disable react/jsx-indent */
 import * as S from './styles'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { getYoutubeDataList } from '../../states/youtube'
 import { ReactComponent as Arrrow } from '../../assets/imgs/arrow_click.svg'
-import { IYoutubeIndexProps } from '../../types/allProps.d'
+import { IYoutubeProps } from '../../types/allProps.d'
 
-const YoutubeCard = ({ categoryIndex }: IYoutubeIndexProps) => {
+const YoutubeCard = ({ categoryIndex, youtubeData }: IYoutubeProps) => {
   const index = categoryIndex
-  const selctor = useAppSelector(getYoutubeDataList)
-  const youtubeState = selctor && selctor.youtubeData[index]?.items
+  const youtubeState = youtubeData && youtubeData.youtubeData[index]?.items
   return (
     <S.cardContainer>
-      {selctor.loading === true && <S.Spinner />}
-      {selctor.loading === false && selctor.error === 'fuilfilled'
+      {youtubeData.loading === true && <S.Spinner />}
+      {youtubeData.loading === false && youtubeData.error === 'fuilfilled'
         ? youtubeState.map((data) => (
             <S.cardBox key={data.etag}>
               <S.videoView>
@@ -25,7 +22,7 @@ const YoutubeCard = ({ categoryIndex }: IYoutubeIndexProps) => {
               </S.vidoeLink>
             </S.cardBox>
           ))
-        : selctor.loading === false && <S.errorBox>현재 Youtube Api를 호출 할 수 없습니다.</S.errorBox>}
+        : youtubeData.loading === false && <S.errorBox>현재 Youtube Api를 호출 할 수 없습니다.</S.errorBox>}
     </S.cardContainer>
   )
 }

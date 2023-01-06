@@ -1,13 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '.'
-import { YOUTUBE_SEARCH_DATA } from '../data/searchData'
-import { getYoutubeSearchApi } from '../service/youtube'
+import { getYoutubeRecommendApi } from '../service/youtube'
 import { ISearchYoutube } from '../types/youtube.d'
 
-export const getYoubuteData = createAsyncThunk('youtube', async () => {
-  const result = await Promise.all(YOUTUBE_SEARCH_DATA.map((search) => getYoutubeSearchApi({ q: search }))).then(
-    (res) => res
-  )
+export const getYoutubeRecommendData = createAsyncThunk('youtubeRecommend', async (searchData: string[]) => {
+  const result = await Promise.all(searchData.map((search) => getYoutubeRecommendApi({ q: search }))).then((res) => res)
   return result as unknown as ISearchYoutube[]
 })
 
@@ -25,28 +22,28 @@ const INITIAL_STATE: YoutubeState = {
   loading: false,
 }
 
-const getYoutubeSlice = createSlice({
-  name: 'youtube',
+const getYoutubRecommendSlice = createSlice({
+  name: 'youtubeRecommend',
   initialState: INITIAL_STATE,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getYoubuteData.pending, (state: YoutubeState) => {
+    builder.addCase(getYoutubeRecommendData.pending, (state: YoutubeState) => {
       state.error = 'peding'
       state.loading = true
     })
-    builder.addCase(getYoubuteData.fulfilled, (state: YoutubeState, action) => {
+    builder.addCase(getYoutubeRecommendData.fulfilled, (state: YoutubeState, action) => {
       state.youtubeData = action.payload
       state.loading = false
       state.error = 'fuilfilled'
     })
 
-    builder.addCase(getYoubuteData.rejected, (state: YoutubeState) => {
+    builder.addCase(getYoutubeRecommendData.rejected, (state: YoutubeState) => {
       state.error = 'rejdected'
       state.loading = false
     })
   },
 })
 
-export default getYoutubeSlice.reducer
+export default getYoutubRecommendSlice.reducer
 
-export const getYoutubeDataList = (state: RootState) => state.youtube
+export const getYoutubeRecommendDataList = (state: RootState) => state.youtubeRecommend

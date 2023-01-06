@@ -55,3 +55,13 @@ export const routineRunRecord = styled.div`
     text-align: center;
   }
 `
+export const youtubeBox = styled.div`
+  width: 100%;
+
+  div {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`
