@@ -1,4 +1,5 @@
-import { useLocation } from 'react-router-dom'
+import * as S from './styles'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRoutineData } from '../../../states/routines'
 import { ReactComponent as AfterExercise } from '../../../assets/imgs/after-exercise.svg'
@@ -7,13 +8,15 @@ import { fetchedDate } from '../../../utils/fetchedDate'
 
 const RoutineFinish = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const routineSelector = useAppSelector(getRoutineData)
   const recordsSelector = useAppSelector(getRecordsData)
-  const currentRutineData = routineSelector.routines.byId[location.state.currentRoutine]
-  const currentExerciseRecordIds = currentRutineData.recent[0].recordIds
+  const currentRutineData = routineSelector.routines.byId[location.state]
+
+  const currentExerciseRecordIds = currentRutineData.recent.length > 0 && currentRutineData.recent[0].recordIds
 
   const currentExeciseRecordData = Object.values(recordsSelector.records.byId)
-    .filter((data) => currentExerciseRecordIds.includes(data.id))
+    .filter((data) => currentExerciseRecordIds && currentExerciseRecordIds.includes(data.id))
     .map((data) => data.set)
   const totalSet = currentExeciseRecordData.map((data) => data.length).reduce((acc, el) => acc + el)
   const totalRab = currentExeciseRecordData
@@ -31,42 +34,64 @@ const RoutineFinish = () => {
     return hour + minute
   }
 
+  const homeNaviHadler = () => {
+    navigate('../../../routine')
+  }
+
   return (
-    <section>
-      <div>
-        <div>{currentRutineData.title}</div>
-        <div>{fetchedDate(currentRutineData.recent.reverse()[0].endAt)}</div>
-      </div>
-      <div>
-        <AfterExercise />
-      </div>
-      <div>
-        <div>
-          <div>{routineSelector.routines.allIds.indexOf(location.state.currentRoutine) + 1}th</div>
+    <S.routinefinishContainer>
+      <S.routineTitleBox>
+        <div className='title'>{currentRutineData.title}</div>
+        <div className='date'>{fetchedDate(currentRutineData.recent.reverse()[0].endAt)}</div>
+      </S.routineTitleBox>
+      <AfterExercise />
+      <S.routineResultBox>
+        <S.routineResultItem>
+          <div className='data'>
+            <div className='result'>{routineSelector.routines.allIds.indexOf(location.state) + 1}</div>
+            <div className='unit'>th</div>
+          </div>
           <div>WORKOUT</div>
-        </div>
-        <div>
-          <div>{durationExecise()}</div>
+        </S.routineResultItem>
+        <S.routineResultItem>
+          <div className='data'>
+            <div className='result'>{durationExecise()}</div>
+            <div className='unit'>분</div>
+          </div>
           <div>DURATION</div>
-        </div>
-        <div>
-          <div>{totalVolume}</div>
+        </S.routineResultItem>
+        <S.routineResultItem>
+          <div className='data'>
+            <div className='result'>{totalVolume}</div>
+            <div className='unit'>KG</div>
+          </div>
           <div>VOLUME</div>
-        </div>
-        <div>
-          <div>{currentRutineData.workout.length}</div>
+        </S.routineResultItem>
+        <S.routineResultItem>
+          <div className='data result'>{currentRutineData.workout.length}</div>
           <div>EXERCISES</div>
-        </div>
-        <div>
-          <div>{totalSet}</div>
+        </S.routineResultItem>
+        <S.routineResultItem>
+          <div className='data'>
+            <div className='result'>{totalSet}</div>
+            <div className='unit'>세트</div>
+          </div>
           <div>SETS</div>
-        </div>
-        <div>
-          <div>{totalRab}</div>
+        </S.routineResultItem>
+        <S.routineResultItem>
+          <div className='data'>
+            <div className='result'>{totalRab}</div>
+            <div className='unit'>회</div>
+          </div>
           <div>RPES</div>
-        </div>
-      </div>
-    </section>
+        </S.routineResultItem>
+      </S.routineResultBox>
+      <S.homeRouterBtnBox>
+        <button onClick={homeNaviHadler} type='button'>
+          홈으로 돌아가기
+        </button>
+      </S.homeRouterBtnBox>
+    </S.routinefinishContainer>
   )
 }
 

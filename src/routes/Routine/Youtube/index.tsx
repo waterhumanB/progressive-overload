@@ -69,7 +69,9 @@ const Youtube = () => {
           <ArrowBtn />
         </S.pageRightBtn>
       </S.caegoryCotainer>
-      <YoutubeCard youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
+      <S.youtubeBox>
+        <YoutubeCard youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
+      </S.youtubeBox>
     </section>
   )
 }

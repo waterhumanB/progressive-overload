@@ -69,8 +69,7 @@ const RoutineRun = () => {
   }
 
   useEffect(() => {
-    if (youtubeSelector.youtubeData.length !== youtubeSerachExerciseListData.length)
-      dispatch(getYoutubeExerciseData(youtubeSerachExerciseListData))
+    dispatch(getYoutubeExerciseData(youtubeSerachExerciseListData))
   }, [])
 
   useEffect(() => {
@@ -122,10 +121,10 @@ const RoutineRun = () => {
           exerciseRemainder={exerciseRemainder}
         />
         <CurrentExerciseRecordCard currentExerciseData={currentExerciseData} />
-        <S.youtubeBox>
-          <YoutubeCard categoryIndex={runExerciseOrder} youtubeData={youtubeSelector} />
-        </S.youtubeBox>
       </S.routineRunBox>
+      <S.youtubeBox>
+        <YoutubeCard categoryIndex={runExerciseOrder} youtubeData={youtubeSelector} />
+      </S.youtubeBox>
       <RoutineTimer seconds={seconds} setSeconds={setSeconds} />
       {toggleModal && (
         <Modal

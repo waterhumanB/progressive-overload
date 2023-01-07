@@ -72,12 +72,16 @@ export const routineBox = styled.div`
 export const routineCard = styled.div`
   width: 100%;
   height: 45px;
-  border: 1px solid ${colors.BACK};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid ${colors.BACK};
   margin-bottom: 7px;
   background: ${colors.BACK};
+  transition: 0.3s;
+  :hover {
+    border: 2px solid ${colors.FOCUS};
+  }
 `
 
 export const routineWorkoutCount = styled.div`

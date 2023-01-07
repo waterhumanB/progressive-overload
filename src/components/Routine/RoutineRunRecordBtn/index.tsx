@@ -96,6 +96,7 @@ const RoutineRunRecordBtn = ({
     }
     setCurrentRoutineRecordIds((prev) => [...prev, recordData.id])
   }
+
   const routineFinishHandler = () => {
     setCurrentRoutineRecordIds((prev) => [...prev, recordData.id])
     dispatch(setRecord(recordData))

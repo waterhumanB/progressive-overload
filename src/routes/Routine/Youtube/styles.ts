@@ -81,3 +81,7 @@ export const categoryBox = styled.button<{ focus: boolean }>`
     border: 0;
   }
 `
+export const youtubeBox = styled.div`
+  width: 100%;
+  height: 85vh;
+`

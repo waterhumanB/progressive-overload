@@ -70,8 +70,9 @@ const systemSlice = createSlice({
       state: RoutinesState,
       action: PayloadAction<ISetEndAtTimeAndRecordsInRoutine>
     ) => {
-      state.routines.byId[action.payload.id].recent[0].endAt = action.payload.endAt
-      state.routines.byId[action.payload.id].recent[0].recordIds = action.payload.recordIds
+      const currentRoutineOrder = state.routines.byId[action.payload.id].recent.length - 1
+      state.routines.byId[action.payload.id].recent[currentRoutineOrder].endAt = action.payload.endAt
+      state.routines.byId[action.payload.id].recent[currentRoutineOrder].recordIds = action.payload.recordIds
     },
   },
 })
