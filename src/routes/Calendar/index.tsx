@@ -1,4 +1,5 @@
-import { useState, MouseEvent, useEffect } from 'react'
+import { useState, MouseEvent } from 'react'
+import { CalendarItem, CurrentRoutineCard } from '../../components/Calendar'
 import Footer from '../../components/Footer'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getRoutineData } from '../../states/routines'
@@ -38,7 +39,6 @@ const Calendar = () => {
     return weekRange.slice((weekOrder - 1) * 7, weekOrder * 7)
   }
 
-  console.log(fetchedWeeks(2))
   const mothsOrderHandler = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.innerText === '뒤') {
       setMothOrder((prev) => prev - 1)
@@ -88,46 +88,9 @@ const Calendar = () => {
             ))}
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            {fetchedWeeks(1).map((data) => (
-              <td key={data?.day}>{data?.day}</td>
-            ))}
-          </tr>
-          <tr>
-            {fetchedWeeks(2).map((data) => (
-              <td key={data?.day}>{data?.day}</td>
-            ))}
-          </tr>
-          <tr>
-            {fetchedWeeks(3).map((data) => (
-              <td key={data?.day}>{data?.day}</td>
-            ))}
-          </tr>
-          <tr>
-            {fetchedWeeks(4).map((data) => (
-              <td key={data?.day}>{data?.day}</td>
-            ))}
-          </tr>
-          <tr>
-            {fetchedWeeks(5).map((data) => {
-              return data ? <td key={data?.day}>{data?.day}</td> : null
-            })}
-          </tr>
-        </tbody>
+        <CalendarItem dataSelector={dataSelector} fetchedWeeks={fetchedWeeks} />
       </S.calenderContainer>
-      {currentMonthsRoutineData.map((data) => {
-        return data ? (
-          <div key={data?.title}>
-            {data?.recent.map((item) => (
-              <div key={item.startAt}>
-                <div>{data.title}</div>
-                <div>{item.startAt}</div>
-              </div>
-            ))}
-          </div>
-        ) : null
-      })}
+      <CurrentRoutineCard currentMonthsRoutineData={currentMonthsRoutineData} />
       <Footer />
     </section>
   )

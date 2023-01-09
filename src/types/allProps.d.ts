@@ -154,3 +154,17 @@ export interface IRoutineRunRecordBtnProps {
   }
   currentRoutine: string
 }
+
+export interface ICalendarItemProps {
+  fetchedWeeks: (weekOrdr: number) => ICalendarItem[] | any
+  dataSelector: boolean
+}
+
+export interface ICalendarItem {
+  day: number
+  routine: IRoutineItem
+}
+
+export interface ICalendarCardProps {
+  currentMonthsRoutineData: IRoutineItem[] | any
+}
