@@ -40,7 +40,7 @@ const App = () => {
         <Route path='/routine/routine-make/custom-exercise/add' element={<CustomExercise />} />
         <Route path='/routine/routine-make/custom-exercise/edit' element={<CustomExercise />} />
         <Route path='/summary' element={<Summary />} />
-        <Route path='/calender' element={<Calendar />} />
+        <Route path='/calendar' element={<Calendar />} />
       </Routes>
     </S.Container>
   )

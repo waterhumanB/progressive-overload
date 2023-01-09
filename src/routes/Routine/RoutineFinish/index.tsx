@@ -26,9 +26,13 @@ const RoutineFinish = () => {
     .map((data) => data.map((item) => item.kg * item.rab).reduce((acc, el) => acc + el))
     .reduce((acc, el) => acc + el)
 
+  const routineOrder = Object.values(routineSelector.routines.byId)
+    .map((data) => data.recent.length)
+    .reduce((acc, el) => acc + el)
+
   const durationExecise = () => {
-    const startTime = currentRutineData.recent.reverse()[0].startAt.split(' ')[4].split(':')
-    const endTime = currentRutineData.recent.reverse()[0].endAt.split(' ')[4].split(':')
+    const startTime = currentRutineData.recent?.[currentRutineData.recent.length - 1].startAt.split(' ')[4].split(':')
+    const endTime = currentRutineData.recent?.[currentRutineData.recent.length - 1].endAt.split(' ')[4].split(':')
     const hour = (Number(endTime[0]) - Number(startTime[0])) * 60
     const minute = Number(endTime[1]) - Number(startTime[1])
     return hour + minute
@@ -42,13 +46,13 @@ const RoutineFinish = () => {
     <S.routinefinishContainer>
       <S.routineTitleBox>
         <div className='title'>{currentRutineData.title}</div>
-        <div className='date'>{fetchedDate(currentRutineData.recent.reverse()[0].endAt)}</div>
+        <div className='date'>{fetchedDate(currentRutineData.recent?.[currentRutineData.recent.length - 1].endAt)}</div>
       </S.routineTitleBox>
       <AfterExercise />
       <S.routineResultBox>
         <S.routineResultItem>
           <div className='data'>
-            <div className='result'>{routineSelector.routines.allIds.indexOf(location.state) + 1}</div>
+            <div className='result'>{routineOrder}</div>
             <div className='unit'>th</div>
           </div>
           <div>WORKOUT</div>

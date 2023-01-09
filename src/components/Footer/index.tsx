@@ -16,7 +16,7 @@ const Footer = () => {
         <Dumbbell />
         <div>루틴</div>
       </NavLink>
-      <NavLink to='../calender'>
+      <NavLink to='../calendar'>
         <Calendar />
         <div>달력</div>
       </NavLink>

@@ -12,6 +12,7 @@ import { RoutineAddBtn } from '../../components/Routine'
 import DropDown from '../../components/DropDown'
 import { deleteRoutine, getRoutineData } from '../../states/routines'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { fetchedDate } from '../../utils/fetchedDate'
 
 const naviRoutineMakeRouter = {
   to: '/routine/routine-make',
@@ -49,6 +50,7 @@ const Routine = () => {
   const routineReadyPageRouter = useCallback((id: string) => {
     navigate('/routine/routine-ready', { state: { ...routineSelector.routines.byId[id] } })
   }, [])
+
   return (
     <S.routineContainer>
       <S.userContainer>
@@ -75,10 +77,9 @@ const Routine = () => {
             <S.routineWorkoutCount>{data.workout.length}</S.routineWorkoutCount>
             <S.routineInfoBtn onClick={() => routineReadyPageRouter(data.id)}>
               <S.routineTitle>{data.title}</S.routineTitle>
-              {!data.recent ? (
+              {data.recent.length !== 0 ? (
                 <S.routineRecent>
-                  <div>{data.recent[0]}</div>
-                  <div>{data.recent[1]}</div>
+                  <div>{fetchedDate(data.recent[0]?.endAt)}</div>
                 </S.routineRecent>
               ) : (
                 <S.routineRecent>최근 수행한 날짜가 없습니다.</S.routineRecent>
