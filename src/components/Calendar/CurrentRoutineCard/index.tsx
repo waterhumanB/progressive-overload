@@ -1,8 +1,8 @@
 import { ICalendarCardProps } from '../../../types/allProps.d'
 import { IRoutineItem } from '../../../types/routines.d'
+import { fetchedDate } from '../../../utils/fetchedDate'
 
 const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) => {
-  console.log(currentMonthsRoutineData)
   return (
     <div>
       {currentMonthsRoutineData.map((data: IRoutineItem) => {
@@ -11,7 +11,7 @@ const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) =>
             {data?.recent.map((item) => (
               <div key={item.startAt}>
                 <div>{data.title}</div>
-                <div>{item.startAt}</div>
+                <div>{fetchedDate(item.startAt)}</div>
               </div>
             ))}
           </div>

@@ -18,7 +18,7 @@ const Calendar = () => {
     const filtered = data.recent.filter(
       (item) => item.startAt.split(' ')[1] === months[monthOrder] && item.startAt.split(' ')[3] === String(yearOrder)
     )
-    const result = filtered.length !== 0 ? { ...data, recent: filtered } : null
+    const result = filtered.length !== 0 ? { ...data, recent: filtered } : undefined
     return result
   })
 
@@ -30,10 +30,10 @@ const Calendar = () => {
           months.indexOf(months[monthOrder]) && date
       const filteredRoutine = currentMonthsRoutineData.map((data) => {
         const filteredRecent = data?.recent.filter((item) => Number(item.startAt.split(' ')[2]) === date)
-        const routineResult = filteredRecent?.length !== 0 ? { ...data, recent: filteredRecent } : null
+        const routineResult = filteredRecent?.length !== 0 ? { ...data, recent: filteredRecent } : undefined
         return routineResult
       })
-      const result = filteredDay ? { day: filteredDay, routine: filteredRoutine } : null
+      const result = filteredDay ? { day: filteredDay, routine: filteredRoutine } : undefined
       return result
     })
     return weekRange.slice((weekOrder - 1) * 7, weekOrder * 7)

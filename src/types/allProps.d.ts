@@ -162,7 +162,7 @@ export interface ICalendarItemProps {
 
 export interface ICalendarItem {
   day: number
-  routine: IRoutineItem
+  routine: IRoutineItem[]
 }
 
 export interface ICalendarCardProps {
