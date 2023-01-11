@@ -2,6 +2,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRecordsData } from '../../../states/records'
 import { ICalendarItem, ICalendarItemProps } from '../../../types/allProps.d'
 import { IRecentItem, IRoutineItem } from '../../../types/routines.d'
+import * as S from './styles'
 
 const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
   const recordSeletor = useAppSelector(getRecordsData)
@@ -17,66 +18,95 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
       .flat(2)
     return todayRoutineSets.length !== 0
       ? todayRoutineSets.map((data) => data.kg * data.rab).reduce((acc, el) => acc + el)
-      : ''
+      : 0
   }
   const todayDuration = (routine: IRoutineItem[]) => {
     const todayRoutineTime = routine.map((data: IRoutineItem) =>
-      data?.recent
-        .map((item: IRecentItem) => {
-          const startTime = item.startAt.split(' ')[4].split(':')
-          const endTime = item?.endAt?.split(' ')[4].split(':')
-          const hour = (Number(endTime[0]) - Number(startTime[0])) * 60
-          const minute = Number(endTime[1]) - Number(startTime[1])
-          return hour + minute
-        })
-        .reduce((acc, el) => acc + el)
+      data?.recent !== undefined
+        ? data?.recent
+            .map((item: IRecentItem) => {
+              const startTime = item.startAt.split(' ')[4].split(':')
+              const endTime = item?.endAt?.split(' ')[4].split(':')
+              const hour = (Number(endTime[0]) - Number(startTime[0])) * 60
+              const minute = Number(endTime[1]) - Number(startTime[1])
+              return hour + minute
+            })
+            .reduce((acc, el) => acc + el)
+        : 0
     )
-    return todayRoutineTime
+    return todayRoutineTime.reduce((acc, el) => acc + el)
   }
 
   return (
-    <tbody>
+    <S.calendarTbody>
       <tr>
         {fetchedWeeks(1).map((data: ICalendarItem) => (
-          <td key={data?.day}>
-            {data?.day} {todayTotalVolume(data?.routine)} {todayDuration(data?.routine)}
-          </td>
+          <S.todayRoutine
+            dataSelector={dataSelector}
+            dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
+            key={data?.day}
+          >
+            <button type='button'>
+              <div>{data?.day}</div>
+            </button>
+          </S.todayRoutine>
         ))}
       </tr>
       <tr>
         {fetchedWeeks(2).map((data: ICalendarItem) => (
-          <td key={data?.day}>
-            {data?.day} {todayTotalVolume(data?.routine)} {todayDuration(data?.routine)}
-          </td>
+          <S.todayRoutine
+            dataSelector={dataSelector}
+            dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
+            key={data?.day}
+          >
+            <button type='button'>
+              <div>{data?.day}</div>
+            </button>
+          </S.todayRoutine>
         ))}
       </tr>
       <tr>
         {fetchedWeeks(3).map((data: ICalendarItem) => (
-          <td key={data?.day}>
-            {data?.day} {todayTotalVolume(data?.routine)}
-            {todayDuration(data?.routine)}
-          </td>
+          <S.todayRoutine
+            dataSelector={dataSelector}
+            dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
+            key={data?.day}
+          >
+            <button type='button'>
+              <div>{data?.day}</div>
+            </button>
+          </S.todayRoutine>
         ))}
       </tr>
       <tr>
         {fetchedWeeks(4).map((data: ICalendarItem) => (
-          <td key={data?.day}>
-            {data?.day} {todayTotalVolume(data?.routine)}
-            {todayDuration(data?.routine)}
-          </td>
+          <S.todayRoutine
+            dataSelector={dataSelector}
+            dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
+            key={data?.day}
+          >
+            <button type='button'>
+              <div>{data?.day}</div>
+            </button>
+          </S.todayRoutine>
         ))}
       </tr>
       <tr>
         {fetchedWeeks(5).map((data: ICalendarItem) => {
           return data ? (
-            <td key={data?.day}>
-              {data?.day} {todayTotalVolume(data?.routine)}
-              {todayDuration(data?.routine)}
-            </td>
+            <S.todayRoutine
+              dataSelector={dataSelector}
+              dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
+              key={data?.day}
+            >
+              <button type='button'>
+                <div>{data?.day}</div>
+              </button>
+            </S.todayRoutine>
           ) : null
         })}
       </tr>
-    </tbody>
+    </S.calendarTbody>
   )
 }
 
