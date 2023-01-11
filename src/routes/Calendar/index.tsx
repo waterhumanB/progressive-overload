@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react'
+import { useState, MouseEvent, useEffect } from 'react'
 import { CalendarItem, CurrentRoutineCard } from '../../components/Calendar'
 import Footer from '../../components/Footer'
 import { useAppSelector } from '../../hooks/useAppSelector'
@@ -9,7 +9,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const dates = ['일', '월', '화', '수', '목', '금', '토']
 
 const Calendar = () => {
-  const [monthOrder, setMothOrder] = useState(0)
+  const [monthOrder, setMothOrder] = useState(new Date().getMonth())
   const [dataSelector, setDataSelector] = useState(true)
   const [yearOrder, setYearOrder] = useState(new Date().getFullYear())
   const routineSelector = useAppSelector(getRoutineData)
@@ -23,20 +23,31 @@ const Calendar = () => {
   })
 
   const fetchedWeeks = (weekOrder: number) => {
-    const range = [...Array(31)].map((_, i) => i + 1)
-    const weekRange = range.map((date) => {
-      const filteredDay =
-        new Date(yearOrder, months.indexOf(months[monthOrder]), date).getMonth() ===
-          months.indexOf(months[monthOrder]) && date
+    const currentCalendar = []
+    const firstDayOfMonth = new Date(yearOrder, monthOrder, 1).getDay() // 이번달 첫 시작일
+    const lastDateOfMonth = new Date(yearOrder, monthOrder + 1, 0).getDate() // 이번달 마지막 날짜
+    const lastDayOfMonth = new Date(yearOrder, monthOrder, lastDateOfMonth).getDay() // 이번달 마지막 날수
+    const lastDateOfLastMonth = new Date(yearOrder, monthOrder, 0).getDate() // 지난달 마지막 날짜
+    for (let i = firstDayOfMonth; i > 0; i--) {
+      currentCalendar.push({
+        day: lastDateOfLastMonth - i + 1,
+        currentMonthOfDate: false,
+        routine: [{ recent: undefined }],
+      })
+    }
+    for (let i = 1; i <= lastDateOfMonth; i++) {
       const filteredRoutine = currentMonthsRoutineData.map((data) => {
-        const filteredRecent = data?.recent.filter((item) => Number(item.startAt.split(' ')[2]) === date)
-        const routineResult = filteredRecent?.length !== 0 ? { ...data, recent: filteredRecent } : undefined
+        const filteredRecent = data?.recent.filter((item) => Number(item.startAt.split(' ')[2]) === i)
+        const routineResult = filteredRecent?.length !== 0 ? { ...data, recent: filteredRecent } : { recent: undefined }
         return routineResult
       })
-      const result = filteredDay ? { day: filteredDay, routine: filteredRoutine } : undefined
-      return result
-    })
-    return weekRange.slice((weekOrder - 1) * 7, weekOrder * 7)
+      currentCalendar.push({ day: i, currentMonthOfDate: true, routine: filteredRoutine })
+    }
+    for (let i = lastDayOfMonth; i < 6; i++) {
+      currentCalendar.push({ day: i - lastDayOfMonth + 1, currentMonthOfDate: false, routine: [{ recent: undefined }] })
+    }
+    currentCalendar.length = 35
+    return currentCalendar.slice((weekOrder - 1) * 7, weekOrder * 7)
   }
 
   const mothsOrderHandler = (e: MouseEvent<HTMLButtonElement>) => {

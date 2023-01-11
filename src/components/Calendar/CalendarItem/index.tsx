@@ -10,7 +10,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
   const todayTotalVolume = (routine: IRoutineItem[]) => {
     const todayRoutineRecordIds =
       routine !== undefined
-        ? routine.map((data: IRoutineItem) => data?.recent.map((item: IRecentItem) => item.recordIds)).flat(2)
+        ? routine?.map((data: IRoutineItem) => data?.recent?.map((item: IRecentItem) => item?.recordIds)).flat(2)
         : ''
     const todayRoutineSets = Object.values(recordSeletor.records.byId)
       .filter((data) => todayRoutineRecordIds.includes(data.id))
@@ -36,7 +36,6 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
     )
     return todayRoutineTime.reduce((acc, el) => acc + el)
   }
-
   return (
     <S.calendarTbody>
       <tr>
