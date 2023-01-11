@@ -14,7 +14,7 @@ export const todayRoutine = styled.td<{ dataSelector: boolean; dataValue: number
         (props.dataValue > 8000 && props.dataValue < 12000 && `${colors.BLUE3}`) ||
         (props.dataValue > 12000 && props.dataValue < 16000 && `${colors.BLUE2}`) ||
         (props.dataValue > 16000 && props.dataValue < 20000 && `${colors.BLUE1}`) ||
-        (props.dataValue > 24000 && `${colors.BLUE}`)
+        (props.dataValue > 20000 && `${colors.BLUE}`)
       : (props.dataValue === 0 && `${colors.WHITE}`) ||
         (props.dataValue < 30 && `${colors.PURPLE5}`) ||
         (props.dataValue > 30 && props.dataValue < 60 && `${colors.PURPLE4}`) ||
@@ -22,9 +22,9 @@ export const todayRoutine = styled.td<{ dataSelector: boolean; dataValue: number
         (props.dataValue > 90 && props.dataValue < 120 && `${colors.PURPLE2}`) ||
         (props.dataValue > 120 && props.dataValue < 150 && `${colors.PURPLE1}`) ||
         (props.dataValue > 150 && `${colors.PURPLE}`)};
-  transition: 0.3s;
   :hover {
     transform: ${(props) => (props.dataValue !== 0 ? 'scale(1.1)' : '')};
+    transition: 0.3s;
   }
   button {
     width: 100%;

@@ -1,8 +1,10 @@
-import { useState, MouseEvent, useEffect } from 'react'
-import { CalendarItem, CurrentRoutineCard } from '../../components/Calendar'
-import Footer from '../../components/Footer'
+import { useState } from 'react'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getRoutineData } from '../../states/routines'
+
+import Footer from '../../components/Footer'
+import { CalendarItem, CurrentRoutineCard, CurrentRoutineRecentUnit } from '../../components/Calendar'
+import { ReactComponent as Arrow } from '../../assets/imgs/arrow.svg'
 import * as S from './styles'
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -50,21 +52,18 @@ const Calendar = () => {
     return currentCalendar.slice((weekOrder - 1) * 7, weekOrder * 7)
   }
 
-  const mothsOrderHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.innerText === '뒤') {
-      setMothOrder((prev) => prev - 1)
-      if (monthOrder === 0) {
-        setMothOrder(11)
-        setYearOrder((prev) => prev - 1)
-      }
+  const nextMonthOrderHandler = () => {
+    setMothOrder((prev) => prev - 1)
+    if (monthOrder === 0) {
+      setMothOrder(11)
+      setYearOrder((prev) => prev - 1)
     }
-
-    if (e.currentTarget.innerText === '앞') {
-      setMothOrder((prev) => prev + 1)
-      if (monthOrder === 11) {
-        setMothOrder(0)
-        setYearOrder((prev) => prev + 1)
-      }
+  }
+  const lastMonthOrderHandler = () => {
+    setMothOrder((prev) => prev + 1)
+    if (monthOrder === 11) {
+      setMothOrder(0)
+      setYearOrder((prev) => prev + 1)
     }
   }
 
@@ -73,37 +72,45 @@ const Calendar = () => {
   }
 
   return (
-    <section>
-      <div>달력 페이지</div>
-      <div>
-        <button onClick={mothsOrderHandler} type='button'>
-          뒤
-        </button>
-        <div>
-          {yearOrder}년 {months.indexOf(months[monthOrder]) + 1}월
+    <S.calendarPageContainer>
+      <S.calendarMenuBtnBox>
+        <div className='yearMenuBox'>
+          <button className='left' onClick={nextMonthOrderHandler} type='button'>
+            <Arrow />
+          </button>
+          <div className='dataMenu'>
+            {yearOrder}년 {months.indexOf(months[monthOrder]) + 1}월
+          </div>
+          <button onClick={lastMonthOrderHandler} type='button'>
+            <Arrow />
+          </button>
         </div>
-        <button onClick={mothsOrderHandler} type='button'>
-          앞
-        </button>
-      </div>
-      <div>
-        <button onClick={filteredDataSelectorHandler} type='button'>{`<`}</button>
-        <div>{dataSelector ? `총 볼륨` : '총 운동시간'}</div>
-        <button onClick={filteredDataSelectorHandler} type='button'>{`>`}</button>
-      </div>
-      <S.calenderContainer>
-        <thead>
+        <div className='dataMenuBox'>
+          <button className='left' onClick={filteredDataSelectorHandler} type='button'>
+            <Arrow />
+          </button>
+          <div className='dataMenu'>{dataSelector ? `총 볼륨` : '총 운동시간'}</div>
+          <button onClick={filteredDataSelectorHandler} type='button'>
+            <Arrow />
+          </button>
+        </div>
+      </S.calendarMenuBtnBox>
+      <S.calendarBox>
+        <S.tableHead>
           <tr>
-            {dates.map((data) => (
-              <th key={data}>{data}</th>
+            {dates.map((data, i) => (
+              <th className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')} key={data}>
+                {data}
+              </th>
             ))}
           </tr>
-        </thead>
+        </S.tableHead>
         <CalendarItem dataSelector={dataSelector} fetchedWeeks={fetchedWeeks} />
-      </S.calenderContainer>
+      </S.calendarBox>
+      <CurrentRoutineRecentUnit dataSelector={dataSelector} />
       <CurrentRoutineCard currentMonthsRoutineData={currentMonthsRoutineData} />
       <Footer />
-    </section>
+    </S.calendarPageContainer>
   )
 }
 
