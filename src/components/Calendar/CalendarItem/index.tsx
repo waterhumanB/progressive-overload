@@ -42,8 +42,10 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
 
   const currentDateRoutineFinishPageMoveHandler = useCallback((routine: IRoutineItem[], routineResult: number) => {
     if (routineResult !== 0) {
-      const locationState = routine.filter((data: IRoutineItem) => data.recent).filter((item) => item !== undefined)
-      navigate('/calendar/routine-result', { state: locationState })
+      const currentRoutineData = routine
+        .filter((data: IRoutineItem) => data.recent)
+        .filter((item) => item !== undefined)
+      navigate('/calendar/routine-result', { state: currentRoutineData })
     }
   }, [])
   return (
