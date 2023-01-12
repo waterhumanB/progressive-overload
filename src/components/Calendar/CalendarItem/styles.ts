@@ -29,6 +29,7 @@ export const todayRoutine = styled.td<{ dataSelector: boolean; dataValue: number
   button {
     width: 100%;
     height: 100%;
+    cursor: ${(props) => (props.dataValue === 0 ? 'default' : '')};
     div {
       width: 100%;
       height: 100%;
@@ -36,4 +37,14 @@ export const todayRoutine = styled.td<{ dataSelector: boolean; dataValue: number
       margin-top: 0;
     }
   }
+  .sun {
+    color: ${colors.RED};
+  }
+  .sat {
+    color: ${colors.BLUE};
+  }
+`
+export const currentMonthdate = styled.div<{ currentMonthOfDate: boolean }>`
+  font-size: 16px;
+  opacity: ${(props) => (!props.currentMonthOfDate ? '0.4' : '')};
 `

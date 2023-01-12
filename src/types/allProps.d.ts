@@ -163,6 +163,7 @@ export interface ICalendarItemProps {
 export interface ICalendarItem {
   day: number
   routine: IRoutineItem[]
+  currentMonthOfDate: boolean
 }
 
 export interface ICalendarCardProps {

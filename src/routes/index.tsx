@@ -15,6 +15,7 @@ import RoutineEdit from './Routine/RoutineMake/RoutineEdit'
 import RoutineReady from './Routine/RoutineReady'
 import RoutineRun from './Routine/RoutineRun'
 import RoutineFinish from './Routine/RoutineFinish'
+import RoutineResult from './Calendar/RoutineResult'
 
 const App = () => {
   const userInfoSelector = useAppSelector(getUserInfoData)
@@ -41,6 +42,7 @@ const App = () => {
         <Route path='/routine/routine-make/custom-exercise/edit' element={<CustomExercise />} />
         <Route path='/summary' element={<Summary />} />
         <Route path='/calendar' element={<Calendar />} />
+        <Route path='/calendar/routine-result' element={<RoutineResult />} />
       </Routes>
     </S.Container>
   )
