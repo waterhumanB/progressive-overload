@@ -2,22 +2,28 @@ import { ICalendarCardProps } from '../../../types/allProps.d'
 import { IRoutineItem } from '../../../types/routines.d'
 import { fetchedDate } from '../../../utils/fetchedDate'
 
+import { ReactComponent as Report } from '../../../assets/imgs/report.svg'
+import * as S from './styles'
+
 const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) => {
   return (
-    <div>
+    <S.currentRoutineCardContainer>
       {currentMonthsRoutineData.map((data: IRoutineItem) => {
         return data ? (
-          <div key={data?.title}>
+          <S.routineCardBox key={data?.title}>
             {data?.recent.map((item) => (
-              <div key={item.startAt}>
-                <div>{data.title}</div>
-                <div>{fetchedDate(item.startAt)}</div>
-              </div>
+              <S.cardData key={item?.startAt}>
+                <Report />
+                <S.routineDataBox>
+                  <S.routineTitle>{data?.title}</S.routineTitle>
+                  <S.routineDate>{fetchedDate(item?.startAt)}</S.routineDate>
+                </S.routineDataBox>
+              </S.cardData>
             ))}
-          </div>
+          </S.routineCardBox>
         ) : null
       })}
-    </div>
+    </S.currentRoutineCardContainer>
   )
 }
 
