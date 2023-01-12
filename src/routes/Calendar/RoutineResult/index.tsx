@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { IRoutineItem } from '../../../types/routines.d'
 
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
+import { RoutineResultItem } from '../../../components/Calendar'
 
 const RoutineResult = () => {
   const [routineResultOrder, setRoutineResultOrder] = useState(0)
@@ -94,45 +95,12 @@ const RoutineResult = () => {
       </S.routineTitleBox>
       <AfterExercise />
       <S.routineResultBox>
-        <S.routineResultItem>
-          <S.dataBox>
-            <S.resultDiv>{currentRoutineOrder + 1}</S.resultDiv>
-            <S.unitDiv>th</S.unitDiv>
-          </S.dataBox>
-          <div>WORKOUT</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <S.dataBox>
-            <S.resultDiv>{durationExecise()}</S.resultDiv>
-            <S.unitDiv>분</S.unitDiv>
-          </S.dataBox>
-          <div>DURATION</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <S.dataBox>
-            <S.resultDiv>{totalVolume}</S.resultDiv>
-            <S.unitDiv>KG</S.unitDiv>
-          </S.dataBox>
-          <div>VOLUME</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <S.resultDiv>{currentRoutineData.workout.length}</S.resultDiv>
-          <div>EXERCISES</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <S.dataBox>
-            <S.resultDiv>{totalSet}</S.resultDiv>
-            <S.unitDiv>세트</S.unitDiv>
-          </S.dataBox>
-          <div>SETS</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <S.dataBox>
-            <S.resultDiv>{totalRab}</S.resultDiv>
-            <S.unitDiv>회</S.unitDiv>
-          </S.dataBox>
-          <div>RPES</div>
-        </S.routineResultItem>
+        <RoutineResultItem result={currentRoutineOrder + 1} unit='th' resultName='WORKOUT' />
+        <RoutineResultItem result={durationExecise()} unit='분' resultName='DURATION' />
+        <RoutineResultItem result={totalVolume} unit='KG' resultName='VOLUME' />
+        <RoutineResultItem result={currentRoutineData.workout.length} unit='' resultName='EXERCISES' />
+        <RoutineResultItem result={totalSet} unit='세트' resultName='SETS' />
+        <RoutineResultItem result={totalRab} unit='회' resultName='RPES' />
       </S.routineResultBox>
       <S.homeRouterBtnBox>
         <button onClick={homeNaviHandler} type='button'>
