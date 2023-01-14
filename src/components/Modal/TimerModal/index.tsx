@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { ITimerModalProps } from '../../../types/allProps.d'
-import mpThree from '../../../assets/audios/boxingRingSound.mp3'
+import finishMp3 from '../../../assets/audios/boxingRingSound.mp3'
 import * as S from './style'
 
 const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
   const [secondsCount, setSecondsCount] = useState(seconds)
-  const audio = new Audio(mpThree)
+  const audio = new Audio(finishMp3)
 
   useEffect(() => {
     const counter = setInterval(() => {
@@ -28,7 +28,7 @@ const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
   return (
     <S.timerModalCounter>
       <S.timerTitle>휴식시간</S.timerTitle>
-      <S.Chart>
+      <S.chart>
         <S.aniSvg viewBox='0 0 200 200'>
           <S.backCircle cx='100' cy='100' r='90' />
           <S.animatedCircle
@@ -42,7 +42,7 @@ const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
           />
         </S.aniSvg>
         <S.timerCount>{secondsCount}</S.timerCount>
-      </S.Chart>
+      </S.chart>
       <S.skipBtn onClick={timerSkipHandler} type='button'>
         {secondsCount === 0 ? '다음 세트 시작' : 'SKIP'}
       </S.skipBtn>

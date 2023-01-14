@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
 export const timerModalCounter = styled.div`
@@ -17,7 +17,7 @@ export const timerTitle = styled.div`
   text-align: center;
 `
 
-export const Chart = styled.div`
+export const chart = styled.div`
   width: 250px;
   height: 250px;
   margin: auto;
