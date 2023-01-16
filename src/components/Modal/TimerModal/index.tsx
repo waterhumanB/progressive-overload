@@ -29,7 +29,7 @@ const TimerModal = ({ toggleModalHandler, seconds }: ITimerModalProps) => {
   return (
     <S.timerModalCounter>
       <S.timerTitle>휴식시간</S.timerTitle>
-      <DountChart percentage={seconds} percentageValue={secondsCount} chartValue='default' />
+      <DountChart percentage={seconds} percentageValue={secondsCount} chartValueName='default' />
       <S.skipBtn onClick={timerSkipHandler} type='button'>
         {secondsCount === 0 ? '다음 세트 시작' : 'SKIP'}
       </S.skipBtn>

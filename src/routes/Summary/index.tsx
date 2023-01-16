@@ -9,31 +9,54 @@ import * as S from './styles'
 
 const ONE_YEAR_AVERAGE_EXERCISE_DAY = 188
 const ONE_YEAR_AVERAGE_EXERCISE_HOUR = 187
-const ONE_YEAR_AVERAGE_EXERCISE_VOLUME = 282
+const ONE_YEAR_AVERAGE_EXERCISE_VOLUME = 250
 const Summary = () => {
+  const thisYear = new Date().getFullYear
   const routineSelector = useAppSelector(getRoutineData)
   const recordSelector = useAppSelector(getRecordsData)
-  console.log(recordSelector.records.allIds.length)
-  console.log(
-    Object.values(recordSelector.records.byId)
-      .map((data) => {
-        const duratingHour =
-          Number(data.endAt.split(' ')[4].split(':')[0]) - Number(data.startAt.split(' ')[4].split(':')[0])
-        const duratingMinute =
-          Number(data.endAt.split(' ')[4].split(':')[1]) - Number(data.startAt.split(' ')[4].split(':')[1])
-        return duratingHour * 60 + duratingMinute
-      })
-      .reduce((acc, el) => acc + el)
-  )
 
-  console.log(Object.values(recordSelector.records.byId).map((data) => data.endAt.split(' ')[4]))
+  const totalTimeExercised = Object.values(recordSelector.records.byId)
+    .map((data) => {
+      const duratingHour =
+        Number(data.endAt.split(' ')[4].split(':')[0]) - Number(data.startAt.split(' ')[4].split(':')[0])
+      const duratingMinute =
+        Number(data.endAt.split(' ')[4].split(':')[1]) - Number(data.startAt.split(' ')[4].split(':')[1])
+      return duratingHour * 60 + duratingMinute
+    })
+    .reduce((acc, el) => acc + el)
+
+  const execiseAllDates = Object.values(recordSelector.records.byId).map((data) => {
+    const workoutDays = data.startAt.split(' ')[0] + data.startAt.split(' ')[1] + data.startAt.split(' ')[2]
+    return workoutDays
+  })
+
+  const totalWorkoutDays = execiseAllDates.filter((data, idx) => execiseAllDates.indexOf(data) === idx).length
+  const totalExercisedVolume = Object.values(recordSelector.records.byId)
+    .map((data) => {
+      return data.set.map((item) => item.kg * item.rab)
+    })
+    .flat(1)
+    .reduce((acc, el) => acc + el)
+
   return (
     <section>
       <div>나의 운동 기록들</div>
       <S.chartConatiner>
-        <DountChart percentage={ONE_YEAR_AVERAGE_EXERCISE_HOUR} percentageValue={30} chartValue='Min' />
-        <DountChart percentage={ONE_YEAR_AVERAGE_EXERCISE_VOLUME} percentageValue={1} chartValue='Kg' />
-        <DountChart percentage={ONE_YEAR_AVERAGE_EXERCISE_DAY} percentageValue={20} chartValue='Days' />
+        <DountChart
+          percentage={ONE_YEAR_AVERAGE_EXERCISE_HOUR}
+          percentageValue={totalTimeExercised}
+          chartValueName='Min'
+        />
+        <DountChart
+          percentage={ONE_YEAR_AVERAGE_EXERCISE_VOLUME}
+          percentageValue={totalExercisedVolume}
+          chartValueName='Kg'
+        />
+        <DountChart
+          percentage={ONE_YEAR_AVERAGE_EXERCISE_DAY}
+          percentageValue={totalWorkoutDays}
+          chartValueName='Days'
+        />
       </S.chartConatiner>
       <div>
         <div>일간</div>
