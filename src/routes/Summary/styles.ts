@@ -12,7 +12,7 @@ export const barChartContainer = styled.div`
 export const yAxis = styled.div`
   height: 178px;
   padding: 0 10px;
-  border-right: 2px solid ${colors.FOCUS};
+  border-right: 1px solid ${colors.BLUE};
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -7,6 +7,7 @@ import UserInput from './UserInput'
 
 const UserInfo = () => {
   const dispatch = useAppDispatch()
+  const navgate = useNavigate()
   const [nameValue, setNameValue] = useState('')
   const [ageValue, setAgeValue] = useState(0)
   const [genderValue, setGenderValue] = useState('남자')
@@ -39,8 +40,6 @@ const UserInfo = () => {
     setWeightValue(Number(e.target.value))
     Number(e.target.value) > 150 || Number(e.target.value) < 30 ? setWeightValidator(true) : setWeightValidator(false)
   }
-
-  const navgate = useNavigate()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()

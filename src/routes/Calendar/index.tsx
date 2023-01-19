@@ -30,6 +30,7 @@ const Calendar = () => {
     const lastDateOfMonth = new Date(yearOrder, monthOrder + 1, 0).getDate() // 이번달 마지막 날짜
     const lastDayOfMonth = new Date(yearOrder, monthOrder, lastDateOfMonth).getDay() // 이번달 마지막 날수
     const lastDateOfLastMonth = new Date(yearOrder, monthOrder, 0).getDate() // 지난달 마지막 날짜
+
     for (let i = firstDayOfMonth; i > 0; i--) {
       currentCalendar.push({
         day: lastDateOfLastMonth - i + 1,
@@ -37,6 +38,7 @@ const Calendar = () => {
         routine: [{ recent: undefined }],
       })
     }
+
     for (let i = 1; i <= lastDateOfMonth; i++) {
       const filteredRoutine = currentMonthsRoutineData.map((data) => {
         const filteredRecent = data?.recent.filter((item) => Number(item.startAt.split(' ')[2]) === i)
@@ -45,9 +47,11 @@ const Calendar = () => {
       })
       currentCalendar.push({ day: i, currentMonthOfDate: true, routine: filteredRoutine })
     }
+
     for (let i = lastDayOfMonth; i < 6; i++) {
       currentCalendar.push({ day: i - lastDayOfMonth + 1, currentMonthOfDate: false, routine: [{ recent: undefined }] })
     }
+
     currentCalendar.length = 35
     return currentCalendar.slice((weekOrder - 1) * 7, weekOrder * 7)
   }

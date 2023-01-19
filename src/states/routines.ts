@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 import {
@@ -19,12 +19,15 @@ const INIT_ROUTINES = {
   allIds: [],
 }
 
+const INIT_LOCALSTORAGE_ROUTINES =
+  localStorage.getItem('routines') !== null ? JSON.parse(localStorage.getItem('routines') as string) : INIT_ROUTINES
+
 export interface RoutinesState {
   routines: IRoutines
 }
 
 const INITIAL_STATE: RoutinesState = {
-  routines: INIT_ROUTINES,
+  routines: INIT_LOCALSTORAGE_ROUTINES,
 }
 
 const systemSlice = createSlice({
@@ -34,22 +37,27 @@ const systemSlice = createSlice({
     setRoutine: (state: RoutinesState, action: PayloadAction<IRoutineData>) => {
       state.routines.byId = Object.assign(state.routines.byId, action.payload)
       state.routines.allIds.push(Object.keys(action.payload)[0])
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
     editRoutine: (state: RoutinesState, action: PayloadAction<IEditRoutine>) => {
       state.routines.byId[action.payload.id] = action.payload
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
     deleteRoutine: (state: RoutinesState, action: PayloadAction<IDeleteRoutine>) => {
       delete state.routines.byId[action.payload.id]
       state.routines.allIds = state.routines.allIds.filter((data) => data !== action.payload.id)
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
     deleteExerciseInRoutine: (state: RoutinesState, action: PayloadAction<IDeleteExerciseInRoutine>) => {
       const newRoutine = state.routines.byId[action.payload.id].workout.filter(
         (data) => data !== action.payload.exerciseId
       )
       state.routines.byId[action.payload.id].workout = newRoutine
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
     changeWorkoutInRoutine: (state: RoutinesState, action: PayloadAction<IChangeWorkoutInRoutine>) => {
       state.routines.byId[action.payload.id].workout = action.payload.workout
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
     changeExerciseInRoutine: (state: RoutinesState, action: PayloadAction<IChangeExerciseInRoutine>) => {
       state.routines.byId[action.payload.id].workout.splice(
@@ -57,6 +65,7 @@ const systemSlice = createSlice({
         1,
         action.payload.exerciseIdSelected
       )
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
     setStartAtTimeInRoutine: (state: RoutinesState, action: PayloadAction<ISetStartAtTimeInRoutine>) => {
       const recent: IRecentItem = {
@@ -65,6 +74,7 @@ const systemSlice = createSlice({
         recordIds: [],
       }
       state.routines.byId[action.payload.id].recent.push(recent)
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
     setEndAtTimeAndRecordsInRoutine: (
       state: RoutinesState,
@@ -73,6 +83,7 @@ const systemSlice = createSlice({
       const currentRoutineOrder = state.routines.byId[action.payload.id].recent.length - 1
       state.routines.byId[action.payload.id].recent[currentRoutineOrder].endAt = action.payload.endAt
       state.routines.byId[action.payload.id].recent[currentRoutineOrder].recordIds = action.payload.recordIds
+      localStorage.setItem('routines', JSON.stringify(state.routines))
     },
   },
 })

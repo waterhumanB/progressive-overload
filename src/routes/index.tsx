@@ -1,12 +1,9 @@
-import { useLayoutEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import * as S from './styles'
 import Home from './Home'
 import Routine from './Routine'
 import Summary from './Summary'
 import Calendar from './Calendar'
-import { useAppSelector } from '../hooks/useAppSelector'
-import { getUserInfoData } from '../states/user'
 import Youtube from './Routine/Youtube'
 import RoutineMake from './Routine/RoutineMake'
 import CustomExercise from './Routine/CustomExercise'
@@ -18,14 +15,6 @@ import RoutineFinish from './Routine/RoutineFinish'
 import RoutineResult from './Calendar/RoutineResult'
 
 const App = () => {
-  const userInfoSelector = useAppSelector(getUserInfoData)
-  const navigate = useNavigate()
-  const location = useLocation()
-  useLayoutEffect(() => {
-    if (location.pathname === '/') {
-      userInfoSelector.user.nickName.length > 1 && navigate('/routine')
-    }
-  }, [])
   return (
     <S.Container>
       <Routes>

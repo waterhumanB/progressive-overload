@@ -1,11 +1,18 @@
-import { useState, MouseEvent } from 'react'
-import * as S from './styles'
+import { useState, MouseEvent, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useAppSelector } from '../../hooks/useAppSelector'
+import { getUserInfoData } from '../../states/user'
 import { ReactComponent as Arrow } from '../../assets/imgs/arrow.svg'
 import UserInfo from '../../components/UserInfo'
+import * as S from './styles'
 
 const Home = () => {
   const [view, setView] = useState(0)
   const [btn, setBtn] = useState('')
+  const userInfoSelector = useAppSelector(getUserInfoData)
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const viewHandler = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.id === 'left') {
       setBtn('left')
@@ -23,6 +30,12 @@ const Home = () => {
   const directViewHandler = (e: MouseEvent<HTMLButtonElement>) => {
     setView(Number(e.currentTarget.id))
   }
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      userInfoSelector.user.nickName.length > 1 && navigate('/routine')
+    }
+  }, [])
 
   return (
     <S.homeContainer>

@@ -12,12 +12,15 @@ const INIT_USER = {
   weight: 0,
 }
 
+const INIT_LOCALSTORAGE_USER =
+  localStorage.getItem('user') !== null ? JSON.parse(localStorage.getItem('user') as string) : INIT_USER
+
 export interface UserState {
   user: IUserInfo
 }
 
 const INITIAL_STATE: UserState = {
-  user: INIT_USER,
+  user: INIT_LOCALSTORAGE_USER,
 }
 
 const systemSlice = createSlice({
@@ -26,12 +29,12 @@ const systemSlice = createSlice({
   reducers: {
     setUser: (state: UserState, action: PayloadAction<IUserInfo>) => {
       state.user = action.payload
+      localStorage.setItem('user', JSON.stringify(action.payload))
     },
-    resetUser: () => INITIAL_STATE,
   },
 })
 
-export const { setUser, resetUser } = systemSlice.actions
+export const { setUser } = systemSlice.actions
 
 export default systemSlice.reducer
 

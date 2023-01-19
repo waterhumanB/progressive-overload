@@ -22,9 +22,9 @@ const DountChart = ({ percentage, percentageValue, chartValueName }: IDountChart
     return result
   }
   return (
-    <S.chart chartName='chartValue'>
+    <S.chart chartName={chartValueName}>
       <S.aniSvg viewBox='0 0 200 200'>
-        <S.backCircle cx='100' cy='100' r='90' />
+        <S.backCircle chartName={chartValueName} cx='100' cy='100' r='90' />
         <S.animatedCircle
           chartName={chartValueName}
           cx='100'

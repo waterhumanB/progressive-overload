@@ -10,6 +10,11 @@ export const getYoutubeRecommendData = createAsyncThunk('youtubeRecommend', asyn
 
 const INIT_YOUTUBE: ISearchYoutube[] = []
 
+const INIT_LOCALSTORAGE_YOUTUBE =
+  localStorage.getItem('youtubeRecommend') !== null
+    ? JSON.parse(localStorage.getItem('youtubeRecommend') as string)
+    : INIT_YOUTUBE
+
 export interface YoutubeState {
   youtubeData: ISearchYoutube[]
   error: null | undefined | string | unknown
@@ -35,6 +40,7 @@ const getYoutubRecommendSlice = createSlice({
       state.youtubeData = action.payload
       state.loading = false
       state.error = 'fuilfilled'
+      localStorage.setItem('youtubeRecommend', JSON.stringify(state.youtubeData))
     })
 
     builder.addCase(getYoutubeRecommendData.rejected, (state: YoutubeState) => {

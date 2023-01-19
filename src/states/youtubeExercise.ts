@@ -10,6 +10,11 @@ export const getYoutubeExerciseData = createAsyncThunk('youtubeExercise', async 
 
 const INIT_YOUTUBE: ISearchYoutube[] = []
 
+const INIT_LOCALSTORAGE_YOUTUBE =
+  localStorage.getItem('youtubeExercise') !== null
+    ? JSON.parse(localStorage.getItem('youtubeExercise') as string)
+    : INIT_YOUTUBE
+
 export interface YoutubeState {
   youtubeData: ISearchYoutube[]
   error: null | undefined | string | unknown
@@ -17,7 +22,7 @@ export interface YoutubeState {
 }
 
 const INITIAL_STATE: YoutubeState = {
-  youtubeData: INIT_YOUTUBE,
+  youtubeData: INIT_LOCALSTORAGE_YOUTUBE,
   error: null,
   loading: false,
 }
@@ -35,6 +40,7 @@ const getYoutubeExerciseSlice = createSlice({
       state.youtubeData = action.payload
       state.loading = false
       state.error = 'fuilfilled'
+      localStorage.setItem('youtubeExercise', JSON.stringify(state.youtubeData))
     })
 
     builder.addCase(getYoutubeExerciseData.rejected, (state: YoutubeState) => {

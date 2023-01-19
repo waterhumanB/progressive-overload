@@ -7,12 +7,15 @@ const INIT_RECORDS = {
   byId: {},
   allIds: [],
 }
+
+const INIT_LOCALSTORAGE_RECORDS =
+  localStorage.getItem('records') !== null ? JSON.parse(localStorage.getItem('records') as string) : INIT_RECORDS
 export interface RecordsState {
   records: IRecords
 }
 
 const INITIAL_STATE: RecordsState = {
-  records: INIT_RECORDS,
+  records: INIT_LOCALSTORAGE_RECORDS,
 }
 
 const systemSlice = createSlice({
@@ -27,6 +30,7 @@ const systemSlice = createSlice({
       }
       state.records.byId = Object.assign(state.records.byId, recordData)
       state.records.allIds.push(action.payload.id)
+      localStorage.setItem('records', JSON.stringify(state.records))
     },
   },
 })

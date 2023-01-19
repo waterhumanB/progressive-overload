@@ -18,17 +18,17 @@ export const aniSvg = styled.svg`
   }
 `
 
-export const backCircle = styled.circle`
-  stroke: ${colors.BACK};
+export const backCircle = styled.circle<{ chartName: string }>`
+  stroke: ${(props) => (props.chartName === 'default' ? colors.WHITE : colors.BACK)};
 `
 
 export const animatedCircle = styled.circle<{ chartName: string }>`
-  transition: 1.1s linear;
   stroke: ${(props) =>
     (props.chartName === 'default' && colors.DEEP_BLUE) ||
     (props.chartName === 'Min' && colors.PURPLE1) ||
     (props.chartName === 'Kg' && colors.BRIGHT_GREEN) ||
     (props.chartName === 'Days' && colors.BLUE1)};
+  transition: 1.1s linear;
 `
 
 export const chartValue = styled.div<{ chartName: string }>`

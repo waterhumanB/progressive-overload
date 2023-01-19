@@ -7,12 +7,15 @@ import { IExerciseId, IExerciseIdAndRecordId, IExerciseItem, IExercises, IFavori
 
 const INIT_EXERCISE = initialData.exercises
 
+const INIT_LOCALSTORAGE_EXERCISE =
+  localStorage.getItem('exercise') !== null ? JSON.parse(localStorage.getItem('exercise') as string) : INIT_EXERCISE
+
 export interface ExerciseState {
   exercises: IExercises
 }
 
 const INITIAL_STATE: ExerciseState = {
-  exercises: INIT_EXERCISE,
+  exercises: INIT_LOCALSTORAGE_EXERCISE,
 }
 
 const systemSlice = createSlice({
@@ -21,20 +24,25 @@ const systemSlice = createSlice({
   reducers: {
     setFavoriteExercise: (state: ExerciseState, action: PayloadAction<IFavorite>) => {
       state.exercises.byId[action.payload.id].favorite = action.payload.favorite
+      localStorage.setItem('exercise', JSON.stringify(state.exercises))
     },
     setCustomExercise: (state: ExerciseState, action: PayloadAction<IExerciseItem>) => {
       state.exercises.byId[action.payload.id] = action.payload
       state.exercises.allIds.push(action.payload.id)
+      localStorage.setItem('exercise', JSON.stringify(state.exercises))
     },
     editCustomExercise: (state: ExerciseState, action: PayloadAction<IExerciseItem>) => {
       state.exercises.byId[action.payload.id] = action.payload
+      localStorage.setItem('exercise', JSON.stringify(state.exercises))
     },
     deleteCustomExercise: (state: ExerciseState, action: PayloadAction<IExerciseId>) => {
       delete state.exercises.byId[action.payload.id]
       state.exercises.allIds = state.exercises.allIds.filter((data) => data !== action.payload.id)
+      localStorage.setItem('exercise', JSON.stringify(state.exercises))
     },
     setRecordInExercise: (state: ExerciseState, action: PayloadAction<IExerciseIdAndRecordId>) => {
       state.exercises.byId[action.payload.id].record.push(action.payload.recordId)
+      localStorage.setItem('exercise', JSON.stringify(state.exercises))
     },
   },
 })
