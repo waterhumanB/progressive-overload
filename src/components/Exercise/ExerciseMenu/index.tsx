@@ -35,11 +35,11 @@ const ExerciseMenu = ({ setFilterExercise, filterExercise }: ExerciseMeunProps) 
           data='favorite'
         />
         <FilterButton
-          className={more === 'recent' ? ' more' : ''}
+          className={more === 'record' ? ' more' : ''}
           id='more'
           value='최근운동'
           onClick={filterHandler}
-          data='recent'
+          data='record'
         />
         <FilterButton
           className={more === 'custom' ? ' more' : ''}

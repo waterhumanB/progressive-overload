@@ -32,7 +32,7 @@ const ExerciseCard = ({
       (data) =>
         ((more === '전체' && data) ||
           (more === 'favorite' && data.favorite) ||
-          (more === 'recent' && !data.record) ||
+          (more === 'record' && data.record.length) ||
           (more === 'custom' && data.custom)) &&
         (target === '전체' ? data : data.mainTarget === target) &&
         (category === '전체' ? data : data.categoryId === category)
