@@ -82,6 +82,7 @@ const RoutineMake = () => {
       setAddExercise(location.state.workout)
     }
   }, [])
+
   return (
     <S.makeRountineContainer>
       <S.filterBox>
@@ -107,8 +108,8 @@ const RoutineMake = () => {
           <UpArrow />
         </S.upExerciseListBtn>
         <S.routineAddBtn onClick={exerciseLiskStateAndRouter} disabled={!addExercise.length} type='button'>
-          + {addExercise.length === 12 ? 'MAX' : addExercise.length}{' '}
-          {location.state && location.state.workout.length === 0 ? '운동 추가하기' : '운동 변경하기'}
+          + {addExercise.length === 12 ? 'MAX' : addExercise.length}
+          {location.state === null ? '운동 추가하기' : '운동 변경하기'}
         </S.routineAddBtn>
       </S.upAndRoutineAddBtnBox>
       <DropDown

@@ -11,9 +11,9 @@ const RoutineFinish = () => {
   const navigate = useNavigate()
   const routineSelector = useAppSelector(getRoutineData)
   const recordsSelector = useAppSelector(getRecordsData)
-  const currentRutineData = routineSelector.routines.byId[location.state]
+  const currentRoutineData = routineSelector.routines.byId[location.state]
 
-  const currentExerciseRecordIds = currentRutineData.recent.length > 0 && currentRutineData.recent[0].recordIds
+  const currentExerciseRecordIds = currentRoutineData.recent.length > 0 && currentRoutineData.recent[0].recordIds
 
   const currentExeciseRecordData = Object.values(recordsSelector.records.byId)
     .filter((data) => currentExerciseRecordIds && currentExerciseRecordIds.includes(data.id))
@@ -31,8 +31,8 @@ const RoutineFinish = () => {
     .reduce((acc, el) => acc + el)
 
   const durationExecise = () => {
-    const startTime = currentRutineData.recent?.[currentRutineData.recent.length - 1].startAt.split(' ')[4].split(':')
-    const endTime = currentRutineData.recent?.[currentRutineData.recent.length - 1].endAt.split(' ')[4].split(':')
+    const startTime = currentRoutineData.recent?.[currentRoutineData.recent.length - 1].startAt.split(' ')[4].split(':')
+    const endTime = currentRoutineData.recent?.[currentRoutineData.recent.length - 1].endAt.split(' ')[4].split(':')
     const hour = (Number(endTime[0]) - Number(startTime[0])) * 60
     const minute = Number(endTime[1]) - Number(startTime[1])
     return hour + minute
@@ -45,8 +45,10 @@ const RoutineFinish = () => {
   return (
     <S.routinefinishContainer>
       <S.routineTitleBox>
-        <div className='title'>{currentRutineData.title}</div>
-        <div className='date'>{fetchedDate(currentRutineData.recent?.[currentRutineData.recent.length - 1].endAt)}</div>
+        <div className='title'>{currentRoutineData.title}</div>
+        <div className='date'>
+          {fetchedDate(currentRoutineData.recent?.[currentRoutineData.recent.length - 1].endAt)}
+        </div>
       </S.routineTitleBox>
       <AfterExercise />
       <S.routineResultBox>
@@ -72,7 +74,7 @@ const RoutineFinish = () => {
           <div>VOLUME</div>
         </S.routineResultItem>
         <S.routineResultItem>
-          <div className='data result'>{currentRutineData.workout.length}</div>
+          <div className='data result'>{currentRoutineData.workout.length}</div>
           <div>EXERCISES</div>
         </S.routineResultItem>
         <S.routineResultItem>

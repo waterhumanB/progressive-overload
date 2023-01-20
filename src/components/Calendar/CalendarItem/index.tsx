@@ -147,30 +147,52 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
         ))}
       </tr>
       <tr>
-        {fetchedWeeks(5).map((data: ICalendarItem, i: number) => {
-          return data ? (
-            <S.todayRoutine
-              dataSelector={dataSelector}
-              dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
-              onClick={() =>
-                currentDateRoutineFinishPageMoveHandler(
-                  data.routine,
-                  todayDuration(data?.routine) + todayTotalVolume(data?.routine)
-                )
-              }
-              key={data?.day}
-            >
-              <button type='button'>
-                <S.currentMonthdate
-                  currentMonthOfDate={data?.currentMonthOfDate}
-                  className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
-                >
-                  {data?.day}
-                </S.currentMonthdate>
-              </button>
-            </S.todayRoutine>
-          ) : null
-        })}
+        {fetchedWeeks(5).map((data: ICalendarItem, i: number) => (
+          <S.todayRoutine
+            dataSelector={dataSelector}
+            dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
+            onClick={() =>
+              currentDateRoutineFinishPageMoveHandler(
+                data.routine,
+                todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+              )
+            }
+            key={data?.day}
+          >
+            <button type='button'>
+              <S.currentMonthdate
+                currentMonthOfDate={data?.currentMonthOfDate}
+                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
+              >
+                {data?.day}
+              </S.currentMonthdate>
+            </button>
+          </S.todayRoutine>
+        ))}
+      </tr>
+      <tr>
+        {fetchedWeeks(6).map((data: ICalendarItem, i: number) => (
+          <S.todayRoutine
+            dataSelector={dataSelector}
+            dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
+            onClick={() =>
+              currentDateRoutineFinishPageMoveHandler(
+                data.routine,
+                todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+              )
+            }
+            key={data?.day}
+          >
+            <button type='button'>
+              <S.currentMonthdate
+                currentMonthOfDate={data?.currentMonthOfDate}
+                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
+              >
+                {data?.day}
+              </S.currentMonthdate>
+            </button>
+          </S.todayRoutine>
+        ))}
       </tr>
     </S.calendarTbody>
   )

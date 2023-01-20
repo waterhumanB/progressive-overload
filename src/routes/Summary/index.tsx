@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import DountChart from '../../components/Chart/DountChart'
 import Footer from '../../components/Footer'
+import { BarChart } from '../../components/Summary'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getRecordsData } from '../../states/records'
-import { getRoutineData } from '../../states/routines'
 
 import * as S from './styles'
 
@@ -11,9 +11,11 @@ const ONE_YEAR_AVERAGE_EXERCISE_DAY = 188
 const ONE_YEAR_AVERAGE_EXERCISE_HOUR = 187 // 일주일 3.5 한달 15.5
 const ONE_YEAR_AVERAGE_EXERCISE_VOLUME = 250 // 일주일 4.8 한달 20
 
+const VOLUME_RANGE = [25000, 20000, 15000, 10000, 5000, 0]
+const MINUTE_RANGE = [150, 120, 90, 60, 30, 0]
+
 const Summary = () => {
   const [toggleBarChartMenu, setToggleBarChartMenu] = useState(false)
-  const routineSelector = useAppSelector(getRoutineData)
   const recordSelector = useAppSelector(getRecordsData)
 
   const totalTimeExercised = Object.values(recordSelector.records.byId)
@@ -42,29 +44,6 @@ const Summary = () => {
     .flat(1)
     .reduce((acc, el) => acc + el)
 
-  const routineByDate = totalWorkoutDays.map((data) => {
-    const sets = Object.values(recordSelector.records.byId)
-      .map((item) => {
-        return item.startAt.includes(data) ? item.set.map((set) => set.kg * set.rab) : []
-      })
-      .flat(1)
-      .reduce((acc, el) => acc + el)
-
-    const durtaions = Object.values(recordSelector.records.byId)
-      .map((item) => {
-        const durationHour =
-          Number(item.endAt.split(' ')[4].split(':')[0]) - Number(item.startAt.split(' ')[4].split(':')[0])
-        const durrationMinute =
-          Number(item.endAt.split(' ')[4].split(':')[1]) - Number(item.startAt.split(' ')[4].split(':')[1])
-        return item.startAt.includes(data) ? durationHour * 60 + durrationMinute : []
-      })
-      .flat(1)
-      .reduce((acc, el) => acc + el)
-
-    return { date: data, sets, durtaions }
-  })
-
-  console.log(routineByDate)
   const toggleBarChartMenuHandler = () => {
     setToggleBarChartMenu((prev) => !prev)
   }
@@ -97,42 +76,18 @@ const Summary = () => {
       <S.barChartContainer>
         {toggleBarChartMenu ? (
           <S.yAxis>
-            <div>25000</div>
-            <div>20000</div>
-            <div>15000</div>
-            <div>10000</div>
-            <div>5000</div>
-            <div>0</div>
+            {VOLUME_RANGE.map((data) => (
+              <S.yAxis key={data}>{data}</S.yAxis>
+            ))}
           </S.yAxis>
         ) : (
           <S.yAxis>
-            <div>150</div>
-            <div>120</div>
-            <div>90</div>
-            <div>60</div>
-            <div>30</div>
-            <div>0</div>
+            {MINUTE_RANGE.map((data) => (
+              <S.yAxis key={data}>{data}</S.yAxis>
+            ))}
           </S.yAxis>
         )}
-        <svg viewBox='0 0 400 250'>
-          {toggleBarChartMenu
-            ? routineByDate.map((data, idx) => (
-                <g key={data.date}>
-                  <rect x={idx * 50 + 10} y={`${200 - 190}`} width='10' height='190' stroke='black' strokeWidth='3px' />
-                  <text y='220' x={idx * 50}>
-                    volume
-                  </text>
-                </g>
-              ))
-            : routineByDate.map((data, idx) => (
-                <g key={data.date}>
-                  <rect x={idx * 50 + 10} y={`${200 - 190}`} width='10' height='190' stroke='black' strokeWidth='3px' />
-                  <text y='220' x={idx * 50}>
-                    time
-                  </text>
-                </g>
-              ))}
-        </svg>
+        <BarChart toggleBarChartMenu={toggleBarChartMenu} totalWorkoutDays={totalWorkoutDays} />
       </S.barChartContainer>
       <div>
         <button onClick={toggleBarChartMenuHandler} type='button'>

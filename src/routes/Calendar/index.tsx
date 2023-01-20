@@ -26,9 +26,9 @@ const Calendar = () => {
 
   const fetchedWeeks = (weekOrder: number) => {
     const currentCalendar = []
-    const firstDayOfMonth = new Date(yearOrder, monthOrder, 1).getDay() // 이번달 첫 시작일
+    const firstDayOfMonth = new Date(yearOrder, monthOrder, 1).getDay() // 이번달 첫 시작 요일
     const lastDateOfMonth = new Date(yearOrder, monthOrder + 1, 0).getDate() // 이번달 마지막 날짜
-    const lastDayOfMonth = new Date(yearOrder, monthOrder, lastDateOfMonth).getDay() // 이번달 마지막 날수
+    const lastDayOfMonth = new Date(yearOrder, monthOrder, lastDateOfMonth).getDay() // 이번달 마지막 요일
     const lastDateOfLastMonth = new Date(yearOrder, monthOrder, 0).getDate() // 지난달 마지막 날짜
 
     for (let i = firstDayOfMonth; i > 0; i--) {
@@ -52,7 +52,6 @@ const Calendar = () => {
       currentCalendar.push({ day: i - lastDayOfMonth + 1, currentMonthOfDate: false, routine: [{ recent: undefined }] })
     }
 
-    currentCalendar.length = 35
     return currentCalendar.slice((weekOrder - 1) * 7, weekOrder * 7)
   }
 
