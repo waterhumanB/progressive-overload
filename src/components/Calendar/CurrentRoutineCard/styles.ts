@@ -3,8 +3,9 @@ import colors from '../../../styles/constants/colors'
 
 export const currentRoutineCardContainer = styled.div`
   width: 100%;
-  height: 100%;
-  padding: 20px 5px;
+  height: 43vh;
+  overflow: scroll;
+  padding: 0 5px;
 `
 export const routineCardBox = styled.div`
   width: 100%;

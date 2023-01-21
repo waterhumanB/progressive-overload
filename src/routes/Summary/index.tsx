@@ -11,11 +11,12 @@ const ONE_YEAR_AVERAGE_EXERCISE_DAY = 188
 const ONE_YEAR_AVERAGE_EXERCISE_HOUR = 187 // 일주일 3.5 한달 15.5
 const ONE_YEAR_AVERAGE_EXERCISE_VOLUME = 250 // 일주일 4.8 한달 20
 
-const VOLUME_RANGE = [25000, 20000, 15000, 10000, 5000, 0]
-const MINUTE_RANGE = [150, 120, 90, 60, 30, 0]
+const VOLUME_RANGE = [25000, 20000, 15000, 10000, 5000]
+const MINUTE_RANGE = [150, 120, 90, 60, 30]
 
 const Summary = () => {
-  const [toggleBarChartMenu, setToggleBarChartMenu] = useState(false)
+  const [volumeAndDurationSelect, setVolumeAndDurationSelect] = useState('volume')
+  const [dayWeekMonthSelect, setDayWeekMonthSelect] = useState('days')
   const recordSelector = useAppSelector(getRecordsData)
 
   const totalTimeExercised = Object.values(recordSelector.records.byId)
@@ -44,8 +45,21 @@ const Summary = () => {
     .flat(1)
     .reduce((acc, el) => acc + el)
 
-  const toggleBarChartMenuHandler = () => {
-    setToggleBarChartMenu((prev) => !prev)
+  const volumeSelectHandler = () => {
+    setVolumeAndDurationSelect('volume')
+  }
+  const durationSelectMenuHandler = () => {
+    setVolumeAndDurationSelect('duration')
+  }
+
+  const dayWeekMonthSelectHandler = () => {
+    setDayWeekMonthSelect('days')
+  }
+  const weekSelectHandler = () => {
+    setDayWeekMonthSelect('weeks')
+  }
+  const monthSelectHandler = () => {
+    setDayWeekMonthSelect('months')
   }
 
   return (
@@ -69,31 +83,51 @@ const Summary = () => {
         />
       </S.dountChartContainer>
       <div>
-        <button type='button'>일간</button>
-        <button type='button'>주간</button>
-        <button type='button'>월간</button>
+        <button onClick={dayWeekMonthSelectHandler} type='button'>
+          일간
+        </button>
+        <button onClick={weekSelectHandler} type='button'>
+          주간
+        </button>
+        <button onClick={monthSelectHandler} type='button'>
+          월간
+        </button>
       </div>
       <S.barChartContainer>
-        {toggleBarChartMenu ? (
+        {volumeAndDurationSelect === 'volume' ? (
           <S.yAxis>
             {VOLUME_RANGE.map((data) => (
-              <S.yAxis key={data}>{data}</S.yAxis>
+              <div key={data}>
+                {(dayWeekMonthSelect === 'days' && data) ||
+                  (dayWeekMonthSelect === 'weeks' && data * 7) ||
+                  (dayWeekMonthSelect === 'months' && data * 30)}
+              </div>
             ))}
+            <div>0</div>
           </S.yAxis>
         ) : (
           <S.yAxis>
             {MINUTE_RANGE.map((data) => (
-              <S.yAxis key={data}>{data}</S.yAxis>
+              <div key={data}>
+                {(dayWeekMonthSelect === 'days' && data) ||
+                  (dayWeekMonthSelect === 'weeks' && data * 7) ||
+                  (dayWeekMonthSelect === 'months' && data * 30)}
+              </div>
             ))}
+            <div>0</div>
           </S.yAxis>
         )}
-        <BarChart toggleBarChartMenu={toggleBarChartMenu} totalWorkoutDays={totalWorkoutDays} />
+        <BarChart
+          dayWeekMonthSelect={dayWeekMonthSelect}
+          volumeAndDurationSelect={volumeAndDurationSelect}
+          totalWorkoutDays={totalWorkoutDays}
+        />
       </S.barChartContainer>
       <div>
-        <button onClick={toggleBarChartMenuHandler} type='button'>
+        <button onClick={volumeSelectHandler} type='button'>
           총 볼륨
         </button>
-        <button onClick={toggleBarChartMenuHandler} type='button'>
+        <button onClick={durationSelectMenuHandler} type='button'>
           운동 시간
         </button>
       </div>

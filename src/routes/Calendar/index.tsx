@@ -7,8 +7,8 @@ import { CalendarItem, CurrentRoutineCard, CurrentRoutineRecentUnit } from '../.
 import { ReactComponent as Arrow } from '../../assets/imgs/arrow.svg'
 import * as S from './styles'
 
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-const dates = ['일', '월', '화', '수', '목', '금', '토']
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const DayOfTheWeek = ['일', '월', '화', '수', '목', '금', '토']
 
 const Calendar = () => {
   const [monthOrder, setMothOrder] = useState(new Date().getMonth())
@@ -18,7 +18,7 @@ const Calendar = () => {
 
   const currentMonthsRoutineData = Object.values(routineSelector.routines.byId).map((data) => {
     const filtered = data.recent.filter(
-      (item) => item.startAt.split(' ')[1] === months[monthOrder] && item.startAt.split(' ')[3] === String(yearOrder)
+      (item) => item.startAt.split(' ')[1] === MONTHS[monthOrder] && item.startAt.split(' ')[3] === String(yearOrder)
     )
     const result = filtered.length !== 0 ? { ...data, recent: filtered } : undefined
     return result
@@ -82,7 +82,7 @@ const Calendar = () => {
             <Arrow />
           </button>
           <div className='dataMenu'>
-            {yearOrder}년 {months.indexOf(months[monthOrder]) + 1}월
+            {yearOrder}년 {MONTHS.indexOf(MONTHS[monthOrder]) + 1}월
           </div>
           <button onClick={lastMonthOrderHandler} type='button'>
             <Arrow />
@@ -101,7 +101,7 @@ const Calendar = () => {
       <S.calendarBox>
         <S.tableHead>
           <tr>
-            {dates.map((data, i) => (
+            {DayOfTheWeek.map((data, i) => (
               <th className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')} key={data}>
                 {data}
               </th>
