@@ -23,6 +23,6 @@ export const resultDiv = styled.div`
 
 export const unitDiv = styled.div`
   font-size: 16px;
-  color: ${colors.SKY};
+  color: ${colors.DEEP_SKY};
   margin-left: 5px;
 `

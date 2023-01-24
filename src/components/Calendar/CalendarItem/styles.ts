@@ -9,12 +9,12 @@ export const todayRoutine = styled.td<{ dataSelector: boolean; dataValue: number
   background: ${(props) =>
     props.dataSelector
       ? (props.dataValue === 0 && `${colors.WHITE}`) ||
-        (props.dataValue < 4000 && `${colors.BLUE5}`) ||
-        (props.dataValue > 4000 && props.dataValue < 8000 && `${colors.BLUE4}`) ||
-        (props.dataValue > 8000 && props.dataValue < 12000 && `${colors.BLUE3}`) ||
-        (props.dataValue > 12000 && props.dataValue < 16000 && `${colors.BLUE2}`) ||
-        (props.dataValue > 16000 && props.dataValue < 20000 && `${colors.BLUE1}`) ||
-        (props.dataValue > 20000 && `${colors.BLUE}`)
+        (props.dataValue < 4000 && `${colors.SKY5}`) ||
+        (props.dataValue > 4000 && props.dataValue < 8000 && `${colors.SKY4}`) ||
+        (props.dataValue > 8000 && props.dataValue < 12000 && `${colors.SKY3}`) ||
+        (props.dataValue > 12000 && props.dataValue < 16000 && `${colors.SKY2}`) ||
+        (props.dataValue > 16000 && props.dataValue < 20000 && `${colors.SKY1}`) ||
+        (props.dataValue > 20000 && `${colors.SKY}`)
       : (props.dataValue === 0 && `${colors.WHITE}`) ||
         (props.dataValue < 30 && `${colors.PURPLE5}`) ||
         (props.dataValue > 30 && props.dataValue < 60 && `${colors.PURPLE4}`) ||

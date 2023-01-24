@@ -47,7 +47,7 @@ export const routineResultItem = styled.div`
   }
   .unit {
     font-size: 16px;
-    color: ${colors.SKY};
+    color: ${colors.DEEP_SKY};
     margin-left: 5px;
   }
 `

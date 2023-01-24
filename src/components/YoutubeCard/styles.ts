@@ -70,8 +70,8 @@ export const Spinner = styled.div`
   border: 6px solid ${colors.FOCUS};
   border-top: 6px solid ${colors.BACK};
   border-radius: 50%;
-  animation: rotation 1s linear infinite;
   margin: auto;
+
   @keyframes rotation {
     0% {
       transform: rotate(0deg);
@@ -80,4 +80,6 @@ export const Spinner = styled.div`
       transform: rotate(359deg);
     }
   }
+
+  animation: rotation 1s linear infinite;
 `

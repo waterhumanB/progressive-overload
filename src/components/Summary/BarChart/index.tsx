@@ -1,5 +1,6 @@
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRecordsData } from '../../../states/records'
+import * as S from './styles'
 
 interface IBarChartProps {
   volumeAndDurationSelect: string
@@ -9,136 +10,273 @@ interface IBarChartProps {
 
 interface IFetcehdYearAndWeekData {
   year: number
-  weeks: number
+  week: number
   volume: number
-  durations: number
+  duration: number
 }
 
-interface IRoutineByDays {
+interface IRoutineByDay {
   date: string
   volume: number
-  durations: number
-  year?: number
-  month?: string
+  duration: number
 }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const DAY_OF_THE_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
+const DAY_OF_THE_WEEK_KOR = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
 
 const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelect }: IBarChartProps) => {
   const recordSelector = useAppSelector(getRecordsData)
 
-  const routineByDays = totalWorkoutDays.map((data) => {
+  const routineByDay = totalWorkoutDays.map((data) => {
     const volume = Object.values(recordSelector.records.byId)
       .map((item) => {
-        return item.startAt.includes(data) ? item.set.map((set) => set.kg * set.rab) : []
+        return item.startAt.includes(data) ? item.set.map((set) => set.kg * set.rab).reduce((acc, cur) => acc + cur) : 0
       })
-      .flat(1)
-      .reduce((acc, el) => acc + el)
+      .reduce((acc, cur) => acc + cur)
 
-    const durations = Object.values(recordSelector.records.byId)
+    const duration = Object.values(recordSelector.records.byId)
       .map((item) => {
         const durationHour =
           Number(item.endAt.split(' ')[4].split(':')[0]) - Number(item.startAt.split(' ')[4].split(':')[0])
         const durrationMinute =
           Number(item.endAt.split(' ')[4].split(':')[1]) - Number(item.startAt.split(' ')[4].split(':')[1])
-        return item.startAt.includes(data) ? durationHour * 60 + durrationMinute : []
+        return item.startAt.includes(data) ? durationHour * 60 + durrationMinute : 0
       })
-      .flat(1)
-      .reduce((acc, el) => acc + el)
+      .reduce((acc, cur) => acc + cur)
 
-    return { date: data, volume, durations }
+    return { date: data, volume, duration }
   })
 
-  const fetcehdYearAndWeeksData = routineByDays.map((data) => {
-    const { date, volume, durations } = data
-    const currentdate = new Date(
+  const fetcehdYearAndWeeksData = routineByDay.map((data) => {
+    const { date, volume, duration } = data
+    const currentDate = new Date(
       Number(date.split(' ')[3]),
       MONTHS.indexOf(date.split(' ')[1]),
       Number(date.split(' ')[2])
     )
-    const currentYear = new Date(currentdate.getFullYear(), 0, 1)
-    const numberOfDays = Math.floor((+currentdate - +currentYear) / (24 * 60 * 60 * 1000))
-    const weeks = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7)
-    return { year: Number(date.split(' ')[3]), weeks, volume, durations }
+    const currentYear = new Date(currentDate.getFullYear(), 0, 0)
+    const numberOfDays = Math.floor((+currentDate - +currentYear) / (24 * 60 * 60 * 1000))
+    const week = Math.ceil((currentDate.getDay() + 1 + numberOfDays) / 7)
+    return { year: Number(date.split(' ')[3]), week, volume, duration }
   })
 
-  const routineByWeeks = fetcehdYearAndWeeksData.reduce((acc: IFetcehdYearAndWeekData[], current) => {
-    const targetIndex = acc.findIndex((data) => data.year === current.year && data.weeks === current.weeks)
+  const routineByWeek = fetcehdYearAndWeeksData.reduce((acc: IFetcehdYearAndWeekData[], current) => {
+    const targetIndex = acc.findIndex((data) => data.year === current.year && data.week === current.week)
     if (targetIndex >= 0) {
       acc[targetIndex].volume += current.volume
-      acc[targetIndex].durations += current.durations
+      acc[targetIndex].duration += current.duration
       return acc
     }
     return [...acc, current]
   }, [])
 
-  const fetchedMonthAndYearData = routineByDays.reduce((acc: IRoutineByDays[], current) => {
+  const fetchedMonthAndYearData = routineByDay.reduce((acc: IRoutineByDay[], current) => {
     const targetIndex = acc.findIndex(
       (data) =>
         data.date.split(' ')[1] === current.date.split(' ')[1] && data.date.split(' ')[3] === current.date.split(' ')[3]
     )
     if (targetIndex >= 0) {
-      acc[targetIndex].volume += current.volume
-      acc[targetIndex].durations += current.durations
-      return acc
+      return acc.map((data, i) => {
+        if (i === targetIndex) {
+          return {
+            ...data,
+            duration: data.duration + current.duration,
+            volume: data.volume + current.volume,
+          }
+        }
+        return data
+      })
     }
-    return [...acc, current]
+    acc.push(current)
+    return acc
   }, [])
 
-  const routineByMonths = fetchedMonthAndYearData.map((data) => {
+  const routineByMonth = fetchedMonthAndYearData.map((data) => {
     const year = Number(data.date.split(' ')[3])
     const month = data.date.split(' ')[1]
-    return { year, month, ...data }
+    return { year, month, volume: data.volume, duration: data.duration }
   })
 
+  const percentVolume = (date: string, value: number) => {
+    let result = 0
+    if (date === 'day') {
+      const firstCalc = (value * 100) / 25000
+      result = (250 * firstCalc) / 100
+      return result
+    }
+    if (date === 'week') {
+      const firstCalc = (value * 100) / 175000
+      result = (250 * firstCalc) / 100
+      return result
+    }
+    if (date === 'month') {
+      const firstCalc = (value * 100) / 750000
+      result = (250 * firstCalc) / 100
+      return result
+    }
+    return result
+  }
+  const percentDuration = (date: string, value: number) => {
+    let result = 0
+    if (date === 'day') {
+      const firstCalc = (value * 100) / 150
+      result = (250 * firstCalc) / 100
+      return result
+    }
+    if (date === 'week') {
+      const firstCalc = (value * 100) / 1000
+      result = (250 * firstCalc) / 100
+      return result
+    }
+    if (date === 'month') {
+      const firstCalc = (value * 100) / 4500
+      result = (250 * firstCalc) / 100
+      return result
+    }
+    return result
+  }
   return (
-    <svg viewBox='0 0 400 250'>
-      {dayWeekMonthSelect === 'days' &&
-        routineByDays.map((data, idx) => (
+    <S.barChartBox viewBox='-10 0 400 400'>
+      {dayWeekMonthSelect === 'day' &&
+        routineByDay.map((data, idx) => (
           <g key={data.date}>
-            <rect x={idx * 50 + 10} y={`${200 - 190}`} width='10' height='190' stroke='black' strokeWidth='3px' />
-            {volumeAndDurationSelect === 'volume' ? (
-              <text y='220' x={idx * 50}>
-                volume
-              </text>
-            ) : (
-              <text y='220' x={idx * 50}>
-                duration
-              </text>
+            {volumeAndDurationSelect === 'volume' && (
+              <S.bar
+                barValue='volume'
+                x={idx * 68 + 10}
+                y={`${250 - percentVolume('day', data.volume)}`}
+                height={`${percentVolume('day', data.volume)}`}
+              />
             )}
+            {volumeAndDurationSelect === 'duration' && (
+              <S.bar
+                barValue='duration'
+                x={idx * 68 + 10}
+                y={`${250 - percentDuration('day', data.duration)}`}
+                height={`${percentDuration('day', data.duration)}`}
+              />
+            )}
+            {volumeAndDurationSelect === 'volume' && (
+              <S.animatedBar
+                x={idx * 68 + 8}
+                y={`${250 - percentVolume('day', data.volume) - 1}`}
+                height={`${percentVolume('day', data.volume) - 1}`}
+              />
+            )}
+            {volumeAndDurationSelect === 'duration' && (
+              <S.animatedBar
+                x={idx * 68 + 8}
+                y={`${250 - percentDuration('day', data.duration) - 1}`}
+                height={`${percentDuration('day', data.duration) - 1}`}
+              />
+            )}
+            <S.barValue
+              holiday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
+              y='270'
+              x={idx * 68 - 1}
+            >
+              {data.date.split(' ')[3]}
+            </S.barValue>
+            <S.barValue
+              holiday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
+              y='290'
+              x={idx * 68 - 4}
+            >
+              {`${MONTHS.indexOf(data.date.split(' ')[1]) + 1}/${data.date.split(' ')[2]}`}
+            </S.barValue>
+            <S.barValue
+              holiday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
+              y='310'
+              x={idx * 68 - 6}
+            >
+              {DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
+            </S.barValue>
           </g>
         ))}
-      {dayWeekMonthSelect === 'weeks' &&
-        routineByWeeks.map((data, idx) => (
-          <g key={data.weeks}>
-            <rect x={idx * 50 + 10} y={`${200 - 190}`} width='10' height='190' stroke='black' strokeWidth='3px' />
-            {volumeAndDurationSelect === 'volume' ? (
-              <text y='220' x={idx * 50}>
-                volume
-              </text>
-            ) : (
-              <text y='220' x={idx * 50}>
-                duration
-              </text>
+      {dayWeekMonthSelect === 'week' &&
+        routineByWeek.map((data, idx) => (
+          <g key={data.week}>
+            {volumeAndDurationSelect === 'volume' && (
+              <S.bar
+                barValue='volume'
+                x={idx * 68 + 10}
+                y={`${250 - percentVolume('week', data.volume)}`}
+                height={`${percentVolume('week', data.volume)}`}
+              />
             )}
+            {volumeAndDurationSelect === 'duration' && (
+              <S.bar
+                barValue='duration'
+                x={idx * 68 + 10}
+                y={`${250 - percentDuration('week', data.duration)}`}
+                height={`${percentDuration('week', data.duration)}`}
+              />
+            )}
+            {volumeAndDurationSelect === 'volume' && (
+              <S.animatedBar
+                x={idx * 68 + 8}
+                y={`${250 - percentVolume('week', data.volume) - 1}`}
+                height={`${percentVolume('week', data.volume) - 1}`}
+              />
+            )}
+            {volumeAndDurationSelect === 'duration' && (
+              <S.animatedBar
+                x={idx * 68 + 8}
+                y={`${250 - percentDuration('week', data.duration) - 1}`}
+                height={`${percentDuration('week', data.duration) - 1}`}
+              />
+            )}
+            <S.barValue holiday='holiday' y='270' x={idx * 68 - 1}>
+              {data.year}
+            </S.barValue>
+            <S.barValue holiday='holiday' y='290' x={data.week > 9 ? idx * 68 + 1 : idx * 68 + 3}>
+              {`${data.week}주`}
+            </S.barValue>
           </g>
         ))}
-      {dayWeekMonthSelect === 'months' &&
-        routineByMonths.map((data, idx) => (
+      {dayWeekMonthSelect === 'month' &&
+        routineByMonth.map((data, idx) => (
           <g key={data.month}>
-            <rect x={idx * 50 + 10} y={`${200 - 190}`} width='10' height='190' stroke='black' strokeWidth='3px' />
-            {volumeAndDurationSelect === 'volume' ? (
-              <text y='220' x={idx * 50}>
-                volume
-              </text>
-            ) : (
-              <text y='220' x={idx * 50}>
-                duration
-              </text>
+            {volumeAndDurationSelect === 'volume' && (
+              <S.bar
+                barValue='volume'
+                x={idx * 68 + 10}
+                y={`${250 - percentVolume('month', data.volume)}`}
+                height={`${percentVolume('month', data.volume)}`}
+              />
             )}
+            {volumeAndDurationSelect === 'duration' && (
+              <S.bar
+                barValue='duration'
+                x={idx * 68 + 10}
+                y={`${250 - percentDuration('month', data.duration)}`}
+                height={`${percentDuration('month', data.duration)}`}
+              />
+            )}
+            {volumeAndDurationSelect === 'volume' && (
+              <S.animatedBar
+                x={idx * 68 + 8}
+                y={`${250 - percentVolume('month', data.volume) - 1}`}
+                height={`${percentVolume('month', data.volume) - 1}`}
+              />
+            )}
+            {volumeAndDurationSelect === 'duration' && (
+              <S.animatedBar
+                x={idx * 68 + 8}
+                y={`${250 - percentDuration('month', data.duration) - 1}`}
+                height={`${percentDuration('month', data.duration) - 1}`}
+              />
+            )}
+            <S.barValue holiday='holiday' y='270' x={idx * 68 - 1}>
+              {data.year}
+            </S.barValue>
+            <S.barValue holiday='holiday' y='290' x={MONTHS.indexOf(data.month) > 8 ? idx * 68 : idx * 68 + 3}>
+              {`${MONTHS.indexOf(data.month) + 1}월`}
+            </S.barValue>
           </g>
         ))}
-    </svg>
+    </S.barChartBox>
   )
 }
 

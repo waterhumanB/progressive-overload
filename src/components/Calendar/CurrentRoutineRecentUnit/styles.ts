@@ -19,19 +19,19 @@ export const recentUnitMenuContainer = styled.div`
     .volume {
       width: 15px;
       height: 15px;
-      background: ${colors.BLUE5};
+      background: ${colors.SKY5};
     }
     .v1 {
-      background: ${colors.BLUE4};
+      background: ${colors.SKY4};
     }
     .v2 {
-      background: ${colors.BLUE3};
+      background: ${colors.SKY3};
     }
     .v3 {
-      background: ${colors.BLUE2};
+      background: ${colors.SKY2};
     }
     .v4 {
-      background: ${colors.BLUE1};
+      background: ${colors.SKY1};
     }
   }
   .durationMenu {

@@ -1,1 +1,40 @@
 import styled from 'styled-components'
+import colors from '../../../styles/constants/colors'
+
+export const barChartBox = styled.svg`
+  width: 100%;
+  height: 100%;
+`
+export const bar = styled.rect<{ barValue: string }>`
+  width: 13px;
+  fill: ${(props) => (props.barValue === 'volume' ? colors.BLUE1 : colors.PURPLE1)};
+`
+export const animatedBar = styled.rect`
+  width: 17px;
+  opacity: 0;
+  fill: ${colors.WHITE};
+
+  @keyframes rotation {
+    0% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 1;
+    }
+    100% {
+      height: 0;
+    }
+  }
+
+  animation: rotation 0.5s linear;
+`
+export const barValue = styled.text<{ holiday: string }>`
+  width: 30px;
+  height: 10px;
+  display: block;
+  font-weight: 600;
+  fill: ${(props) =>
+    (props.holiday === '토요일' && colors.BLUE) ||
+    (props.holiday === '일요일' && colors.RED) ||
+    (props.holiday && colors.FOCUS)};
+`

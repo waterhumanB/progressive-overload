@@ -6,7 +6,7 @@ export const navFooter = styled.footer`
   font-size: 18px;
   box-sizing: border-box;
   width: 100%;
-  max-width: 400px;
+  max-width: 430px;
   border-top: 2px solid ${colors.BACK};
   position: fixed;
   bottom: 0;

@@ -13,7 +13,6 @@ ${more}
 #root {
   width: 100%;
   background: ${colors.BACK};
-  position: fixed;
 }
 `
 

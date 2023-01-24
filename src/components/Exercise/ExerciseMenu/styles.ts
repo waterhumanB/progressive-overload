@@ -14,6 +14,6 @@ export const exerciseMenuBox = styled.div`
     color: ${colors.BLUE};
   }
   .category {
-    color: ${colors.GREEN};
+    color: ${colors.DEEP_GREEN};
   }
 `

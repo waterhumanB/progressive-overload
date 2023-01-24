@@ -14,9 +14,17 @@ const ONE_YEAR_AVERAGE_EXERCISE_VOLUME = 250 // 일주일 4.8 한달 20
 const VOLUME_RANGE = [25000, 20000, 15000, 10000, 5000]
 const MINUTE_RANGE = [150, 120, 90, 60, 30]
 
+const VOLUME_DAY_RANGE = ['2.5만', '2만', '1.5만', '1만', '5천']
+const MINUTE_DAY_RANGE = ['150', '120', '90', '60', '30']
+
+const VOLUME_WEEK_RANGE = ['17.5만', '14만', '10.5만', '7만', '3.5만']
+const MINUTE_WEEK_RANGE = ['1천', '840', '630', '420', '210']
+
+const VOLUME_MONTH_RANGE = ['75만', '60만', '45만', '30만', '15만']
+const MINUTE_MONTH_RANGE = ['4.5천', '3.6천', '2.7천', '1.8천', '900']
 const Summary = () => {
   const [volumeAndDurationSelect, setVolumeAndDurationSelect] = useState('volume')
-  const [dayWeekMonthSelect, setDayWeekMonthSelect] = useState('days')
+  const [dayWeekMonthSelect, setDayWeekMonthSelect] = useState('day')
   const recordSelector = useAppSelector(getRecordsData)
 
   const totalTimeExercised = Object.values(recordSelector.records.byId)
@@ -53,13 +61,13 @@ const Summary = () => {
   }
 
   const dayWeekMonthSelectHandler = () => {
-    setDayWeekMonthSelect('days')
+    setDayWeekMonthSelect('day')
   }
   const weekSelectHandler = () => {
-    setDayWeekMonthSelect('weeks')
+    setDayWeekMonthSelect('week')
   }
   const monthSelectHandler = () => {
-    setDayWeekMonthSelect('months')
+    setDayWeekMonthSelect('month')
   }
 
   return (
@@ -96,24 +104,16 @@ const Summary = () => {
       <S.barChartContainer>
         {volumeAndDurationSelect === 'volume' ? (
           <S.yAxis>
-            {VOLUME_RANGE.map((data) => (
-              <div key={data}>
-                {(dayWeekMonthSelect === 'days' && data) ||
-                  (dayWeekMonthSelect === 'weeks' && data * 7) ||
-                  (dayWeekMonthSelect === 'months' && data * 30)}
-              </div>
-            ))}
+            {(dayWeekMonthSelect === 'day' && VOLUME_DAY_RANGE.map((data) => <div key={data}>{data}</div>)) ||
+              (dayWeekMonthSelect === 'week' && VOLUME_WEEK_RANGE.map((data) => <div key={data}>{data}</div>)) ||
+              (dayWeekMonthSelect === 'month' && VOLUME_MONTH_RANGE.map((data) => <div key={data}>{data}</div>))}
             <div>0</div>
           </S.yAxis>
         ) : (
           <S.yAxis>
-            {MINUTE_RANGE.map((data) => (
-              <div key={data}>
-                {(dayWeekMonthSelect === 'days' && data) ||
-                  (dayWeekMonthSelect === 'weeks' && data * 7) ||
-                  (dayWeekMonthSelect === 'months' && data * 30)}
-              </div>
-            ))}
+            {(dayWeekMonthSelect === 'day' && MINUTE_DAY_RANGE.map((data) => <div key={data}>{data}</div>)) ||
+              (dayWeekMonthSelect === 'week' && MINUTE_WEEK_RANGE.map((data) => <div key={data}>{data}</div>)) ||
+              (dayWeekMonthSelect === 'month' && MINUTE_MONTH_RANGE.map((data) => <div key={data}>{data}</div>))}
             <div>0</div>
           </S.yAxis>
         )}

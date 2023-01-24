@@ -10,11 +10,14 @@ export const barChartContainer = styled.div`
   display: flex;
 `
 export const yAxis = styled.div`
-  height: 178px;
-  padding: 0 10px;
+  height: 250px;
   border-right: 1px solid ${colors.BLUE};
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   text-align: center;
+
+  div {
+    width: 40px;
+    text-align: right;
+  }
 `
