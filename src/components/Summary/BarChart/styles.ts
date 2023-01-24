@@ -2,9 +2,10 @@ import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
 export const barChartBox = styled.svg`
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 400px;
 `
+
 export const bar = styled.rect<{ barValue: string; heightValue: number }>`
   y: ${(props) => `${250 - props.heightValue}px`};
   width: 13px;
@@ -13,11 +14,10 @@ export const bar = styled.rect<{ barValue: string; heightValue: number }>`
 `
 export const animatedBar = styled.rect<{ heightValue: number }>`
   y: ${(props) => `${250 - props.heightValue}px`};
-  width: 17px;
+  width: 50px;
   height: ${(props) => `${props.heightValue}px`};
   opacity: 0;
   fill: ${colors.WHITE};
-
   @keyframes rotation {
     0% {
       opacity: 1;

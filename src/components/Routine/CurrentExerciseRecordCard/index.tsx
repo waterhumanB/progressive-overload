@@ -17,6 +17,7 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
   const currentExerciseRecords = Object.values(recordSelector.records.byId)
     .filter((data) => currentExerciseData.record.includes(data.id))
     .reverse()
+
   const mouseDownHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsMoseEvent(true)
@@ -37,10 +38,12 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
       setTranslateX(0)
     }
   }
+
   const mouseUpHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsMoseEvent(false)
   }
+
   const mouseLeaveHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsMoseEvent(false)
