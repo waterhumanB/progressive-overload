@@ -10,7 +10,7 @@
       {
         "name": "typescript-styled-plugin",
         "lint": {
-          "validProperties": ["y"]
+          "validProperties": ["y","x"]
         }
       }
     ],

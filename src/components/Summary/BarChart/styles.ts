@@ -5,12 +5,16 @@ export const barChartBox = styled.svg`
   width: 100%;
   height: 100%;
 `
-export const bar = styled.rect<{ barValue: string }>`
+export const bar = styled.rect<{ barValue: string; heightValue: number }>`
+  y: ${(props) => `${250 - props.heightValue}px`};
   width: 13px;
+  height: ${(props) => `${props.heightValue}px`};
   fill: ${(props) => (props.barValue === 'volume' ? colors.BLUE1 : colors.PURPLE1)};
 `
-export const animatedBar = styled.rect`
+export const animatedBar = styled.rect<{ heightValue: number }>`
+  y: ${(props) => `${250 - props.heightValue}px`};
   width: 17px;
+  height: ${(props) => `${props.heightValue}px`};
   opacity: 0;
   fill: ${colors.WHITE};
 
