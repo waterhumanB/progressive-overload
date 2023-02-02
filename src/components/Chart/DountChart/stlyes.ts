@@ -2,16 +2,15 @@ import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
 export const chart = styled.div<{ chartName: string }>`
-  width: ${(props) => (props.chartName === 'default' ? '250px' : '150px')};
+  width: ${(props) => (props.chartName === 'default' ? '250px' : '130px')};
   height: ${(props) => (props.chartName === 'default' ? '250px' : '150px')};
   margin: auto;
   position: relative;
-  padding: 10px;
 `
 
-export const aniSvg = styled.svg`
-  position: relative;
-
+export const aniSvg = styled.svg<{ chartName: string }>`
+  width: ${(props) => (props.chartName === 'default' ? '250px' : '130px')};
+  height: ${(props) => (props.chartName === 'default' ? '250px' : '130px')};
   circle {
     fill: none;
     stroke-width: 20;

@@ -4,6 +4,7 @@ import colors from '../../styles/constants/colors'
 export const dountChartContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 `
 export const barChartContainer = styled.div`
   width: 100%;

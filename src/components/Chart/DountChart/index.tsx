@@ -21,25 +21,31 @@ const DountChart = ({ percentage, percentageValue, chartValueName }: IDountChart
     }
     return result
   }
+  // 115 115 104
   return (
     <S.chart chartName={chartValueName}>
-      <S.aniSvg viewBox='0 0 200 200'>
-        <S.backCircle chartName={chartValueName} cx='100' cy='100' r='90' />
+      <S.aniSvg chartName={chartValueName} preserveAspectRatio='none'>
+        <S.backCircle
+          chartName={chartValueName}
+          cx={chartValueName === 'default' ? '125' : '65'}
+          cy={chartValueName === 'default' ? '125' : '65'}
+          r={chartValueName === 'default' ? '104' : '55'}
+        />
         <S.animatedCircle
           chartName={chartValueName}
-          cx='100'
-          cy='100'
-          r='90'
+          cx={chartValueName === 'default' ? '125' : '65'}
+          cy={chartValueName === 'default' ? '125' : '65'}
+          r={chartValueName === 'default' ? '104' : '55'}
           strokeDasharray={
             chartValueName === 'default'
-              ? `${2 * Math.PI * 90 * (1 - percentageValue / percentage)} ${
-                  2 * Math.PI * 90 * (percentageValue / percentage)
+              ? `${2 * Math.PI * 104 * (1 - percentageValue / percentage)} ${
+                  2 * Math.PI * 104 * (percentageValue / percentage)
                 }`
-              : `${2 * Math.PI * 90 * (fetchedPercentageValue(percentageValue) / percentage)} ${
-                  2 * Math.PI * 90 * (1 - fetchedPercentageValue(percentageValue) / percentage)
+              : `${2 * Math.PI * 55 * (fetchedPercentageValue(percentageValue) / percentage)} ${
+                  2 * Math.PI * 55 * (1 - fetchedPercentageValue(percentageValue) / percentage)
                 }`
           }
-          strokeDashoffset={2 * Math.PI * 90 * 0.25}
+          strokeDashoffset={chartValueName === 'default' ? 2 * Math.PI * 104 * 0.25 : 2 * Math.PI * 55 * 0.25}
         />
       </S.aniSvg>
       <S.chartValue chartName={chartValueName}>

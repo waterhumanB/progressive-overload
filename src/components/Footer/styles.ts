@@ -12,6 +12,7 @@ export const navFooter = styled.footer`
   bottom: 0;
   display: flex;
   justify-content: space-around;
+  background: ${colors.WHITE};
   a {
     margin: 5px auto;
     color: ${colors.BACK};
