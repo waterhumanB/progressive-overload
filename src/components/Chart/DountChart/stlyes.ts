@@ -27,7 +27,7 @@ export const animatedCircle = styled.circle<{ chartName: string }>`
     (props.chartName === 'Min' && colors.PURPLE1) ||
     (props.chartName === 'Kg' && colors.BRIGHT_GREEN) ||
     (props.chartName === 'Days' && colors.BLUE1)};
-  transition: 1.1s linear;
+  transition: ${(props) => props.chartName === 'default' && '1.1s linear'};
 `
 
 export const chartValue = styled.div<{ chartName: string }>`

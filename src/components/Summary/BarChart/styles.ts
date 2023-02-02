@@ -29,8 +29,7 @@ export const animatedBar = styled.rect<{ heightValue: number }>`
       height: 0;
     }
   }
-
-  animation: rotation 0.5s linear;
+  animation: rotation 0.6s linear;
 `
 export const barValue = styled.text<{ holiday: string }>`
   width: 30px;
