@@ -1,6 +1,7 @@
 import { MouseEvent, useEffect, useState } from 'react'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRecordsData } from '../../../states/records'
+import BarChartItem from './barChartItem'
 import { percentDuration, percentVolume, routineDataByDate } from './domain'
 
 import * as S from './styles'
@@ -71,119 +72,67 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
       {dayWeekMonthSelect === 'day' &&
         routineByDay.map((data: any, idx) => (
           <g
-            key={data.date}
+            key={data.duration + Math.random()}
             data-select='day'
             onMouseDown={mouseDownHandler}
             onMouseMove={mouseMoveHandler}
             onMouseUp={mouseUpHandler}
             onMouseLeave={mouseLeaveHandler}
           >
-            {volumeAndDurationSelect === 'volume' && (
-              <S.bar heightValue={percentVolume('day', data.volume)} barValue='volume' x={idx * 68 + 10} />
-            )}
-            {volumeAndDurationSelect === 'duration' && (
-              <S.bar barValue='duration' heightValue={percentDuration('day', data.duration)} x={idx * 68 + 10} />
-            )}
-            {volumeAndDurationSelect === 'volume' && (
-              <S.animatedBar x={idx * 68 - 7} data-select='day' heightValue={percentVolume('day', data.volume) + 1} />
-            )}
-            {volumeAndDurationSelect === 'duration' && (
-              <S.animatedBar x={idx * 68 - 7} heightValue={percentDuration('day', data.duration) + 1} />
-            )}
-            <S.barValue
-              holiday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
-              y='270'
-              x={idx * 68 - 1}
-            >
-              {data.date.split(' ')[3]}
-            </S.barValue>
-            <S.barValue
-              holiday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
-              y='290'
-              x={MONTHS.indexOf(data.date.split(' ')[1]) + 1 > 9 ? idx * 68 - 4 : idx * 68 - 1}
-            >
-              {`${MONTHS.indexOf(data.date.split(' ')[1]) + 1}/${data.date.split(' ')[2]}`}
-            </S.barValue>
-            <S.barValue
-              holiday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
-              y='310'
-              x={idx * 68 - 6}
-            >
-              {DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
-            </S.barValue>
-            <rect
-              width='50'
-              height='50'
-              fill='#3d87fb'
-              x={idx * 68 - 9}
-              y={250 - percentVolume('day', data.volume) < 0 ? -6 : 180 - percentVolume('day', data.volume)}
-              rx='10'
-              ry='10'
+            <BarChartItem
+              dayWeekMonthSelect={dayWeekMonthSelect}
+              data={data}
+              idx={idx}
+              volumeAndDurationSelect={volumeAndDurationSelect}
+              heightValue={
+                volumeAndDurationSelect === 'volume'
+                  ? percentVolume('day', data.volume)
+                  : percentDuration('day', data.duration)
+              }
+              hoilday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
+              monthByDayData={MONTHS.indexOf(data.date.split(' ')[1])}
+              monthByWeekData={0}
+              monthByMonthData={0}
             />
-            <text x={idx * 68 + 3} y={250 - percentVolume('day', data.volume)}>
-              {data.duration}
-            </text>
           </g>
         ))}
       {dayWeekMonthSelect === 'week' &&
         routineByWeek.map((data: any, idx) => (
-          <g
-            key={`${data.year}-${data.month}-${data.week}`}
-            data-select='week'
-            onMouseDown={mouseDownHandler}
-            onMouseMove={mouseMoveHandler}
-            onMouseUp={mouseUpHandler}
-            onMouseLeave={mouseLeaveHandler}
-          >
-            {volumeAndDurationSelect === 'volume' && (
-              <S.bar barValue='volume' x={idx * 68 + 10} heightValue={percentVolume('week', data.volume)} />
-            )}
-            {volumeAndDurationSelect === 'duration' && (
-              <S.bar barValue='duration' x={idx * 68 + 10} heightValue={percentDuration('week', data.duration)} />
-            )}
-            {volumeAndDurationSelect === 'volume' && (
-              <S.animatedBar x={idx * 68 - 7} data-select='week' heightValue={percentVolume('week', data.volume) + 1} />
-            )}
-            {volumeAndDurationSelect === 'duration' && (
-              <S.animatedBar x={idx * 68 - 7} heightValue={percentDuration('week', data.duration) + 1} />
-            )}
-            <S.barValue holiday='holiday' y='270' x={idx * 68 - 1}>
-              {data.year}
-            </S.barValue>
-            <S.barValue holiday='holiday' y='290' x={MONTHS.indexOf(data.month) + 1 > 9 ? idx * 68 - 7 : idx * 68 - 3}>
-              {`${MONTHS.indexOf(data.month) + 1}/${data.week}주`}
-            </S.barValue>
-          </g>
+          <BarChartItem
+            key={data.duration + Math.random()}
+            dayWeekMonthSelect={dayWeekMonthSelect}
+            data={data}
+            idx={idx}
+            volumeAndDurationSelect={volumeAndDurationSelect}
+            heightValue={
+              volumeAndDurationSelect === 'volume'
+                ? percentVolume('week', data.volume)
+                : percentDuration('week', data.duration)
+            }
+            hoilday='hoilday'
+            monthByDayData={0}
+            monthByWeekData={MONTHS.indexOf(data.month)}
+            monthByMonthData={0}
+          />
         ))}
       {dayWeekMonthSelect === 'month' &&
         routineByMonth.map((data: any, idx) => (
-          <g
-            key={data.month}
-            data-select='month'
-            onMouseDown={mouseDownHandler}
-            onMouseMove={mouseMoveHandler}
-            onMouseUp={mouseUpHandler}
-            onMouseLeave={mouseLeaveHandler}
-          >
-            {volumeAndDurationSelect === 'volume' && (
-              <S.bar barValue='volume' heightValue={percentVolume('month', data.volume)} x={idx * 68 + 10} />
-            )}
-            {volumeAndDurationSelect === 'duration' && (
-              <S.bar barValue='duration' heightValue={percentDuration('month', data.duration)} x={idx * 68 + 10} />
-            )}
-            {volumeAndDurationSelect === 'volume' && (
-              <S.animatedBar x={idx * 68 - 7} heightValue={percentVolume('month', data.volume) + 1} />
-            )}
-            {volumeAndDurationSelect === 'duration' && (
-              <S.animatedBar x={idx * 68 - 7} heightValue={percentDuration('month', data.duration) + 1} />
-            )}
-            <S.barValue holiday='holiday' y='270' x={idx * 68 - 1}>
-              {data.year}
-            </S.barValue>
-            <S.barValue holiday='holiday' y='290' x={MONTHS.indexOf(data.month) > 8 ? idx * 68 : idx * 68 + 3}>
-              {`${MONTHS.indexOf(data.month) + 1}월`}
-            </S.barValue>
-          </g>
+          <BarChartItem
+            key={data.duration + Math.random()}
+            dayWeekMonthSelect={dayWeekMonthSelect}
+            data={data}
+            idx={idx}
+            volumeAndDurationSelect={volumeAndDurationSelect}
+            heightValue={
+              volumeAndDurationSelect === 'volume'
+                ? percentVolume('month', data.volume)
+                : percentDuration('month', data.duration)
+            }
+            hoilday='hoilday'
+            monthByDayData={0}
+            monthByWeekData={0}
+            monthByMonthData={MONTHS.indexOf(data.month)}
+          />
         ))}
     </S.barChartBox>
   )
