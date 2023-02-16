@@ -9,7 +9,7 @@ export interface IRecordData {
 
 export interface IRecordItem {
   id: string
-  exerciseId: sting
+  exerciseId: string
   startAt: string
   endAt: string
   set: IRecordSet[]

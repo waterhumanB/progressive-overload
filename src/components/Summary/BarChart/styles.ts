@@ -41,3 +41,8 @@ export const barValue = styled.text<{ holiday: string }>`
     (props.holiday === '일요일' && colors.RED) ||
     (props.holiday && colors.FOCUS)};
 `
+export const arBalloon = styled.rect`
+  width: '50';
+  height: '50';
+  fill: '#3d87fb';
+`

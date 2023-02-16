@@ -1,7 +1,7 @@
 import { MouseEvent, useEffect, useState } from 'react'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRecordsData } from '../../../states/records'
-import { percentDuration, percentVolume } from './utils'
+import { percentDuration, percentVolume, routineDataByDate } from './domain'
 
 import * as S from './styles'
 
@@ -9,20 +9,6 @@ interface IBarChartProps {
   volumeAndDurationSelect: string
   totalWorkoutDays: string[]
   dayWeekMonthSelect: string
-}
-
-interface IFetcehdYearAndWeekData {
-  year: number
-  week: number
-  volume: number
-  duration: number
-  month: string
-}
-
-interface IRoutineByDay {
-  date: string
-  volume: number
-  duration: number
 }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -33,79 +19,9 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
   const [startPageX, setStartPageX] = useState(0)
   const [translateX, setTranslateX] = useState(10)
   const [isMouseEvent, setIsMoseEvent] = useState(false)
-  const recordSelector = useAppSelector(getRecordsData)
+  const recordSelector = useAppSelector(getRecordsData).records.byId
 
-  const routineByDay = totalWorkoutDays
-    .map((data) => {
-      const volume = Object.values(recordSelector.records.byId)
-        .map((item) => {
-          return item.startAt.includes(data)
-            ? item.set.map((set) => set.kg * set.rab).reduce((acc, cur) => acc + cur)
-            : 0
-        })
-        .reduce((acc, cur) => acc + cur)
-
-      const duration = Object.values(recordSelector.records.byId)
-        .map((item) => {
-          const durationHour =
-            Number(item.endAt.split(' ')[4].split(':')[0]) - Number(item.startAt.split(' ')[4].split(':')[0])
-          const durrationMinute =
-            Number(item.endAt.split(' ')[4].split(':')[1]) - Number(item.startAt.split(' ')[4].split(':')[1])
-          return item.startAt.includes(data) ? durationHour * 60 + durrationMinute : 0
-        })
-        .reduce((acc, cur) => acc + cur)
-
-      return { date: data, volume, duration }
-    })
-    .reverse()
-
-  const fetcehdYearAndWeeksData = routineByDay.map((data) => {
-    const { date, volume, duration } = data
-    const currentDate = new Date(
-      `${date.split(' ')[3]}-${MONTHS.indexOf(date.split(' ')[1]) + 1}-${date.split(' ')[2]}`
-    )
-    const firstDay = new Date(currentDate.setDate(1)).getDay()
-    const week = Math.ceil((Number(date.split(' ')[2]) + firstDay) / 7)
-    const month = date.split(' ')[1]
-    return { year: Number(date.split(' ')[3]), week, month, volume, duration }
-  })
-
-  const routineByWeek = fetcehdYearAndWeeksData.reduce((acc: IFetcehdYearAndWeekData[], current) => {
-    const targetIndex = acc.findIndex((data) => data.year === current.year && data.week === current.week)
-    if (targetIndex >= 0) {
-      acc[targetIndex].volume += current.volume
-      acc[targetIndex].duration += current.duration
-      return acc
-    }
-    return [...acc, current]
-  }, [])
-
-  const fetchedMonthAndYearData = routineByDay.reduce((acc: IRoutineByDay[], current) => {
-    const targetIndex = acc.findIndex(
-      (data) =>
-        data.date.split(' ')[1] === current.date.split(' ')[1] && data.date.split(' ')[3] === current.date.split(' ')[3]
-    )
-    if (targetIndex >= 0) {
-      return acc.map((data, i) => {
-        if (i === targetIndex) {
-          return {
-            ...data,
-            duration: data.duration + current.duration,
-            volume: data.volume + current.volume,
-          }
-        }
-        return data
-      })
-    }
-    acc.push(current)
-    return acc
-  }, [])
-
-  const routineByMonth = fetchedMonthAndYearData.map((data) => {
-    const year = Number(data.date.split(' ')[3])
-    const month = data.date.split(' ')[1]
-    return { year, month, volume: data.volume, duration: data.duration }
-  })
+  const [routineByDay, routineByWeek, routineByMonth] = routineDataByDate(totalWorkoutDays, recordSelector)
 
   const mouseDownHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
@@ -115,7 +31,6 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
 
   const mouseMoveHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
-
     const deltaX = e.pageX - startPageX
     if (isMouseEvent === true) {
       setTranslateX(deltaX)
@@ -151,11 +66,10 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
     setStartPageX(0)
   }, [dayWeekMonthSelect])
 
-  // viewBox={`${-translateX} 0 400 400`}
   return (
-    <S.barChartBox preserveAspectRatio='none'>
+    <S.barChartBox viewBox={`${-translateX} 0 400 400`}>
       {dayWeekMonthSelect === 'day' &&
-        routineByDay.map((data, idx) => (
+        routineByDay.map((data: any, idx) => (
           <g
             key={data.date}
             data-select='day'
@@ -197,10 +111,22 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
             >
               {DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
             </S.barValue>
+            <rect
+              width='50'
+              height='50'
+              fill='#3d87fb'
+              x={idx * 68 - 9}
+              y={250 - percentVolume('day', data.volume) < 0 ? -6 : 180 - percentVolume('day', data.volume)}
+              rx='10'
+              ry='10'
+            />
+            <text x={idx * 68 + 3} y={250 - percentVolume('day', data.volume)}>
+              {data.duration}
+            </text>
           </g>
         ))}
       {dayWeekMonthSelect === 'week' &&
-        routineByWeek.map((data, idx) => (
+        routineByWeek.map((data: any, idx) => (
           <g
             key={`${data.year}-${data.month}-${data.week}`}
             data-select='week'
@@ -230,7 +156,7 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
           </g>
         ))}
       {dayWeekMonthSelect === 'month' &&
-        routineByMonth.map((data, idx) => (
+        routineByMonth.map((data: any, idx) => (
           <g
             key={data.month}
             data-select='month'
