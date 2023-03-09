@@ -39,7 +39,7 @@ export const exerciseBox = styled.div<{ border: boolean }>`
   }
 `
 
-export const mainTaget = styled.div`
+export const mainTarget = styled.div`
   color: ${colors.FOCUS};
   font-weight: 600;
   width: 50px;

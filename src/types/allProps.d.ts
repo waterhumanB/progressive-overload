@@ -42,7 +42,7 @@ export interface IYoutubeProps {
   youtubeData: YoutubeState
 }
 
-export interface ExerciseMeunProps {
+export interface ExerciseMenuProps {
   setFilterExercise: Dispatch<SetStateAction<object>>
   filterExercise: {
     more: string

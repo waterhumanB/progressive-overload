@@ -87,9 +87,9 @@ export const routineDataByDate = (totalWorkoutDays: string[], recordSelector: IR
         .map((item) => {
           const durationHour =
             Number(item.endAt.split(' ')[4].split(':')[0]) - Number(item.startAt.split(' ')[4].split(':')[0])
-          const durrationMinute =
+          const durationMinute =
             Number(item.endAt.split(' ')[4].split(':')[1]) - Number(item.startAt.split(' ')[4].split(':')[1])
-          return item.startAt.includes(data) ? durationHour * 60 + durrationMinute : 0
+          return item.startAt.includes(data) ? durationHour * 60 + durationMinute : 0
         })
         .reduce((acc, cur) => acc + cur)
 

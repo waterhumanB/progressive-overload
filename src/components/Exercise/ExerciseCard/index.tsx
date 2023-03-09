@@ -27,7 +27,7 @@ const ExerciseCard = ({
   const stateArray: IExerciseItem[] = Object.values(exerciseSelector.exercises.byId)
   const { more, target, category } = filterExercise
 
-  const fetechedData = stateArray
+  const fetchedData = stateArray
     .filter(
       (data) =>
         ((more === '전체' && data) ||
@@ -65,7 +65,7 @@ const ExerciseCard = ({
     },
     [addExercise]
   )
-  const dropDonwAndEditIdHandler = useCallback((exId: string, typeId: string) => {
+  const dropDownAndEditIdHandler = useCallback((exId: string, typeId: string) => {
     const exerciseIdAndTypeId = {
       id: exId,
       typeId,
@@ -75,11 +75,11 @@ const ExerciseCard = ({
   }, [])
   return (
     <S.exerciseContainer>
-      {fetechedData.length !== 0 ? (
-        fetechedData.map((data) => (
+      {fetchedData.length !== 0 ? (
+        fetchedData.map((data) => (
           <S.exerciseBox border={addExercise.includes(data.id)} key={data.id}>
-            {fetechedData[0].id === data.id && <S.refDiv ref={cardRef} />}
-            <S.mainTaget>{addExercise.includes(data.id) ? <Check /> : findTarget(data.mainTarget)}</S.mainTaget>
+            {fetchedData[0].id === data.id && <S.refDiv ref={cardRef} />}
+            <S.mainTarget>{addExercise.includes(data.id) ? <Check /> : findTarget(data.mainTarget)}</S.mainTarget>
             <S.exerciseInfo type='button' onClick={() => addExerciseHandler(data.id)}>
               <S.exerciseTitle>
                 <div>{findCategory(data.categoryId)}</div>
@@ -91,7 +91,7 @@ const ExerciseCard = ({
               </S.exerciseTarget>
             </S.exerciseInfo>
             {data.custom ? (
-              <button className='edit' onClick={() => dropDonwAndEditIdHandler(data.id, data.typeId)} type='button'>
+              <button className='edit' onClick={() => dropDownAndEditIdHandler(data.id, data.typeId)} type='button'>
                 <DotMenu />
               </button>
             ) : (

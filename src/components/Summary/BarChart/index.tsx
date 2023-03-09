@@ -19,14 +19,14 @@ const DAY_OF_THE_WEEK_KOR = ['일요일', '월요일', '화요일', '수요일',
 const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelect }: IBarChartProps) => {
   const [startPageX, setStartPageX] = useState(0)
   const [translateX, setTranslateX] = useState(10)
-  const [isMouseEvent, setIsMoseEvent] = useState(false)
+  const [isMouseEvent, setIsMouseEvent] = useState(false)
   const recordSelector = useAppSelector(getRecordsData).records.byId
 
   const [routineByDay, routineByWeek, routineByMonth] = routineDataByDate(totalWorkoutDays, recordSelector)
 
   const mouseDownHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
-    setIsMoseEvent(true)
+    setIsMouseEvent(true)
     setStartPageX(e.pageX - translateX)
   }
 
@@ -41,25 +41,25 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
       (e.currentTarget.dataset.select === 'week' && -50 * routineByWeek.length >= deltaX) ||
       (e.currentTarget.dataset.select === 'month' && -50 * routineByMonth.length >= deltaX)
     ) {
-      setIsMoseEvent(false)
+      setIsMouseEvent(false)
       e.currentTarget.dataset.select === 'day' && setTranslateX(-50 * routineByDay.length + 10)
       e.currentTarget.dataset.select === 'week' && setTranslateX(-50 * routineByWeek.length + 10)
       e.currentTarget.dataset.select === 'month' && setTranslateX(-50 * routineByMonth.length + 10)
     }
     if (translateX > 10) {
-      setIsMoseEvent(false)
+      setIsMouseEvent(false)
       setTranslateX(10)
     }
   }
 
   const mouseUpHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
-    setIsMoseEvent(false)
+    setIsMouseEvent(false)
   }
 
   const mouseLeaveHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
-    setIsMoseEvent(false)
+    setIsMouseEvent(false)
   }
 
   useEffect(() => {
@@ -80,6 +80,7 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
             onMouseLeave={mouseLeaveHandler}
           >
             <BarChartItem
+              mouseEvent={isMouseEvent}
               dayWeekMonthSelect={dayWeekMonthSelect}
               data={data}
               idx={idx}
@@ -89,7 +90,7 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
                   ? percentVolume('day', data.volume)
                   : percentDuration('day', data.duration)
               }
-              hoilday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
+              holiday={DAY_OF_THE_WEEK_KOR[DAY_OF_THE_WEEK.indexOf(data.date.split(' ')[0])]}
               monthByDayData={MONTHS.indexOf(data.date.split(' ')[1])}
               monthByWeekData={0}
               monthByMonthData={0}
@@ -98,41 +99,60 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
         ))}
       {dayWeekMonthSelect === 'week' &&
         routineByWeek.map((data: any, idx) => (
-          <BarChartItem
+          <g
             key={data.duration + Math.random()}
-            dayWeekMonthSelect={dayWeekMonthSelect}
-            data={data}
-            idx={idx}
-            volumeAndDurationSelect={volumeAndDurationSelect}
-            heightValue={
-              volumeAndDurationSelect === 'volume'
-                ? percentVolume('week', data.volume)
-                : percentDuration('week', data.duration)
-            }
-            hoilday='hoilday'
-            monthByDayData={0}
-            monthByWeekData={MONTHS.indexOf(data.month)}
-            monthByMonthData={0}
-          />
+            data-select='week'
+            onMouseDown={mouseDownHandler}
+            onMouseMove={mouseMoveHandler}
+            onMouseUp={mouseUpHandler}
+            onMouseLeave={mouseLeaveHandler}
+          >
+            <BarChartItem
+              mouseEvent={isMouseEvent}
+              dayWeekMonthSelect={dayWeekMonthSelect}
+              data={data}
+              idx={idx}
+              volumeAndDurationSelect={volumeAndDurationSelect}
+              heightValue={
+                volumeAndDurationSelect === 'volume'
+                  ? percentVolume('week', data.volume)
+                  : percentDuration('week', data.duration)
+              }
+              holiday='holiday'
+              monthByDayData={0}
+              monthByWeekData={MONTHS.indexOf(data.month)}
+              monthByMonthData={0}
+            />
+          </g>
         ))}
       {dayWeekMonthSelect === 'month' &&
         routineByMonth.map((data: any, idx) => (
-          <BarChartItem
+          <g
             key={data.duration + Math.random()}
-            dayWeekMonthSelect={dayWeekMonthSelect}
-            data={data}
-            idx={idx}
-            volumeAndDurationSelect={volumeAndDurationSelect}
-            heightValue={
-              volumeAndDurationSelect === 'volume'
-                ? percentVolume('month', data.volume)
-                : percentDuration('month', data.duration)
-            }
-            hoilday='hoilday'
-            monthByDayData={0}
-            monthByWeekData={0}
-            monthByMonthData={MONTHS.indexOf(data.month)}
-          />
+            data-select='month'
+            onMouseDown={mouseDownHandler}
+            onMouseMove={mouseMoveHandler}
+            onMouseUp={mouseUpHandler}
+            onMouseLeave={mouseLeaveHandler}
+          >
+            <BarChartItem
+              mouseEvent={isMouseEvent}
+              key={data.duration + Math.random()}
+              dayWeekMonthSelect={dayWeekMonthSelect}
+              data={data}
+              idx={idx}
+              volumeAndDurationSelect={volumeAndDurationSelect}
+              heightValue={
+                volumeAndDurationSelect === 'volume'
+                  ? percentVolume('month', data.volume)
+                  : percentDuration('month', data.duration)
+              }
+              holiday='holiday'
+              monthByDayData={0}
+              monthByWeekData={0}
+              monthByMonthData={MONTHS.indexOf(data.month)}
+            />
+          </g>
         ))}
     </S.barChartBox>
   )

@@ -1,3 +1,4 @@
+import { memo, useEffect, useState } from 'react'
 import * as S from './styles'
 
 interface IBarChartItemProps {
@@ -6,10 +7,11 @@ interface IBarChartItemProps {
   idx: number
   volumeAndDurationSelect: string
   heightValue: number
-  hoilday: string
+  holiday: string
   monthByDayData: number
   monthByWeekData: number
   monthByMonthData: number
+  mouseEvent: boolean
 }
 
 const SVG_X_LENGTH = 68
@@ -26,40 +28,41 @@ const BarChartItem = ({
   idx,
   volumeAndDurationSelect,
   heightValue,
-  hoilday,
+  holiday,
   monthByDayData,
   monthByWeekData,
   monthByMonthData,
+  mouseEvent,
 }: IBarChartItemProps) => {
   return (
     <g>
       <g key={data.date} data-select={dayWeekMonthSelect}>
         <S.bar barValue={volumeAndDurationSelect} x={idx * SVG_X_LENGTH + 10} heightValue={heightValue} />
-        <S.animatedBar x={idx * SVG_X_LENGTH - 7} heightValue={heightValue + 1} />
+        <S.animatedBar mouseEvent={mouseEvent} x={idx * SVG_X_LENGTH - 7} heightValue={heightValue + 1} />
         {dayWeekMonthSelect === 'day' && (
           <g>
-            <S.barValue holiday={hoilday} y='270' x={idx * SVG_X_LENGTH - 1}>
+            <S.barValue holiday={holiday} y='270' x={idx * SVG_X_LENGTH - 1}>
               {data.date.split(' ')[3]}
             </S.barValue>
             <S.barValue
-              holiday={hoilday}
+              holiday={holiday}
               y='290'
               x={monthByDayData + 1 > 9 ? idx * SVG_X_LENGTH - 4 : idx * SVG_X_LENGTH - 1}
             >
               {`${monthByDayData + 1}/${data.date.split(' ')[2]}`}
             </S.barValue>
-            <S.barValue holiday={hoilday} y='310' x={idx * SVG_X_LENGTH - 6}>
-              {hoilday}
+            <S.barValue holiday={holiday} y='310' x={idx * SVG_X_LENGTH - 6}>
+              {holiday}
             </S.barValue>
           </g>
         )}
         {dayWeekMonthSelect === 'week' && (
           <g>
-            <S.barValue holiday={hoilday} y='270' x={idx * SVG_X_LENGTH - 1}>
+            <S.barValue holiday={holiday} y='270' x={idx * SVG_X_LENGTH - 1}>
               {data.year}
             </S.barValue>
             <S.barValue
-              holiday={hoilday}
+              holiday={holiday}
               y='290'
               x={monthByWeekData + 1 > 9 ? idx * SVG_X_LENGTH - 7 : idx * SVG_X_LENGTH - 3}
             >
@@ -69,11 +72,11 @@ const BarChartItem = ({
         )}
         {dayWeekMonthSelect === 'month' && (
           <g>
-            <S.barValue holiday={hoilday} y='270' x={idx * SVG_X_LENGTH - 1}>
+            <S.barValue holiday={holiday} y='270' x={idx * SVG_X_LENGTH - 1}>
               {data.year}
             </S.barValue>
             <S.barValue
-              holiday={hoilday}
+              holiday={holiday}
               y='290'
               x={monthByMonthData + 1 > 9 ? idx * SVG_X_LENGTH - 4 : idx * SVG_X_LENGTH - 1}
             >
@@ -149,4 +152,4 @@ const BarChartItem = ({
   )
 }
 
-export default BarChartItem
+export default memo(BarChartItem)

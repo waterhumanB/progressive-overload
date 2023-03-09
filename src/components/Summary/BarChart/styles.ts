@@ -12,7 +12,7 @@ export const bar = styled.rect<{ barValue: string; heightValue: number }>`
   height: ${(props) => `${props.heightValue}px`};
   fill: ${(props) => (props.barValue === 'volume' ? colors.BLUE1 : colors.PURPLE1)};
 `
-export const animatedBar = styled.rect<{ heightValue: number }>`
+export const animatedBar = styled.rect<{ heightValue: number; mouseEvent: boolean }>`
   y: ${(props) => `${250 - props.heightValue}px`};
   width: 50px;
   height: ${(props) => `${props.heightValue}px`};
@@ -29,7 +29,7 @@ export const animatedBar = styled.rect<{ heightValue: number }>`
       height: 0;
     }
   }
-  animation: rotation 0.6s linear;
+  animation: ${(props) => (props.mouseEvent ? '' : 'rotation 0.6s linear')};
 `
 export const barValue = styled.text<{ holiday: string }>`
   width: 30px;

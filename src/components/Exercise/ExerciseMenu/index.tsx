@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react'
 import { initialData } from '../../../data/initialData'
-import { ExerciseMeunProps } from '../../../types/allProps.d'
+import { ExerciseMenuProps } from '../../../types/allProps.d'
 import { findCategory, findTarget } from '../../../utils/findmenu'
 import FilterButton from './FilterButton'
 import * as S from './styles'
@@ -8,7 +8,7 @@ import * as S from './styles'
 const targetData = Object.entries(initialData.targets.byId).map((data) => data[0])
 const categoryData = Object.entries(initialData.categories.byId).map((data) => data[0])
 
-const ExerciseMenu = ({ setFilterExercise, filterExercise }: ExerciseMeunProps) => {
+const ExerciseMenu = ({ setFilterExercise, filterExercise }: ExerciseMenuProps) => {
   const { more, target, category } = filterExercise
 
   const filterHandler = (e: MouseEvent<HTMLButtonElement>) => {

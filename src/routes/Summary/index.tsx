@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import DountChart from '../../components/Chart/DountChart'
+import DonutChart from '../../components/Chart/DountChart'
 import Footer from '../../components/Footer'
 import { BarChart } from '../../components/Summary'
 import { useAppSelector } from '../../hooks/useAppSelector'
@@ -27,11 +27,11 @@ const Summary = () => {
 
   const totalTimeExercised = Object.values(recordSelector.records.byId)
     .map((data) => {
-      const duratingHour =
+      const durationHour =
         Number(data.endAt.split(' ')[4].split(':')[0]) - Number(data.startAt.split(' ')[4].split(':')[0])
-      const duratingMinute =
+      const durationMinute =
         Number(data.endAt.split(' ')[4].split(':')[1]) - Number(data.startAt.split(' ')[4].split(':')[1])
-      return duratingHour * 60 + duratingMinute
+      return durationHour * 60 + durationMinute
     })
     .reduce((acc, el) => acc + el)
 
@@ -71,23 +71,23 @@ const Summary = () => {
   return (
     <section>
       <div>나의 운동 기록들</div>
-      <S.dountChartContainer>
-        <DountChart
+      <S.donutChartContainer>
+        <DonutChart
           percentage={ONE_YEAR_AVERAGE_EXERCISE_HOUR}
           percentageValue={totalTimeExercised}
           chartValueName='Min'
         />
-        <DountChart
+        <DonutChart
           percentage={ONE_YEAR_AVERAGE_EXERCISE_VOLUME}
           percentageValue={totalExercisedVolume}
           chartValueName='Kg'
         />
-        <DountChart
+        <DonutChart
           percentage={ONE_YEAR_AVERAGE_EXERCISE_DAY}
           percentageValue={totalWorkoutDays.length}
           chartValueName='Days'
         />
-      </S.dountChartContainer>
+      </S.donutChartContainer>
       <div>
         <button onClick={dayWeekMonthSelectHandler} type='button'>
           일간
