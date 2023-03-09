@@ -34,19 +34,20 @@ export const animatedBar = styled.rect<{ heightValue: number; mouseEvent: boolea
 export const barValue = styled.text<{ holiday: string }>`
   width: 30px;
   height: 10px;
-  display: block;
   font-weight: 600;
   fill: ${(props) =>
     (props.holiday === '토요일' && colors.BLUE) ||
     (props.holiday === '일요일' && colors.RED) ||
     (props.holiday && colors.FOCUS)};
 `
-export const barBalloon = styled.rect`
+export const barBalloon = styled.rect<{ hover: boolean }>`
   width: 60px;
   height: 30px;
   fill: ${colors.BLACK};
+  display: ${(props) => (props.hover ? '' : 'none')};
 `
-export const barBalloonValue = styled.text`
+export const barBalloonValue = styled.text<{ hover: boolean }>`
   fill: ${colors.WHITE};
   font-size: 16px;
+  display: ${(props) => (props.hover ? '' : 'none')};
 `

@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useState, MouseEvent } from 'react'
 import * as S from './styles'
 
 interface IBarChartItemProps {
@@ -34,9 +34,10 @@ const BarChartItem = ({
   monthByMonthData,
   mouseEvent,
 }: IBarChartItemProps) => {
+  const [hover, setHover] = useState(false)
   return (
     <g>
-      <g key={data.date} data-select={dayWeekMonthSelect}>
+      <g onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         <S.bar barValue={volumeAndDurationSelect} x={idx * SVG_X_LENGTH + 10} heightValue={heightValue} />
         <S.animatedBar mouseEvent={mouseEvent} x={idx * SVG_X_LENGTH - 7} heightValue={heightValue + 1} />
         {dayWeekMonthSelect === 'day' && (
@@ -87,12 +88,14 @@ const BarChartItem = ({
         {volumeAndDurationSelect === 'volume' && dayWeekMonthSelect === 'month' ? (
           <g>
             <S.barBalloon
+              hover={hover}
               x={idx * SVG_X_LENGTH - 11}
               y={BALLOON_Y - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue}
               rx={RXRY}
               ry={RXRY}
             />
             <S.barBalloonValue
+              hover={hover}
               x={data.volume > 99999 ? idx * SVG_X_LENGTH - 7 : idx * SVG_X_LENGTH - 4}
               y={BALLOON_Y - heightValue < 0 ? BALLOON_VALUE_Y_OVER : BALLOON_VALUE_Y_MAX - heightValue}
             >
@@ -102,12 +105,14 @@ const BarChartItem = ({
         ) : (
           <g>
             <S.barBalloon
+              hover={hover}
               x={idx * SVG_X_LENGTH - 11}
               y={BALLOON_Y - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue}
               rx={RXRY}
               ry={RXRY}
             />
             <S.barBalloonValue
+              hover={hover}
               x={data.volume > 9999 ? idx * SVG_X_LENGTH - 3 : idx * SVG_X_LENGTH + 1}
               y={BALLOON_Y - heightValue < 0 ? BALLOON_VALUE_Y_OVER : BALLOON_VALUE_Y_MAX - heightValue}
             >
@@ -119,12 +124,14 @@ const BarChartItem = ({
           (dayWeekMonthSelect === 'month' ? (
             <g>
               <S.barBalloon
+                hover={hover}
                 x={idx * SVG_X_LENGTH - 11}
                 y={BALLOON_Y - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue}
                 rx={RXRY}
                 ry={RXRY}
               />
               <S.barBalloonValue
+                hover={hover}
                 x={data.duration > 999 ? idx * SVG_X_LENGTH - 3 : idx * SVG_X_LENGTH - 1}
                 y={BALLOON_Y - heightValue < 0 ? BALLOON_VALUE_Y_OVER : BALLOON_VALUE_Y_MAX - heightValue}
               >
@@ -134,14 +141,24 @@ const BarChartItem = ({
           ) : (
             <g>
               <S.barBalloon
+                hover={hover}
                 x={idx * SVG_X_LENGTH - 11}
-                y={BALLOON_Y - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue}
+                y={
+                  BALLOON_Y - heightValue && BALLOON_Y_MAX - heightValue < 0
+                    ? BALLOON_Y_OVER
+                    : BALLOON_Y_MAX - heightValue
+                }
                 rx={RXRY}
                 ry={RXRY}
               />
               <S.barBalloonValue
-                x={data.duration > 99 ? idx * SVG_X_LENGTH - 7 : idx * SVG_X_LENGTH - 4}
-                y={BALLOON_Y - heightValue < 0 ? BALLOON_VALUE_Y_OVER : BALLOON_VALUE_Y_MAX - heightValue}
+                hover={hover}
+                x={data.duration > 99 ? idx * SVG_X_LENGTH - 3 : idx * SVG_X_LENGTH + 3}
+                y={
+                  BALLOON_Y - heightValue && BALLOON_VALUE_Y_MAX - heightValue < 0
+                    ? BALLOON_VALUE_Y_OVER
+                    : BALLOON_VALUE_Y_MAX - heightValue
+                }
               >
                 {`${data.duration.toLocaleString()}분`}
               </S.barBalloonValue>

@@ -97,7 +97,7 @@ export const routineDataByDate = (totalWorkoutDays: string[], recordSelector: IR
     })
     .reverse()
 
-  const fetcehdYearAndWeeksData = routineByDay.map((data) => {
+  const fetchedYearAndWeeksData = routineByDay.map((data) => {
     const { date, volume, duration } = data
     const currentDate = new Date(
       `${date.split(' ')[3]}-${MONTHS.indexOf(date.split(' ')[1]) + 1}-${date.split(' ')[2]}`
@@ -108,7 +108,7 @@ export const routineDataByDate = (totalWorkoutDays: string[], recordSelector: IR
     return { year: Number(date.split(' ')[3]), week, month, volume, duration }
   })
 
-  const routineByWeek = fetcehdYearAndWeeksData.reduce((acc: IFetcehdYearAndWeekData[], current) => {
+  const routineByWeek = fetchedYearAndWeeksData.reduce((acc: IFetcehdYearAndWeekData[], current) => {
     const targetIndex = acc.findIndex((data) => data.year === current.year && data.week === current.week)
     if (targetIndex >= 0) {
       acc[targetIndex].volume += current.volume
