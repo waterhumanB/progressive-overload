@@ -13,13 +13,16 @@ export const barChartContainer = styled.div`
 `
 export const yAxis = styled.div`
   height: 250px;
-  border-right: 1px solid ${colors.BLUE};
+  padding-right: 5px;
+  border-right: 2px solid ${colors.FONT};
   display: flex;
   flex-direction: column;
   text-align: center;
-
+  justify-content: space-between;
+  font-weight: 600;
+  color: ${colors.BLACK};
   div {
-    width: 40px;
+    width: 47px;
     text-align: right;
   }
 `

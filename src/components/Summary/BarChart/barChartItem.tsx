@@ -1,4 +1,4 @@
-import { memo, useState, MouseEvent } from 'react'
+import { memo, useState } from 'react'
 import * as S from './styles'
 
 interface IBarChartItemProps {
@@ -37,7 +37,7 @@ const BarChartItem = ({
   const [hover, setHover] = useState(false)
   return (
     <g>
-      <g onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <g onMouseMove={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         <S.bar barValue={volumeAndDurationSelect} x={idx * SVG_X_LENGTH + 10} heightValue={heightValue} />
         <S.animatedBar mouseEvent={mouseEvent} x={idx * SVG_X_LENGTH - 7} heightValue={heightValue + 1} />
         {dayWeekMonthSelect === 'day' && (
