@@ -70,7 +70,6 @@ const Summary = () => {
 
   return (
     <section>
-      <div>나의 운동 기록들</div>
       <S.donutChartContainer>
         <DonutChart
           percentage={ONE_YEAR_AVERAGE_EXERCISE_HOUR}
@@ -88,17 +87,32 @@ const Summary = () => {
           chartValueName='Days'
         />
       </S.donutChartContainer>
-      <div>
-        <button onClick={dayWeekMonthSelectHandler} type='button'>
+      <S.dateRangeBox>
+        <S.daySelectBtn
+          date={dayWeekMonthSelect}
+          data={volumeAndDurationSelect}
+          onClick={dayWeekMonthSelectHandler}
+          type='button'
+        >
           일간
-        </button>
-        <button onClick={weekSelectHandler} type='button'>
+        </S.daySelectBtn>
+        <S.weekSelectBtn
+          date={dayWeekMonthSelect}
+          data={volumeAndDurationSelect}
+          onClick={weekSelectHandler}
+          type='button'
+        >
           주간
-        </button>
-        <button onClick={monthSelectHandler} type='button'>
+        </S.weekSelectBtn>
+        <S.monthSelectBtn
+          date={dayWeekMonthSelect}
+          data={volumeAndDurationSelect}
+          onClick={monthSelectHandler}
+          type='button'
+        >
           월간
-        </button>
-      </div>
+        </S.monthSelectBtn>
+      </S.dateRangeBox>
       <S.barChartContainer>
         {volumeAndDurationSelect === 'volume' ? (
           <S.yAxis>
