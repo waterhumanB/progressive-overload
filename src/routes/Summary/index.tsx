@@ -135,14 +135,14 @@ const Summary = () => {
           totalWorkoutDays={totalWorkoutDays}
         />
       </S.barChartContainer>
-      <div>
-        <button onClick={volumeSelectHandler} type='button'>
+      <S.selectDataBox>
+        <S.selectVolumeBtn selected={volumeAndDurationSelect} onClick={volumeSelectHandler} type='button'>
           총 볼륨
-        </button>
-        <button onClick={durationSelectMenuHandler} type='button'>
+        </S.selectVolumeBtn>
+        <S.selectDurationBtn selected={volumeAndDurationSelect} onClick={durationSelectMenuHandler} type='button'>
           운동 시간
-        </button>
-      </div>
+        </S.selectDurationBtn>
+      </S.selectDataBox>
       <Footer />
     </section>
   )

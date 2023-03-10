@@ -68,7 +68,7 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
   }, [dayWeekMonthSelect])
 
   return (
-    <S.barChartBox viewBox={`${-translateX} 0 400 400`}>
+    <S.barChartBox viewBox={`${-translateX} 0 400 350`}>
       {dayWeekMonthSelect === 'day' &&
         routineByDay.map((data: any, idx) => (
           <g

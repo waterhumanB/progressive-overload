@@ -75,3 +75,18 @@ export const monthSelectBtn = styled.button<{ date: string; data: string }>`
     return colors.FONT
   }};
 `
+export const selectDataBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`
+export const selectVolumeBtn = styled.button<{ selected: string }>`
+  font-size: 20px;
+  font-weight: 600;
+  color: ${(props) => (props.selected === 'volume' ? colors.BLUE : colors.FONT)};
+`
+export const selectDurationBtn = styled.button<{ selected: string }>`
+  font-size: 20px;
+  font-weight: 600;
+  color: ${(props) => (props.selected === 'duration' ? colors.PURPLE : colors.FONT)};
+`

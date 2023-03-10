@@ -3,7 +3,7 @@ import colors from '../../../styles/constants/colors'
 
 export const barChartBox = styled.svg`
   width: 400px;
-  height: 400px;
+  height: 350px;
 `
 
 export const bar = styled.rect<{ barValue: string; heightValue: number }>`
