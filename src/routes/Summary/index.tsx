@@ -143,6 +143,7 @@ const Summary = () => {
           운동 시간
         </S.selectDurationBtn>
       </S.selectDataBox>
+      <button type='button'>가상 데이터</button>
       <Footer />
     </section>
   )

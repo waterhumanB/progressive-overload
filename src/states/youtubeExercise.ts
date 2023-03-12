@@ -33,18 +33,18 @@ const getYoutubeExerciseSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getYoutubeExerciseData.pending, (state: YoutubeState) => {
-      state.error = 'peding'
+      state.error = 'pending'
       state.loading = true
     })
     builder.addCase(getYoutubeExerciseData.fulfilled, (state: YoutubeState, action) => {
       state.youtubeData = action.payload
       state.loading = false
-      state.error = 'fuilfilled'
+      state.error = 'fulfilled'
       localStorage.setItem('youtubeExercise', JSON.stringify(state.youtubeData))
     })
 
     builder.addCase(getYoutubeExerciseData.rejected, (state: YoutubeState) => {
-      state.error = 'rejdected'
+      state.error = 'rejected'
       state.loading = false
     })
   },

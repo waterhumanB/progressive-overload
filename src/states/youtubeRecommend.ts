@@ -22,34 +22,34 @@ export interface YoutubeState {
 }
 
 const INITIAL_STATE: YoutubeState = {
-  youtubeData: INIT_YOUTUBE,
+  youtubeData: INIT_LOCALSTORAGE_YOUTUBE,
   error: null,
   loading: false,
 }
 
-const getYoutubRecommendSlice = createSlice({
+const getYoutubeRecommendSlice = createSlice({
   name: 'youtubeRecommend',
   initialState: INITIAL_STATE,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getYoutubeRecommendData.pending, (state: YoutubeState) => {
-      state.error = 'peding'
+      state.error = 'pending'
       state.loading = true
     })
     builder.addCase(getYoutubeRecommendData.fulfilled, (state: YoutubeState, action) => {
       state.youtubeData = action.payload
       state.loading = false
-      state.error = 'fuilfilled'
+      state.error = 'fulfilled'
       localStorage.setItem('youtubeRecommend', JSON.stringify(state.youtubeData))
     })
 
     builder.addCase(getYoutubeRecommendData.rejected, (state: YoutubeState) => {
-      state.error = 'rejdected'
+      state.error = 'rejected'
       state.loading = false
     })
   },
 })
 
-export default getYoutubRecommendSlice.reducer
+export default getYoutubeRecommendSlice.reducer
 
 export const getYoutubeRecommendDataList = (state: RootState) => state.youtubeRecommend

@@ -31,7 +31,7 @@ export const videoView = styled.div`
     border-radius: 10px;
   }
 `
-export const vidoeTitle = styled.div`
+export const videoTitle = styled.div`
   width: 100%;
   padding: 5px 5px 0 5px;
   font-size: 14px;
@@ -40,7 +40,7 @@ export const vidoeTitle = styled.div`
   color: ${colors.FOCUS};
   word-break: keep-all;
 `
-export const vidoeLink = styled.a`
+export const videoLink = styled.a`
   font-size: 15px;
   color: ${colors.FONT};
   margin: 10px auto auto auto;
