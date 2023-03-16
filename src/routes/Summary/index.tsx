@@ -33,7 +33,7 @@ const Summary = () => {
         Number(data.endAt.split(' ')[4].split(':')[1]) - Number(data.startAt.split(' ')[4].split(':')[1])
       return durationHour * 60 + durationMinute
     })
-    .reduce((acc, el) => acc + el)
+    .reduce((acc, el) => acc + el, 0)
 
   const exerciseAllDates = Object.values(recordSelector.records.byId).map((data) => {
     const workoutDays = `${data.startAt.split(' ')[0]} ${data.startAt.split(' ')[1]} ${data.startAt.split(' ')[2]} ${
@@ -49,7 +49,7 @@ const Summary = () => {
       return data.set.map((item) => item.kg * item.rab)
     })
     .flat(1)
-    .reduce((acc, el) => acc + el)
+    .reduce((acc, el) => acc + el, 0)
 
   const volumeSelectHandler = () => {
     setVolumeAndDurationSelect('volume')
