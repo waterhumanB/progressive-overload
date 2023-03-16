@@ -90,3 +90,26 @@ export const selectDurationBtn = styled.button<{ selected: string }>`
   font-weight: 600;
   color: ${(props) => (props.selected === 'duration' ? colors.PURPLE : colors.FONT)};
 `
+
+export const mockDataBox = styled.div`
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+`
+
+export const mockDataBtn = styled.button`
+  max-width: 250px;
+  padding: 20px;
+  margin: auto;
+  font-size: 18px;
+  color: ${colors.FONT};
+  border: 1px solid ${colors.BORDER};
+
+  :hover {
+    font-weight: 600;
+    color: ${colors.FOCUS};
+    border: 2px solid ${colors.FOCUS};
+  }
+`

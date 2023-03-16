@@ -1,3 +1,3 @@
-import DountChart from './DountChart'
+import DonutChart from './DonutChart/index'
 
-export { DountChart }
+export { DonutChart }

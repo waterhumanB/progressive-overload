@@ -1,14 +1,13 @@
-import React from 'react'
 import { useCounter } from '../../../hooks/useCounter'
-import * as S from './stlyes'
+import * as S from './styles'
 
-interface IDountChartProps {
+interface IDonutChartProps {
   percentage: number
   percentageValue: number
   chartValueName: string
 }
 
-const DountChart = ({ percentage, percentageValue, chartValueName }: IDountChartProps) => {
+const DonutChart = ({ percentage, percentageValue, chartValueName }: IDonutChartProps) => {
   const count = useCounter(percentageValue)
   const fetchedPercentageValue = (per: number) => {
     let result = 0
@@ -60,4 +59,4 @@ const DountChart = ({ percentage, percentageValue, chartValueName }: IDountChart
   )
 }
 
-export default DountChart
+export default DonutChart

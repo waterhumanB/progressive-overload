@@ -23,18 +23,18 @@ const RoutineResult = () => {
   const currentExerciseRecordIds =
     currentRoutineData.recent.length > 0 && currentRoutineData.recent[recentOrder].recordIds
 
-  const currentExeciseRecordData = Object.values(recordsSelector.records.byId)
+  const currentExerciseRecordData = Object.values(recordsSelector.records.byId)
     .filter((data) => currentExerciseRecordIds && currentExerciseRecordIds.includes(data.id))
     .map((data) => data.set)
 
-  const totalSet = currentExeciseRecordData.map((data) => data.length).reduce((acc, el) => acc + el)
+  const totalSet = currentExerciseRecordData.map((data) => data.length).reduce((acc, el) => acc + el)
 
-  const totalRab = currentExeciseRecordData
+  const totalRab = currentExerciseRecordData
     .map((data) => data.map((item) => item.rab))
     .flat(1)
     .reduce((acc, el) => acc + el)
 
-  const totalVolume = currentExeciseRecordData
+  const totalVolume = currentExerciseRecordData
     .map((data) => data.map((item) => item.kg * item.rab))
     .flat(1)
     .reduce((acc, el) => acc + el)

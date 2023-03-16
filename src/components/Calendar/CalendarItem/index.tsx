@@ -8,14 +8,14 @@ import * as S from './styles'
 
 const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
   const navigate = useNavigate()
-  const recordSeletor = useAppSelector(getRecordsData)
+  const recordSelector = useAppSelector(getRecordsData)
 
   const todayTotalVolume = (routine: IRoutineItem[]) => {
     const todayRoutineRecordIds =
       routine !== undefined
         ? routine?.map((data: IRoutineItem) => data?.recent?.map((item: IRecentItem) => item?.recordIds)).flat(2)
         : ''
-    const todayRoutineSets = Object.values(recordSeletor.records.byId)
+    const todayRoutineSets = Object.values(recordSelector.records.byId)
       .filter((data) => todayRoutineRecordIds.includes(data.id))
       .map((item) => item.set)
       .flat(2)
@@ -37,7 +37,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             .reduce((acc, el) => acc + el)
         : 0
     )
-    return todayRoutineTime.reduce((acc, el) => acc + el)
+    return todayRoutineTime.reduce((acc, el) => acc + el, 0)
   }
 
   const currentDateRoutineFinishPageMoveHandler = useCallback((routine: IRoutineItem[], routineResult: number) => {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import DonutChart from '../../components/Chart/DountChart'
+import DonutChart from '../../components/Chart/DonutChart'
 import Footer from '../../components/Footer'
 import { BarChart } from '../../components/Summary'
 import { useAppSelector } from '../../hooks/useAppSelector'
@@ -143,7 +143,9 @@ const Summary = () => {
           운동 시간
         </S.selectDurationBtn>
       </S.selectDataBox>
-      <button type='button'>가상 데이터</button>
+      <S.mockDataBox>
+        <S.mockDataBtn type='button'>가상 루틴 및 데이터 추가 하기</S.mockDataBtn>
+      </S.mockDataBox>
       <Footer />
     </section>
   )
