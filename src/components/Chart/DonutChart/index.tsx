@@ -25,8 +25,18 @@ const DonutChart = ({ percentage, percentageValue, chartValueName }: IDonutChart
 
   const fetchedPercentageValueCount = useCounter(fetchedPercentageValue(percentageValue))
 
+  const chartName = (valueName: string) => {
+    const chartExplanation = {
+      Min: '운동한 총 시간',
+      Kg: '운동한 총 볼륨',
+      Days: '운동한 총 날짜',
+    }[valueName]
+    return chartExplanation
+  }
+
   return (
     <S.chart chartName={chartValueName}>
+      <S.chartExpiation chartName={chartValueName}>{chartName(chartValueName)}</S.chartExpiation>
       <S.aniSvg chartName={chartValueName} preserveAspectRatio='none'>
         <S.backCircle
           chartName={chartValueName}

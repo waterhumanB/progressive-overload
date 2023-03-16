@@ -31,7 +31,7 @@ export const dateRangeBox = styled.div`
   height: 30px;
   display: flex;
   justify-content: space-around;
-  margin-bottom: 15px;
+  margin: 15px 0;
 `
 
 export const daySelectBtn = styled.button<{ date: string; data: string }>`

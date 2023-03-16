@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import * as S from './styles'
 import Home from './Home'
 import Routine from './Routine'
@@ -13,8 +13,15 @@ import RoutineReady from './Routine/RoutineReady'
 import RoutineRun from './Routine/RoutineRun'
 import RoutineFinish from './Routine/RoutineFinish'
 import RoutineResult from './Calendar/RoutineResult'
+import { useEffect } from 'react'
 
 const App = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (localStorage.getItem('user') === null) {
+      navigate('/')
+    }
+  }, [])
   return (
     <S.Container>
       <Routes>

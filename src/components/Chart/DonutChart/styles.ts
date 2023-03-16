@@ -8,6 +8,17 @@ export const chart = styled.div<{ chartName: string }>`
   position: relative;
 `
 
+export const chartExpiation = styled.div<{ chartName: string }>`
+  width: 100%;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+  color: ${(props) =>
+    (props.chartName === 'Min' && colors.PURPLE1) ||
+    (props.chartName === 'Kg' && colors.BRIGHT_GREEN) ||
+    (props.chartName === 'Days' && colors.BLUE1)};
+`
+
 export const aniSvg = styled.svg<{ chartName: string }>`
   width: ${(props) => (props.chartName === 'default' ? '250px' : '130px')};
   height: ${(props) => (props.chartName === 'default' ? '250px' : '130px')};
@@ -32,7 +43,7 @@ export const animatedCircle = styled.circle<{ chartName: string }>`
 
 export const chartValue = styled.div<{ chartName: string }>`
   position: absolute;
-  top: 30%;
+  top: 45%;
   left: 50%;
   transform: translateX(-50%);
   font-size: ${(props) => (props.chartName === 'default' ? '80px' : '20px')};
