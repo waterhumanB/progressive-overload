@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 import { initialData } from '../../../data/initialData'
 import { ICustomSelectorModalProps } from '../../../types/allProps.d'
-import { findCategory, findTarget } from '../../../utils/findmenu'
+import { findCategory, findTarget } from '../../../utils/findMenu'
 import * as S from './styles'
 
 const category = Object.keys(initialData.categories.byId)

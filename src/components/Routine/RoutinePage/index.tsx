@@ -3,7 +3,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData } from '../../../states/exercises'
 import { getTypesData } from '../../../states/types'
 import { IRoutinePageProps } from '../../../types/allProps.d'
-import { findCategory, findTarget, findType } from '../../../utils/findmenu'
+import { findCategory, findTarget, findType } from '../../../utils/findMenu'
 import * as S from './styles'
 
 const RoutinePage = ({

@@ -6,7 +6,7 @@ import { ReactComponent as Check } from '../../../assets/imgs/check.svg'
 import { useCallback } from 'react'
 import { getExerciseData, setFavoriteExercise } from '../../../states/exercises'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { findCategory, findTarget, findType } from '../../../utils/findmenu'
+import { findCategory, findTarget, findType } from '../../../utils/findMenu'
 import { IExerciseCardProps } from '../../../types/allProps.d'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getTypesData } from '../../../states/types'
@@ -91,13 +91,13 @@ const ExerciseCard = ({
               </S.exerciseTarget>
             </S.exerciseInfo>
             {data.custom ? (
-              <button className='edit' onClick={() => dropDownAndEditIdHandler(data.id, data.typeId)} type='button'>
+              <S.editBtn onClick={() => dropDownAndEditIdHandler(data.id, data.typeId)} type='button'>
                 <DotMenu />
-              </button>
+              </S.editBtn>
             ) : (
-              <button className='favorite' onClick={() => favoriteHandler(data.id, data.favorite)} type='button'>
+              <S.favoriteBtn onClick={() => favoriteHandler(data.id, data.favorite)} type='button'>
                 {data.favorite === true ? <ArmHeart /> : <Arm />}
-              </button>
+              </S.favoriteBtn>
             )}
           </S.exerciseBox>
         ))

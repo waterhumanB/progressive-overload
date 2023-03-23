@@ -8,7 +8,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector'
 import { editCustomExercise, getExerciseData, setCustomExercise } from '../../../states/exercises'
 import { editType, getTypesData, setType } from '../../../states/types'
 import { IExerciseItem } from '../../../types/exercises.d'
-import { findCategory, findTarget, findType } from '../../../utils/findmenu'
+import { findCategory, findTarget, findType } from '../../../utils/findMenu'
 import * as S from './styles'
 
 const EDIT_URL = '/routine/routine-make/custom-exercise/edit'

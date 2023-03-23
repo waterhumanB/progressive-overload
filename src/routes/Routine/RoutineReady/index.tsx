@@ -8,7 +8,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getExerciseData } from '../../../states/exercises'
 import { changeWorkoutInRoutine, getRoutineData, setStartAtTimeInRoutine } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
-import { findCategory, findTarget, findType } from '../../../utils/findmenu'
+import { findCategory, findTarget, findType } from '../../../utils/findMenu'
 import * as S from './styles'
 
 interface ILocationState {

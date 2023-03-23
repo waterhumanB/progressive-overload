@@ -5,7 +5,7 @@ import { getExerciseData } from '../../../states/exercises'
 import { changeExerciseInRoutine, deleteExerciseInRoutine, getRoutineData } from '../../../states/routines'
 import { getTypesData } from '../../../states/types'
 import { IExerciseEditDeleteModalProps } from '../../../types/allProps.d'
-import { findCategory, findTarget, findType } from '../../../utils/findmenu'
+import { findCategory, findTarget, findType } from '../../../utils/findMenu'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import * as S from './styles'
 

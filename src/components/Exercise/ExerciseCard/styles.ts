@@ -15,26 +15,27 @@ export const exerciseBox = styled.div<{ border: boolean }>`
   margin-bottom: 7px;
   background: ${colors.BACK};
   border: ${(props) => (props.border ? `1px solid ${colors.FOCUS}` : '')};
-  .edit {
-    svg {
-      margin-right: 3px;
-      width: 40px;
-      height: 40px;
-    }
+`
+
+export const editBtn = styled.button`
+  svg {
+    margin-right: 3px;
+    width: 40px;
+    height: 40px;
+  }
+  path {
+    fill: ${colors.FOCUS};
+  }
+`
+
+export const favoriteBtn = styled.button`
+  svg {
+    margin-right: 3px;
+    width: 40px;
+    height: 40px;
+    transform: scaleX(-1);
     path {
       fill: ${colors.FOCUS};
-    }
-  }
-
-  .favorite {
-    svg {
-      margin-right: 3px;
-      width: 40px;
-      height: 40px;
-      transform: scaleX(-1);
-      path {
-        fill: ${colors.FOCUS};
-      }
     }
   }
 `
