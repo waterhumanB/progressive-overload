@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../styles/constants/colors'
 
-export const DropDownCotainer = styled.div<{ dropdown: boolean }>`
+export const DropDownContainer = styled.div<{ dropdown: boolean }>`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -21,7 +21,7 @@ export const DropDownCotainer = styled.div<{ dropdown: boolean }>`
 `
 
 export const DropDownBox = styled.div<{ dropdown: boolean }>`
-  width: 400px;
+  width: 100%;
   text-align: center;
   position: absolute;
   bottom: 0;

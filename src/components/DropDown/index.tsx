@@ -20,7 +20,7 @@ const DropDown = ({
     navigate(naviRoute.to, naviRoute.state)
   }
   return (
-    <S.DropDownCotainer dropdown={dropDown} onClick={toggleDropDown}>
+    <S.DropDownContainer dropdown={dropDown} onClick={toggleDropDown}>
       {twoMenu && (
         <S.DropDownBox dropdown={dropDown}>
           <S.DropDownItem dropdown={dropDown} onClick={pageRouter}>
@@ -44,7 +44,7 @@ const DropDown = ({
           </S.DropDownItem>
         </S.DropDownBox>
       )}
-    </S.DropDownCotainer>
+    </S.DropDownContainer>
   )
 }
 
