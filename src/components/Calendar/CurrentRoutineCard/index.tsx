@@ -8,10 +8,12 @@ import { useNavigate } from 'react-router-dom'
 
 const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) => {
   const navigate = useNavigate()
+
   const routineFinishPageRouter = (routine: IRoutineItem, recent: IRecentItem) => {
     const currentRoutine = [{ ...routine, recent: [recent] }]
     navigate('/calendar/routine-result', { state: currentRoutine })
   }
+
   return (
     <S.currentRoutineCardContainer>
       {currentMonthsRoutineData.map((data: IRoutineItem) => {

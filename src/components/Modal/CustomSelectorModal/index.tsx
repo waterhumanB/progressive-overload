@@ -10,7 +10,7 @@ const secondaryTarget = Object.keys(initialData.targets.byId)
 
 const CustomSelectorModal = ({
   toggleModalHandler,
-  nameFitler,
+  nameFilter,
   setCustomExerciseData,
   customExerciseData,
 }: ICustomSelectorModalProps) => {
@@ -21,9 +21,10 @@ const CustomSelectorModal = ({
     }
     setCustomExerciseData({ ...customExerciseData, ...customSelectorExercise })
   }
+
   return (
     <S.customSelectorModalContainer>
-      {(nameFitler === 'categoryId' &&
+      {(nameFilter === 'categoryId' &&
         category.map((data) => (
           <div key={data}>
             <button name='categoryId' value={data} onClick={selectorData} type='button'>
@@ -31,7 +32,7 @@ const CustomSelectorModal = ({
             </button>
           </div>
         ))) ||
-        (nameFitler === 'mainTarget' &&
+        (nameFilter === 'mainTarget' &&
           mainTarget.map((data) => (
             <div key={data}>
               <button name='mainTarget' value={data} onClick={selectorData} type='button'>
@@ -39,7 +40,7 @@ const CustomSelectorModal = ({
               </button>
             </div>
           ))) ||
-        (nameFitler === 'secondaryTarget' &&
+        (nameFilter === 'secondaryTarget' &&
           secondaryTarget.map((data) => (
             <div key={data}>
               <button name='secondaryTarget' value={data} onClick={selectorData} type='button'>
@@ -47,7 +48,7 @@ const CustomSelectorModal = ({
               </button>
             </div>
           )))}
-      {nameFitler === 'secondaryTarget' && (
+      {nameFilter === 'secondaryTarget' && (
         <button name='secondaryTarget' value='' type='button' onClick={selectorData}>
           없음
         </button>

@@ -23,6 +23,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
       ? todayRoutineSets.map((data) => data.kg * data.rab).reduce((acc, el) => acc + el)
       : 0
   }
+
   const todayDuration = (routine: IRoutineItem[]) => {
     const todayRoutineTime = routine.map((data: IRoutineItem) =>
       data?.recent !== undefined
@@ -48,6 +49,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
       navigate('/calendar/routine-result', { state: currentRoutineData })
     }
   }, [])
+
   return (
     <S.calendarTbody>
       <tr>

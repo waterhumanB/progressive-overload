@@ -81,7 +81,7 @@ export interface IModalProps {
 }
 
 export interface ICustomSelectorModalProps {
-  nameFitler: string
+  nameFilter: string
   toggleModalHandler: () => void
   customExerciseData: object
   setCustomExerciseData: Dispatch<SetStateAction<object>>

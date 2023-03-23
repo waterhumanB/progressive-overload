@@ -11,7 +11,7 @@ const Modal = ({ toggleModalHandler, stateData, setStateData, modalName, stateTy
         <CustomSelectorModal
           customExerciseData={stateData}
           setCustomExerciseData={setStateData}
-          nameFitler={stateTypeName}
+          nameFilter={stateTypeName}
           toggleModalHandler={toggleModalHandler}
         />
       )}

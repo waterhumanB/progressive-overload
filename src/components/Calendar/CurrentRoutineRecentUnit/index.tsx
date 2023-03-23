@@ -10,21 +10,21 @@ const CurrentRoutineRecentUnit = ({ dataSelector }: ICurrentRoutineRecentUnitPro
   return (
     <S.recentUnitMenuContainer>
       {dataSelector ? (
-        <div className='unitMenuBox'>
+        <S.unitMenuBox className='unitMenuBox'>
           {TOTAL_VOLUME.map((data, i) => (
-            <div className='volumeMenu' key={data}>
-              <div className={`volume v${i}`} /> <div className='value'>{data}</div>
-            </div>
+            <S.volumeMenu key={data}>
+              <S.volume colorIdx={i} /> <S.value>{data}</S.value>
+            </S.volumeMenu>
           ))}
-        </div>
+        </S.unitMenuBox>
       ) : (
-        <div className='unitMenuBox'>
+        <S.unitMenuBox className='unitMenuBox'>
           {DURATION.map((data, i) => (
-            <div className='durationMenu' key={data}>
-              <div className={`duration d${i}`} /> <div className='value'>{data}</div>
-            </div>
+            <S.durationMenu key={data}>
+              <S.duration colorIdx={i} /> <S.value>{data}</S.value>
+            </S.durationMenu>
           ))}
-        </div>
+        </S.unitMenuBox>
       )}
     </S.recentUnitMenuContainer>
   )

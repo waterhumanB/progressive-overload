@@ -16,6 +16,7 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
   const dispatch = useAppDispatch()
   const [changeExercise, setChangeExercise] = useState(false)
   const [recommendExerciseOrder, setRecommendExerciseOrder] = useState(0)
+
   const recommendExerciseList = Object.values(exerciseSelector.exercises.byId).filter(
     (data) =>
       data.mainTarget === exerciseSelector.exercises.byId[nowExerciseIdData[1]].mainTarget &&
@@ -46,6 +47,7 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
       setRecommendExerciseOrder(recommendExerciseOrder + 1)
     }
   }
+
   const selectExerciseHandler = () => {
     const { id } = recommendExerciseList.slice(recommendExerciseOrder, recommendExerciseOrder + 1)[0]
     const exerciseDataToChange = {
@@ -56,6 +58,7 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
     dispatch(changeExerciseInRoutine(exerciseDataToChange))
     toggleModalHandler()
   }
+
   return (
     <S.exerciseEditDeleteModalContainer>
       {!changeExercise ? (
