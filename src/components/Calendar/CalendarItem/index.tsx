@@ -50,6 +50,10 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
     }
   }, [])
 
+  console.log(
+    fetchedWeeks(2).map((data: ICalendarItem) => todayDuration(data.routine)),
+    fetchedWeeks(3).map((data: ICalendarItem) => todayDuration(data.routine))
+  )
   return (
     <S.calendarTbody>
       <tr>
@@ -60,7 +64,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             key={data?.day}
           >
             <button type='button'>
-              <S.currentMonthdate
+              <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 onClick={() =>
                   currentDateRoutineFinishPageMoveHandler(
@@ -71,7 +75,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
-              </S.currentMonthdate>
+              </S.currentMonthDate>
             </button>
           </S.todayRoutine>
         ))}
@@ -84,7 +88,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             key={data?.day}
           >
             <button type='button'>
-              <S.currentMonthdate
+              <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 onClick={() =>
                   currentDateRoutineFinishPageMoveHandler(
@@ -95,7 +99,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
-              </S.currentMonthdate>
+              </S.currentMonthDate>
             </button>
           </S.todayRoutine>
         ))}
@@ -108,7 +112,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             key={data?.day}
           >
             <button type='button'>
-              <S.currentMonthdate
+              <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 onClick={() =>
                   currentDateRoutineFinishPageMoveHandler(
@@ -119,7 +123,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
-              </S.currentMonthdate>
+              </S.currentMonthDate>
             </button>
           </S.todayRoutine>
         ))}
@@ -138,12 +142,12 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             key={data?.day}
           >
             <button type='button'>
-              <S.currentMonthdate
+              <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
-              </S.currentMonthdate>
+              </S.currentMonthDate>
             </button>
           </S.todayRoutine>
         ))}
@@ -162,12 +166,12 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             key={data?.day}
           >
             <button type='button'>
-              <S.currentMonthdate
+              <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
-              </S.currentMonthdate>
+              </S.currentMonthDate>
             </button>
           </S.todayRoutine>
         ))}
@@ -186,12 +190,12 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             key={data?.day}
           >
             <button type='button'>
-              <S.currentMonthdate
+              <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
-              </S.currentMonthdate>
+              </S.currentMonthDate>
             </button>
           </S.todayRoutine>
         ))}

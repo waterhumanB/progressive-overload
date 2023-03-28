@@ -156,7 +156,7 @@ export interface IRoutineRunRecordBtnProps {
 }
 
 export interface ICalendarItemProps {
-  fetchedWeeks: (weekOrdr: number) => ICalendarItem[] | any
+  fetchedWeeks: (weekOrder: number) => ICalendarItem[] | any
   dataSelector: boolean
 }
 
