@@ -17,7 +17,7 @@ const INIT_LOCALSTORAGE_YOUTUBE =
 
 export interface YoutubeState {
   youtubeData: ISearchYoutube[]
-  error: null | undefined | string | unknown
+  error: null | null | string | unknown
   loading: boolean
 }
 

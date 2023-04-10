@@ -33,17 +33,17 @@ const Routine = () => {
     state: { state: routineSelector.routines.byId[nowRoutineId] },
   }
 
-  const ExerciseAddtoggleDropDown = () => {
+  const ExerciseAddToggleDropDown = () => {
     setExerciseAddDropDown(!exerciseAddDropDown)
   }
-  const RoutineAddtoggleDropDown = () => {
+  const RoutineAddToggleDropDown = () => {
     setRoutineAddDropDown(!routineAddDropDown)
   }
   const routineIdHandler = useCallback((id: string) => {
     setNowRoutineId(id)
     setRoutineAddDropDown(!routineAddDropDown)
   }, [])
-  const routineDeleteDispathHandler = () => {
+  const routineDeleteDispatchHandler = () => {
     dispatch(deleteRoutine({ id: nowRoutineId }))
   }
 
@@ -91,13 +91,13 @@ const Routine = () => {
           </S.routineCard>
         ))}
       </S.routineBox>
-      <RoutineAddBtn toggleDropDown={ExerciseAddtoggleDropDown} />
+      <RoutineAddBtn toggleDropDown={ExerciseAddToggleDropDown} />
       <DropDown
         twoMenu
         twoMenuValue1='루틴 추가하기'
         twoMenuValue2='취소'
         dropDown={exerciseAddDropDown}
-        toggleDropDown={ExerciseAddtoggleDropDown}
+        toggleDropDown={ExerciseAddToggleDropDown}
         naviRoute={naviRoutineMakeRouter}
       />
       <DropDown
@@ -105,9 +105,9 @@ const Routine = () => {
         threeMenuValue1='루틴 수정 하기'
         threeMenuValue2='루틴 삭제 하기'
         threeMenuValue3='취소'
-        deleteFunction={routineDeleteDispathHandler}
+        deleteFunction={routineDeleteDispatchHandler}
         dropDown={routineAddDropDown}
-        toggleDropDown={RoutineAddtoggleDropDown}
+        toggleDropDown={RoutineAddToggleDropDown}
         naviRoute={naviRoutineEditRouter}
       />
       <Footer />

@@ -12,7 +12,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
 
   const todayTotalVolume = (routine: IRoutineItem[]) => {
     const todayRoutineRecordIds =
-      routine !== undefined
+      routine !== null
         ? routine?.map((data: IRoutineItem) => data?.recent?.map((item: IRecentItem) => item?.recordIds)).flat(2)
         : ''
     const todayRoutineSets = Object.values(recordSelector.records.byId)
@@ -26,7 +26,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
 
   const todayDuration = (routine: IRoutineItem[]) => {
     const todayRoutineTime = routine.map((data: IRoutineItem) =>
-      data?.recent !== undefined
+      data?.recent !== null
         ? data?.recent
             .map((item: IRecentItem) => {
               const startTime = item.startAt.split(' ')[4].split(':')
@@ -43,17 +43,11 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
 
   const currentDateRoutineFinishPageMoveHandler = useCallback((routine: IRoutineItem[], routineResult: number) => {
     if (routineResult !== 0) {
-      const currentRoutineData = routine
-        .filter((data: IRoutineItem) => data.recent)
-        .filter((item) => item !== undefined)
+      const currentRoutineData = routine.filter((data: IRoutineItem) => data.recent).filter((item) => item !== null)
       navigate('/calendar/routine-result', { state: currentRoutineData })
     }
   }, [])
 
-  console.log(
-    fetchedWeeks(2).map((data: ICalendarItem) => todayDuration(data.routine)),
-    fetchedWeeks(3).map((data: ICalendarItem) => todayDuration(data.routine))
-  )
   return (
     <S.calendarTbody>
       <tr>

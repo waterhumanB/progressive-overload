@@ -28,7 +28,7 @@ const RoutineReady = () => {
   const [grab, setGrab] = useState<HTMLElement>()
   const [routineList, setRoutineList] = useState<string[]>(location.state.workout)
   const [dragOver, setDragOver] = useState<number>()
-  const [dropPostion, setDropPostion] = useState<number>()
+  const [dropPosition, setDropPosition] = useState<number>()
   const [toggleModal, setToggleModal] = useState(false)
   const [routineIdAndExerciseId, setRoutineIdAndExerciseId] = useState<string[]>([])
 
@@ -52,7 +52,7 @@ const RoutineReady = () => {
     // 드래그하면서 마우스가 대상 객체의 위에 자리 잡고 있을 때 발생함
     e.preventDefault()
     setDragOver(Number(e.currentTarget.dataset.position))
-    setDropPostion(999)
+    setDropPosition(999)
   }
 
   const dragEndHandler = (e: DragEvent<HTMLElement>) => {
@@ -70,7 +70,7 @@ const RoutineReady = () => {
     const newList = [...routineList]
     newList[grabPosition] = newList.splice(targetPosition, 1, newList[grabPosition])[0]
     setRoutineList(newList)
-    setDropPostion(targetPosition)
+    setDropPosition(targetPosition)
     dispatch(changeWorkoutInRoutine({ id: location.state.id, workout: newList }))
   }
 
@@ -98,7 +98,7 @@ const RoutineReady = () => {
         <S.exerciseBox>
           {routineList.map((data, index) => (
             <S.exerciseCard
-              dropPosition={index === dropPostion}
+              dropPosition={index === dropPosition}
               dragOverPosition={index === dragOver}
               data-position={index}
               onDragStart={dragStartHandler}

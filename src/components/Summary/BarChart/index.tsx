@@ -68,7 +68,7 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
   }, [dayWeekMonthSelect])
 
   return (
-    <S.barChartBox viewBox={`${-translateX} 0 400 350`}>
+    <S.barChartBox onMouseUp={mouseUpHandler} viewBox={`${-translateX} 0 400 350`}>
       {dayWeekMonthSelect === 'day' &&
         routineByDay.map((data: any, idx) => (
           <g
@@ -76,7 +76,6 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
             data-select='day'
             onMouseDown={mouseDownHandler}
             onMouseMove={mouseMoveHandler}
-            onMouseUp={mouseUpHandler}
             onMouseLeave={mouseLeaveHandler}
           >
             <BarChartItem
@@ -104,7 +103,6 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
             data-select='week'
             onMouseDown={mouseDownHandler}
             onMouseMove={mouseMoveHandler}
-            onMouseUp={mouseUpHandler}
             onMouseLeave={mouseLeaveHandler}
           >
             <BarChartItem
@@ -132,7 +130,6 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
             data-select='month'
             onMouseDown={mouseDownHandler}
             onMouseMove={mouseMoveHandler}
-            onMouseUp={mouseUpHandler}
             onMouseLeave={mouseLeaveHandler}
           >
             <BarChartItem

@@ -5,6 +5,8 @@ import { BarChart } from '../../components/Summary'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getRecordsData } from '../../states/records'
 
+import mockData from '../../data/mockData.json'
+
 import * as S from './styles'
 
 const ONE_YEAR_AVERAGE_EXERCISE_DAY = 188
@@ -66,6 +68,12 @@ const Summary = () => {
   }
   const monthSelectHandler = () => {
     setDayWeekMonthSelect('month')
+  }
+
+  const setLocalStorageMockDataHandler = () => {
+    localStorage.setItem('exercise', JSON.stringify(mockData.exercise))
+    localStorage.setItem('records', JSON.stringify(mockData.records))
+    localStorage.setItem('routines', JSON.stringify(mockData.routines))
   }
 
   return (
@@ -144,7 +152,9 @@ const Summary = () => {
         </S.selectDurationBtn>
       </S.selectDataBox>
       <S.mockDataBox>
-        <S.mockDataBtn type='button'>가상 루틴 및 데이터 추가 하기</S.mockDataBtn>
+        <S.mockDataBtn type='button' onClick={setLocalStorageMockDataHandler}>
+          가상 루틴 및 데이터 추가 하기
+        </S.mockDataBtn>
       </S.mockDataBox>
       <Footer />
     </section>

@@ -20,7 +20,7 @@ const Calendar = () => {
     const filtered = data.recent.filter(
       (item) => item.startAt.split(' ')[1] === MONTHS[monthOrder] && item.startAt.split(' ')[3] === String(yearOrder)
     )
-    const result = filtered.length !== 0 ? { ...data, recent: filtered } : undefined
+    const result = filtered.length !== 0 ? { ...data, recent: filtered } : null
     return result
   })
 
@@ -35,21 +35,21 @@ const Calendar = () => {
       currentCalendar.push({
         day: lastDateOfLastMonth - i + 1,
         currentMonthOfDate: false,
-        routine: [{ recent: undefined }],
+        routine: [{ recent: null }],
       })
     }
 
     for (let i = 1; i <= lastDateOfMonth; i++) {
       const filteredRoutine = currentMonthsRoutineData.map((data) => {
         const filteredRecent = data?.recent.filter((item) => Number(item.startAt.split(' ')[2]) === i)
-        const routineResult = filteredRecent?.length !== 0 ? { ...data, recent: filteredRecent } : { recent: undefined }
+        const routineResult = filteredRecent?.length !== 0 ? { ...data, recent: filteredRecent } : { recent: null }
         return routineResult
       })
       currentCalendar.push({ day: i, currentMonthOfDate: true, routine: filteredRoutine })
     }
 
     for (let i = lastDayOfMonth; i < 6; i++) {
-      currentCalendar.push({ day: i - lastDayOfMonth + 1, currentMonthOfDate: false, routine: [{ recent: undefined }] })
+      currentCalendar.push({ day: i - lastDayOfMonth + 1, currentMonthOfDate: false, routine: [{ recent: null }] })
     }
 
     return currentCalendar.slice((weekOrder - 1) * 7, weekOrder * 7)

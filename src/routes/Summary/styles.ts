@@ -101,7 +101,7 @@ export const mockDataBox = styled.div`
 
 export const mockDataBtn = styled.button`
   max-width: 250px;
-  padding: 20px;
+  padding: 10px;
   margin: auto;
   font-size: 18px;
   color: ${colors.FONT};
