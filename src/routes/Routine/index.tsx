@@ -79,7 +79,7 @@ const Routine = () => {
               <S.routineTitle>{data.title}</S.routineTitle>
               {data.recent.length !== 0 ? (
                 <S.routineRecent>
-                  <div>{fetchedDate(data.recent[0]?.endAt)}</div>
+                  <div>{fetchedDate(data.recent[data.recent.length - 1]?.endAt)}</div>
                 </S.routineRecent>
               ) : (
                 <S.routineRecent>최근 수행한 날짜가 없습니다.</S.routineRecent>

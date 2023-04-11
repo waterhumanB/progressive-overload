@@ -16,6 +16,7 @@ const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) =>
 
   const routineCardData = currentMonthsRoutineData
     ? currentMonthsRoutineData
+        .filter((data: IRoutineItem) => data !== null)
         .map((data: IRoutineItem) => {
           const routineData = data?.recent.map((item) => {
             return { startAt: item.startAt, title: data.title, routineData: data }
@@ -32,7 +33,7 @@ const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) =>
 
   return (
     <S.currentRoutineCardContainer>
-      {currentMonthsRoutineData[0] !== null &&
+      {routineCardData[0] !== null &&
         routineCardData.map((data: any) => (
           <S.routineCardBox key={data.startAt}>
             <S.cardData
