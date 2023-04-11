@@ -1,4 +1,4 @@
-interface IFetcehdYearAndWeekData {
+interface IFetchedYearAndWeekData {
   year: number
   week: number
   volume: number
@@ -108,7 +108,7 @@ export const routineDataByDate = (totalWorkoutDays: string[], recordSelector: IR
     return { year: Number(date.split(' ')[3]), week, month, volume, duration }
   })
 
-  const routineByWeek = fetchedYearAndWeeksData.reduce((acc: IFetcehdYearAndWeekData[], current) => {
+  const routineByWeek = fetchedYearAndWeeksData.reduce((acc: IFetchedYearAndWeekData[], current) => {
     const targetIndex = acc.findIndex((data) => data.year === current.year && data.week === current.week)
     if (targetIndex >= 0) {
       acc[targetIndex].volume += current.volume

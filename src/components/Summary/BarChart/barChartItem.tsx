@@ -17,9 +17,9 @@ interface IBarChartItemProps {
 const SVG_X_LENGTH = 68
 const BALLOON_Y = 250
 const BALLOON_Y_OVER = -6
-const BALLOON_Y_MAX = 190
+const BALLOON_Y_MAX = 240
 const BALLOON_VALUE_Y_OVER = 15
-const BALLOON_VALUE_Y_MAX = 211
+const BALLOON_VALUE_Y_MAX = 261
 const RXRY = 10
 
 const BarChartItem = ({
@@ -35,6 +35,7 @@ const BarChartItem = ({
   mouseEvent,
 }: IBarChartItemProps) => {
   const [hover, setHover] = useState(false)
+
   return (
     <g>
       <g onMouseMove={() => setHover(true)} onMouseLeave={() => setHover(false)}>
@@ -79,7 +80,7 @@ const BarChartItem = ({
             <S.barValue
               holiday={holiday}
               y='290'
-              x={monthByMonthData + 1 > 9 ? idx * SVG_X_LENGTH - 4 : idx * SVG_X_LENGTH - 1}
+              x={monthByMonthData + 1 > 9 ? idx * SVG_X_LENGTH - 1 : idx * SVG_X_LENGTH + 3}
             >
               {`${monthByMonthData + 1}월`}
             </S.barValue>

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
-export const routinefinishContainer = styled.section`
+export const routineFinishContainer = styled.section`
   width: 100%;
   padding: 20px;
 `

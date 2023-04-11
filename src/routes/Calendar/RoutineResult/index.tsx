@@ -44,7 +44,7 @@ const RoutineResult = () => {
     .flat(1)
     .indexOf(currentRoutineData.recent?.[recentOrder].endAt)
 
-  const durationExecise = () => {
+  const durationExercise = () => {
     const startTime = currentRoutineData.recent?.[recentOrder].startAt.split(' ')[4].split(':')
     const endTime = currentRoutineData.recent?.[recentOrder].endAt.split(' ')[4].split(':')
     const hour = (Number(endTime[0]) - Number(startTime[0])) * 60
@@ -73,7 +73,7 @@ const RoutineResult = () => {
     }
   }
   return (
-    <S.routinefinishContainer>
+    <S.routineFinishContainer>
       <S.routineTitleBox>
         <S.routineHandlerBtnBox>
           <S.leftBtn
@@ -99,7 +99,7 @@ const RoutineResult = () => {
       <AfterExercise />
       <S.routineResultBox>
         <RoutineResultItem result={currentRoutineOrder + 1} unit='th' resultName='WORKOUT' />
-        <RoutineResultItem result={durationExecise()} unit='분' resultName='DURATION' />
+        <RoutineResultItem result={durationExercise()} unit='분' resultName='DURATION' />
         <RoutineResultItem result={totalVolume} unit='KG' resultName='VOLUME' />
         <RoutineResultItem result={currentRoutineData.workout.length} unit='' resultName='EXERCISES' />
         <RoutineResultItem result={totalSet} unit='세트' resultName='SETS' />
@@ -110,7 +110,7 @@ const RoutineResult = () => {
           캘린더로 돌아가기
         </button>
       </S.homeRouterBtnBox>
-    </S.routinefinishContainer>
+    </S.routineFinishContainer>
   )
 }
 

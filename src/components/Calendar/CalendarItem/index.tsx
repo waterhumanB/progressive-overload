@@ -28,9 +28,9 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
     const todayRoutineTime = routine.map((data: IRoutineItem) =>
       data?.recent !== null
         ? data?.recent
-            .map((item: IRecentItem) => {
+            ?.map((item: IRecentItem) => {
               const startTime = item.startAt.split(' ')[4].split(':')
-              const endTime = item?.endAt?.split(' ')[4].split(':')
+              const endTime = item.endAt.split(' ')[4].split(':')
               const hour = (Number(endTime[0]) - Number(startTime[0])) * 60
               const minute = Number(endTime[1]) - Number(startTime[1])
               return hour + minute
@@ -38,7 +38,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             .reduce((acc, el) => acc + el)
         : 0
     )
-    return todayRoutineTime.reduce((acc, el) => acc + el, 0)
+    return todayRoutineTime.length !== 0 ? todayRoutineTime.reduce((acc, el) => acc + el, 0) : 0
   }
 
   const currentDateRoutineFinishPageMoveHandler = useCallback((routine: IRoutineItem[], routineResult: number) => {

@@ -92,7 +92,7 @@ const Calendar = () => {
           <button className='left' onClick={filteredDataSelectorHandler} type='button'>
             <Arrow />
           </button>
-          <div className='dataMenu'>{dataSelector ? `총 볼륨` : '총 운동시간'}</div>
+          <div className='dataMenu'>{dataSelector ? '총 운동시간' : `총 볼륨`}</div>
           <button onClick={filteredDataSelectorHandler} type='button'>
             <Arrow />
           </button>
