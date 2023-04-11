@@ -85,6 +85,10 @@ const systemSlice = createSlice({
       state.routines.byId[action.payload.id].recent[currentRoutineOrder].recordIds = action.payload.recordIds
       localStorage.setItem('routines', JSON.stringify(state.routines))
     },
+    setMockRoutineData: (state: RoutinesState, action: PayloadAction<IRoutines>) => {
+      state.routines = action.payload
+      localStorage.setItem('routines', JSON.stringify(action.payload))
+    },
   },
 })
 
@@ -97,6 +101,7 @@ export const {
   changeExerciseInRoutine,
   setStartAtTimeInRoutine,
   setEndAtTimeAndRecordsInRoutine,
+  setMockRoutineData,
 } = systemSlice.actions
 
 export default systemSlice.reducer

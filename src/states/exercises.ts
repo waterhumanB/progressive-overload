@@ -44,11 +44,21 @@ const systemSlice = createSlice({
       state.exercises.byId[action.payload.id].record.push(action.payload.recordId)
       localStorage.setItem('exercise', JSON.stringify(state.exercises))
     },
+    setMockExerciseData: (state: ExerciseState, action: PayloadAction<IExercises>) => {
+      state.exercises = action.payload
+      localStorage.setItem('exercise', JSON.stringify(action.payload))
+    },
   },
 })
 
-export const { setFavoriteExercise, setCustomExercise, editCustomExercise, deleteCustomExercise, setRecordInExercise } =
-  systemSlice.actions
+export const {
+  setFavoriteExercise,
+  setCustomExercise,
+  editCustomExercise,
+  deleteCustomExercise,
+  setRecordInExercise,
+  setMockExerciseData,
+} = systemSlice.actions
 
 export default systemSlice.reducer
 

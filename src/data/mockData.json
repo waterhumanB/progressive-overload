@@ -3,7 +3,7 @@
     "byId" : {"routine1": {
       "id": "routine1",
       "title": "가슴이 웅장한 루틴",
-      "workout": "exercise1, exercise5, exercise12, exercise13",
+      "workout": ["exercise1", "exercise5", "exercise12", "exercise13"],
       "recent": [
         {
           "startAt": "Thur Dec 01 2022 21:38:50",
@@ -70,7 +70,7 @@
     "routine2": {
       "id": "routine2",
       "title": "태평양 같은 넓은 등 루틴",
-      "workout": "exercise18, exercise16, exercise21, exercise25",
+      "workout": ["exercise18", "exercise16", "exercise21", "exercise25"],
       "recent": [
         {
           "startAt": "Fri Dec 02 2022 20:50:50",
@@ -137,7 +137,7 @@
     "routine3": {
       "id": "routine3",
       "title": "어깨깡패 루틴",
-      "workout": "exercise57, exercise50, exercise53",
+      "workout": ["exercise57", "exercise50", "exercise53"],
       "recent": [
         {
           "startAt": "Mon Dec 05 2022 20:38:50",
@@ -204,7 +204,7 @@
     "routine4": {
       "id": "routine4",
       "title": "반팔티 터지는 팔 루틴",
-      "workout": "exercise28, exercise37, exercise31, exercise43, exercise44, exercise46",
+      "workout": ["exercise28", "exercise37", "exercise31", "exercise43", "exercise44", "exercise46"],
       "recent": [
         {
           "startAt": "Tue Dec 06 2022 22:18:50",
@@ -355,7 +355,7 @@
     "routine5": {
       "id": "routine5",
       "title": "남자는 하체 루틴",
-      "workout": "exercise62, exercise69, exercise65, exercise66",
+      "workout": ["exercise62", "exercise69", "exercise65", "exercise66"],
       "recent": [
         {
           "startAt": "Wed Dec 07 2022 22:23:50",
@@ -454,7 +454,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise3": {
         "id": "exercise3",
@@ -464,7 +464,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise4": {
         "id": "exercise4",
@@ -474,7 +474,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise5": {
         "id": "exercise5",
@@ -507,7 +507,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise7": {
         "id": "exercise7",
@@ -517,7 +517,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise8": {
         "id": "exercise8",
@@ -527,7 +527,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise9": {
         "id": "exercise9",
@@ -537,7 +537,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise10": {
         "id": "exercise10",
@@ -547,7 +547,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise11": {
         "id": "exercise11",
@@ -557,7 +557,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise12": {
         "id": "exercise12",
@@ -613,7 +613,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target5",
-        "record": null
+        "record": []
       },
       "exercise15": {
         "id": "exercise15",
@@ -623,7 +623,7 @@
         "favorite": false,
         "mainTarget": "target1",
         "secondaryTarget": "target5",
-        "record": null
+        "record": []
       },
       "exercise16": {
         "id": "exercise16",
@@ -656,7 +656,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise18": {
         "id": "exercise18",
@@ -689,7 +689,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise20": {
         "id": "exercise20",
@@ -699,7 +699,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise21": {
         "id": "exercise21",
@@ -732,7 +732,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise23": {
         "id": "exercise23",
@@ -742,7 +742,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise24": {
         "id": "exercise24",
@@ -752,7 +752,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise25": {
         "id": "exercise25",
@@ -785,7 +785,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise27": {
         "id": "exercise27",
@@ -795,7 +795,7 @@
         "favorite": false,
         "mainTarget": "target2",
         "secondaryTarget": "target3",
-        "record": null
+        "record": []
       },
       "exercise28": {
         "id": "exercise28",
@@ -804,7 +804,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record12",
           "record33",
@@ -827,8 +827,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise30": {
         "id": "exercise30",
@@ -837,8 +837,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise31": {
         "id": "exercise31",
@@ -847,7 +847,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record14",
           "record35",
@@ -870,8 +870,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise33": {
         "id": "exercise33",
@@ -880,8 +880,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise34": {
         "id": "exercise34",
@@ -890,8 +890,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise35": {
         "id": "exercise35",
@@ -900,8 +900,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise36": {
         "id": "exercise36",
@@ -910,8 +910,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise37": {
         "id": "exercise37",
@@ -920,7 +920,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record13",
           "record34",
@@ -943,8 +943,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise39": {
         "id": "exercise39",
@@ -953,8 +953,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise40": {
         "id": "exercise40",
@@ -963,8 +963,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise41": {
         "id": "exercise41",
@@ -973,8 +973,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise42": {
         "id": "exercise42",
@@ -983,8 +983,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise43": {
         "id": "exercise43",
@@ -993,7 +993,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target4",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record15",
           "record36",
@@ -1016,7 +1016,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target4",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record16",
           "record37",
@@ -1039,8 +1039,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target3",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise46": {
         "id": "exercise46",
@@ -1049,7 +1049,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target4",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record17",
           "record38",
@@ -1072,8 +1072,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise48": {
         "id": "exercise48",
@@ -1082,8 +1082,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise49": {
         "id": "exercise49",
@@ -1092,8 +1092,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise50": {
         "id": "exercise50",
@@ -1102,7 +1102,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record10",
           "record31",
@@ -1125,8 +1125,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise52": {
         "id": "exercise52",
@@ -1135,8 +1135,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise53": {
         "id": "exercise53",
@@ -1145,7 +1145,7 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
+        "secondaryTarget": "",
         "record": [
           "record11",
           "record32",
@@ -1168,8 +1168,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise55": {
         "id": "exercise55",
@@ -1178,8 +1178,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise56": {
         "id": "exercise56",
@@ -1188,8 +1188,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target5",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise57": {
         "id": "exercise57",
@@ -1222,7 +1222,7 @@
         "favorite": false,
         "mainTarget": "target5",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise59": {
         "id": "exercise59",
@@ -1232,7 +1232,7 @@
         "favorite": false,
         "mainTarget": "target5",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise60": {
         "id": "exercise60",
@@ -1242,7 +1242,7 @@
         "favorite": false,
         "mainTarget": "target5",
         "secondaryTarget": "target4",
-        "record": null
+        "record": []
       },
       "exercise61": {
         "id": "exercise61",
@@ -1252,7 +1252,7 @@
         "favorite": false,
         "mainTarget": "target6",
         "secondaryTarget": "target7",
-        "record": null
+        "record": []
       },
       "exercise62": {
         "id": "exercise62",
@@ -1285,7 +1285,7 @@
         "favorite": false,
         "mainTarget": "target6",
         "secondaryTarget": "target7",
-        "record": null
+        "record": []
       },
       "exercise64": {
         "id": "exercise64",
@@ -1295,7 +1295,7 @@
         "favorite": false,
         "mainTarget": "target6",
         "secondaryTarget": "target7",
-        "record": null
+        "record": []
       },
       "exercise65": {
         "id": "exercise65",
@@ -1351,7 +1351,7 @@
         "favorite": false,
         "mainTarget": "target6",
         "secondaryTarget": "target7",
-        "record": null
+        "record": []
       },
       "exercise68": {
         "id": "exercise68",
@@ -1361,7 +1361,7 @@
         "favorite": false,
         "mainTarget": "target6",
         "secondaryTarget": "target7",
-        "record": null
+        "record": []
       },
       "exercise69": {
         "id": "exercise69",
@@ -1393,8 +1393,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target6",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise71": {
         "id": "exercise71",
@@ -1403,8 +1403,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target7",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise72": {
         "id": "exercise72",
@@ -1414,7 +1414,7 @@
         "favorite": false,
         "mainTarget": "target6",
         "secondaryTarget": "target7",
-        "record": null
+        "record": []
       },
       "exercise73": {
         "id": "exercise73",
@@ -1423,8 +1423,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target8",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise74": {
         "id": "exercise74",
@@ -1433,8 +1433,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target8",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise75": {
         "id": "exercise75",
@@ -1443,8 +1443,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target8",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise76": {
         "id": "exercise76",
@@ -1453,8 +1453,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target8",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise77": {
         "id": "exercise77",
@@ -1464,7 +1464,7 @@
         "favorite": false,
         "mainTarget": "target8",
         "secondaryTarget": "target5",
-        "record": null
+        "record": []
       },
       "exercise78": {
         "id": "exercise78",
@@ -1473,8 +1473,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target8",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       },
       "exercise79": {
         "id": "exercise79",
@@ -1483,8 +1483,8 @@
         "custom": false,
         "favorite": false,
         "mainTarget": "target8",
-        "secondaryTarget": null,
-        "record": null
+        "secondaryTarget": "",
+        "record": []
       }
     },
     "allIds": [
@@ -1710,7 +1710,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record12": {
@@ -1973,7 +1973,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record33": {
@@ -2236,7 +2236,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record54": {
@@ -2499,7 +2499,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record75": {
@@ -2762,7 +2762,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record96": {
@@ -3025,7 +3025,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record117": {
@@ -3288,7 +3288,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record138": {
@@ -3551,7 +3551,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record159": {
@@ -3814,7 +3814,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record180": {
@@ -4077,7 +4077,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record201": {
@@ -4340,7 +4340,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true  }
       ]
     },
     "record222": {
@@ -4603,7 +4603,7 @@
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
         { "order": 3, "kg": 8, "rab": 20, "finish": true },
         { "order": 4, "kg": 8, "rab": 20, "finish": true },
-        { "order": 5, "kg": 8, "rab": 20 }
+        { "order": 5, "kg": 8, "rab": 20, "finish": true }
       ]
     },
     "record243": {

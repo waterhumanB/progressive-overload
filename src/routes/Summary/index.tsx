@@ -3,11 +3,14 @@ import DonutChart from '../../components/Chart/DonutChart'
 import Footer from '../../components/Footer'
 import { BarChart } from '../../components/Summary'
 import { useAppSelector } from '../../hooks/useAppSelector'
-import { getRecordsData } from '../../states/records'
+import { getRecordsData, setMockRecordData } from '../../states/records'
 
 import mockData from '../../data/mockData.json'
 
 import * as S from './styles'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { setMockExerciseData } from '../../states/exercises'
+import { setMockRoutineData } from '../../states/routines'
 
 const ONE_YEAR_AVERAGE_EXERCISE_DAY = 188
 const ONE_YEAR_AVERAGE_EXERCISE_HOUR = 187 // 일주일 3.5 한달 15.5
@@ -25,7 +28,10 @@ const MINUTE_MONTH_RANGE = ['4.5천', '3.6천', '2.7천', '1.8천', '900']
 const Summary = () => {
   const [volumeAndDurationSelect, setVolumeAndDurationSelect] = useState('volume')
   const [dayWeekMonthSelect, setDayWeekMonthSelect] = useState('day')
+
   const recordSelector = useAppSelector(getRecordsData)
+
+  const dispatch = useAppDispatch()
 
   const totalTimeExercised = Object.values(recordSelector.records.byId)
     .map((data) => {
@@ -71,9 +77,10 @@ const Summary = () => {
   }
 
   const setLocalStorageMockDataHandler = () => {
-    localStorage.setItem('exercise', JSON.stringify(mockData.exercise))
-    localStorage.setItem('records', JSON.stringify(mockData.records))
-    localStorage.setItem('routines', JSON.stringify(mockData.routines))
+    const { exercise, records, routines } = mockData
+    dispatch(setMockExerciseData(exercise))
+    dispatch(setMockRecordData(records))
+    dispatch(setMockRoutineData(routines))
   }
 
   return (

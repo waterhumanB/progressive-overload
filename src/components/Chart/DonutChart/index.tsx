@@ -15,7 +15,7 @@ const DonutChart = ({ percentage, percentageValue, chartValueName }: IDonutChart
       result = parseInt(String(per / 60), 10)
     }
     if (chartValueName === 'Kg') {
-      result = parseInt(String(per / 1000), 10)
+      result = parseInt(String(per / 10000), 10)
     }
     if (chartValueName === 'Days') {
       result = per

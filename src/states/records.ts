@@ -32,10 +32,14 @@ const systemSlice = createSlice({
       state.records.allIds.push(action.payload.id)
       localStorage.setItem('records', JSON.stringify(state.records))
     },
+    setMockRecordData: (state: RecordsState, action: PayloadAction<IRecords>) => {
+      state.records = action.payload
+      localStorage.setItem('records', JSON.stringify(action.payload))
+    },
   },
 })
 
-export const { setRecord } = systemSlice.actions
+export const { setRecord, setMockRecordData } = systemSlice.actions
 
 export default systemSlice.reducer
 
