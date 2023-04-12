@@ -41,8 +41,10 @@ export const barValue = styled.text<{ holiday: string }>`
     (props.holiday && colors.FOCUS)};
 `
 export const barBalloon = styled.rect<{ hover: boolean }>`
-  width: 60px;
+  width: 80px;
   height: 30px;
+  rx: 10px;
+  ry: 10px;
   fill: ${colors.BLACK};
   display: ${(props) => (props.hover ? '' : 'none')};
 `

@@ -1,3 +1,5 @@
+import { IRecordData } from '../../../types/records.d'
+
 interface IFetchedYearAndWeekData {
   year: number
   week: number
@@ -10,25 +12,6 @@ interface IRoutineByDay {
   date: string
   volume: number
   duration: number
-}
-
-interface IRecordData {
-  [records: string]: IRecordItem
-}
-
-interface IRecordItem {
-  id: string
-  exerciseId: string
-  startAt: string
-  endAt: string
-  set: IRecordSet[]
-}
-
-interface IRecordSet {
-  order: number
-  kg: number
-  rab: number
-  finish: boolean
 }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -97,19 +80,21 @@ export const routineDataByDate = (totalWorkoutDays: string[], recordSelector: IR
     })
     .reverse()
 
-  const fetchedYearAndWeeksData = routineByDay.map((data) => {
-    const { date, volume, duration } = data
+  const fetchedYearAndWeeksData = routineByDay.map(({ date, volume, duration }) => {
     const currentDate = new Date(
       `${date.split(' ')[3]}-${MONTHS.indexOf(date.split(' ')[1]) + 1}-${date.split(' ')[2]}`
     )
     const firstDay = new Date(currentDate.setDate(1)).getDay()
     const week = Math.ceil((Number(date.split(' ')[2]) + firstDay) / 7)
     const month = date.split(' ')[1]
-    return { year: Number(date.split(' ')[3]), week, month, volume, duration }
+    const year = Number(date.split(' ')[3])
+    return { year, week, month, volume, duration }
   })
 
   const routineByWeek = fetchedYearAndWeeksData.reduce((acc: IFetchedYearAndWeekData[], current) => {
-    const targetIndex = acc.findIndex((data) => data.year === current.year && data.week === current.week)
+    const targetIndex = acc.findIndex(
+      (data) => data.year === current.year && data.week === current.week && data.month === current.month
+    )
     if (targetIndex >= 0) {
       acc[targetIndex].volume += current.volume
       acc[targetIndex].duration += current.duration
