@@ -14,23 +14,6 @@ const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) =>
     navigate('/calendar/routine-result', { state: currentRoutine })
   }
 
-  // const routineCardData = currentMonthsRoutineData
-  //   ? currentMonthsRoutineData
-  //       .filter((data: IRoutineItem) => data !== null)
-  //       .map((data: IRoutineItem) => {
-  //         const routineData = data?.recent.map((item) => {
-  //           return { startAt: item.startAt, title: data.title, routineData: data }
-  //         })
-  //         return routineData
-  //       })
-  //       .flat(1)
-  //       .sort((a: { startAt: string }, b: { startAt: string }) => {
-  //         const dateA = Date.parse(a.startAt)
-  //         const dateB = Date.parse(b.startAt)
-  //         return dateA - dateB
-  //       })
-  //   : null
-
   const routineCardData =
     currentMonthsRoutineData
       ?.filter((data: IRoutineItem) => data !== null)

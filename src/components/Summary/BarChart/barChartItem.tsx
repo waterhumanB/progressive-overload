@@ -36,49 +36,63 @@ const BarChartItem = ({
 }: IBarChartItemProps) => {
   const [hover, setHover] = useState(false)
 
-  // 하나로 합치기
-  const barX = idx * SVG_X_LENGTH + 25
-  const aniBarX = idx * SVG_X_LENGTH + 8
-  const barValueX = idx * SVG_X_LENGTH + 15
-  const ballonValueX = idx * SVG_X_LENGTH - 7
+  const baseX = idx * SVG_X_LENGTH
+  const barX = baseX + 25
+  const aniBarX = baseX + 8
+  const barValueX = baseX + 15
+  const ballonValueX = baseX - 7
 
-  // 하나로 합치기
-  const dayBarValueX = monthByDayData + 1 > 9 ? idx * SVG_X_LENGTH + 11 : barValueX
-  const weekBarValueX = monthByWeekData + 1 > 9 ? idx * SVG_X_LENGTH + 10 : idx * SVG_X_LENGTH + 13
-  const monthBarValueX = monthByMonthData + 1 > 9 ? barValueX : idx * SVG_X_LENGTH + 19
-  const dateBarValueX = idx * SVG_X_LENGTH + 10
-
-  // 하나로 합치기
-  const ballonVolumeX = data.volume > 99999 ? idx * SVG_X_LENGTH : idx * SVG_X_LENGTH + 1
-  const monthBallonVolume = data.volume > 99999 ? idx * SVG_X_LENGTH - 7 : idx * SVG_X_LENGTH - 4
+  const dayBarValueX = monthByDayData + 1 > 9 ? baseX + 11 : barValueX
+  const weekBarValueX = monthByWeekData + 1 > 9 ? baseX + 10 : baseX + 13
+  const monthBarValueX = monthByMonthData + 1 > 9 ? barValueX : baseX + 19
+  const dateBarValueX = baseX + 10
 
   const getVolumeX = (volume: number) => {
     let volumeX
     if (volume > 999 && volume < 10000) {
-      volumeX = idx * SVG_X_LENGTH + 1
+      volumeX = baseX + 6
     }
     if (volume > 9999 && volume < 100000) {
-      volumeX = idx * SVG_X_LENGTH + 3
+      volumeX = baseX + 4
     }
     if (volume > 99999 && volume < 1000000) {
-      volumeX = idx * SVG_X_LENGTH + 5
+      volumeX = baseX + 1
+    }
+    if (volume > 999999 && volume < 10000000) {
+      volumeX = baseX - 3
     }
     return volumeX
   }
 
-  // 하나로 합치기
-  const ballonDurationX = data.duration > 99 ? idx * SVG_X_LENGTH + 10 : idx * SVG_X_LENGTH + 16
-  const monthBallonDuration = data.duration > 999 ? idx * SVG_X_LENGTH + 3 : idx * SVG_X_LENGTH - 1
+  const getDurationX = (duration: number) => {
+    let durationX
+    if (duration < 10) {
+      durationX = baseX + 10
+    }
+    if (duration > 9 && duration < 100) {
+      durationX = baseX + 15
+    }
+    if (duration > 99 && duration < 1000) {
+      durationX = baseX + 12
+    }
+    if (duration > 999 && duration < 10000) {
+      durationX = baseX + 8
+    }
+    if (duration > 9999 && duration < 100000) {
+      durationX = baseX + 4
+    }
+    return durationX
+  }
 
-  // 하나로 합치기
   const ballonY = BALLOON_Y - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue
   const ballonValueY = BALLOON_Y - heightValue < 0 ? BALLOON_VALUE_Y_OVER : BALLOON_VALUE_Y_MAX - heightValue
   const dayWeekBallonY =
-    BALLOON_Y - heightValue && BALLOON_Y_MAX - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue
+    BALLOON_Y - heightValue < 0 || BALLOON_Y_MAX - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue
   const dayWeekBallonValueY =
-    BALLOON_Y - heightValue && BALLOON_VALUE_Y_MAX - heightValue < 0
+    BALLOON_Y - heightValue < 0 || BALLOON_VALUE_Y_MAX - heightValue < 0
       ? BALLOON_VALUE_Y_OVER
       : BALLOON_VALUE_Y_MAX - heightValue
+
   return (
     <g>
       <g onMouseMove={() => setHover(true)} onMouseLeave={() => setHover(false)}>
@@ -120,7 +134,7 @@ const BarChartItem = ({
         {volumeAndDurationSelect === 'volume' && (
           <g>
             <S.barBalloon hover={hover} x={ballonValueX} y={ballonY} />
-            <S.barBalloonValue hover={hover} x={ballonVolumeX} y={ballonValueY}>
+            <S.barBalloonValue hover={hover} x={getVolumeX(data.volume)} y={ballonValueY}>
               {`${data.volume.toLocaleString()}kg`}
             </S.barBalloonValue>
           </g>
@@ -128,7 +142,7 @@ const BarChartItem = ({
         {volumeAndDurationSelect === 'duration' && (
           <g>
             <S.barBalloon hover={hover} x={ballonValueX} y={dayWeekBallonY} />
-            <S.barBalloonValue hover={hover} x={ballonDurationX} y={dayWeekBallonValueY}>
+            <S.barBalloonValue hover={hover} x={getDurationX(data.duration)} y={dayWeekBallonValueY}>
               {`${data.duration.toLocaleString()}분`}
             </S.barBalloonValue>
           </g>
