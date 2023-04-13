@@ -16,3 +16,14 @@ export const findType = (typeState: ITypesItem, type: string) => {
   const result = Object.entries(typeState).filter((data) => data[0] === type)[0][1].name
   return result
 }
+
+export const findTargetValueInObject = (key: string, value: string, targetObject: any) => {
+  if (key === '' || value === '') {
+    return
+  }
+
+  const refinedObject = Object.entries(targetObject).filter((data) => data[0] === value)[0][1] as any
+
+  // eslint-disable-next-line consistent-return
+  return refinedObject[key]
+}
