@@ -69,6 +69,7 @@ const BarChartItem = ({
 
   const getDurationX = (duration: number) => {
     const offsetX =
+      (duration >= 0 && duration < TEN && 21) ||
       (duration >= TEN && duration < HUNDRED && 20) ||
       (duration >= HUNDRED && duration < THOUSAND && 15) ||
       (duration >= THOUSAND && duration < TEN_THOUSAND && 9) ||
