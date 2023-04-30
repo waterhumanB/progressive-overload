@@ -6,19 +6,27 @@ import { ReactComponent as AfterExercise } from '../../../assets/imgs/after-exer
 import { getRecordsData } from '../../../states/records'
 import { fetchedDate } from '../../../utils/fetchedDate'
 import { useState } from 'react'
-import { IRoutineItem } from '../../../types/routines.d'
+import { IRecentItem } from '../../../types/routines.d'
 
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import { RoutineResultItem } from '../../../components/Calendar'
 
+interface LocationState {
+  id: string
+  title: string
+  routineOrder: number
+  workout: string[]
+  recent: IRecentItem[]
+}
+
 const RoutineResult = () => {
   const [routineResultOrder, setRoutineResultOrder] = useState(0)
   const [recentOrder, setRecentOrder] = useState(0)
-  const location = useLocation() as { state: IRoutineItem[] }
+  const location = useLocation() as { state: LocationState[] }
   const navigate = useNavigate()
   const routineSelector = useAppSelector(getRoutineData)
   const recordsSelector = useAppSelector(getRecordsData)
-  const currentRoutineData = location.state[routineResultOrder]
+  const currentRoutineData = location.state[0]
 
   const currentExerciseRecordIds =
     currentRoutineData.recent.length > 0 && currentRoutineData.recent[recentOrder].recordIds
@@ -39,10 +47,12 @@ const RoutineResult = () => {
     .flat(1)
     .reduce((acc, el) => acc + el)
 
-  const currentRoutineOrder = Object.values(routineSelector.routines.byId)
-    .map((data) => data.recent.map((item) => item.endAt))
-    .flat(1)
-    .indexOf(currentRoutineData.recent?.[recentOrder].endAt)
+  const routineOrder =
+    Object.entries(routineSelector.routines.byId)
+      .flatMap((data) => data[1].recent)
+      .map((data) => data.startAt)
+      .sort((a: string, b: string) => Date.parse(a) - Date.parse(b))
+      .indexOf(currentRoutineData.recent?.[recentOrder].startAt) + 1
 
   const durationExercise = () => {
     const startTime = currentRoutineData.recent?.[recentOrder].startAt.split(' ')[4].split(':')
@@ -72,6 +82,7 @@ const RoutineResult = () => {
       setRoutineResultOrder((prev) => prev - 1)
     }
   }
+
   return (
     <S.routineFinishContainer>
       <S.routineTitleBox>
@@ -85,9 +96,7 @@ const RoutineResult = () => {
           </S.leftBtn>
           <S.titleDiv>{currentRoutineData.title}</S.titleDiv>
           <S.rightBtn
-            disabled={
-              recentOrder + 1 === currentRoutineData.recent.length && routineResultOrder + 1 === location.state.length
-            }
+            disabled={recentOrder + 1 === currentRoutineData.recent.length}
             onClick={nextRoutineHandler}
             type='button'
           >
@@ -98,7 +107,7 @@ const RoutineResult = () => {
       </S.routineTitleBox>
       <AfterExercise />
       <S.routineResultBox>
-        <RoutineResultItem result={currentRoutineOrder + 1} unit='th' resultName='WORKOUT' />
+        <RoutineResultItem result={routineOrder} unit='th' resultName='WORKOUT' />
         <RoutineResultItem result={durationExercise()} unit='분' resultName='DURATION' />
         <RoutineResultItem result={totalVolume} unit='KG' resultName='VOLUME' />
         <RoutineResultItem result={currentRoutineData.workout.length} unit='' resultName='EXERCISES' />

@@ -43,7 +43,7 @@ export const animatedCircle = styled.circle<{ chartName: string }>`
 
 export const chartValue = styled.div<{ chartName: string }>`
   position: absolute;
-  top: 45%;
+  top: ${(props) => (props.chartName === 'default' ? '30%' : '45%')};
   left: 50%;
   transform: translateX(-50%);
   font-size: ${(props) => (props.chartName === 'default' ? '80px' : '20px')};

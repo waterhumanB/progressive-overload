@@ -1,18 +1,24 @@
 import { ICalendarCardProps } from '../../../types/allProps.d'
-import { IRecentItem, IRoutineItem } from '../../../types/routines.d'
+import { IRoutineItem } from '../../../types/routines.d'
 import { fetchedDate } from '../../../utils/fetchedDate'
 
-import { ReactComponent as Report } from '../../../assets/imgs/report.svg'
 import * as S from './styles'
+import { ReactComponent as Report } from '../../../assets/imgs/report.svg'
 import { useNavigate } from 'react-router-dom'
+import { useCallback } from 'react'
+
+interface ICurrentRoutine {
+  routineData: IRoutineItem
+  startAt: string
+  title: string
+}
 
 const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) => {
   const navigate = useNavigate()
 
-  const routineFinishPageRouter = (routine: IRoutineItem, recent: IRecentItem) => {
-    const currentRoutine = [{ ...routine, recent: [recent] }]
-    navigate('/calendar/routine-result', { state: currentRoutine })
-  }
+  const routineFinishPageRouter = useCallback((routine: ICurrentRoutine) => {
+    navigate('/calendar/routine-result', { state: [routine.routineData] })
+  }, [])
 
   const routineCardData =
     currentMonthsRoutineData
@@ -24,21 +30,17 @@ const CurrentRoutineCard = ({ currentMonthsRoutineData }: ICalendarCardProps) =>
 
   return (
     <S.currentRoutineCardContainer>
-      {routineCardData[0] !== null &&
-        routineCardData.map((data: any) => (
-          <S.routineCardBox key={data.startAt}>
-            <S.cardData
-              onClick={() => routineFinishPageRouter(data.routineData, data.routineData.recent)}
-              key={data?.startAt}
-            >
-              <Report />
-              <S.routineDataBox>
-                <S.routineTitle>{data?.title}</S.routineTitle>
-                <S.routineDate>{fetchedDate(data?.startAt)}</S.routineDate>
-              </S.routineDataBox>
-            </S.cardData>
-          </S.routineCardBox>
-        ))}
+      {routineCardData?.map((data: any) => (
+        <S.routineCardBox key={data.startAt}>
+          <S.cardData onClick={() => routineFinishPageRouter(data)} key={data?.startAt}>
+            <Report />
+            <S.routineDataBox>
+              <S.routineTitle>{data?.title}</S.routineTitle>
+              <S.routineDate>{fetchedDate(data?.startAt)}</S.routineDate>
+            </S.routineDataBox>
+          </S.cardData>
+        </S.routineCardBox>
+      ))}
     </S.currentRoutineCardContainer>
   )
 }

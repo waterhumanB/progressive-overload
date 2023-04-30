@@ -1,9 +1,9 @@
 import { ChangeEvent } from 'react'
 import { ReactComponent as Check } from '../../../assets/imgs/check.svg'
-import { IRoutineRecardSetProps } from '../../../types/allProps.d'
+import { IRoutineRecordSetProps } from '../../../types/allProps.d'
 import * as S from './styles'
 
-const RoutineRecordSet = ({ recordSet, setRecordSet, toggleModalHandler, seconds }: IRoutineRecardSetProps) => {
+const RoutineRecordSet = ({ recordSet, setRecordSet, toggleModalHandler, seconds }: IRoutineRecordSetProps) => {
   const recordKgHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.currentTarget
     if (Number(value) >= 0 && Number(value) <= 300) {
@@ -17,7 +17,7 @@ const RoutineRecordSet = ({ recordSet, setRecordSet, toggleModalHandler, seconds
     }
   }
 
-  const recondFinishHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const recordFinishHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = e.currentTarget
     setRecordSet(recordSet.map((data) => (data.order === Number(id) ? { ...data, finish: checked } : data)))
     if (checked && seconds > 0) {
@@ -43,7 +43,7 @@ const RoutineRecordSet = ({ recordSet, setRecordSet, toggleModalHandler, seconds
             value={data.rab}
           />
           <S.routineFinishBox checked={data.finish}>
-            <input id={String(data.order)} onChange={recondFinishHandleChange} type='checkbox' checked={data.finish} />
+            <input id={String(data.order)} onChange={recordFinishHandleChange} type='checkbox' checked={data.finish} />
             <Check />
           </S.routineFinishBox>
         </S.routineRecordSetBox>

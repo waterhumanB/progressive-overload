@@ -22,7 +22,7 @@ const CustomExercise = () => {
   const [toggleModal, setToggleModal] = useState(false)
   const [nameFilter, setNameFilter] = useState('')
 
-  const INIT_CUSTOMDATA = {
+  const INIT_CUSTOM_DATA = {
     id: `exercise${exercisesSelector.exercises.allIds.length + 1}`,
     typeId: '',
     categoryId: '카테고리',
@@ -33,7 +33,7 @@ const CustomExercise = () => {
     record: [],
   }
   const [customExerciseData, setCustomExerciseData] = useState<IExerciseItem>(
-    pathname === EDIT_URL ? exercisesSelector.exercises.byId[state] : INIT_CUSTOMDATA
+    pathname === EDIT_URL ? exercisesSelector.exercises.byId[state] : INIT_CUSTOM_DATA
   )
   const { categoryId, mainTarget, secondaryTarget, typeId } = customExerciseData
   const compareCustomData =
@@ -61,11 +61,11 @@ const CustomExercise = () => {
       },
     }
     dispatch(setType(newTypeData))
-    const newCustomExeciseData = {
+    const newCustomExerciseData = {
       ...customExerciseData,
       typeId: `type${typesSelector.types.allIds.length + 1}`,
     }
-    dispatch(setCustomExercise(newCustomExeciseData))
+    dispatch(setCustomExercise(newCustomExerciseData))
     navigate(-1)
   }
 
@@ -92,14 +92,14 @@ const CustomExercise = () => {
   }
 
   return (
-    <S.customPageConatiner>
+    <S.customPageContainer>
       <S.customTitleBox>
         <button onClick={backPageRouter} type='button'>
           <Arrow />
         </button>
         {state ? <div>커스텀 운동 변경 하기</div> : <div>커스텀 운동 추가 하기</div>}
       </S.customTitleBox>
-      <S.cutomDataBox>
+      <S.customDataBox>
         <S.customInput inputValue={typeId === ''}>
           <input
             defaultValue={customExerciseData.typeId}
@@ -126,7 +126,7 @@ const CustomExercise = () => {
           value={secondaryTarget === '보조 타겟' ? '보조 타겟' : findTarget(secondaryTarget)}
           toggleModalHandler={toggleModalHandler}
         />
-      </S.cutomDataBox>
+      </S.customDataBox>
       <div>
         {state ? (
           <S.customExerciseAddBtn
@@ -151,7 +151,7 @@ const CustomExercise = () => {
           toggleModalHandler={toggleModalHandler}
         />
       )}
-    </S.customPageConatiner>
+    </S.customPageContainer>
   )
 }
 

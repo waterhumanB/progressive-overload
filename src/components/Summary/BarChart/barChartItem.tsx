@@ -14,13 +14,15 @@ interface IBarChartItemProps {
   mouseEvent: boolean
 }
 
-const SVG_X_LENGTH = 75
-const BALLOON_Y = 250
-const BALLOON_Y_OVER = -6
-const BALLOON_Y_MAX = 240
-const BALLOON_VALUE_Y_OVER = 15
-const BALLOON_VALUE_Y_MAX = 261
+const SVG_X_LENGTH = 76
 const BAR_VALUE_Y = [270, 290, 310]
+const TEN = 10
+const HUNDRED = 100
+const THOUSAND = 1000
+const TEN_THOUSAND = 10000
+const HUNDRED_THOUSAND = 100000
+const MILLION = 1000000
+const TEN_MILLION = 10000000
 
 const BarChartItem = ({
   dayWeekMonthSelect,
@@ -47,51 +49,35 @@ const BarChartItem = ({
   const monthBarValueX = monthByMonthData + 1 > 9 ? barValueX : baseX + 19
   const dateBarValueX = baseX + 10
 
+  const baseY = 250 - heightValue
+  const ballonY = baseY < 0 ? -6 : 240 - heightValue
+  const ballonValueY = baseY < 0 ? 15 : 261 - heightValue
+  const dayWeekBallonY = baseY < 0 || 240 - heightValue < 0 ? -6 : 240 - heightValue
+  const dayWeekBallonValueY = baseY < 0 || 261 - heightValue < 0 ? 15 : 261 - heightValue
+
   const getVolumeX = (volume: number) => {
-    let volumeX
-    if (volume > 999 && volume < 10000) {
-      volumeX = baseX + 6
-    }
-    if (volume > 9999 && volume < 100000) {
-      volumeX = baseX + 4
-    }
-    if (volume > 99999 && volume < 1000000) {
-      volumeX = baseX + 1
-    }
-    if (volume > 999999 && volume < 10000000) {
-      volumeX = baseX - 3
-    }
-    return volumeX
+    const offsetX =
+      (volume >= HUNDRED && volume < THOUSAND && 11) ||
+      (volume >= THOUSAND && volume < TEN_THOUSAND && 7) ||
+      (volume >= TEN_THOUSAND && volume < HUNDRED_THOUSAND && 4) ||
+      (volume >= HUNDRED_THOUSAND && volume < MILLION && 0) ||
+      (volume >= MILLION && volume < TEN_MILLION && -4) ||
+      0
+
+    return baseX + offsetX
   }
 
   const getDurationX = (duration: number) => {
-    let durationX
-    if (duration < 10) {
-      durationX = baseX + 10
-    }
-    if (duration > 9 && duration < 100) {
-      durationX = baseX + 15
-    }
-    if (duration > 99 && duration < 1000) {
-      durationX = baseX + 12
-    }
-    if (duration > 999 && duration < 10000) {
-      durationX = baseX + 8
-    }
-    if (duration > 9999 && duration < 100000) {
-      durationX = baseX + 4
-    }
-    return durationX
-  }
+    const offsetX =
+      (duration >= TEN && duration < HUNDRED && 20) ||
+      (duration >= HUNDRED && duration < THOUSAND && 15) ||
+      (duration >= THOUSAND && duration < TEN_THOUSAND && 9) ||
+      (duration >= TEN_THOUSAND && duration < HUNDRED_THOUSAND && 6) ||
+      (duration >= HUNDRED_THOUSAND && duration < MILLION && 2) ||
+      0
 
-  const ballonY = BALLOON_Y - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue
-  const ballonValueY = BALLOON_Y - heightValue < 0 ? BALLOON_VALUE_Y_OVER : BALLOON_VALUE_Y_MAX - heightValue
-  const dayWeekBallonY =
-    BALLOON_Y - heightValue < 0 || BALLOON_Y_MAX - heightValue < 0 ? BALLOON_Y_OVER : BALLOON_Y_MAX - heightValue
-  const dayWeekBallonValueY =
-    BALLOON_Y - heightValue < 0 || BALLOON_VALUE_Y_MAX - heightValue < 0
-      ? BALLOON_VALUE_Y_OVER
-      : BALLOON_VALUE_Y_MAX - heightValue
+    return baseX + offsetX
+  }
 
   return (
     <g>

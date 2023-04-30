@@ -35,7 +35,7 @@ const RoutineEdit = () => {
     setRoutineName(e.currentTarget.value)
   }
   return (
-    <S.routineAddPageConatiner>
+    <S.routineAddPageContainer>
       <RoutinePage
         backPageHandler={backPageRouterHanlder}
         title='나만의 루틴 추가하기'
@@ -48,7 +48,7 @@ const RoutineEdit = () => {
         disabled={routineName}
         btnValue='루틴 생성'
       />
-    </S.routineAddPageConatiner>
+    </S.routineAddPageContainer>
   )
 }
 

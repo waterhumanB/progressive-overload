@@ -51,7 +51,6 @@ const Calendar = () => {
     for (let i = lastDayOfMonth; i < 6; i++) {
       currentCalendar.push({ day: i - lastDayOfMonth + 1, currentMonthOfDate: false, routine: [{ recent: null }] })
     }
-
     return currentCalendar.slice((weekOrder - 1) * 7, weekOrder * 7)
   }
 

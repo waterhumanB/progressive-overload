@@ -19,7 +19,7 @@ const Modal = ({ toggleModalHandler, stateData, setStateData, modalName, stateTy
         <ExerciseEditDeleteModal
           toggleModalHandler={toggleModalHandler}
           nowExerciseIdData={stateData}
-          setnowExerciseIdData={setStateData}
+          setNowExerciseIdData={setStateData}
         />
       )}
       {modalName === 'timer' && (

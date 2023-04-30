@@ -6,8 +6,8 @@
       "workout": ["exercise1", "exercise5", "exercise12", "exercise13"],
       "recent": [
         {
-          "startAt": "Thur Dec 01 2022 21:38:50",
-          "endAt": "Thur Dec 01 2022 23:50:50",
+          "startAt": "Thu Dec 01 2022 21:38:50",
+          "endAt": "Thu Dec 01 2022 23:50:50",
           "recordIds": ["record1", "record2", "record3", "record4"]
         },
         {
@@ -56,8 +56,8 @@
           "recordIds": ["record190", "record191", "record192", "record193"]
         },
         {
-          "startAt": "Thur Mar 02 2023 22:00:50",
-          "endAt": "Thur Mar 02 2023 23:40:50",
+          "startAt": "Thu Mar 02 2023 22:00:50",
+          "endAt": "Thu Mar 02 2023 23:40:50",
           "recordIds": ["record211", "record212", "record213", "record214"]
         },
         {
@@ -113,8 +113,8 @@
           "recordIds": ["record152", "record153", "record154", "record155"]
         },
         {
-          "startAt": "Thur Feb 16 2023 21:00:50",
-          "endAt": "Thur Feb 16 2023 21:50:50",
+          "startAt": "Thu Feb 16 2023 21:00:50",
+          "endAt": "Thu Feb 16 2023 21:50:50",
           "recordIds": ["record173", "record174", "record175", "record176"]
         },
         {
@@ -128,8 +128,8 @@
           "recordIds": ["record215", "record216", "record217", "record218"]
         },
         {
-          "startAt": "Thur Mar 09 2023 21:10:50",
-          "endAt": "Thur Mar 09 2023 21:50:50",
+          "startAt": "Thu Mar 09 2023 21:10:50",
+          "endAt": "Thu Mar 09 2023 21:50:50",
           "recordIds": ["record236", "record237", "record238", "record239"]
         }
       ]
@@ -146,7 +146,7 @@
         },
         {
           "startAt": "Wed Dec 14 2022 22:38:50",
-          "endAt": "Thur Dec 15 2022 22:50:50",
+          "endAt": "Thu Dec 15 2022 22:50:50",
           "recordIds": ["record30", "record31", "record32"]
         },
         {
@@ -161,7 +161,7 @@
         },
         {
           "startAt": "Wed Jan 11 2023 22:15:50",
-          "endAt": "Thur Jan 12 2023 22:50:50",
+          "endAt": "Thu Jan 12 2023 22:50:50",
           "recordIds": ["record93", "record94", "record95"]
         },
         {
@@ -170,12 +170,12 @@
           "recordIds": ["record114", "record115", "record116"]
         },
         {
-          "startAt": "Thur Feb 02 2023 22:38:50",
+          "startAt": "Thu Feb 02 2023 22:38:50",
           "endAt": "Fri Feb 03 2023 22:50:50",
           "recordIds": ["record135", "record136", "record137"]
         },
         {
-          "startAt": "Thur Feb 09 2023 22:38:50",
+          "startAt": "Thu Feb 09 2023 22:38:50",
           "endAt": "Sat Feb 11 2023 22:50:50",
           "recordIds": ["record156", "record157", "record158"]
         },
@@ -219,8 +219,8 @@
           ]
         },
         {
-          "startAt": "Thur Dec 15 2022 22:45:50",
-          "endAt": "Thur Dec 15 2022 23:35:50",
+          "startAt": "Thu Dec 15 2022 22:45:50",
+          "endAt": "Thu Dec 15 2022 23:35:50",
           "recordIds": [
             "record33",
             "record34",
@@ -255,8 +255,8 @@
           ]
         },
         {
-          "startAt": "Thur Jan 12 2023 22:48:50",
-          "endAt": "Thur Jan 12 2023 23:35:50",
+          "startAt": "Thu Jan 12 2023 22:48:50",
+          "endAt": "Thu Jan 12 2023 23:35:50",
           "recordIds": [
             "record96",
             "record97",
@@ -1573,8 +1573,8 @@
     "record1": {
       "id": "record1",
       "exerciseId": "exercise1",
-      "startAt": "Thur Dec 01 2022 21:38:50",
-      "endAt": "Thur Dec 01 2022 22:50:50",
+      "startAt": "Thu Dec 01 2022 21:38:50",
+      "endAt": "Thu Dec 01 2022 22:50:50",
       "set": [
         { "order": 1, "kg": 100, "rab": 10, "finish": true },
         { "order": 2, "kg": 100, "rab": 10, "finish": true },
@@ -1586,8 +1586,8 @@
     "record2": {
       "id": "record2",
       "exerciseId": "exercise5",
-      "startAt": "Thur Dec 01 2022 22:50:50",
-      "endAt": "Thur Dec 01 2022 23:10:50",
+      "startAt": "Thu Dec 01 2022 22:50:50",
+      "endAt": "Thu Dec 01 2022 23:10:50",
       "set": [
         { "order": 1, "kg": 70, "rab": 12, "finish": true },
         { "order": 2, "kg": 70, "rab": 12, "finish": true },
@@ -1599,8 +1599,8 @@
     "record3": {
       "id": "record3",
       "exerciseId": "exercise12",
-      "startAt": "Thur Dec 01 2022 23:10:50",
-      "endAt": "Thur Dec 01 2022 23:25:50",
+      "startAt": "Thu Dec 01 2022 23:10:50",
+      "endAt": "Thu Dec 01 2022 23:25:50",
       "set": [
         { "order": 1, "kg": 80, "rab": 12, "finish": true },
         { "order": 2, "kg": 80, "rab": 12, "finish": true },
@@ -1612,8 +1612,8 @@
     "record4": {
       "id": "record4",
       "exerciseId": "exercise13",
-      "startAt": "Thur Dec 01 2022 23:25:50",
-      "endAt": "Thur Dec 01 2022 23:50:50",
+      "startAt": "Thu Dec 01 2022 23:25:50",
+      "endAt": "Thu Dec 01 2022 23:50:50",
       "set": [
         { "order": 1, "kg": 20, "rab": 20, "finish": true },
         { "order": 2, "kg": 20, "rab": 20, "finish": true },
@@ -1979,8 +1979,8 @@
     "record33": {
       "id": "record33",
       "exerciseId": "exercise28",
-      "startAt": "Thur Dec 15 2022 22:45:50",
-      "endAt": "Thur Dec 15 2022 22:50:50",
+      "startAt": "Thu Dec 15 2022 22:45:50",
+      "endAt": "Thu Dec 15 2022 22:50:50",
       "set": [
         { "order": 1, "kg": 80, "rab": 12, "finish": true },
         { "order": 2, "kg": 80, "rab": 12, "finish": true },
@@ -1991,8 +1991,8 @@
     "record34": {
       "id": "record34",
       "exerciseId": "exercise37",
-      "startAt": "Thur Dec 15 2022 22:50:50",
-      "endAt": "Thur Dec 15 2022 23:10:50",
+      "startAt": "Thu Dec 15 2022 22:50:50",
+      "endAt": "Thu Dec 15 2022 23:10:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -2003,8 +2003,8 @@
     "record35": {
       "id": "record35",
       "exerciseId": "exercise31",
-      "startAt": "Thur Dec 15 2022 23:10:50",
-      "endAt": "Thur Dec 15 2022 23:25:50",
+      "startAt": "Thu Dec 15 2022 23:10:50",
+      "endAt": "Thu Dec 15 2022 23:25:50",
       "set": [
         { "order": 1, "kg": 40, "rab": 15, "finish": true },
         { "order": 2, "kg": 40, "rab": 15, "finish": true },
@@ -2015,8 +2015,8 @@
     "record36": {
       "id": "record36",
       "exerciseId": "exercise43",
-      "startAt": "Thur Dec 15 2022 23:25:50",
-      "endAt": "Thur Dec 15 2022 23:35:50",
+      "startAt": "Thu Dec 15 2022 23:25:50",
+      "endAt": "Thu Dec 15 2022 23:35:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -2027,8 +2027,8 @@
     "record37": {
       "id": "record37",
       "exerciseId": "exercise44",
-      "startAt": "Thur Dec 15 2022 23:35:50",
-      "endAt": "Thur Dec 15 2022 23:45:50",
+      "startAt": "Thu Dec 15 2022 23:35:50",
+      "endAt": "Thu Dec 15 2022 23:45:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -2039,8 +2039,8 @@
     "record38": {
       "id": "record38",
       "exerciseId": "exercise46",
-      "startAt": "Thur Dec 15 2022 23:45:50",
-      "endAt": "Thur Dec 15 2022 23:55:50",
+      "startAt": "Thu Dec 15 2022 23:45:50",
+      "endAt": "Thu Dec 15 2022 23:55:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -2768,8 +2768,8 @@
     "record96": {
       "id": "record96",
       "exerciseId": "exercise28",
-      "startAt": "Thur Jan 12 2023 22:48:50",
-      "endAt": "Thur Jan 12 2023 22:50:50",
+      "startAt": "Thu Jan 12 2023 22:48:50",
+      "endAt": "Thu Jan 12 2023 22:50:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 10, "finish": true },
         { "order": 2, "kg": 65, "rab": 10, "finish": true },
@@ -2780,8 +2780,8 @@
     "record97": {
       "id": "record97",
       "exerciseId": "exercise37",
-      "startAt": "Thur Jan 12 2023 22:50:50",
-      "endAt": "Thur Jan 12 2023 23:10:50",
+      "startAt": "Thu Jan 12 2023 22:50:50",
+      "endAt": "Thu Jan 12 2023 23:10:50",
       "set": [
         { "order": 1, "kg": 50, "rab": 10, "finish": true },
         { "order": 2, "kg": 50, "rab": 10, "finish": true },
@@ -2792,8 +2792,8 @@
     "record98": {
       "id": "record98",
       "exerciseId": "exercise31",
-      "startAt": "Thur Jan 12 2023 23:10:50",
-      "endAt": "Thur Jan 12 2023 23:25:50",
+      "startAt": "Thu Jan 12 2023 23:10:50",
+      "endAt": "Thu Jan 12 2023 23:25:50",
       "set": [
         { "order": 1, "kg": 40, "rab": 15, "finish": true },
         { "order": 2, "kg": 40, "rab": 15, "finish": true },
@@ -2804,8 +2804,8 @@
     "record99": {
       "id": "record99",
       "exerciseId": "exercise43",
-      "startAt": "Thur Jan 12 2023 23:25:50",
-      "endAt": "Thur Jan 12 2023 23:35:50",
+      "startAt": "Thu Jan 12 2023 23:25:50",
+      "endAt": "Thu Jan 12 2023 23:35:50",
       "set": [
         { "order": 1, "kg": 50, "rab": 10, "finish": true },
         { "order": 2, "kg": 50, "rab": 10, "finish": true },
@@ -2816,8 +2816,8 @@
     "record100": {
       "id": "record100",
       "exerciseId": "exercise44",
-      "startAt": "Thur Jan 12 2023 23:35:50",
-      "endAt": "Thur Jan 12 2023 23:45:50",
+      "startAt": "Thu Jan 12 2023 23:35:50",
+      "endAt": "Thu Jan 12 2023 23:45:50",
       "set": [
         { "order": 1, "kg": 50, "rab": 10, "finish": true },
         { "order": 2, "kg": 50, "rab": 10, "finish": true },
@@ -2828,8 +2828,8 @@
     "record101": {
       "id": "record101",
       "exerciseId": "exercise46",
-      "startAt": "Thur Jan 12 2023 23:45:50",
-      "endAt": "Thur Jan 12 2023 23:55:50",
+      "startAt": "Thu Jan 12 2023 23:45:50",
+      "endAt": "Thu Jan 12 2023 23:55:50",
       "set": [
         { "order": 1, "kg": 50, "rab": 10, "finish": true },
         { "order": 2, "kg": 50, "rab": 10, "finish": true },
@@ -3255,8 +3255,8 @@
     "record135": {
       "id": "record135",
       "exerciseId": "exercise57",
-      "startAt": "Thur Feb 02 2023 22:38:50",
-      "endAt": "Thur Feb 02 2023 22:50:50",
+      "startAt": "Thu Feb 02 2023 22:38:50",
+      "endAt": "Thu Feb 02 2023 22:50:50",
       "set": [
         { "order": 1, "kg": 90, "rab": 12, "finish": true },
         { "order": 2, "kg": 90, "rab": 12, "finish": true },
@@ -3268,8 +3268,8 @@
     "record136": {
       "id": "record136",
       "exerciseId": "exercise50",
-      "startAt": "Thur Feb 02 2023 22:50:50",
-      "endAt": "Thur Feb 02 2023 23:10:50",
+      "startAt": "Thu Feb 02 2023 22:50:50",
+      "endAt": "Thu Feb 02 2023 23:10:50",
       "set": [
         { "order": 1, "kg": 12, "rab": 9, "finish": true },
         { "order": 2, "kg": 12, "rab": 9, "finish": true },
@@ -3281,8 +3281,8 @@
     "record137": {
       "id": "record137",
       "exerciseId": "exercise53",
-      "startAt": "Thur Feb 02 2023 23:10:50",
-      "endAt": "Thur Feb 02 2023 23:30:50",
+      "startAt": "Thu Feb 02 2023 23:10:50",
+      "endAt": "Thu Feb 02 2023 23:30:50",
       "set": [
         { "order": 1, "kg": 8, "rab": 20, "finish": true },
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
@@ -3518,8 +3518,8 @@
     "record156": {
       "id": "record156",
       "exerciseId": "exercise57",
-      "startAt": "Thur Feb 09 2023 22:38:50",
-      "endAt": "Thur Feb 09 2023 22:50:50",
+      "startAt": "Thu Feb 09 2023 22:38:50",
+      "endAt": "Thu Feb 09 2023 22:50:50",
       "set": [
         { "order": 1, "kg": 80, "rab": 15, "finish": true },
         { "order": 2, "kg": 80, "rab": 15, "finish": true },
@@ -3531,8 +3531,8 @@
     "record157": {
       "id": "record157",
       "exerciseId": "exercise50",
-      "startAt": "Thur Feb 09 2023 22:50:50",
-      "endAt": "Thur Feb 09 2023 23:10:50",
+      "startAt": "Thu Feb 09 2023 22:50:50",
+      "endAt": "Thu Feb 09 2023 23:10:50",
       "set": [
         { "order": 1, "kg": 15, "rab": 11, "finish": true },
         { "order": 2, "kg": 15, "rab": 11, "finish": true },
@@ -3544,8 +3544,8 @@
     "record158": {
       "id": "record158",
       "exerciseId": "exercise53",
-      "startAt": "Thur Feb 09 2023 23:10:50",
-      "endAt": "Thur Feb 09 2023 23:30:50",
+      "startAt": "Thu Feb 09 2023 23:10:50",
+      "endAt": "Thu Feb 09 2023 23:30:50",
       "set": [
         { "order": 1, "kg": 8, "rab": 20, "finish": true },
         { "order": 2, "kg": 8, "rab": 20, "finish": true },
@@ -3729,8 +3729,8 @@
     "record173": {
       "id": "record173",
       "exerciseId": "exercise18",
-      "startAt": "Thur Feb 16 2023 21:00:50",
-      "endAt": "Thur Feb 16 2023 21:10:50",
+      "startAt": "Thu Feb 16 2023 21:00:50",
+      "endAt": "Thu Feb 16 2023 21:10:50",
       "set": [
         { "order": 1, "kg": 130, "rab": 13, "finish": true },
         { "order": 2, "kg": 130, "rab": 13, "finish": true },
@@ -3742,8 +3742,8 @@
     "record174": {
       "id": "record174",
       "exerciseId": "exercise16",
-      "startAt": "Thur Feb 16 2023 21:10:50",
-      "endAt": "Thur Feb 16 2023 21:20:50",
+      "startAt": "Thu Feb 16 2023 21:10:50",
+      "endAt": "Thu Feb 16 2023 21:20:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -3755,8 +3755,8 @@
     "record175": {
       "id": "record175",
       "exerciseId": "exercise21",
-      "startAt": "Thur Feb 16 2023 21:20:50",
-      "endAt": "Thur Feb 16 2023 21:30:50",
+      "startAt": "Thu Feb 16 2023 21:20:50",
+      "endAt": "Thu Feb 16 2023 21:30:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -3768,8 +3768,8 @@
     "record176": {
       "id": "record176",
       "exerciseId": "exercise25",
-      "startAt": "Thur Feb 16 2023 21:30:50",
-      "endAt": "Thur Feb 16 2023 21:50:50",
+      "startAt": "Thu Feb 16 2023 21:30:50",
+      "endAt": "Thu Feb 16 2023 21:50:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -4203,8 +4203,8 @@
     "record211": {
       "id": "record211",
       "exerciseId": "exercise1",
-      "startAt": "Thur Mar 02 2023 22:00:50",
-      "endAt": "Thur Mar 02 2023 22:50:50",
+      "startAt": "Thu Mar 02 2023 22:00:50",
+      "endAt": "Thu Mar 02 2023 22:50:50",
       "set": [
         { "order": 1, "kg": 100, "rab": 10, "finish": true },
         { "order": 2, "kg": 100, "rab": 10, "finish": true },
@@ -4216,8 +4216,8 @@
     "record212": {
       "id": "record212",
       "exerciseId": "exercise5",
-      "startAt": "Thur Mar 02 2023 22:50:50",
-      "endAt": "Thur Mar 02 2023 23:10:50",
+      "startAt": "Thu Mar 02 2023 22:50:50",
+      "endAt": "Thu Mar 02 2023 23:10:50",
       "set": [
         { "order": 1, "kg": 55, "rab": 12, "finish": true },
         { "order": 2, "kg": 55, "rab": 12, "finish": true },
@@ -4229,8 +4229,8 @@
     "record213": {
       "id": "record213",
       "exerciseId": "exercise12",
-      "startAt": "Thur Mar 02 2023 23:10:50",
-      "endAt": "Thur Mar 02 2023 23:25:50",
+      "startAt": "Thu Mar 02 2023 23:10:50",
+      "endAt": "Thu Mar 02 2023 23:25:50",
       "set": [
         { "order": 1, "kg": 65, "rab": 12, "finish": true },
         { "order": 2, "kg": 65, "rab": 12, "finish": true },
@@ -4242,8 +4242,8 @@
     "record214": {
       "id": "record214",
       "exerciseId": "exercise13",
-      "startAt": "Thur Mar 02 2023 23:25:50",
-      "endAt": "Thur Mar 02 2023 23:40:50",
+      "startAt": "Thu Mar 02 2023 23:25:50",
+      "endAt": "Thu Mar 02 2023 23:40:50",
       "set": [
         { "order": 1, "kg": 20, "rab": 20, "finish": true },
         { "order": 2, "kg": 20, "rab": 20, "finish": true },
@@ -4518,8 +4518,8 @@
     "record236": {
       "id": "record236",
       "exerciseId": "exercise18",
-      "startAt": "Thur Mar 09 2023 21:25:50",
-      "endAt": "Thur Mar 09 2023 21:10:50",
+      "startAt": "Thu Mar 09 2023 21:25:50",
+      "endAt": "Thu Mar 09 2023 21:10:50",
       "set": [
         { "order": 1, "kg": 120, "rab": 12, "finish": true },
         { "order": 2, "kg": 120, "rab": 12, "finish": true },
@@ -4531,8 +4531,8 @@
     "record237": {
       "id": "record237",
       "exerciseId": "exercise16",
-      "startAt": "Thur Mar 09 2023 21:10:50",
-      "endAt": "Thur Mar 09 2023 21:20:50",
+      "startAt": "Thu Mar 09 2023 21:10:50",
+      "endAt": "Thu Mar 09 2023 21:20:50",
       "set": [
         { "order": 1, "kg": 90, "rab": 15, "finish": true },
         { "order": 2, "kg": 90, "rab": 15, "finish": true },
@@ -4544,8 +4544,8 @@
     "record238": {
       "id": "record238",
       "exerciseId": "exercise21",
-      "startAt": "Thur Mar 09 2023 21:20:50",
-      "endAt": "Thur Mar 09 2023 21:30:50",
+      "startAt": "Thu Mar 09 2023 21:20:50",
+      "endAt": "Thu Mar 09 2023 21:30:50",
       "set": [
         { "order": 1, "kg": 90, "rab": 15, "finish": true },
         { "order": 2, "kg": 90, "rab": 15, "finish": true },
@@ -4557,8 +4557,8 @@
     "record239": {
       "id": "record239",
       "exerciseId": "exercise25",
-      "startAt": "Thur Mar 09 2023 21:30:50",
-      "endAt": "Thur Mar 09 2023 21:50:50",
+      "startAt": "Thu Mar 09 2023 21:30:50",
+      "endAt": "Thu Mar 09 2023 21:50:50",
       "set": [
         { "order": 1, "kg": 90, "rab": 15, "finish": true },
         { "order": 2, "kg": 90, "rab": 15, "finish": true },

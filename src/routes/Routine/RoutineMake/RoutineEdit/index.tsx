@@ -54,7 +54,7 @@ const RoutineEdit = () => {
         bottomTwoBtn={false}
         disabled={routineName}
         editRoutineHandler={dispatchEditRouterHanlder}
-        editExerciseHanlder={exerciseEditRouterHanlder}
+        editExerciseHandler={exerciseEditRouterHanlder}
         twoBtnValue1='운동 수정하기'
         twoBtnValue2='루틴 수정완료'
       />

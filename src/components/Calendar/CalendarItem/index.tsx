@@ -7,8 +7,8 @@ import { IRecentItem, IRoutineItem } from '../../../types/routines.d'
 import * as S from './styles'
 
 const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
-  const navigate = useNavigate()
   const recordSelector = useAppSelector(getRecordsData)
+  const navigate = useNavigate()
 
   const todayTotalVolume = (routine: IRoutineItem[]) => {
     const todayRoutineRecordIds =
@@ -57,15 +57,18 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
             key={data?.day}
           >
-            <button type='button'>
+            <button
+              type='button'
+              disabled={todayTotalVolume(data?.routine) === 0 && isNaN(todayDuration(data?.routine))}
+              onClick={() =>
+                currentDateRoutineFinishPageMoveHandler(
+                  data.routine,
+                  todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+                )
+              }
+            >
               <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
-                onClick={() =>
-                  currentDateRoutineFinishPageMoveHandler(
-                    data.routine,
-                    todayDuration(data?.routine) + todayTotalVolume(data?.routine)
-                  )
-                }
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
@@ -81,15 +84,18 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
             key={data?.day}
           >
-            <button type='button'>
+            <button
+              type='button'
+              disabled={todayTotalVolume(data?.routine) === 0 && isNaN(todayDuration(data?.routine))}
+              onClick={() =>
+                currentDateRoutineFinishPageMoveHandler(
+                  data.routine,
+                  todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+                )
+              }
+            >
               <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
-                onClick={() =>
-                  currentDateRoutineFinishPageMoveHandler(
-                    data.routine,
-                    todayDuration(data?.routine) + todayTotalVolume(data?.routine)
-                  )
-                }
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
@@ -105,15 +111,18 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
             dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
             key={data?.day}
           >
-            <button type='button'>
+            <button
+              type='button'
+              disabled={todayTotalVolume(data?.routine) === 0 && isNaN(todayDuration(data?.routine))}
+              onClick={() =>
+                currentDateRoutineFinishPageMoveHandler(
+                  data.routine,
+                  todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+                )
+              }
+            >
               <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
-                onClick={() =>
-                  currentDateRoutineFinishPageMoveHandler(
-                    data.routine,
-                    todayDuration(data?.routine) + todayTotalVolume(data?.routine)
-                  )
-                }
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
               >
                 {data?.day}
@@ -127,15 +136,18 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
           <S.todayRoutine
             dataSelector={dataSelector}
             dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
-            onClick={() =>
-              currentDateRoutineFinishPageMoveHandler(
-                data.routine,
-                todayDuration(data?.routine) + todayTotalVolume(data?.routine)
-              )
-            }
             key={data?.day}
           >
-            <button type='button'>
+            <button
+              type='button'
+              disabled={todayTotalVolume(data?.routine) === 0 && isNaN(todayDuration(data?.routine))}
+              onClick={() =>
+                currentDateRoutineFinishPageMoveHandler(
+                  data.routine,
+                  todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+                )
+              }
+            >
               <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
@@ -151,15 +163,18 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
           <S.todayRoutine
             dataSelector={dataSelector}
             dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
-            onClick={() =>
-              currentDateRoutineFinishPageMoveHandler(
-                data.routine,
-                todayDuration(data?.routine) + todayTotalVolume(data?.routine)
-              )
-            }
             key={data?.day}
           >
-            <button type='button'>
+            <button
+              type='button'
+              disabled={todayTotalVolume(data?.routine) === 0 && isNaN(todayDuration(data?.routine))}
+              onClick={() =>
+                currentDateRoutineFinishPageMoveHandler(
+                  data.routine,
+                  todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+                )
+              }
+            >
               <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
@@ -175,15 +190,18 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
           <S.todayRoutine
             dataSelector={dataSelector}
             dataValue={dataSelector ? todayTotalVolume(data?.routine) : todayDuration(data?.routine)}
-            onClick={() =>
-              currentDateRoutineFinishPageMoveHandler(
-                data.routine,
-                todayDuration(data?.routine) + todayTotalVolume(data?.routine)
-              )
-            }
             key={data?.day}
           >
-            <button type='button'>
+            <button
+              type='button'
+              disabled={todayTotalVolume(data?.routine) === 0 && isNaN(todayDuration(data?.routine))}
+              onClick={() =>
+                currentDateRoutineFinishPageMoveHandler(
+                  data.routine,
+                  todayDuration(data?.routine) + todayTotalVolume(data?.routine)
+                )
+              }
+            >
               <S.currentMonthDate
                 currentMonthOfDate={data?.currentMonthOfDate}
                 className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}

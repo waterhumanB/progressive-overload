@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
-export const makeRountineContainer = styled.section`
+export const makeRoutineContainer = styled.section`
   width: 100%;
+  height: 100%;
   padding: 10px 15px;
   position: relative;
 `

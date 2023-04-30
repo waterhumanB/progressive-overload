@@ -15,14 +15,14 @@ const RoutineFinish = () => {
 
   const currentExerciseRecordIds = currentRoutineData.recent.length > 0 && currentRoutineData.recent[0].recordIds
 
-  const currentExeciseRecordData = Object.values(recordsSelector.records.byId)
+  const currentExerciseRecordData = Object.values(recordsSelector.records.byId)
     .filter((data) => currentExerciseRecordIds && currentExerciseRecordIds.includes(data.id))
     .map((data) => data.set)
-  const totalSet = currentExeciseRecordData.map((data) => data.length).reduce((acc, el) => acc + el)
-  const totalRab = currentExeciseRecordData
+  const totalSet = currentExerciseRecordData.map((data) => data.length).reduce((acc, el) => acc + el)
+  const totalRab = currentExerciseRecordData
     .map((data) => data.map((item) => item.rab).reduce((acc, el) => acc + el))
     .reduce((acc, el) => acc + el)
-  const totalVolume = currentExeciseRecordData
+  const totalVolume = currentExerciseRecordData
     .map((data) => data.map((item) => item.kg * item.rab).reduce((acc, el) => acc + el))
     .reduce((acc, el) => acc + el)
 

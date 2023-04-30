@@ -3,6 +3,8 @@ import colors from '../../styles/constants/colors'
 
 export const calendarPageContainer = styled.section`
   width: 100%;
+  height: 100%;
+  overflow: scroll;
 `
 export const calendarMenuBtnBox = styled.div`
   width: 100%;

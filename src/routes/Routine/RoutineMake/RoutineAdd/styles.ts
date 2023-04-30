@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../../../styles/constants/colors'
 
-export const routineAddPageConatiner = styled.section`
+export const routineAddPageContainer = styled.section`
   width: 100%;
   height: 100%;
   padding: 20px;

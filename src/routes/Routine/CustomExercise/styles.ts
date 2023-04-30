@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
-export const customPageConatiner = styled.section`
+export const customPageContainer = styled.section`
   width: 100%;
   height: 100%;
   padding: 20px;
@@ -30,7 +30,7 @@ export const customTitleBox = styled.div`
   }
 `
 
-export const cutomDataBox = styled.div`
+export const customDataBox = styled.div`
   width: 100%;
   height: 85%;
   margin: auto;

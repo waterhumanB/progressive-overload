@@ -18,7 +18,7 @@ const RoutinePage = ({
   twoBtnValue2,
   backPageHandler,
   routineNameHandler,
-  editExerciseHanlder,
+  editExerciseHandler: editExerciseHanlder,
   editRoutineHandler,
   addRoutineHandler,
 }: IRoutinePageProps) => {

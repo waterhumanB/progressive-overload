@@ -102,7 +102,7 @@ export interface IRoutinePageProps {
   placeholder: string
   locationState: IRoutineItem
   bottomTwoBtn: boolean
-  editExerciseHanlder?: () => void
+  editExerciseHandler?: () => void
   editRoutineHandler?: () => void
   addRoutineHandler?: () => void
   disabled?: string
@@ -114,7 +114,7 @@ export interface IRoutinePageProps {
 export interface IExerciseEditDeleteModalProps {
   toggleModalHandler: () => void
   nowExerciseIdData: string
-  setnowExerciseIdData: Dispatch<SetStateAction<string>>
+  setNowExerciseIdData: Dispatch<SetStateAction<string>>
 }
 
 export interface IRoutineSetData {
@@ -124,7 +124,7 @@ export interface IRoutineSetData {
   finish: boolean
 }
 
-export interface IRoutineRecardSetProps {
+export interface IRoutineRecordSetProps {
   toggleModalHandler: () => void
   setRecordSet: Dispatch<SetStateAction<IRoutineSetData[]>>
   recordSet: IRoutineSetData[]

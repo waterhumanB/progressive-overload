@@ -9,7 +9,7 @@ export interface IRoutineData {
 
 export interface IRoutineItem {
   id: string
-  title: sting
+  title: string
   workout: string[]
   recent: IRecentItem[]
 }

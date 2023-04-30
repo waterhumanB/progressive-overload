@@ -36,6 +36,9 @@ export const todayRoutine = styled.td<{ dataSelector: boolean; dataValue: number
       font-weight: 600;
       margin-top: 0;
     }
+    :disabled {
+      cursor: default;
+    }
   }
   .sun {
     color: ${colors.RED};

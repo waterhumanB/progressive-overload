@@ -21,7 +21,7 @@ interface CustomExerciseEditIds {
   typeId: string
 }
 
-const INIT_EDITIDS = {
+const INIT_EDIT_IDS = {
   id: '',
   typeId: '',
 }
@@ -30,7 +30,7 @@ const INIT_DATA: InitData = { more: '전체', target: '전체', category: '전�
 
 const RoutineMake = () => {
   const [addExercise, setAddExercise] = useState<string[]>([])
-  const [customExerciseEditId, setCustomExerciseEditId] = useState<CustomExerciseEditIds>(INIT_EDITIDS)
+  const [customExerciseEditId, setCustomExerciseEditId] = useState<CustomExerciseEditIds>(INIT_EDIT_IDS)
   const [filterExercise, setFilterExercise] = useState<InitData>(INIT_DATA)
   const [searchExercise, setSearchExercise] = useState<string>('')
   const [dropDown, setDropDown] = useState(false)
@@ -65,7 +65,7 @@ const RoutineMake = () => {
     cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const exerciseLiskStateAndRouter = () => {
+  const exerciseListStateAndRouter = () => {
     if (location.state && location.state.workout.length !== 0) {
       navigate('./edit', {
         state: {
@@ -84,7 +84,7 @@ const RoutineMake = () => {
   }, [])
 
   return (
-    <S.makeRountineContainer>
+    <S.makeRoutineContainer>
       <S.filterBox>
         <Arrow />
         <input placeholder='운동 이름 검색' onChange={searchHandleChange} />
@@ -107,7 +107,7 @@ const RoutineMake = () => {
         <S.upExerciseListBtn onClick={upExerciseCardListHandler} type='button'>
           <UpArrow />
         </S.upExerciseListBtn>
-        <S.routineAddBtn onClick={exerciseLiskStateAndRouter} disabled={!addExercise.length} type='button'>
+        <S.routineAddBtn onClick={exerciseListStateAndRouter} disabled={!addExercise.length} type='button'>
           + {addExercise.length === 12 ? 'MAX' : addExercise.length}
           {location.state === null ? '운동 추가하기' : '운동 변경하기'}
         </S.routineAddBtn>
@@ -122,7 +122,7 @@ const RoutineMake = () => {
         dropDown={dropDown}
         naviRoute={customEditRouteState}
       />
-    </S.makeRountineContainer>
+    </S.makeRoutineContainer>
   )
 }
 
