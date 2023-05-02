@@ -1,7 +1,7 @@
-jsxSingleQuote: true
-semi: false
-printWidth: 120
-proseWrap: never
-singleQuote: true
-htmlWhitespaceSensitivity: "css"
-endOfLine: "lf"
+jsxSingleQuote: true #  Prettier에게 JSX 속성에 큰따옴표 대신 작은따옴표를 사용하도록 지시합니다.
+semi: false # 명령문 끝에 세미콜론을 사용하지 않도록 지시합니다.
+printWidth: 120 # 코드 서식의 최대 줄 길이를 120자로 설정합니다.
+proseWrap: never # 서식을 지정할 때 산문(즉, 코드가 아닌 텍스트)을 줄 바꿈하지 않도록 Prettier에 지시합니다.
+singleQuote: true # 문자열 리터럴에 큰따옴표 대신 작은따옴표를 사용하도록 Prettier에 지시합니다.
+htmlWhitespaceSensitivity: 'css' #  CSS 파일에서와 같이 HTML 공백을 처리하도록 지시합니다. 즉, CSS를 사용하여 명시적으로 추가하지 않으면 공백이 축소됩니다.
+endOfLine: 'lf' #  CRLF(캐리지 리턴 + 줄 바꿈) 대신 줄 끝 문자로 LF(줄 바꿈)를 사용하도록 Prettier에 지시합니다

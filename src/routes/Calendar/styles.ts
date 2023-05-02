@@ -11,30 +11,31 @@ export const calendarMenuBtnBox = styled.div`
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
+`
+export const arrowBtn = styled.button<{ direction: string }>`
+  transform: ${(props) => (props.direction === 'left' ? 'scaleX(-1)' : '')};
   svg {
     width: 25px;
     height: 25px;
   }
-  .left {
-    transform: scaleX(-1);
-  }
+`
 
-  .yearMenuBox {
-    width: 100%;
-    display: flex;
-  }
-  .dataMenuBox {
-    width: 100%;
-    justify-content: right;
-    display: flex;
-  }
-  .dataMenu {
-    width: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-  }
+export const yearMenuBox = styled.div`
+  width: 100%;
+  display: flex;
+`
+export const dataMenuBox = styled.div`
+  width: 100%;
+  justify-content: right;
+  display: flex;
+`
+
+export const dataMenu = styled.div`
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
 `
 
 export const calendarBox = styled.table`
@@ -55,4 +56,8 @@ export const tableHead = styled.thead`
   .sat {
     color: ${colors.BLUE};
   }
+`
+
+export const weekendTable = styled.th<{ weekend: number }>`
+  color: ${(props) => (props.weekend === 0 && colors.RED) || (props.weekend === 6 && colors.BLUE)};
 `

@@ -76,34 +76,34 @@ const Calendar = () => {
   return (
     <S.calendarPageContainer>
       <S.calendarMenuBtnBox>
-        <div className='yearMenuBox'>
-          <button className='left' onClick={nextMonthOrderHandler} type='button'>
+        <S.yearMenuBox>
+          <S.arrowBtn direction='left' onClick={nextMonthOrderHandler}>
             <Arrow />
-          </button>
-          <div className='dataMenu'>
+          </S.arrowBtn>
+          <S.dataMenu>
             {yearOrder}년 {MONTHS.indexOf(MONTHS[monthOrder]) + 1}월
-          </div>
-          <button onClick={lastMonthOrderHandler} type='button'>
+          </S.dataMenu>
+          <S.arrowBtn direction='right' onClick={lastMonthOrderHandler}>
             <Arrow />
-          </button>
-        </div>
-        <div className='dataMenuBox'>
-          <button className='left' onClick={filteredDataSelectorHandler} type='button'>
+          </S.arrowBtn>
+        </S.yearMenuBox>
+        <S.dataMenuBox>
+          <S.arrowBtn direction='left' onClick={filteredDataSelectorHandler}>
             <Arrow />
-          </button>
-          <div className='dataMenu'>{dataSelector ? '총 운동시간' : `총 볼륨`}</div>
-          <button onClick={filteredDataSelectorHandler} type='button'>
+          </S.arrowBtn>
+          <S.dataMenu>{dataSelector ? '총 볼륨' : `총 운동시간`}</S.dataMenu>
+          <S.arrowBtn direction='right' onClick={filteredDataSelectorHandler}>
             <Arrow />
-          </button>
-        </div>
+          </S.arrowBtn>
+        </S.dataMenuBox>
       </S.calendarMenuBtnBox>
       <S.calendarBox>
         <S.tableHead>
           <tr>
             {DayOfTheWeek.map((data, i) => (
-              <th className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')} key={data}>
+              <S.weekendTable weekend={i} key={data}>
                 {data}
-              </th>
+              </S.weekendTable>
             ))}
           </tr>
         </S.tableHead>
