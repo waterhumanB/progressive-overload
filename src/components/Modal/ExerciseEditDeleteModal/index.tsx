@@ -10,10 +10,10 @@ import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import * as S from './styles'
 
 const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExerciseEditDeleteModalProps) => {
+  const dispatch = useAppDispatch()
   const exerciseSelector = useAppSelector(getExerciseData)
   const routineSelector = useAppSelector(getRoutineData)
   const typeSelector = useAppSelector(getTypesData)
-  const dispatch = useAppDispatch()
   const [changeExercise, setChangeExercise] = useState(false)
   const [recommendExerciseOrder, setRecommendExerciseOrder] = useState(0)
 
@@ -26,6 +26,7 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
   const changeExerciseHandler = () => {
     setChangeExercise(true)
   }
+
   const deleteExerciseHandler = () => {
     dispatch(
       deleteExerciseInRoutine({
@@ -58,11 +59,11 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
     dispatch(changeExerciseInRoutine(exerciseDataToChange))
     toggleModalHandler()
   }
-
+  console.log(recommendExerciseList)
   return (
     <S.exerciseEditDeleteModalContainer>
       {!changeExercise ? (
-        <S.exerciseEditDeleteTitle>운동을 루틴에서 삭제할까요?</S.exerciseEditDeleteTitle>
+        <S.exerciseEditDeleteTitle>다른 운동으로 대체 및 삭제할 수 있습니다.</S.exerciseEditDeleteTitle>
       ) : (
         <S.selectExerciseContainer>
           {recommendExerciseList.length ? (
@@ -100,23 +101,23 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
       {!changeExercise ? (
         <S.exerciseEditDeleteBtnBox>
           <button type='button' onClick={changeExerciseHandler}>
-            다른 운동 대체
+            대체하기
           </button>
           <button type='button' onClick={deleteExerciseHandler}>
-            운동 삭제하기
+            삭제하기
+          </button>
+          <button type='button' onClick={toggleModalHandler}>
+            닫기
           </button>
         </S.exerciseEditDeleteBtnBox>
       ) : (
         <S.exerciseEditDeleteBtnBox>
-          {recommendExerciseList.length ? (
-            <button type='button' onClick={selectExerciseHandler}>
-              운동 대체 하기
-            </button>
-          ) : (
-            <button type='button' onClick={toggleModalHandler}>
-              닫기
-            </button>
-          )}
+          <button type='button' onClick={selectExerciseHandler}>
+            운동 대체 하기
+          </button>
+          <button type='button' onClick={toggleModalHandler}>
+            닫기
+          </button>
         </S.exerciseEditDeleteBtnBox>
       )}
     </S.exerciseEditDeleteModalContainer>

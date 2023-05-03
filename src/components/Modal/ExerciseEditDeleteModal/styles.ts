@@ -7,6 +7,7 @@ export const exerciseEditDeleteModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid ${colors.FOCUS};
 `
 
 export const exerciseEditDeleteTitle = styled.div`
@@ -14,9 +15,8 @@ export const exerciseEditDeleteTitle = styled.div`
   font-size: 20px;
   padding: 20px;
   color: ${colors.FOCUS};
-  border: 1px solid ${colors.FOCUS};
-  border-bottom: 0;
   font-weight: 600;
+  text-align: center;
 `
 
 export const exerciseEditDeleteBtnBox = styled.div`
@@ -31,7 +31,7 @@ export const exerciseEditDeleteBtnBox = styled.div`
     height: 40px;
     font-size: 18px;
     color: ${colors.FOCUS};
-    border: 1px solid ${colors.FONT};
+    border-top: 1px solid ${colors.FONT};
 
     :hover {
       font-weight: 600;
