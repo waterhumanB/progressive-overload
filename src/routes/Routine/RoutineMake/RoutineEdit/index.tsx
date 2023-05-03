@@ -12,11 +12,11 @@ const RoutineEdit = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const backRouterHanlder = () => {
+  const backRouterHandler = () => {
     navigate(-1)
   }
 
-  const dispatchEditRouterHanlder = () => {
+  const dispatchEditRouterHandler = () => {
     dispatch(
       editRoutine({
         ...location.state,
@@ -26,7 +26,7 @@ const RoutineEdit = () => {
     navigate('/routine')
   }
 
-  const exerciseEditRouterHanlder = () => {
+  const exerciseEditRouterHandler = () => {
     navigate('/routine/routine-make', {
       state: {
         ...location.state,
@@ -43,9 +43,9 @@ const RoutineEdit = () => {
     setRoutineName(location.state.title)
   }, [])
   return (
-    <S.routineEditPageConatiner>
+    <S.routineEditPageContainer>
       <RoutinePage
-        backPageHandler={backRouterHanlder}
+        backPageHandler={backRouterHandler}
         title='나만의 루틴 수정하기'
         routineName={routineName}
         routineNameHandler={routineNameHandler}
@@ -53,12 +53,12 @@ const RoutineEdit = () => {
         locationState={location.state}
         bottomTwoBtn={false}
         disabled={routineName}
-        editRoutineHandler={dispatchEditRouterHanlder}
-        editExerciseHandler={exerciseEditRouterHanlder}
+        editRoutineHandler={dispatchEditRouterHandler}
+        editExerciseHandler={exerciseEditRouterHandler}
         twoBtnValue1='운동 수정하기'
         twoBtnValue2='루틴 수정완료'
       />
-    </S.routineEditPageConatiner>
+    </S.routineEditPageContainer>
   )
 }
 

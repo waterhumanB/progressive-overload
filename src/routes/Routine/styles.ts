@@ -3,9 +3,10 @@ import colors from '../../styles/constants/colors'
 
 export const routineContainer = styled.section`
   width: 100%;
-  height: 100%;
-  position: relative;
+  min-height: 100vh;
+  max-height: 100%;
   background: ${colors.WHITE};
+  position: relative;
 `
 export const userContainer = styled.div`
   display: flex;
@@ -64,9 +65,8 @@ export const subMenuContainer = styled.div`
 
 export const routineBox = styled.div`
   padding: 15px;
+  height: 100%;
   width: 100%;
-  max-height: 70vh;
-  overflow: scroll;
 `
 
 export const routineCard = styled.div`

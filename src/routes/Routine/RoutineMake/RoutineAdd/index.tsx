@@ -14,7 +14,7 @@ const RoutineEdit = () => {
   const routineSelector = useAppSelector(getRoutineData)
   const navigate = useNavigate()
 
-  const backPageRouterHanlder = () => {
+  const backPageRouterHandler = () => {
     navigate(-1)
   }
 
@@ -37,7 +37,7 @@ const RoutineEdit = () => {
   return (
     <S.routineAddPageContainer>
       <RoutinePage
-        backPageHandler={backPageRouterHanlder}
+        backPageHandler={backPageRouterHandler}
         title='나만의 루틴 추가하기'
         routineName={routineName}
         routineNameHandler={routineNameHandler}

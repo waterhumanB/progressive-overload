@@ -3,8 +3,7 @@ import colors from '../../../styles/constants/colors'
 
 export const exerciseContainer = styled.div`
   width: 100%;
-  height: 68vh;
-  overflow: scroll;
+  height: 100%;
 `
 
 export const exerciseBox = styled.div<{ border: boolean }>`

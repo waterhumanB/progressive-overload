@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 import colors from '../../../../styles/constants/colors'
 
-export const routineEditPageConatiner = styled.section`
+export const routineEditPageContainer = styled.section`
   width: 100%;
-  height: 100%;
   padding: 20px;
 `
 export const routineEditTitleBox = styled.div`

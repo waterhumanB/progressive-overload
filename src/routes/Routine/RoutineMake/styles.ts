@@ -7,6 +7,32 @@ export const makeRoutineContainer = styled.section`
   padding: 10px 15px;
   position: relative;
 `
+
+export const makeRoutineTitle = styled.div`
+  width: 100%;
+  position: relative;
+  padding-bottom: 20px;
+  div {
+    width: 100%;
+    color: ${colors.FONT};
+    font-weight: 600;
+    font-size: 27px;
+    text-align: center;
+  }
+  svg {
+    fill: ${colors.FONT};
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    left: -10px;
+    bottom: 13px;
+    transform: scaleX(-1);
+    :hover {
+      fill: ${colors.FOCUS};
+    }
+  }
+`
+
 export const filterBox = styled.div`
   width: 100%;
   display: flex;
@@ -24,8 +50,8 @@ export const filterBox = styled.div`
 `
 export const addBtnBox = styled.button`
   display: flex;
-  padding: 5px 5px;
-  margin: auto auto 10px auto;
+  padding: 0 5px 10px 5px;
+  margin: auto;
   justify-content: center;
   align-items: center;
 
@@ -35,6 +61,11 @@ export const addBtnBox = styled.button`
     font-size: 16px;
     color: ${colors.FONT};
   }
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
   :hover {
     span {
       color: ${colors.FOCUS};
@@ -43,28 +74,22 @@ export const addBtnBox = styled.button`
     div {
       background: ${colors.FOCUS};
     }
+    svg {
+      g > :first-child {
+        fill: ${colors.FOCUS};
+      }
+    }
   }
 `
 
-export const addBtn = styled.div`
-  width: 25px;
-  height: 25px;
-  border-radius: 20px;
-  font-size: 30px;
-  color: ${colors.WHITE};
-  font-weight: bold;
-  background: ${colors.FONT};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`
-
 export const upAndRoutineAddBtnBox = styled.div`
+  max-width: 400px;
   width: 100%;
   margin: 10px auto;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  bottom: 0;
 `
 export const upExerciseListBtn = styled.button`
   width: 40px;

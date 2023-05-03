@@ -3,7 +3,8 @@ import colors from '../styles/constants/colors'
 
 export const Container = styled.main`
   max-width: 430px;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 100%;
   margin: auto;
   background: ${colors.WHITE};
 `

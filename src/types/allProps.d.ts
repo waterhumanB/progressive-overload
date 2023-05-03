@@ -1,4 +1,3 @@
-import { ForwardedRef } from 'react'
 import { YoutubeState } from '../states/youtubeRecommend'
 import { IRoutineItem } from './routines.d'
 
@@ -25,7 +24,6 @@ export interface IFilterBtnProps {
 
 export interface IExerciseCardProps {
   toggleDropDown: () => void
-  cardRef: ForwardedRef<HTMLDivElement>
   searchExercise: string
   filterExercise: {
     more: string

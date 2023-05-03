@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
-export const routinePageConatiner = styled.section`
+export const routinePageContainer = styled.section`
   width: 100%;
   height: 100%;
 `
@@ -29,7 +29,7 @@ export const routineTitleBox = styled.div`
 `
 export const routineDataBox = styled.div`
   width: 100%;
-  height: 85%;
+  height: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -77,7 +77,7 @@ export const exerciseCard = styled.div`
   border: 1px solid ${colors.FOCUS};
 `
 
-export const mainTaget = styled.div`
+export const mainTarget = styled.div`
   color: ${colors.FOCUS};
   font-weight: 600;
   font-size: 13px;

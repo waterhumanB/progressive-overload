@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { deleteCustomExercise } from '../../../states/exercises'
 import { deleteType } from '../../../states/types'
 import { IRoutineItem } from '../../../types/routines.d'
+import { ReactComponent as PlusBtn } from '../../../assets/imgs/plus-btn.svg'
 
 interface InitData {
   more: string
@@ -29,6 +30,7 @@ const INIT_EDIT_IDS = {
 const INIT_DATA: InitData = { more: '전체', target: '전체', category: '전체' }
 
 const RoutineMake = () => {
+  const navigate = useNavigate()
   const [addExercise, setAddExercise] = useState<string[]>([])
   const [customExerciseEditId, setCustomExerciseEditId] = useState<CustomExerciseEditIds>(INIT_EDIT_IDS)
   const [filterExercise, setFilterExercise] = useState<InitData>(INIT_DATA)
@@ -37,11 +39,11 @@ const RoutineMake = () => {
 
   const location = useLocation() as { state: IRoutineItem }
   const dispatch = useAppDispatch()
-  const cardRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
+
   const toggleDropDown = () => {
     setDropDown(!dropDown)
   }
-  const navigate = useNavigate()
 
   const searchHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchExercise(e.currentTarget.value)
@@ -62,7 +64,7 @@ const RoutineMake = () => {
   }
 
   const upExerciseCardListHandler = () => {
-    cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    titleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const exerciseListStateAndRouter = () => {
@@ -77,6 +79,11 @@ const RoutineMake = () => {
     }
     navigate('./add', { state: { ...location.state, workout: addExercise } })
   }
+
+  const backPageHandler = () => {
+    navigate(-1)
+  }
+
   useEffect(() => {
     if (location.state && location.state.workout.length !== 0) {
       setAddExercise(location.state.workout)
@@ -85,17 +92,22 @@ const RoutineMake = () => {
 
   return (
     <S.makeRoutineContainer>
+      <S.makeRoutineTitle ref={titleRef}>
+        <button onClick={backPageHandler} type='button'>
+          <Arrow />
+        </button>
+        <div>나만의 루틴을 만들어보세요!</div>
+      </S.makeRoutineTitle>
       <S.filterBox>
         <Arrow />
         <input placeholder='운동 이름 검색' onChange={searchHandleChange} />
       </S.filterBox>
       <ExerciseMenu filterExercise={filterExercise} setFilterExercise={setFilterExercise} />
       <S.addBtnBox onClick={customExerciseRouter}>
-        <S.addBtn>+</S.addBtn>
-        <span>커스텀 운동 추가</span>
+        <PlusBtn />
+        <span>커스텀 운동 추가하기</span>
       </S.addBtnBox>
       <ExerciseCard
-        cardRef={cardRef}
         addExercise={addExercise}
         setAddExercise={setAddExercise}
         setCustomExerciseEditId={setCustomExerciseEditId}
@@ -108,7 +120,7 @@ const RoutineMake = () => {
           <UpArrow />
         </S.upExerciseListBtn>
         <S.routineAddBtn onClick={exerciseListStateAndRouter} disabled={!addExercise.length} type='button'>
-          + {addExercise.length === 12 ? 'MAX' : addExercise.length}
+          + {`${addExercise.length === 12 ? 'MAX' : addExercise.length} `}
           {location.state === null ? '운동 추가하기' : '운동 변경하기'}
         </S.routineAddBtn>
       </S.upAndRoutineAddBtnBox>

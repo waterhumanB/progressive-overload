@@ -19,7 +19,6 @@ const ExerciseCard = ({
   setCustomExerciseEditId,
   setAddExercise,
   addExercise,
-  cardRef,
 }: IExerciseCardProps) => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typesSelector = useAppSelector(getTypesData)
@@ -78,7 +77,6 @@ const ExerciseCard = ({
       {fetchedData.length !== 0 ? (
         fetchedData.map((data) => (
           <S.exerciseBox border={addExercise.includes(data.id)} key={data.id}>
-            {fetchedData[0].id === data.id && <S.refDiv ref={cardRef} />}
             <S.mainTarget>{addExercise.includes(data.id) ? <Check /> : findTarget(data.mainTarget)}</S.mainTarget>
             <S.exerciseInfo type='button' onClick={() => addExerciseHandler(data.id)}>
               <S.exerciseTitle>

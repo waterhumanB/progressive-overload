@@ -18,14 +18,14 @@ const RoutinePage = ({
   twoBtnValue2,
   backPageHandler,
   routineNameHandler,
-  editExerciseHandler: editExerciseHanlder,
+  editExerciseHandler,
   editRoutineHandler,
   addRoutineHandler,
 }: IRoutinePageProps) => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
   return (
-    <S.routinePageConatiner>
+    <S.routinePageContainer>
       <S.routineTitleBox>
         <button onClick={backPageHandler} type='button'>
           <Arrow />
@@ -39,7 +39,7 @@ const RoutinePage = ({
         <S.exerciseBox>
           {locationState.workout.map((data) => (
             <S.exerciseCard key={data}>
-              <S.mainTaget>{findTarget(exerciseSelector.exercises.byId[data].mainTarget)}</S.mainTaget>
+              <S.mainTarget>{findTarget(exerciseSelector.exercises.byId[data].mainTarget)}</S.mainTarget>
               <S.exerciseInfo>
                 <S.exerciseTitle>
                   <div>{findCategory(exerciseSelector.exercises.byId[data].categoryId)}</div>
@@ -52,7 +52,7 @@ const RoutinePage = ({
       </S.routineDataBox>
       {!bottomTwoBtn ? (
         <S.editBtnBox>
-          <S.exerciseEditBtn onClick={editExerciseHanlder}>{twoBtnValue1}</S.exerciseEditBtn>
+          <S.exerciseEditBtn onClick={editExerciseHandler}>{twoBtnValue1}</S.exerciseEditBtn>
           <S.routineEditBtn disabled={!disabled} onClick={editRoutineHandler}>
             {twoBtnValue2}
           </S.routineEditBtn>
@@ -62,7 +62,7 @@ const RoutinePage = ({
           {btnValue}
         </S.routineAddBtn>
       )}
-    </S.routinePageConatiner>
+    </S.routinePageContainer>
   )
 }
 
