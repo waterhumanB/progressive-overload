@@ -60,7 +60,7 @@ const RoutineRun = () => {
     nowExercise.includes(data.id)
   )
 
-  const youtubeSerachExerciseListData = exerciseListData.map((data) => {
+  const youtubeSearchExerciseListData = exerciseListData.map((data) => {
     return `${findCategory(data.categoryId)}${findType(typeSelector.types.byId, data.typeId)}`
   })
 
@@ -69,7 +69,7 @@ const RoutineRun = () => {
   }
 
   useEffect(() => {
-    dispatch(getYoutubeExerciseData(youtubeSerachExerciseListData))
+    dispatch(getYoutubeExerciseData(youtubeSearchExerciseListData))
   }, [])
 
   useEffect(() => {
@@ -86,13 +86,13 @@ const RoutineRun = () => {
     <S.routineRunContainer>
       <S.routineRunBox>
         <S.routineRunTitleBox>
-          <div className='category'>{`${findCategory(currentExerciseData.categoryId)} ${findType(
+          <S.routineRunTitle title='category'>{`${findCategory(currentExerciseData.categoryId)} ${findType(
             typeSelector.types.byId,
             currentExerciseData.typeId
-          )}`}</div>
-          <div className='target'>{`${findTarget(currentExerciseData.mainTarget)} ${findTarget(
+          )}`}</S.routineRunTitle>
+          <S.routineRunTitle title='target'>{`${findTarget(currentExerciseData.mainTarget)} ${findTarget(
             currentExerciseData.secondaryTarget
-          )}`}</div>
+          )}`}</S.routineRunTitle>
         </S.routineRunTitleBox>
         <S.routineRunWorkout>
           <div>기록</div>

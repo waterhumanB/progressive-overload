@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
 export const routineTimerContainer = styled.footer`
-  width: 400px;
+  max-width: 430px;
+  width: 100%;
   height: 55px;
   padding-top: 10px;
   border-top: 2px solid ${colors.BACK};

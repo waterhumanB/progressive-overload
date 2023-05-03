@@ -34,6 +34,16 @@ export const routineRunTitleBox = styled.div`
   }
 `
 
+export const routineRunTitle = styled.div<{ title: string }>`
+  width: 100%;
+  margin: auto;
+  font-weight: 600;
+  text-align: center;
+  padding-top: ${(props) => (props.title === 'target' ? '10px' : '')};
+  color: ${(props) => (props.title === 'target' ? colors.FONT : colors.FOCUS)};
+  font-size: ${(props) => (props.title === 'target' ? '20px' : '26px')};
+`
+
 export const routineRunWorkout = styled.div`
   width: 100%;
   margin-top: 10px;

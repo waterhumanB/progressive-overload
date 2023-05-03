@@ -59,7 +59,7 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
     dispatch(changeExerciseInRoutine(exerciseDataToChange))
     toggleModalHandler()
   }
-  console.log(recommendExerciseList)
+
   return (
     <S.exerciseEditDeleteModalContainer>
       {!changeExercise ? (

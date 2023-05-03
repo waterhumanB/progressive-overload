@@ -2,7 +2,7 @@ import { IRoutineSecondsProps } from '../../../types/allProps.d'
 import * as S from './styles'
 
 const RoutineTimer = ({ seconds, setSeconds }: IRoutineSecondsProps) => {
-  const secondsMiusHanlder = () => {
+  const secondsMinusHandler = () => {
     if (seconds >= 10) {
       setSeconds(seconds - 10)
     }
@@ -24,7 +24,7 @@ const RoutineTimer = ({ seconds, setSeconds }: IRoutineSecondsProps) => {
         <div className='restTime'>휴식시간</div>
         <div className='seconds'>{seconds} 초</div>
       </S.setTimerBox>
-      <button onClick={secondsMiusHanlder} className='minus' type='button'>
+      <button onClick={secondsMinusHandler} className='minus' type='button'>
         - 10
       </button>
       <button onClick={secondsPlusHandler} className='plus' type='button'>
