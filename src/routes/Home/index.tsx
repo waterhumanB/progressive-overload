@@ -59,7 +59,7 @@ const Home = () => {
         )}
         {view === 2 && (
           <S.decBox view={btn}>
-            <span className='start'>이제 저와 함께 운동해 볼까요?</span>
+            <span className='start'>이제 운동을 시작해 볼까요?</span>
           </S.decBox>
         )}
         {view === 3 && (

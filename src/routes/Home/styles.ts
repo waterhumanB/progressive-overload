@@ -42,7 +42,8 @@ export const pageBtn = styled.button`
 `
 
 export const decContainer = styled.div`
-  height: 100%;
+  width: 100%;
+  height: 100vh;
   display: flex;
   a {
     color: ${colors.BLACK};

@@ -46,7 +46,7 @@ const RoutineEdit = () => {
     <S.routineEditPageContainer>
       <RoutinePage
         backPageHandler={backRouterHandler}
-        title='나만의 루틴 수정하기'
+        title='루틴 이름 수정하기'
         routineName={routineName}
         routineNameHandler={routineNameHandler}
         placeholder='루틴 이름을 입력해주세요!'

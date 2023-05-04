@@ -4,6 +4,7 @@ import colors from '../../../styles/constants/colors'
 export const routinePageContainer = styled.section`
   width: 100%;
   height: 100%;
+  position: relative;
 `
 export const routineTitleBox = styled.div`
   width: 100%;
@@ -30,7 +31,7 @@ export const routineTitleBox = styled.div`
 export const routineDataBox = styled.div`
   width: 100%;
   height: 100%;
-  margin: auto;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,16 +46,17 @@ export const routineDataBox = styled.div`
 
 export const routineInput = styled.div<{ inputValue: boolean }>`
   width: 100%;
-  height: 40px;
+  height: 60px;
   background: ${(props) => (props.inputValue ? colors.WHITE : colors.BACK)};
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   border: ${(props) => (props.inputValue ? `2px solid ${colors.BACK}` : `1px solid ${colors.FOCUS}`)};
   input {
-    color: ${colors.FOCUS};
-    font-weight: 600;
     width: 100%;
     height: 100%;
+    font-size: 20px;
+    font-weight: 600;
     text-align: center;
+    color: ${colors.FOCUS};
     ::placeholder {
       color: ${colors.FONT};
     }
@@ -63,18 +65,18 @@ export const routineInput = styled.div<{ inputValue: boolean }>`
 
 export const exerciseBox = styled.div`
   width: 100%;
-  max-height: 70vh;
-  overflow: scroll;
+  height: 100%;
+  padding-bottom: 30px;
 `
 
 export const exerciseCard = styled.div`
-  border: 1px solid ${colors.BACK};
+  width: 100%;
+  height: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 7px;
+  margin-bottom: 10px;
   background: ${colors.BACK};
-  border: 1px solid ${colors.FOCUS};
 `
 
 export const mainTarget = styled.div`
@@ -113,6 +115,12 @@ export const exerciseTitle = styled.div`
   div:nth-child(1) {
     margin-right: 5px;
   }
+`
+export const btnBox = styled.div`
+  width: 100%;
+  max-width: 390px;
+  bottom: 10px;
+  position: fixed;
 `
 
 export const editBtnBox = styled.div`

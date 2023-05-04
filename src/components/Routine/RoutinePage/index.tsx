@@ -50,18 +50,20 @@ const RoutinePage = ({
           ))}
         </S.exerciseBox>
       </S.routineDataBox>
-      {!bottomTwoBtn ? (
-        <S.editBtnBox>
-          <S.exerciseEditBtn onClick={editExerciseHandler}>{twoBtnValue1}</S.exerciseEditBtn>
-          <S.routineEditBtn disabled={!disabled} onClick={editRoutineHandler}>
-            {twoBtnValue2}
-          </S.routineEditBtn>
-        </S.editBtnBox>
-      ) : (
-        <S.routineAddBtn disabled={!disabled} onClick={addRoutineHandler}>
-          {btnValue}
-        </S.routineAddBtn>
-      )}
+      <S.btnBox>
+        {!bottomTwoBtn ? (
+          <S.editBtnBox>
+            <S.exerciseEditBtn onClick={editExerciseHandler}>{twoBtnValue1}</S.exerciseEditBtn>
+            <S.routineEditBtn disabled={!disabled} onClick={editRoutineHandler}>
+              {twoBtnValue2}
+            </S.routineEditBtn>
+          </S.editBtnBox>
+        ) : (
+          <S.routineAddBtn disabled={!disabled} onClick={addRoutineHandler}>
+            {btnValue}
+          </S.routineAddBtn>
+        )}
+      </S.btnBox>
     </S.routinePageContainer>
   )
 }
