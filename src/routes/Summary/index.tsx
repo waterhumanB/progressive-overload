@@ -134,14 +134,14 @@ const Summary = () => {
             {(dayWeekMonthSelect === 'day' && VOLUME_DAY_RANGE.map((data) => <div key={data}>{data}</div>)) ||
               (dayWeekMonthSelect === 'week' && VOLUME_WEEK_RANGE.map((data) => <div key={data}>{data}</div>)) ||
               (dayWeekMonthSelect === 'month' && VOLUME_MONTH_RANGE.map((data) => <div key={data}>{data}</div>))}
-            <div>0</div>
+            <div>0 kg</div>
           </S.yAxis>
         ) : (
           <S.yAxis>
             {(dayWeekMonthSelect === 'day' && MINUTE_DAY_RANGE.map((data) => <div key={data}>{data}</div>)) ||
               (dayWeekMonthSelect === 'week' && MINUTE_WEEK_RANGE.map((data) => <div key={data}>{data}</div>)) ||
               (dayWeekMonthSelect === 'month' && MINUTE_MONTH_RANGE.map((data) => <div key={data}>{data}</div>))}
-            <div>0</div>
+            <div>0 분</div>
           </S.yAxis>
         )}
         <BarChart
@@ -160,7 +160,7 @@ const Summary = () => {
       </S.selectDataBox>
       <S.mockDataBox>
         <S.mockDataBtn type='button' onClick={setLocalStorageMockDataHandler}>
-          가상 루틴 및 데이터 추가 하기
+          가상 루틴 및 데이터 추가하기
         </S.mockDataBtn>
       </S.mockDataBox>
       <Footer />

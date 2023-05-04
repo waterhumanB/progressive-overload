@@ -94,7 +94,7 @@ export const selectDurationBtn = styled.button<{ selected: string }>`
 export const mockDataBox = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 `
@@ -105,7 +105,7 @@ export const mockDataBtn = styled.button`
   margin: auto;
   font-size: 18px;
   color: ${colors.FONT};
-  border: 1px solid ${colors.BORDER};
+  border: 2px solid ${colors.BACK};
 
   :hover {
     font-weight: 600;

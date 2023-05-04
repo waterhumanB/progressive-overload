@@ -50,6 +50,7 @@ export const subMenuContainer = styled.div`
     padding: 5px 7px;
     border: 1px solid ${colors.FONT};
     border-radius: 12px;
+    z-index: 2;
     :hover {
       color: ${colors.WHITE};
       border: 1px solid ${colors.FOCUS};
@@ -67,6 +68,21 @@ export const routineBox = styled.div`
   padding: 15px;
   height: 100%;
   width: 100%;
+`
+export const noRoutineData = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 35px;
+  font-size: 20px;
+  color: ${colors.FOCUS};
+  font-weight: 600;
 `
 
 export const routineCard = styled.div`

@@ -21,12 +21,17 @@ const naviRoutineMakeRouter = {
 const Routine = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const userInfoSelector = useAppSelector(getUserInfoData)
-  const routineSelector = useAppSelector(getRoutineData)
-  const routineByIdList = Object.values(routineSelector.routines.byId)
   const [nowRoutineId, setNowRoutineId] = useState<string>('')
   const [exerciseAddDropDown, setExerciseAddDropDown] = useState(false)
   const [routineAddDropDown, setRoutineAddDropDown] = useState(false)
+
+  const userInfoSelector = useAppSelector(getUserInfoData)
+  const routineSelector = useAppSelector(getRoutineData)
+  const routineByIdList = Object.values(routineSelector.routines.byId)
+
+  const latestRoutineList = routineByIdList.sort(
+    (a, b) => Date.parse(a.recent[a.recent.length - 1]?.endAt) - Date.parse(b.recent[b.recent.length - 1]?.endAt)
+  )
 
   const naviRoutineEditRouter = {
     to: '/routine/routine-make/edit',
@@ -72,25 +77,32 @@ const Routine = () => {
         </Link>
       </S.subMenuContainer>
       <S.routineBox>
-        {routineByIdList.map((data) => (
-          <S.routineCard key={data.id}>
-            <S.routineWorkoutCount>{data.workout.length}</S.routineWorkoutCount>
-            <S.routineInfoBtn onClick={() => routineReadyPageRouter(data.id)}>
-              <S.routineTitle>{data.title}</S.routineTitle>
-              {data.recent.length !== 0 ? (
-                <S.routineRecent>
-                  <div>{fetchedDate(data.recent[data.recent.length - 1]?.endAt)}</div>
-                </S.routineRecent>
-              ) : (
-                <S.routineRecent>최근 수행한 날짜가 없습니다.</S.routineRecent>
-              )}
-            </S.routineInfoBtn>
-            <S.routineMenuBtn onClick={() => routineIdHandler(data.id)}>
-              <DotMenu />
-            </S.routineMenuBtn>
-          </S.routineCard>
-        ))}
+        {latestRoutineList.length !== 0 &&
+          latestRoutineList.map((data) => (
+            <S.routineCard key={data.id}>
+              <S.routineWorkoutCount>{data.workout.length}</S.routineWorkoutCount>
+              <S.routineInfoBtn onClick={() => routineReadyPageRouter(data.id)}>
+                <S.routineTitle>{data.title}</S.routineTitle>
+                {data.recent.length !== 0 ? (
+                  <S.routineRecent>
+                    <div>{fetchedDate(data.recent[data.recent.length - 1]?.endAt)}</div>
+                  </S.routineRecent>
+                ) : (
+                  <S.routineRecent>최근 수행한 날짜가 없습니다.</S.routineRecent>
+                )}
+              </S.routineInfoBtn>
+              <S.routineMenuBtn onClick={() => routineIdHandler(data.id)}>
+                <DotMenu />
+              </S.routineMenuBtn>
+            </S.routineCard>
+          ))}
       </S.routineBox>
+      {latestRoutineList.length === 0 && (
+        <S.noRoutineData>
+          루틴을 추가하려면 하단 버튼 클릭하세요!
+          <br /> 요약페이지에서 가상데이터를 추가할 수 있어요!
+        </S.noRoutineData>
+      )}
       <RoutineAddBtn toggleDropDown={ExerciseAddToggleDropDown} />
       <DropDown
         twoMenu
