@@ -22,7 +22,7 @@ to {
 
 export const homeContainer = styled.section`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   position: relative;
 `
@@ -70,10 +70,10 @@ export const decBox = styled.div<{ view: string }>`
 
 export const orderBox = styled.div`
   width: 100px;
-  top: 90%;
   left: 50%;
+  bottom: 10px;
   transform: translate(-50%, -50%);
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: space-between;
 `
