@@ -11,10 +11,16 @@ export const routineTitleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   svg {
-    fill: ${colors.FONT};
     width: 50px;
     height: 50px;
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    left: -10px;
+    bottom: -7px;
+    fill: ${colors.FONT};
     transform: scaleX(-1);
     :hover {
       fill: ${colors.FOCUS};
@@ -23,7 +29,7 @@ export const routineTitleBox = styled.div`
 
   div {
     margin: auto;
-    font-size: 30px;
+    font-size: 32px;
     color: ${colors.FONT};
     font-weight: 600;
   }
@@ -67,6 +73,7 @@ export const exerciseBox = styled.div`
   width: 100%;
   height: 100%;
   padding-bottom: 30px;
+  position: relative;
 `
 
 export const exerciseCard = styled.div`
@@ -92,6 +99,7 @@ export const mainTarget = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: absolute;
   svg {
     width: 30px;
     height: 30px;

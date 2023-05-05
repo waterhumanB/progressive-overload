@@ -25,7 +25,7 @@ export const makeRoutineTitle = styled.div`
     width: 45px;
     height: 45px;
     left: -10px;
-    bottom: 13px;
+    bottom: 12px;
     transform: scaleX(-1);
     :hover {
       fill: ${colors.FOCUS};

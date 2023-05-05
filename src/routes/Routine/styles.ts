@@ -103,7 +103,7 @@ export const routineCard = styled.div`
 export const routineWorkoutCount = styled.div`
   width: 35px;
   height: 35px;
-  border-radius: 20px;
+  border-radius: 50%;
   background: ${colors.WHITE};
   color: ${colors.FOCUS};
   display: flex;
