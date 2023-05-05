@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import colors from '../../../styles/constants/colors'
 
-export const routinePageConatiner = styled.section`
+export const routinePageContainer = styled.section`
   width: 100%;
   height: 100%;
   padding: 20px;
@@ -11,10 +11,16 @@ export const routineTitleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   svg {
     fill: ${colors.FONT};
     width: 50px;
     height: 50px;
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    left: -10px;
+    bottom: -7px;
     transform: scaleX(-1);
     :hover {
       fill: ${colors.FOCUS};
@@ -23,15 +29,15 @@ export const routineTitleBox = styled.div`
 
   div {
     margin: auto;
-    font-size: 30px;
+    font-size: 32px;
     color: ${colors.FONT};
     font-weight: 600;
   }
 `
 export const routineDataBox = styled.div`
   width: 100%;
-  height: 85%;
-  margin: auto;
+  height: 100%;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,11 +52,10 @@ export const routineDataBox = styled.div`
 
 export const exerciseBox = styled.div`
   width: 100%;
-  max-height: 70vh;
-  overflow: scroll;
+  height: 100%;
 `
 
-const maringUp = keyframes`
+const withDown = keyframes`
 from {width :100%}
 to{width: 300px}
 `
@@ -64,15 +69,16 @@ export const exerciseCard = styled.div<{ dragOverPosition: boolean; dropPosition
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 7px;
+  margin-bottom: 10px;
   background: ${colors.BACK};
   border: 1px solid ${colors.FOCUS};
-  animation-name: ${(props) => (props.dragOverPosition && maringUp) || (props.dropPosition && sorted)};
+  animation-name: ${(props) => (props.dragOverPosition && withDown) || (props.dropPosition && sorted)};
   animation-duration: 0.3s;
   animation-fill-mode: forwards;
+  cursor: pointer;
 `
 
-export const mainTaget = styled.div`
+export const mainTarget = styled.div`
   color: ${colors.FOCUS};
   font-weight: 600;
   font-size: 13px;
@@ -124,12 +130,15 @@ export const exerciseTarget = styled.div`
 
 export const routineStartBtn = styled.button`
   width: 100%;
+  max-width: 390px;
   height: 40px;
   background: ${colors.FOCUS};
   border: 2px solid ${colors.BACK};
   color: ${colors.WHITE};
   font-weight: 600;
   font-size: 16px;
+  bottom: 10px;
+  position: fixed;
   :disabled {
     border: 2px solid ${colors.BACK};
     color: ${colors.FONT};

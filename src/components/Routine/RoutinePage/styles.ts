@@ -52,7 +52,7 @@ export const routineDataBox = styled.div`
 
 export const routineInput = styled.div<{ inputValue: boolean }>`
   width: 100%;
-  height: 60px;
+  height: 50px;
   background: ${(props) => (props.inputValue ? colors.WHITE : colors.BACK)};
   margin-bottom: 15px;
   border: ${(props) => (props.inputValue ? `2px solid ${colors.BACK}` : `1px solid ${colors.FOCUS}`)};
@@ -72,7 +72,7 @@ export const routineInput = styled.div<{ inputValue: boolean }>`
 export const exerciseBox = styled.div`
   width: 100%;
   height: 100%;
-  padding-bottom: 30px;
+  padding-bottom: 35px;
   position: relative;
 `
 
@@ -126,15 +126,19 @@ export const exerciseTitle = styled.div`
 `
 export const btnBox = styled.div`
   width: 100%;
+  height: 55px;
   max-width: 390px;
-  bottom: 10px;
+  bottom: 0;
   position: fixed;
+  background: ${colors.WHITE};
+  display: flex;
 `
 
 export const editBtnBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 
 export const routineEditBtn = styled.button`

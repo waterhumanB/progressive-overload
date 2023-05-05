@@ -4,7 +4,7 @@ import colors from '../../../styles/constants/colors'
 export const makeRoutineContainer = styled.section`
   width: 100%;
   height: 100%;
-  padding: 10px 15px;
+  padding: 10px 15px 0 15px;
   position: relative;
 `
 
@@ -83,19 +83,25 @@ export const addBtnBox = styled.button`
 `
 
 export const upAndRoutineAddBtnBox = styled.div`
-  max-width: 400px;
   width: 100%;
-  margin: 10px auto;
-  display: flex;
-  justify-content: space-between;
+  height: 55px;
+  margin: auto;
+`
+export const btnPositionBox = styled.div`
+  width: 100%;
+  max-width: 400px;
+  height: 55px;
   position: fixed;
   bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: ${colors.WHITE};
 `
 export const upExerciseListBtn = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 25px;
-  margin-left: 10px;
   background: ${colors.FONT};
   svg {
     width: 25px;
@@ -108,6 +114,7 @@ export const upExerciseListBtn = styled.button`
 export const routineAddBtn = styled.button`
   font-size: 16px;
   font-weight: 600;
+  height: 40px;
   width: 180px;
   border-radius: 15px;
   background: ${colors.FOCUS};

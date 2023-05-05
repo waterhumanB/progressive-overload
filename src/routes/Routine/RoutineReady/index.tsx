@@ -87,7 +87,7 @@ const RoutineReady = () => {
     dispatch(setStartAtTimeInRoutine(routineStartData))
   }
   return (
-    <S.routinePageConatiner>
+    <S.routinePageContainer>
       <S.routineTitleBox>
         <button onClick={backPageRouter} type='button'>
           <Arrow />
@@ -108,7 +108,7 @@ const RoutineReady = () => {
               draggable
               key={data}
             >
-              <S.mainTaget>{findTarget(exerciseSelector.exercises.byId[data].mainTarget)}</S.mainTaget>
+              <S.mainTarget>{findTarget(exerciseSelector.exercises.byId[data].mainTarget)}</S.mainTarget>
               <S.exerciseInfo>
                 <S.exerciseTitle>
                   <div>{findCategory(exerciseSelector.exercises.byId[data].categoryId)}</div>
@@ -139,7 +139,7 @@ const RoutineReady = () => {
           setStateData={setRoutineIdAndExerciseId}
         />
       )}
-    </S.routinePageConatiner>
+    </S.routinePageContainer>
   )
 }
 

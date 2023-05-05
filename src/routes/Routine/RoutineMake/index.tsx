@@ -116,13 +116,15 @@ const RoutineMake = () => {
         searchExercise={searchExercise}
       />
       <S.upAndRoutineAddBtnBox>
-        <S.upExerciseListBtn onClick={upExerciseCardListHandler} type='button'>
-          <UpArrow />
-        </S.upExerciseListBtn>
-        <S.routineAddBtn onClick={exerciseListStateAndRouter} disabled={!addExercise.length} type='button'>
-          + {`${addExercise.length === 12 ? 'MAX' : addExercise.length} `}
-          {location.state === null ? '운동 추가하기' : '운동 변경하기'}
-        </S.routineAddBtn>
+        <S.btnPositionBox>
+          <S.upExerciseListBtn onClick={upExerciseCardListHandler} type='button'>
+            <UpArrow />
+          </S.upExerciseListBtn>
+          <S.routineAddBtn onClick={exerciseListStateAndRouter} disabled={!addExercise.length} type='button'>
+            + {`${addExercise.length === 12 ? 'MAX' : addExercise.length} `}
+            {location.state === null ? '운동 추가하기' : '운동 변경하기'}
+          </S.routineAddBtn>
+        </S.btnPositionBox>
       </S.upAndRoutineAddBtnBox>
       <DropDown
         threeMenu
