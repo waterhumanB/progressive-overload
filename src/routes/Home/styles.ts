@@ -22,7 +22,7 @@ to {
 
 export const homeContainer = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: auto;
   position: relative;
 `
@@ -70,12 +70,16 @@ export const decBox = styled.div<{ view: string }>`
 
 export const orderBox = styled.div`
   width: 100px;
+  bottom: 30px;
   left: 50%;
-  bottom: 10px;
   transform: translate(-50%, -50%);
-  position: fixed;
+  position: absolute;
   display: flex;
   justify-content: space-between;
+
+  @media (max-height: 650px) {
+    display: none;
+  }
 `
 
 export const orderZero = styled.button<{ view: number }>`
