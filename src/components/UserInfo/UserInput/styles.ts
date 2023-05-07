@@ -12,7 +12,7 @@ export const inputText = styled.input`
   border-bottom: 1px solid ${colors.FONT};
 `
 
-export const vaildatorDiv = styled.div<{ vail: boolean }>`
+export const validatorDiv = styled.div<{ vail: boolean }>`
   font-size: 12px;
   color: ${colors.WARING};
   width: 100%;

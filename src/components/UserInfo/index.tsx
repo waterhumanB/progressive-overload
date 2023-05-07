@@ -7,12 +7,12 @@ import UserInput from './UserInput'
 
 const UserInfo = () => {
   const dispatch = useAppDispatch()
-  const navgate = useNavigate()
+  const navigate = useNavigate()
   const [nameValue, setNameValue] = useState('')
-  const [ageValue, setAgeValue] = useState(0)
+  const [ageValue, setAgeValue] = useState('')
   const [genderValue, setGenderValue] = useState('남자')
-  const [tallValue, setTallValue] = useState(0)
-  const [weightValue, setWeightValue] = useState(0)
+  const [tallValue, setTallValue] = useState('')
+  const [weightValue, setWeightValue] = useState('')
 
   const [nickNameValidator, setNickNameValidator] = useState(true)
   const [ageValidator, setAgeValidator] = useState(true)
@@ -25,38 +25,45 @@ const UserInfo = () => {
     e.target.value.length > 11 || e.target.value.length === 0 ? setNickNameValidator(true) : setNickNameValidator(false)
   }
   const handleAgeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setAgeValue(Number(e.target.value))
-    Number(e.target.value) > 100 || Number(e.target.value) < 8 ? setAgeValidator(true) : setAgeValidator(false)
+    if (Number(e.target.value) || e.target.value === '') {
+      setAgeValue(e.target.value)
+      Number(e.target.value) > 100 || Number(e.target.value) < 8 ? setAgeValidator(true) : setAgeValidator(false)
+    }
   }
   const handleGenderChange = (e: ChangeEvent<HTMLInputElement>) => {
     setGenderValue(e.target.value)
     genderValue === '' ? setGenderValidator(true) : setGenderValidator(false)
   }
   const handleTallChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTallValue(Number(e.target.value))
-    Number(e.target.value) > 230 || Number(e.target.value) < 130 ? setTallValidator(true) : setTallValidator(false)
+    if (Number(e.target.value) || e.target.value === '') {
+      setTallValue(e.target.value)
+      Number(e.target.value) > 230 || Number(e.target.value) < 120 ? setTallValidator(true) : setTallValidator(false)
+    }
   }
   const handleWeightChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setWeightValue(Number(e.target.value))
-    Number(e.target.value) > 150 || Number(e.target.value) < 30 ? setWeightValidator(true) : setWeightValidator(false)
+    if (Number(e.target.value)) {
+      setWeightValue(e.target.value)
+      Number(e.target.value) > 150 || Number(e.target.value) < 30 ? setWeightValidator(true) : setWeightValidator(false)
+    }
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     const user = {
       nickName: nameValue,
-      age: ageValue,
+      age: Number(ageValue),
       gender: genderValue,
-      tall: tallValue,
-      weight: weightValue,
+      tall: Number(tallValue),
+      weight: Number(weightValue),
     }
     dispatch(setUser(user))
-    navgate('/routine')
+    navigate('/routine')
   }
   return (
     <S.formContainer>
       <form onSubmit={handleSubmit}>
         <UserInput
+          value={nameValue}
           label='닉네임'
           name='nickName'
           type='text'
@@ -66,6 +73,7 @@ const UserInfo = () => {
           warning='1글자 이상 11글자 이하로 입력해주세요'
         />
         <UserInput
+          value={ageValue}
           label='나이'
           name='age'
           type='text'
@@ -75,6 +83,7 @@ const UserInfo = () => {
           warning='7세 이상 100세 이하로 입력해주세요!'
         />
         <UserInput
+          value={genderValue}
           label='성별'
           name='gender'
           type='radio'
@@ -86,6 +95,7 @@ const UserInfo = () => {
           warning='성별을 입력해주세요!'
         />
         <UserInput
+          value={tallValue}
           label='키 cm'
           name='tall'
           type='text'
@@ -95,6 +105,7 @@ const UserInfo = () => {
           warning='120cm 이상 230cm 이하로 입력해주세요!'
         />
         <UserInput
+          value={weightValue}
           label='몸무게 kg'
           name='weight'
           type='text'
