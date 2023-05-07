@@ -41,7 +41,7 @@ const UserInfo = () => {
     }
   }
   const handleWeightChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (Number(e.target.value)) {
+    if (Number(e.target.value) || e.target.value === '') {
       setWeightValue(e.target.value)
       Number(e.target.value) > 150 || Number(e.target.value) < 30 ? setWeightValidator(true) : setWeightValidator(false)
     }

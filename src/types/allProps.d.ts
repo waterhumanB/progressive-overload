@@ -6,7 +6,7 @@ export interface IUserInputProps {
   name: string
   type: string
   placeholder: string
-  value: string | number
+  value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   vail: boolean
   warning: string
