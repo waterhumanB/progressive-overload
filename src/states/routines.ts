@@ -34,6 +34,11 @@ const systemSlice = createSlice({
   name: 'routines',
   initialState: INITIAL_STATE,
   reducers: {
+    refreshRoutine: (state: RoutinesState, action: PayloadAction<IRoutineData>) => {
+      const routineData = { ...state.routines, byId: action.payload }
+      state.routines.byId = action.payload
+      localStorage.setItem('routines', JSON.stringify(routineData))
+    },
     setRoutine: (state: RoutinesState, action: PayloadAction<IRoutineData>) => {
       state.routines.byId = Object.assign(state.routines.byId, action.payload)
       state.routines.allIds.push(Object.keys(action.payload)[0])
@@ -93,6 +98,7 @@ const systemSlice = createSlice({
 })
 
 export const {
+  refreshRoutine,
   setRoutine,
   editRoutine,
   deleteRoutine,

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getUserInfoData } from '../../states/user'
 import { ReactComponent as Female } from '../../assets/imgs/female.svg'
@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import { RoutineAddBtn } from '../../components/Routine'
 import DropDown from '../../components/DropDown'
-import { deleteRoutine, getRoutineData } from '../../states/routines'
+import { deleteRoutine, getRoutineData, refreshRoutine } from '../../states/routines'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { fetchedDate } from '../../utils/fetchedDate'
 
@@ -28,7 +28,6 @@ const Routine = () => {
   const userInfoSelector = useAppSelector(getUserInfoData)
   const routineSelector = useAppSelector(getRoutineData)
   const routineByIdList = Object.values(routineSelector.routines.byId)
-
   const latestRoutineList = routineByIdList.sort(
     (a, b) => Date.parse(a.recent[a.recent.length - 1]?.endAt) - Date.parse(b.recent[b.recent.length - 1]?.endAt)
   )
@@ -54,6 +53,17 @@ const Routine = () => {
 
   const routineReadyPageRouter = useCallback((id: string) => {
     navigate('/routine/routine-ready', { state: { ...routineSelector.routines.byId[id] } })
+  }, [])
+
+  useEffect(() => {
+    const localRoutineIdData = routineByIdList?.map((data) => {
+      return { ...data, recent: data.recent.filter((item) => item.endAt !== '') }
+    })
+
+    const routineDataObject = localRoutineIdData.reduce((acc, value, index) => {
+      return { ...acc, [`routine${index + 1}`]: value }
+    }, {})
+    dispatch(refreshRoutine(routineDataObject))
   }, [])
 
   return (

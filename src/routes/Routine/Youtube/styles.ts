@@ -27,7 +27,7 @@ export const titleBox = styled.div`
   }
 `
 
-export const caegoryCotainer = styled.div`
+export const categoryContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -47,7 +47,7 @@ const Youtube = () => {
         </button>
         <div className='title'>유튜브 추천 운동 루틴</div>
       </S.titleBox>
-      <S.caegoryCotainer>
+      <S.categoryContainer>
         <S.pageLeftBtn position={translate} name='Left' type='button' onClick={categoryOrderHandler}>
           <ArrowBtn className='Left' />
         </S.pageLeftBtn>
@@ -68,7 +68,7 @@ const Youtube = () => {
         <S.pageRightBtn position={translate} name='Right' type='button' onClick={categoryOrderHandler}>
           <ArrowBtn />
         </S.pageRightBtn>
-      </S.caegoryCotainer>
+      </S.categoryContainer>
       <S.youtubeBox>
         <YoutubeCard youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
       </S.youtubeBox>

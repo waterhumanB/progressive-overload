@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
 import user from './user'
 import youtubeRecommend from './youtubeRecommend'

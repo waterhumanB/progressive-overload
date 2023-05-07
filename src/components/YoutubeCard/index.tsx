@@ -23,7 +23,7 @@ const YoutubeCard = ({ categoryIndex, youtubeData }: IYoutubeProps) => {
               </S.videoLink>
             </S.cardBox>
           ))
-        : youtubeData.loading === false && <S.errorBox>현재 Youtube Api를 호출 할 수 없습니다.</S.errorBox>}
+        : youtubeData.loading === false && <S.errorBox>Youtube API 호출 횟수 초과했습니다.</S.errorBox>}
     </S.cardContainer>
   )
 }
