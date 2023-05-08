@@ -10,7 +10,7 @@ const YoutubeCard = ({ categoryIndex, youtubeData }: IYoutubeProps) => {
   return (
     <S.cardContainer>
       {youtubeData.loading === true && <S.Spinner />}
-      {youtubeData.loading === false && youtubeData.error === 'fulfilled'
+      {youtubeData.loading === false && youtubeData.youtubeData.length === 11
         ? youtubeState.map((data) => (
             <S.cardBox key={data.etag}>
               <S.videoView>

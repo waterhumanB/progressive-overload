@@ -9,26 +9,28 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getYoutubeRecommendData, getYoutubeRecommendDataList } from '../../../states/youtubeRecommend'
 
-const Youtube = () => {
-  const [translate, setTranslate] = useState(0)
-  const [categoryIndex, setCategoryIndex] = useState(0)
+const CATEGORY_SLICE = 4
 
+const Youtube = () => {
   const dispatch = useAppDispatch()
-  const youtubeSelector = useAppSelector(getYoutubeRecommendDataList)
   const Navigate = useNavigate()
+  const youtubeSelector = useAppSelector(getYoutubeRecommendDataList)
+  const [categoryIndex, setCategoryIndex] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
 
   const returnPageBtn = () => {
     Navigate(-1)
   }
   const categoryOrderHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.currentTarget
-    if (name === 'Left' && translate >= 50) {
-      setTranslate((prev) => prev - 87)
+    if (name === 'left' && currentPage > 0) {
+      setCurrentPage((prev) => prev - CATEGORY_SLICE)
     }
-    if (name === 'Right' && translate < 560) {
-      setTranslate((prev) => prev + 87)
+    if (name === 'right' && currentPage < 8) {
+      setCurrentPage((prev) => prev + CATEGORY_SLICE)
     }
   }
+
   useEffect(() => {
     if (youtubeSelector.youtubeData.length !== 11) {
       dispatch(getYoutubeRecommendData(YOUTUBE_SEARCH_DATA))
@@ -45,33 +47,29 @@ const Youtube = () => {
         <button type='button' onClick={returnPageBtn}>
           <Arrow />
         </button>
-        <div className='title'>유튜브 추천 운동 루틴</div>
+        <S.youtubeTitle>유튜브 추천 운동 루틴</S.youtubeTitle>
       </S.titleBox>
       <S.categoryContainer>
-        <S.pageLeftBtn position={translate} name='Left' type='button' onClick={categoryOrderHandler}>
-          <ArrowBtn className='Left' />
-        </S.pageLeftBtn>
-        <div className='cardBox'>
-          <S.cardTranslate position={translate}>
-            {YOUTUBE_SEARCH_DATA.map((data, index) => (
-              <S.categoryBox
-                focus={categoryIndex === index}
-                onClick={categoryIndexhandler}
-                name={String(index)}
-                key={data}
-              >
-                {data}
-              </S.categoryBox>
-            ))}
-          </S.cardTranslate>
-        </div>
-        <S.pageRightBtn position={translate} name='Right' type='button' onClick={categoryOrderHandler}>
+        <S.pageBtn page={currentPage} direction='left' name='left' type='button' onClick={categoryOrderHandler}>
           <ArrowBtn />
-        </S.pageRightBtn>
+        </S.pageBtn>
+        <S.categoryBox>
+          {YOUTUBE_SEARCH_DATA.slice(currentPage, currentPage + CATEGORY_SLICE).map((data, index) => (
+            <S.categoryItem
+              focus={categoryIndex === index}
+              onClick={categoryIndexhandler}
+              name={String(index)}
+              key={data}
+            >
+              {data}
+            </S.categoryItem>
+          ))}
+        </S.categoryBox>
+        <S.pageBtn page={currentPage} direction='right' name='right' type='button' onClick={categoryOrderHandler}>
+          <ArrowBtn />
+        </S.pageBtn>
       </S.categoryContainer>
-      <S.youtubeBox>
-        <YoutubeCard youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
-      </S.youtubeBox>
+      <YoutubeCard youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
     </section>
   )
 }

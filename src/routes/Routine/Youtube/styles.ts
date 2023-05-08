@@ -8,80 +8,83 @@ export const titleBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-
-  .title {
-    width: 100%;
-    height: 100%;
-    font-size: 32px;
-    color: ${colors.FOCUS};
-  }
+  position: relative;
 
   svg {
     fill: ${colors.FONT};
     width: 50px;
     height: 50px;
+    bottom: 11px;
     transform: scaleX(-1);
+    position: absolute;
     :hover {
       fill: ${colors.FOCUS};
     }
   }
 `
 
+export const youtubeTitle = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 20px 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: ${colors.FONT};
+  text-align: center;
+`
+
 export const categoryContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
   svg {
     width: 26px;
     height: 30px;
   }
-
-  .cardBox {
-    width: 100%;
-    overflow: hidden;
-  }
 `
-export const cardTranslate = styled.div<{ position: number }>`
+
+export const categoryAnimation = styled.div`
+  width: 100%;
   display: flex;
-  transform: ${(props) => `translateX(-${props.position}px)`};
-  transition: 0.7s;
+`
+export const categoryBox = styled.div`
+  max-width: 378px;
+  display: flex;
+  overflow: hidden;
 `
 
-export const pageLeftBtn = styled.button<{ position: number }>`
-  transform: scaleX(-1);
-  fill: ${(props) => (props.position < 50 ? colors.WHITE : colors.FONT)};
-  cursor: ${(props) => (props.position < 50 ? 'default' : 'pointer')};
-  :focus {
-    fill: ${(props) => (props.position < 50 ? colors.WHITE : colors.FOCUS)};
+export const pageBtn = styled.button<{ direction: string; page: number }>`
+  transform: ${(props) => (props.direction === 'left' ? 'scaleX(-1);' : '')};
+  fill: ${colors.FONT};
+  opacity: ${(props) =>
+    (props.direction === 'left' && props.page === 0 && '0') ||
+    (props.direction === 'right' && props.page === 8 && '0')};
+  cursor: ${(props) =>
+    (props.direction === 'left' && props.page === 0 && 'default') ||
+    (props.direction === 'right' && props.page === 8 && 'default')};
+  :hover {
+    fill: ${colors.FOCUS};
   }
 `
 
-export const pageRightBtn = styled.button<{ position: number }>`
-  fill: ${(props) => (props.position > 560 ? colors.WHITE : colors.FONT)};
-  cursor: ${(props) => (props.position > 560 ? 'default' : 'pointer')};
-  :focus {
-    fill: ${(props) => (props.position > 560 ? colors.WHITE : colors.FOCUS)};
-  }
-`
-
-export const categoryBox = styled.button<{ focus: boolean }>`
-  color: ${(props) => (props.focus ? colors.WHITE : colors.FONT)};
-  margin: auto 3.5px;
+export const categoryItem = styled.button<{ focus: boolean }>`
   min-width: 80px;
+  margin: auto 5px;
   padding: 7px 3px;
-  border: ${(props) => (props.focus ? 0 : `2px solid${colors.BACK}`)};
-  border-radius: 10px;
-  box-sizing: border-box;
-  font-size: 16px;
   background: ${(props) => (props.focus ? colors.FONT : colors.WHITE)};
+
+  box-sizing: border-box;
+  border: ${(props) => (props.focus ? 0 : `2px solid${colors.BACK}`)};
+  font-size: 16px;
+  color: ${(props) => (props.focus ? colors.WHITE : colors.FONT)};
+  border-radius: 10px;
   :hover {
     color: ${colors.WHITE};
     background: ${colors.FONT};
     border: 0;
   }
-`
-export const youtubeBox = styled.div`
-  width: 100%;
-  height: 85vh;
 `
