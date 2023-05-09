@@ -5,7 +5,7 @@ import { BarChart } from '../../components/Summary'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { getRecordsData, setMockRecordData } from '../../states/records'
 
-import mockData from '../../data/mockData.json'
+import mockData from '../../data/newMockData.json'
 
 import * as S from './styles'
 import { useAppDispatch } from '../../hooks/useAppDispatch'

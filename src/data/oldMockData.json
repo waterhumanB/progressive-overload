@@ -1,6 +1,7 @@
 {
   "routines": {
-    "byId" : {"routine1": {
+    "byId" : {
+      "routine1": {
       "id": "routine1",
       "title": "가슴이 웅장한 루틴",
       "workout": ["exercise1", "exercise5", "exercise12", "exercise13"],
@@ -1569,7 +1570,8 @@
       "exercise79"
     ]
   },
-  "records": {"byId":{
+  "records": {
+    "byId": {
     "record1": {
       "id": "record1",
       "exerciseId": "exercise1",
