@@ -87,15 +87,15 @@ export const exerciseTarget = styled.div`
   }
 `
 export const errorFetchedData = styled.div`
+  max-width: 430px;
   width: 100%;
-  height: 100%;
   margin: auto;
-  color: ${colors.FOCUS};
+  position: absolute;
+  top: 55%;
+  text-align: center;
   font-size: 30px;
   font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: ${colors.FOCUS};
 `
 export const refDiv = styled.div`
   width: 1px;

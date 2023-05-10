@@ -23,9 +23,6 @@ export const exerciseEditDeleteBtnBox = styled.div`
   width: 100%;
   display: flex;
 
-  button:first-child {
-    border-right: 0;
-  }
   button {
     width: 100%;
     height: 40px;
@@ -45,36 +42,30 @@ export const selectExerciseContainer = styled.div`
   width: 100%;
   display: flex;
   margin: auto;
+`
 
-  button {
-    margin: auto;
-    svg {
-      width: 30px;
-      height: 40px;
-      fill: ${colors.FONT};
-    }
-    :hover {
-      svg {
-        fill: ${colors.FOCUS};
-      }
-    }
-  }
-  .left {
-    svg {
-      transform: scaleX(-1);
-    }
-  }
-  .hidden {
-    opacity: 0;
-    cursor: default;
-  }
+export const selectExerciseBtn = styled.button<{ hidden: boolean; direction: string }>`
+  margin: auto;
+  cursor: ${(props) => (props.hidden ? 'default' : '')};
 
-  .noExercise {
-    padding: 20px;
-    margin: auto;
-    font-size: 20px;
-    color: ${colors.FOCUS};
+  svg {
+    width: 30px;
+    height: 40px;
+    fill: ${colors.FONT};
+    transform: ${(props) => (props.direction === 'left' ? 'scaleX(-1)' : '')};
   }
+  :hover {
+    svg {
+      fill: ${colors.FOCUS};
+    }
+  }
+`
+
+export const noExercise = styled.div`
+  padding: 20px;
+  margin: auto;
+  font-size: 20px;
+  color: ${colors.FOCUS};
 `
 
 export const selectExerciseBox = styled.div`
@@ -97,19 +88,20 @@ export const selectExerciseItem = styled.div`
     display: flex;
     justify-content: center;
   }
-  .title {
-    font-size: 20px;
-    text-align: center;
-    color: ${colors.FOCUS};
-    font-weight: 600;
-    :nth-child(0) {
-      margin-right: 5px;
-    }
-  }
+`
 
-  .target {
-    margin-top: 10px;
-    color: ${colors.FONT};
-    font-weight: 600;
+export const selectExerciseTitle = styled.div`
+  font-size: 20px;
+  text-align: center;
+  color: ${colors.FOCUS};
+  font-weight: 600;
+  :nth-child(0) {
+    margin-right: 5px;
   }
+`
+
+export const selectExerciseTarget = styled.div`
+  margin-top: 10px;
+  color: ${colors.FONT};
+  font-weight: 600;
 `

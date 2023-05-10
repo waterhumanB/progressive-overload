@@ -119,25 +119,25 @@ const RoutineRunRecordBtn = ({
   return (
     <div>
       <S.routineRunRecordBtnBox>
-        <button onClick={setMinusHandler} className='setMinus' type='button'>
+        <S.setMinus onClick={setMinusHandler}>
           <Minus /> <span>세트 삭제</span>
-        </button>
-        <button onClick={setPlusHandler} className='setPlus' type='button'>
+        </S.setMinus>
+        <S.setPlus onClick={setPlusHandler}>
           <Plus /> <span>세트 추가</span>
-        </button>
+        </S.setPlus>
       </S.routineRunRecordBtnBox>
       <S.routineRunRecordBtnBox>
-        <button onClick={setAllCheckHandler} className='doubeCheck' type='button'>
+        <S.allCheck onClick={setAllCheckHandler}>
           <DoubleCheck /> <span>모든 세트 완료</span>
-        </button>
+        </S.allCheck>
         {exerciseRemainder === 0 ? (
-          <button onClick={routineFinishHandler} className='nextSet' disabled={allChecked.length > 0} type='button'>
+          <S.nextSet onClick={routineFinishHandler} disabled={allChecked.length > 0}>
             <Flag /> <span>운동 완료 하기</span>
-          </button>
+          </S.nextSet>
         ) : (
-          <button onClick={nextExerciseStartHandler} className='nextSet' disabled={allChecked.length > 0} type='button'>
+          <S.nextSet onClick={nextExerciseStartHandler} disabled={allChecked.length > 0}>
             <ArrowRight /> <span>다음 운동 시작</span>
-          </button>
+          </S.nextSet>
         )}
       </S.routineRunRecordBtnBox>
     </div>

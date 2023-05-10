@@ -14,13 +14,13 @@ const Home = () => {
   const location = useLocation()
 
   const viewHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.id === 'left') {
+    if (e.currentTarget.name === 'left') {
       setBtn('left')
       setView((prev) => {
         return prev >= 1 ? prev - 1 : prev
       })
     }
-    if (e.currentTarget.id === 'right') {
+    if (e.currentTarget.name === 'right') {
       setBtn('right')
       setView((prev) => {
         return prev < 3 ? prev + 1 : prev
@@ -28,7 +28,7 @@ const Home = () => {
     }
   }
   const directViewHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    setView(Number(e.currentTarget.id))
+    setView(Number(e.currentTarget.name))
   }
 
   useEffect(() => {
@@ -40,8 +40,8 @@ const Home = () => {
   return (
     <S.homeContainer>
       <S.decContainer>
-        <S.pageBtn type='button' id='left' onClick={viewHandler}>
-          <Arrow className='left' />
+        <S.pageBtn direction='left' name='left' onClick={viewHandler}>
+          <Arrow />
         </S.pageBtn>
         {view === 0 && (
           <S.decBox view={btn}>
@@ -59,7 +59,7 @@ const Home = () => {
         )}
         {view === 2 && (
           <S.decBox view={btn}>
-            <span className='start'>이제 운동을 시작해 볼까요?</span>
+            <span>이제 운동을 시작해 볼까요?</span>
           </S.decBox>
         )}
         {view === 3 && (
@@ -67,8 +67,8 @@ const Home = () => {
             <UserInfo />
           </S.decBox>
         )}
-        <S.pageBtn type='button' id='right' onClick={viewHandler}>
-          <Arrow className='right' />
+        <S.pageBtn direction='right' name='right' onClick={viewHandler}>
+          <Arrow />
         </S.pageBtn>
       </S.decContainer>
       <S.orderBox>

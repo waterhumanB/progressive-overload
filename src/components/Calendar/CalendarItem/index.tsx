@@ -67,10 +67,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 )
               }
             >
-              <S.currentMonthDate
-                currentMonthOfDate={data?.currentMonthOfDate}
-                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
-              >
+              <S.currentMonthDate currentMonthOfDate={data?.currentMonthOfDate} holiDay={i}>
                 {data?.day}
               </S.currentMonthDate>
             </button>
@@ -94,10 +91,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 )
               }
             >
-              <S.currentMonthDate
-                currentMonthOfDate={data?.currentMonthOfDate}
-                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
-              >
+              <S.currentMonthDate currentMonthOfDate={data?.currentMonthOfDate} holiDay={i}>
                 {data?.day}
               </S.currentMonthDate>
             </button>
@@ -121,10 +115,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 )
               }
             >
-              <S.currentMonthDate
-                currentMonthOfDate={data?.currentMonthOfDate}
-                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
-              >
+              <S.currentMonthDate currentMonthOfDate={data?.currentMonthOfDate} holiDay={i}>
                 {data?.day}
               </S.currentMonthDate>
             </button>
@@ -148,10 +139,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 )
               }
             >
-              <S.currentMonthDate
-                currentMonthOfDate={data?.currentMonthOfDate}
-                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
-              >
+              <S.currentMonthDate currentMonthOfDate={data?.currentMonthOfDate} holiDay={i}>
                 {data?.day}
               </S.currentMonthDate>
             </button>
@@ -175,10 +163,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 )
               }
             >
-              <S.currentMonthDate
-                currentMonthOfDate={data?.currentMonthOfDate}
-                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
-              >
+              <S.currentMonthDate currentMonthOfDate={data?.currentMonthOfDate} holiDay={i}>
                 {data?.day}
               </S.currentMonthDate>
             </button>
@@ -202,10 +187,7 @@ const CalendarItem = ({ fetchedWeeks, dataSelector }: ICalendarItemProps) => {
                 )
               }
             >
-              <S.currentMonthDate
-                currentMonthOfDate={data?.currentMonthOfDate}
-                className={(i === 0 ? 'sun' : '') || (i === 6 ? 'sat' : '')}
-              >
+              <S.currentMonthDate currentMonthOfDate={data?.currentMonthOfDate} holiDay={i}>
                 {data?.day}
               </S.currentMonthDate>
             </button>

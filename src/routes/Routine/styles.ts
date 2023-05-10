@@ -11,18 +11,6 @@ export const routineContainer = styled.section`
 export const userContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  .nickName {
-    color: ${colors.FOCUS};
-    font-weight: bold;
-    font-size: 30px;
-  }
-  .info {
-    color: ${colors.FONT};
-    font-weight: bold;
-    font-size: 15px;
-    display: flex;
-    flex-direction: column;
-  }
 `
 
 export const userBox = styled.div`
@@ -31,7 +19,20 @@ export const userBox = styled.div`
   align-items: center;
   margin: 20px 0 25px 0;
   display: flex;
+  color: ${colors.FOCUS};
+  font-weight: bold;
+  font-size: 30px;
 `
+
+export const userInfo = styled.div`
+  color: ${colors.FONT};
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
 export const subMenuContainer = styled.div`
   color: ${colors.FOCUS};
   font-size: 18px;
@@ -59,7 +60,7 @@ export const subMenuContainer = styled.div`
     }
   }
 
-  .logo {
+  svg {
     margin-right: 10px;
   }
 `

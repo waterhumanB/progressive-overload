@@ -4,15 +4,16 @@ import colors from '../../../styles/constants/colors'
 export const recordCardContainer = styled.div`
   width: 100%;
   margin: 10px auto;
-  .title {
-    margin-bottom: 10px;
-    color: ${colors.FOCUS};
-    font-size: 18px;
-    font-weight: 600;
-  }
 `
 
-export const recordCardbox = styled.div`
+export const recordCardTitle = styled.div`
+  margin-bottom: 10px;
+  color: ${colors.FOCUS};
+  font-size: 18px;
+  font-weight: 600;
+`
+
+export const recordCardBox = styled.div`
   width: 100%;
   min-height: 80px;
   overflow: hidden;
@@ -41,35 +42,40 @@ export const setItem = styled.div`
   justify-content: center;
   font-weight: 600;
   font-size: 18px;
-
-  .orderBox {
-    width: 30px;
-    margin-right: 5px;
-    display: flex;
-    justify-content: center;
-
-    .order {
-      width: 20px;
-    }
-    .dash {
-      color: ${colors.RED};
-      margin-left: 3px;
-    }
-  }
-  .record {
-    display: flex;
-  }
-  .item {
-    width: 30px;
-    text-align: right;
-  }
-  .kgAndRab {
-    width: 20px;
-    margin: auto 2px;
-    font-size: 15px;
-    color: ${colors.FONT};
-  }
 `
+
+export const orderBox = styled.div`
+  width: 30px;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+`
+
+export const order = styled.div`
+  width: 20px;
+`
+
+export const dash = styled.div`
+  color: ${colors.RED};
+  margin-left: 3px;
+`
+
+export const record = styled.div`
+  display: flex;
+`
+
+export const item = styled.div`
+  width: 30px;
+  text-align: right;
+`
+
+export const kgAndRab = styled.div`
+  width: 20px;
+  margin: auto 2px;
+  font-size: 15px;
+  color: ${colors.FONT};
+`
+
 export const noRecord = styled.div`
   width: 100%;
   margin: 20px auto;

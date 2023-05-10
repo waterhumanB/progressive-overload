@@ -21,18 +21,18 @@ const RoutineTimer = ({ seconds, setSeconds }: IRoutineSecondsProps) => {
   return (
     <S.routineTimerContainer>
       <S.setTimerBox>
-        <div className='restTime'>휴식시간</div>
-        <div className='seconds'>{seconds} 초</div>
+        <S.restTime>휴식시간</S.restTime>
+        <S.seconds>{seconds} 초</S.seconds>
       </S.setTimerBox>
-      <button onClick={secondsMinusHandler} className='minus' type='button'>
+      <S.timerBtn calculation='minus' onClick={secondsMinusHandler}>
         - 10
-      </button>
-      <button onClick={secondsPlusHandler} className='plus' type='button'>
+      </S.timerBtn>
+      <S.timerBtn calculation='plus' onClick={secondsPlusHandler}>
         + 10
-      </button>
-      <button onClick={secondsResetHandler} className='reset' type='button'>
+      </S.timerBtn>
+      <S.timerBtn calculation='reset' onClick={secondsResetHandler}>
         초기화
-      </button>
+      </S.timerBtn>
     </S.routineTimerContainer>
   )
 }

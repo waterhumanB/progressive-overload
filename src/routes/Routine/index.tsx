@@ -69,20 +69,20 @@ const Routine = () => {
   return (
     <S.routineContainer>
       <S.userContainer>
-        <S.userBox className='nickName'>
+        <S.userBox>
           <span>{userInfoSelector.user.nickName}</span>
           {userInfoSelector.user.gender === '남자' ? <Male /> : <Female />}
         </S.userBox>
-        <S.userBox className='info'>
+        <S.userInfo>
           <div>나이 : {userInfoSelector.user.age}</div>
           <div>키 : {userInfoSelector.user.tall}cm</div>
           <div>몸무게 : {userInfoSelector.user.weight}kg</div>
-        </S.userBox>
+        </S.userInfo>
       </S.userContainer>
       <S.subMenuContainer>
         <div>나의 운동 루틴</div>
         <Link to='/routine/youtube' className='youtube'>
-          <Youtube className='logo' />
+          <Youtube />
           Youtube 추천 운동 루틴
         </Link>
       </S.subMenuContainer>

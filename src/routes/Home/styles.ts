@@ -27,17 +27,17 @@ export const homeContainer = styled.section`
   position: relative;
 `
 
-export const pageBtn = styled.button`
-  fill: ${colors.FOCUS};
-  .right {
-    width: 35px;
-    height: 35px;
-  }
-  .left {
-    width: 35px;
-    height: 35px;
+export const pageBtn = styled.button<{ direction: string }>`
+  fill: ${colors.FONT};
 
-    transform: scaleX(-1);
+  svg {
+    width: 35px;
+    height: 35px;
+    transform: ${(props) => (props.direction === 'left' ? 'scaleX(-1)' : '')};
+  }
+
+  :hover {
+    fill: ${colors.FOCUS};
   }
 `
 

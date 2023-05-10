@@ -30,7 +30,7 @@ const RoutineFinish = () => {
     .map((data) => data.recent.length)
     .reduce((acc, el) => acc + el)
 
-  const durationExecise = () => {
+  const durationExercise = () => {
     const startTime = currentRoutineData.recent?.[currentRoutineData.recent.length - 1].startAt.split(' ')[4].split(':')
     const endTime = currentRoutineData.recent?.[currentRoutineData.recent.length - 1].endAt.split(' ')[4].split(':')
     const hour = (Number(endTime[0]) - Number(startTime[0])) * 60
@@ -38,62 +38,62 @@ const RoutineFinish = () => {
     return hour + minute
   }
 
-  const homeNaviHadler = () => {
+  const homeNaviHandler = () => {
     navigate('../../../routine')
   }
 
   return (
     <S.routinefinishContainer>
       <S.routineTitleBox>
-        <div className='title'>{currentRoutineData.title}</div>
-        <div className='date'>
+        <S.routineTitle>{currentRoutineData.title}</S.routineTitle>
+        <S.routineData>
           {fetchedDate(currentRoutineData.recent?.[currentRoutineData.recent.length - 1].endAt)}
-        </div>
+        </S.routineData>
       </S.routineTitleBox>
       <AfterExercise />
-      <S.routineResultBox>
-        <S.routineResultItem>
-          <div className='data'>
-            <div className='result'>{routineOrder}</div>
-            <div className='unit'>th</div>
-          </div>
+      <S.routineResultContainer>
+        <S.routineResultBox>
+          <S.routineResultItem>
+            <S.routineResultValue>{routineOrder}</S.routineResultValue>
+            <S.routineResultUnit>th</S.routineResultUnit>
+          </S.routineResultItem>
           <div>WORKOUT</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <div className='data'>
-            <div className='result'>{durationExecise()}</div>
-            <div className='unit'>분</div>
-          </div>
+        </S.routineResultBox>
+        <S.routineResultBox>
+          <S.routineResultItem>
+            <S.routineResultValue>{durationExercise()}</S.routineResultValue>
+            <S.routineResultUnit>분</S.routineResultUnit>
+          </S.routineResultItem>
           <div>DURATION</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <div className='data'>
-            <div className='result'>{totalVolume}</div>
-            <div className='unit'>KG</div>
-          </div>
+        </S.routineResultBox>
+        <S.routineResultBox>
+          <S.routineResultItem>
+            <S.routineResultValue>{totalVolume}</S.routineResultValue>
+            <S.routineResultUnit>KG</S.routineResultUnit>
+          </S.routineResultItem>
           <div>VOLUME</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <div className='data result'>{currentRoutineData.workout.length}</div>
+        </S.routineResultBox>
+        <S.routineResultBox>
+          <div>{currentRoutineData.workout.length}</div>
           <div>EXERCISES</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <div className='data'>
-            <div className='result'>{totalSet}</div>
-            <div className='unit'>세트</div>
-          </div>
+        </S.routineResultBox>
+        <S.routineResultBox>
+          <S.routineResultItem>
+            <S.routineResultValue>{totalSet}</S.routineResultValue>
+            <S.routineResultUnit>세트</S.routineResultUnit>
+          </S.routineResultItem>
           <div>SETS</div>
-        </S.routineResultItem>
-        <S.routineResultItem>
-          <div className='data'>
-            <div className='result'>{totalRab}</div>
-            <div className='unit'>회</div>
-          </div>
+        </S.routineResultBox>
+        <S.routineResultBox>
+          <S.routineResultItem>
+            <S.routineResultValue>{totalRab}</S.routineResultValue>
+            <S.routineResultUnit>회</S.routineResultUnit>
+          </S.routineResultItem>
           <div>RPES</div>
-        </S.routineResultItem>
-      </S.routineResultBox>
+        </S.routineResultBox>
+      </S.routineResultContainer>
       <S.homeRouterBtnBox>
-        <button onClick={homeNaviHadler} type='button'>
+        <button onClick={homeNaviHandler} type='button'>
           홈으로 돌아가기
         </button>
       </S.homeRouterBtnBox>

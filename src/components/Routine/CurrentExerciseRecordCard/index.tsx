@@ -12,7 +12,7 @@ interface ICurrentExerciseDataProp {
 const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseDataProp) => {
   const [startPageX, setStartPageX] = useState(0)
   const [translateX, setTranslateX] = useState(0)
-  const [isMouseEvent, setIsMoseEvent] = useState(false)
+  const [isMouseEvent, setIsMouseEvent] = useState(false)
   const recordSelector = useAppSelector(getRecordsData)
   const currentExerciseRecords = Object.values(recordSelector.records.byId)
     .filter((data) => currentExerciseData.record.includes(data.id))
@@ -20,7 +20,7 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
 
   const mouseDownHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    setIsMoseEvent(true)
+    setIsMouseEvent(true)
     setStartPageX(e.pageX - translateX)
   }
 
@@ -34,24 +34,24 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
       -e.currentTarget.children[0].clientWidth * (e.currentTarget.children.length - 1) >= translateX ||
       e.currentTarget.children[0].clientWidth / 2 <= translateX
     ) {
-      setIsMoseEvent(false)
+      setIsMouseEvent(false)
       setTranslateX(0)
     }
   }
 
   const mouseUpHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    setIsMoseEvent(false)
+    setIsMouseEvent(false)
   }
 
   const mouseLeaveHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    setIsMoseEvent(false)
+    setIsMouseEvent(false)
   }
   return (
     <S.recordCardContainer>
-      <div className='title'>이전 기록</div>
-      <S.recordCardbox
+      <S.recordCardTitle>이전 기록</S.recordCardTitle>
+      <S.recordCardBox
         onMouseDown={mouseDownHandler}
         onMouseMove={mouseMoveHandler}
         onMouseUp={mouseUpHandler}
@@ -63,16 +63,16 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
               <S.cardDate>{fetchedDate(data.startAt)}</S.cardDate>
               {data.set.map((item) => (
                 <S.setItem key={item.order}>
-                  <div className='orderBox'>
-                    <div className='order'>{item.order}</div>
-                    <div className='dash'>-</div>
-                  </div>
-                  <div className='record'>
-                    <div className='item'>{item.kg}</div>
-                    <div className='kgAndRab'>KG</div>
-                    <div className='item'>{item.rab}</div>
-                    <div className='kgAndRab'>회</div>
-                  </div>
+                  <S.orderBox>
+                    <S.order>{item.order}</S.order>
+                    <S.dash>-</S.dash>
+                  </S.orderBox>
+                  <S.record>
+                    <S.item>{item.kg}</S.item>
+                    <S.kgAndRab>KG</S.kgAndRab>
+                    <S.item>{item.rab}</S.item>
+                    <S.kgAndRab>회</S.kgAndRab>
+                  </S.record>
                 </S.setItem>
               ))}
             </S.cardItem>
@@ -80,7 +80,7 @@ const CurrentExerciseRecordCard = ({ currentExerciseData }: ICurrentExerciseData
         ) : (
           <S.noRecord>현재 기록이 없습니다</S.noRecord>
         )}
-      </S.recordCardbox>
+      </S.recordCardBox>
     </S.recordCardContainer>
   )
 }

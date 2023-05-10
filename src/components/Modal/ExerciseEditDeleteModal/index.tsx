@@ -68,33 +68,33 @@ const ExerciseEditDeleteModal = ({ toggleModalHandler, nowExerciseIdData }: IExe
         <S.selectExerciseContainer>
           {recommendExerciseList.length ? (
             <S.selectExerciseBox>
-              <button
-                type='button'
-                className={recommendExerciseOrder === 0 ? 'left hidden' : 'left'}
+              <S.selectExerciseBtn
+                hidden={recommendExerciseOrder === 0}
+                direction='left'
                 onClick={recommendExerciseOrderLeftHandler}
               >
                 <Arrow />
-              </button>
+              </S.selectExerciseBtn>
               {recommendExerciseList.slice(recommendExerciseOrder, recommendExerciseOrder + 1).map((data) => (
                 <S.selectExerciseItem key={data.id}>
-                  <div className='title'>
+                  <S.selectExerciseTitle>
                     <div>{`${findCategory(data.categoryId)} ${findType(typeSelector.types.byId, data.typeId)}`}</div>
-                  </div>
-                  <div className='target'>
+                  </S.selectExerciseTitle>
+                  <S.selectExerciseTarget>
                     <div>{`${findTarget(data.mainTarget)} ${findTarget(data.secondaryTarget)}`}</div>
-                  </div>
+                  </S.selectExerciseTarget>
                 </S.selectExerciseItem>
               ))}
-              <button
-                type='button'
-                className={recommendExerciseOrder === recommendExerciseList.length - 1 ? ' hidden' : ''}
+              <S.selectExerciseBtn
+                hidden={recommendExerciseOrder === recommendExerciseList.length - 1}
+                direction=''
                 onClick={recommendExerciseOrderRightHandler}
               >
                 <Arrow />
-              </button>
+              </S.selectExerciseBtn>
             </S.selectExerciseBox>
           ) : (
-            <div className='noExercise'>대체할 운동이 없습니다.</div>
+            <S.noExercise>대체할 운동이 없습니다.</S.noExercise>
           )}
         </S.selectExerciseContainer>
       )}

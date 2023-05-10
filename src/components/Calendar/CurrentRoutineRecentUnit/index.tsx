@@ -10,7 +10,7 @@ const CurrentRoutineRecentUnit = ({ dataSelector }: ICurrentRoutineRecentUnitPro
   return (
     <S.recentUnitMenuContainer>
       {dataSelector ? (
-        <S.unitMenuBox className='unitMenuBox'>
+        <S.unitMenuBox>
           {TOTAL_VOLUME.map((data, i) => (
             <S.volumeMenu key={data}>
               <S.volume colorIdx={i} /> <S.value>{data}</S.value>
@@ -18,7 +18,7 @@ const CurrentRoutineRecentUnit = ({ dataSelector }: ICurrentRoutineRecentUnitPro
           ))}
         </S.unitMenuBox>
       ) : (
-        <S.unitMenuBox className='unitMenuBox'>
+        <S.unitMenuBox>
           {DURATION.map((data, i) => (
             <S.durationMenu key={data}>
               <S.duration colorIdx={i} /> <S.value>{data}</S.value>

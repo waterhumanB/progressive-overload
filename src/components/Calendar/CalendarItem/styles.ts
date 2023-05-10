@@ -47,7 +47,8 @@ export const todayRoutine = styled.td<{ dataSelector: boolean; dataValue: number
     color: ${colors.BLUE};
   }
 `
-export const currentMonthDate = styled.div<{ currentMonthOfDate: boolean }>`
+export const currentMonthDate = styled.div<{ currentMonthOfDate: boolean; holiDay: number }>`
   font-size: 16px;
   opacity: ${(props) => (!props.currentMonthOfDate ? '0.4' : '')};
+  color: ${(props) => (props.holiDay === 0 && colors.RED) || (props.holiDay === 6 && colors.BLUE)};
 `
