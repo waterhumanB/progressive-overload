@@ -31,6 +31,7 @@ export const userInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 `
 
 export const subMenuContainer = styled.div`
