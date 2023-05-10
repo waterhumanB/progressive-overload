@@ -5,7 +5,6 @@ export const makeRoutineContainer = styled.section`
   width: 100%;
   height: 100%;
   padding: 10px 15px 0 15px;
-  position: relative;
 `
 
 export const makeRoutineTitle = styled.div`

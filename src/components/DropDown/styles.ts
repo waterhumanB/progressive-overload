@@ -2,8 +2,9 @@ import styled from 'styled-components'
 import colors from '../../styles/constants/colors'
 
 export const DropDownContainer = styled.div<{ dropdown: boolean }>`
-  width: 100%;
+  max-width: 430px;
   height: 100%;
+  margin: auto;
   position: absolute;
   display: flex;
   align-items: center;
