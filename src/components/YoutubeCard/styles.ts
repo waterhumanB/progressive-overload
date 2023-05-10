@@ -64,7 +64,16 @@ export const errorBox = styled.div`
   font-weight: 600;
   font-size: 20px;
 `
-export const Spinner = styled.div`
+
+export const spinnerBox = styled.div`
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
+export const spinner = styled.div`
+  display: flex;
   width: 175px;
   height: 175px;
   border: 6px solid ${colors.FOCUS};
