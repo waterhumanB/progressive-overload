@@ -3,13 +3,13 @@ import * as S from './styles'
 import { ReactComponent as Arrow } from '../../assets/imgs/arrow_click.svg'
 import { IYoutubeProps } from '../../types/allProps.d'
 
-const YoutubeCard = ({ categoryIndex, youtubeData }: IYoutubeProps) => {
+const YoutubeCard = ({ categoryIndex, youtubeData, spinnerOn }: IYoutubeProps) => {
   const index = categoryIndex
   const youtubeState = youtubeData && youtubeData.youtubeData[index]?.items
 
   return (
     <S.cardContainer>
-      {youtubeData.loading === true && (
+      {youtubeData.loading === true && spinnerOn === true && (
         <S.spinnerBox>
           <S.spinner />
         </S.spinnerBox>

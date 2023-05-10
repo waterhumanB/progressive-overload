@@ -123,7 +123,7 @@ const RoutineRun = () => {
         <CurrentExerciseRecordCard currentExerciseData={currentExerciseData} />
       </S.routineRunBox>
       <S.youtubeBox>
-        <YoutubeCard categoryIndex={runExerciseOrder} youtubeData={youtubeSelector} />
+        <YoutubeCard spinnerOn={false} categoryIndex={runExerciseOrder} youtubeData={youtubeSelector} />
       </S.youtubeBox>
       <RoutineTimer seconds={seconds} setSeconds={setSeconds} />
       {toggleModal && (

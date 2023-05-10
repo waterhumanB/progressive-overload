@@ -76,7 +76,7 @@ const RoutineRunRecordBtn = ({
     }
   }
 
-  const setMiusHandler = () => {
+  const setMinusHandler = () => {
     if (recordSet.length > 1) {
       setRecordSet(recordSet.slice(0, recordSet.length - 1))
     }
@@ -119,7 +119,7 @@ const RoutineRunRecordBtn = ({
   return (
     <div>
       <S.routineRunRecordBtnBox>
-        <button onClick={setMiusHandler} className='setMinus' type='button'>
+        <button onClick={setMinusHandler} className='setMinus' type='button'>
           <Minus /> <span>세트 삭제</span>
         </button>
         <button onClick={setPlusHandler} className='setPlus' type='button'>

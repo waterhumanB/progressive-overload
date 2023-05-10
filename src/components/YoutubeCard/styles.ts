@@ -8,7 +8,6 @@ export const cardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  overflow: scroll;
 `
 
 export const cardBox = styled.div`

@@ -2,7 +2,7 @@ import { MouseEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as ArrowBtn } from '../../../assets/imgs/arrow_btn.svg'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
-import { YOUTUBE_SEARCH_DATA } from '../../../data/searchData'
+import { YOUTUBE_SEARCH_DATA } from '../../../constants/searchData'
 import * as S from './styles'
 import YoutubeCard from '../../../components/YoutubeCard'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
@@ -17,6 +17,8 @@ const Youtube = () => {
   const youtubeSelector = useAppSelector(getYoutubeRecommendDataList)
   const [categoryIndex, setCategoryIndex] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
+
+  const searchDataList = YOUTUBE_SEARCH_DATA.slice(currentPage, currentPage + CATEGORY_SLICE)
 
   const returnPageBtn = () => {
     Navigate(-1)
@@ -38,7 +40,7 @@ const Youtube = () => {
   }, [])
 
   const categoryIndexhandler = (e: MouseEvent<HTMLButtonElement>) => {
-    setCategoryIndex(Number(e.currentTarget.name))
+    setCategoryIndex(YOUTUBE_SEARCH_DATA.indexOf(e.currentTarget.name))
   }
 
   return (
@@ -54,11 +56,11 @@ const Youtube = () => {
           <ArrowBtn />
         </S.pageBtn>
         <S.categoryBox>
-          {YOUTUBE_SEARCH_DATA.slice(currentPage, currentPage + CATEGORY_SLICE).map((data, index) => (
+          {searchDataList.map((data) => (
             <S.categoryItem
-              focus={categoryIndex === index}
+              focus={YOUTUBE_SEARCH_DATA[categoryIndex] === data}
               onClick={categoryIndexhandler}
-              name={String(index)}
+              name={data}
               key={data}
             >
               {data}
@@ -69,7 +71,7 @@ const Youtube = () => {
           <ArrowBtn />
         </S.pageBtn>
       </S.categoryContainer>
-      <YoutubeCard youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
+      <YoutubeCard spinnerOn youtubeData={youtubeSelector} categoryIndex={categoryIndex} />
     </section>
   )
 }

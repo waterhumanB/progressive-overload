@@ -37,6 +37,7 @@ export interface IExerciseCardProps {
 }
 
 export interface IYoutubeProps {
+  spinnerOn: boolean
   categoryIndex: number
   youtubeData: YoutubeState
 }
