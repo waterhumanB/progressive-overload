@@ -2,7 +2,7 @@
 
 ### [프로젝트 배포 주소](progressive-overload-seven.vercel.app)
 
-### [프로젝트 기획 및 기능 구현 관리 노션](https://www.notion.so/progressive-overload-645c836285204ec88747a03a472cd813?pvs=4)
+### [프로젝트 기획 및 기능 구현 관리 노션](https://pentagonal-macrame-88f.notion.site/progressive-overload-645c836285204ec88747a03a472cd813?pvs=4)
 
 # 기술 스택
 - React, TypeScript, Styled-component, Redux-Toolkit

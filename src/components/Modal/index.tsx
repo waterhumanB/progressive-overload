@@ -6,7 +6,7 @@ import TimerModal from './TimerModal'
 
 const Modal = ({ toggleModalHandler, stateData, setStateData, modalName, stateTypeName }: IModalProps) => {
   return (
-    <S.modalCotainer>
+    <S.modalContainer>
       {modalName === 'customExercise' && (
         <CustomSelectorModal
           customExerciseData={stateData}
@@ -25,7 +25,7 @@ const Modal = ({ toggleModalHandler, stateData, setStateData, modalName, stateTy
       {modalName === 'timer' && (
         <TimerModal toggleModalHandler={toggleModalHandler} seconds={stateData} setSeconds={setStateData} />
       )}
-    </S.modalCotainer>
+    </S.modalContainer>
   )
 }
 

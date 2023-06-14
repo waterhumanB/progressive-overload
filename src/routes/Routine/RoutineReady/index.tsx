@@ -38,7 +38,7 @@ const RoutineReady = () => {
   const toggleModalHandler = () => {
     setToggleModal(!toggleModal)
   }
-  const routineIdAndExerciseIdHanlder = (exerciseId: string) => {
+  const routineIdAndExerciseIdHandler = (exerciseId: string) => {
     setRoutineIdAndExerciseId([location.state.id, exerciseId])
     setToggleModal(!toggleModal)
   }
@@ -122,7 +122,7 @@ const RoutineReady = () => {
                   </div>
                 </S.exerciseTarget>
               </S.exerciseInfo>
-              <S.routineMenuBtn onClick={() => routineIdAndExerciseIdHanlder(data)}>
+              <S.routineMenuBtn onClick={() => routineIdAndExerciseIdHandler(data)}>
                 <DotMenu />
               </S.routineMenuBtn>
             </S.exerciseCard>
