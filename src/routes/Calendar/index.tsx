@@ -11,7 +11,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const DayOfTheWeek = ['일', '월', '화', '수', '목', '금', '토']
 
 const Calendar = () => {
-  const [monthOrder, setMothOrder] = useState(new Date().getMonth())
+  const [monthOrder, setMonthOrder] = useState(new Date().getMonth())
   const [dataSelector, setDataSelector] = useState(true)
   const [yearOrder, setYearOrder] = useState(new Date().getFullYear())
   const routineSelector = useAppSelector(getRoutineData)
@@ -55,16 +55,16 @@ const Calendar = () => {
   }
 
   const nextMonthOrderHandler = () => {
-    setMothOrder((prev) => prev - 1)
+    setMonthOrder((prev) => prev - 1)
     if (monthOrder === 0) {
-      setMothOrder(11)
+      setMonthOrder(11)
       setYearOrder((prev) => prev - 1)
     }
   }
   const lastMonthOrderHandler = () => {
-    setMothOrder((prev) => prev + 1)
+    setMonthOrder((prev) => prev + 1)
     if (monthOrder === 11) {
-      setMothOrder(0)
+      setMonthOrder(0)
       setYearOrder((prev) => prev + 1)
     }
   }
