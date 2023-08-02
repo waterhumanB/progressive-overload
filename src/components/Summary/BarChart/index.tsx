@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useState } from 'react'
+import { PointerEvent, useEffect, useState } from 'react'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { getRecordsData } from '../../../states/records'
 import BarChartItem from './barChartItem'
@@ -19,21 +19,21 @@ const DAY_OF_THE_WEEK_KOR = ['일요일', '월요일', '화요일', '수요일',
 const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelect }: IBarChartProps) => {
   const [startPageX, setStartPageX] = useState(0)
   const [translateX, setTranslateX] = useState(10)
-  const [isMouseEvent, setIsMouseEvent] = useState(false)
+  const [isPointerEvent, setIsPointerEvent] = useState(false)
   const recordSelector = useAppSelector(getRecordsData).records.byId
 
   const [routineByDay, routineByWeek, routineByMonth] = routineDataByDate(totalWorkoutDays, recordSelector)
 
-  const mouseDownHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
+  const pointerDownHandler = (e: PointerEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
-    setIsMouseEvent(true)
+    setIsPointerEvent(true)
     setStartPageX(e.pageX - translateX)
   }
 
-  const mouseMoveHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
+  const pointerMoveHandler = (e: PointerEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
     const deltaX = e.pageX - startPageX
-    if (isMouseEvent === true) {
+    if (isPointerEvent === true) {
       setTranslateX(deltaX)
     }
     if (
@@ -41,25 +41,25 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
       (e.currentTarget.dataset.select === 'week' && -50 * routineByWeek.length >= deltaX) ||
       (e.currentTarget.dataset.select === 'month' && -50 * routineByMonth.length >= deltaX)
     ) {
-      setIsMouseEvent(false)
+      setIsPointerEvent(false)
       e.currentTarget.dataset.select === 'day' && setTranslateX(-50 * routineByDay.length + 10)
       e.currentTarget.dataset.select === 'week' && setTranslateX(-50 * routineByWeek.length + 10)
       e.currentTarget.dataset.select === 'month' && setTranslateX(-50 * routineByMonth.length + 10)
     }
     if (translateX > 10) {
-      setIsMouseEvent(false)
+      setIsPointerEvent(false)
       setTranslateX(10)
     }
   }
 
-  const mouseUpHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
+  const pointerUpHandler = (e: PointerEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
-    setIsMouseEvent(false)
+    setIsPointerEvent(false)
   }
 
-  const mouseLeaveHandler = (e: MouseEvent<HTMLOrSVGElement>) => {
+  const pointerLeaveHandler = (e: PointerEvent<HTMLOrSVGElement>) => {
     e.preventDefault()
-    setIsMouseEvent(false)
+    setIsPointerEvent(false)
   }
 
   useEffect(() => {
@@ -68,18 +68,18 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
   }, [dayWeekMonthSelect])
 
   return (
-    <S.barChartBox onMouseUp={mouseUpHandler} viewBox={`${-translateX} 0 400 350`}>
+    <S.barChartBox onPointerUp={pointerUpHandler} viewBox={`${-translateX} 0 400 350`}>
       {dayWeekMonthSelect === 'day' &&
         routineByDay.map((data: any, idx) => (
           <g
             key={data.duration + Math.random()}
             data-select='day'
-            onMouseDown={mouseDownHandler}
-            onMouseMove={mouseMoveHandler}
-            onMouseLeave={mouseLeaveHandler}
+            onPointerDown={pointerDownHandler}
+            onPointerMove={pointerMoveHandler}
+            onPointerLeave={pointerLeaveHandler}
           >
             <BarChartItem
-              mouseEvent={isMouseEvent}
+              pointerEvent={isPointerEvent}
               dayWeekMonthSelect={dayWeekMonthSelect}
               data={data}
               idx={idx}
@@ -101,12 +101,12 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
           <g
             key={data.duration + Math.random()}
             data-select='week'
-            onMouseDown={mouseDownHandler}
-            onMouseMove={mouseMoveHandler}
-            onMouseLeave={mouseLeaveHandler}
+            onPointerDown={pointerDownHandler}
+            onPointerMove={pointerMoveHandler}
+            onPointerLeave={pointerLeaveHandler}
           >
             <BarChartItem
-              mouseEvent={isMouseEvent}
+              pointerEvent={isPointerEvent}
               dayWeekMonthSelect={dayWeekMonthSelect}
               data={data}
               idx={idx}
@@ -128,12 +128,12 @@ const BarChart = ({ volumeAndDurationSelect, totalWorkoutDays, dayWeekMonthSelec
           <g
             key={data.duration + Math.random()}
             data-select='month'
-            onMouseDown={mouseDownHandler}
-            onMouseMove={mouseMoveHandler}
-            onMouseLeave={mouseLeaveHandler}
+            onPointerDown={pointerDownHandler}
+            onPointerMove={pointerMoveHandler}
+            onPointerLeave={pointerLeaveHandler}
           >
             <BarChartItem
-              mouseEvent={isMouseEvent}
+              pointerEvent={isPointerEvent}
               key={data.duration + Math.random()}
               dayWeekMonthSelect={dayWeekMonthSelect}
               data={data}

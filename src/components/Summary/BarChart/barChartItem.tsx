@@ -11,7 +11,7 @@ interface IBarChartItemProps {
   monthByDayData: number
   monthByWeekData: number
   monthByMonthData: number
-  mouseEvent: boolean
+  pointerEvent: boolean
 }
 
 const SVG_X_LENGTH = 76
@@ -34,7 +34,7 @@ const BarChartItem = ({
   monthByDayData,
   monthByWeekData,
   monthByMonthData,
-  mouseEvent,
+  pointerEvent,
 }: IBarChartItemProps) => {
   const [hover, setHover] = useState(false)
 
@@ -84,7 +84,7 @@ const BarChartItem = ({
     <g>
       <g onMouseMove={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         <S.bar barValue={volumeAndDurationSelect} x={barX} heightValue={heightValue} />
-        <S.animatedBar mouseEvent={mouseEvent} x={aniBarX} heightValue={heightValue + 1} />
+        <S.animatedBar pointerEvent={pointerEvent} x={aniBarX} heightValue={heightValue + 1} />
         {dayWeekMonthSelect === 'day' && (
           <g>
             <S.barValue holiday={holiday} y={BAR_VALUE_Y[0]} x={barValueX}>

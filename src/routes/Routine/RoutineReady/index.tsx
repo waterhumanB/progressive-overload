@@ -1,4 +1,4 @@
-import React, { DragEvent, useEffect, useState } from 'react'
+import { TouchEvent, DragEvent, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactComponent as Arrow } from '../../../assets/imgs/arrow.svg'
 import { ReactComponent as DotMenu } from '../../../assets/imgs/dot_menu.svg'
@@ -25,6 +25,8 @@ const RoutineReady = () => {
   const exerciseSelector = useAppSelector(getExerciseData)
   const typeSelector = useAppSelector(getTypesData)
   const routineSelector = useAppSelector(getRoutineData)
+
+  const [isWindow, setIsWindow] = useState(true)
   const [grab, setGrab] = useState<HTMLElement>()
   const [routineList, setRoutineList] = useState<string[]>(location.state.workout)
   const [dragOver, setDragOver] = useState<number>()
@@ -62,6 +64,25 @@ const RoutineReady = () => {
     setDragOver(999)
   }
 
+  const touchStartHandler = (e: TouchEvent<HTMLElement>) => {
+    setGrab(e.currentTarget)
+  }
+  const touchOverHandler = (e: TouchEvent<HTMLElement>) => {
+    setDragOver(Number(e.currentTarget.dataset.position))
+    setDropPosition(999)
+  }
+  const touchEndHandler = (e: TouchEvent<HTMLElement>) => {
+    setGrab(undefined)
+    const grabPosition = Number(grab?.dataset.position)
+    const targetPosition = Number(e.currentTarget.dataset.position)
+
+    const newList = [...routineList]
+    newList[grabPosition] = newList.splice(targetPosition, 1, newList[grabPosition])[0]
+    setRoutineList(newList)
+    setDropPosition(targetPosition)
+    dispatch(changeWorkoutInRoutine({ id: location.state.id, workout: newList }))
+  }
+
   const dropHandler = (e: DragEvent<HTMLElement>) => {
     // 요소나 텍스트 블록을 적합한 드롭 대상에 드롭했을 때 발생함
     const grabPosition = Number(grab?.dataset.position)
@@ -74,10 +95,6 @@ const RoutineReady = () => {
     dispatch(changeWorkoutInRoutine({ id: location.state.id, workout: newList }))
   }
 
-  useEffect(() => {
-    setRoutineList(routineSelector.routines.byId[location.state.id].workout)
-  }, [routineSelector])
-
   const routineRunPageHandler = () => {
     navigate('routine-run', { state: location.state.id })
     const routineStartData = {
@@ -86,6 +103,20 @@ const RoutineReady = () => {
     }
     dispatch(setStartAtTimeInRoutine(routineStartData))
   }
+
+  useEffect(() => {
+    const windowView = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    if (windowView) {
+      setIsWindow(false)
+    } else {
+      setIsWindow(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    setRoutineList(routineSelector.routines.byId[location.state.id].workout)
+  }, [routineSelector])
+
   return (
     <S.routinePageContainer>
       <S.routineTitleBox>
@@ -101,10 +132,13 @@ const RoutineReady = () => {
               dropPosition={index === dropPosition}
               dragOverPosition={index === dragOver}
               data-position={index}
-              onDragStart={dragStartHandler}
-              onDragOver={dragOverHandler}
-              onDragEnd={dragEndHandler}
-              onDrop={dropHandler}
+              onDragStart={isWindow ? dragStartHandler : undefined}
+              onDragOver={isWindow ? dragOverHandler : undefined}
+              onDragEnd={isWindow ? dragEndHandler : undefined}
+              onDrop={isWindow ? dropHandler : undefined}
+              onTouchStart={isWindow ? undefined : touchStartHandler}
+              onTouchMove={isWindow ? undefined : touchOverHandler}
+              onTouchEnd={isWindow ? undefined : touchEndHandler}
               draggable
               key={data}
             >
